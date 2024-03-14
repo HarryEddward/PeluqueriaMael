@@ -1,0 +1,47 @@
+{
+    "data": {
+
+        "info":{
+            "username": "str (required)",
+            "email": "str (required)", //verificacion si es un email
+            "password": "str (required)",
+            "phone": "number",
+            "user_created": "datetime",
+        },
+        "config": {
+
+            "theme_bg": "str",
+            "privacy&policy": "bool (required, default: True)",
+            "hours": {
+                /*
+                    Necesariamente no es obligatorio
+                    estos campos de las horas
+                */
+                "available": [
+                    //Lista de horas disponibles
+                ],
+                "unavailable": [
+                    //Lista de horas no disponibles
+                ]
+            }
+
+        },
+        "bookings": {
+
+            "done": [
+                //Listado de todo las reservas realizadas
+                //Ejemplo:
+                {
+                    "date": "date"
+                }
+            ],
+            "pending": [
+                //Listado en espera hasta su día
+            ],
+            "rejected": [
+                //Listado todas las reservas anuladas
+            ]
+        }
+
+    }
+}

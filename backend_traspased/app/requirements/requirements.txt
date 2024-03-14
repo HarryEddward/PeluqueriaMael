@@ -1,0 +1,6 @@
+fastapi
+pydantic
+uvicron
+sqlalchemy
+fastapi_limiter
+pyjwt

@@ -1,0 +1,27 @@
+{
+    "peluquero_1": {
+        "morning": {
+            "9:00": "libre",
+            "9:30": "libre",
+            "10:00": "libre",
+            "11:30": "libre",
+            "12:00": "libre",
+            "12:30": "libre",
+            "13:00": "libre",
+            "13:30": "libre",
+        },
+        "afternoon":{
+            "15:00": "libre",
+            "15:30": "ocupado",
+            "16:00": "libre",
+            "16:30": "libre",
+            "17:00": "libre",
+            "17:30": "ocupado",
+            "18:00": "libre",
+            "18:30": "libre",
+            "19:00": "libre",
+            "19:30": "libre",
+            "20:00": "libre"
+        }
+    }
+}

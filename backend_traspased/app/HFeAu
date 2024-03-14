@@ -1,0 +1,48 @@
+''' HFeAu (Hidrogeno, Hierro, Oro) = (JWT; SHA; RSA;) '''
+Integridad, Robustez, Flexibilidad
+
+'''Fuck You (FY)'''
+https://www.fuckyoudev.dev
+
+{
+  "tokenJWT": {
+    // 1'
+    "exp"
+    "info": "rsa-info",
+    
+    "tokenJWT": {
+        // 1'
+
+        "exp"
+        "key1": "sha256key",
+        "key2": "sha256key",
+        "tokenJWT": {
+            //En este se reducira a 50 segundos
+
+            "exp"
+            "queries": [],
+            "info": []
+
+        }
+    },
+    "base_ver3JWTinSHA"
+  }
+}
+
+
+***
+Por cada informacion que se envie
+se genera una clave publica y privada
+que se enviara al cliente
+***
+
+***
+Los tokens solo tiene 1 minuto de
+expiracion para evitar intrusos
+***
+
+***
+base_ver3JWTinSHA, conctatenara los 3 jwt,
+y lo convertira en sha para verificar la 
+integridad de estos
+***
