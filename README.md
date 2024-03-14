@@ -1,5 +1,6 @@
 
 ## Configurar PORT FORWARDING
+**TCP** | PORT: 9712
 
 
 ## JWT
