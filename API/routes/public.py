@@ -29,9 +29,15 @@ router = APIRouter()
 
 
 
-'''Union[Credentials, Token]'''
+#Union[Credentials, Token]
+
 @router.post('/login')
 async def root(data: Token):
+
+    '''
+    La ruta /login solo recibirá como parametro el JWT
+    '''
+
     try:
         if isinstance(data, Token):
             token_info = JWToken.check(data.token)
