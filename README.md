@@ -1,7 +1,9 @@
+# CONFIGURACIÓN
 
-## Configurar PORT FORWARDING
-**TCP** | PORT: 9712
 
+## PORT FORWARDING
+**HTTP** | PORT: 9712 `Frontend`
+**HTTP** | PORT: 7878 `Backend`
 
 ## JWT
 
