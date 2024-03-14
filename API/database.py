@@ -14,11 +14,13 @@ db = client["PeluqueriaMael"]
 roles = [{"role": "readWrite", "db": "PeluqueriaMael"}]
 
 # Crear el nuevo usuario
+'''
 db.command(
     'createUser', 'maelsilvero',
     pwd='AXGRbLjzQsMChDnJWdUpNr#87',
     roles=roles
 )
+'''
 
 reservas = db["Reservas"]
 users = db["Users"]

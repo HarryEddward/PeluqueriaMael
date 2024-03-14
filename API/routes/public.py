@@ -13,6 +13,8 @@ from pydantic import ValidationError
 from typing import Union
 
 
+from API.database import users
+
 
 
 import json
@@ -27,23 +29,25 @@ router = APIRouter()
 
 
 
+'''Union[Credentials, Token]'''
 @router.post('/login')
-async def root(data: Union[Credentials, Token]):
+async def root(data: Token):
     try:
         if isinstance(data, Token):
             token_info = JWToken.check(data.token)
             if token_info["status"] == "ok":
-                user = coleccion.find_one({
-                    'number_phone': token_info["payload"]["number_phone"],
-                    'password': token_info["payload"]["password"],
+                user = users.find_one({
+                    'info': {
+                        'number_phone': token_info["payload"]["number_phone"],
+                        'password': token_info["payload"]["password"],
+                    }
                 })
                 if user:
                     return JSONResponse(
                         content={
                             "info": 'Se validó correctamente el usuario mediante JWT',
                             "user": token_info["payload"],
-                            "STAT": 'success',
-                            'valid': 1
+                            "type": 'SUCCESS'
                         },
                         status_code=200
                     )
@@ -51,7 +55,8 @@ async def root(data: Union[Credentials, Token]):
                     return JSONResponse(
                         content={
                             "info": "Usuario no encontrado",
-                            "STAT": "error"
+                            "status": "no",
+                            "type": "USER_NOT_FOUND"
                         },
                         status_code=404
                     )
@@ -68,7 +73,7 @@ async def root(data: Union[Credentials, Token]):
             return JSONResponse(
                 content={
                     "info": "Datos de autenticación incorrectos",
-                    "status": "error",
+                    "status": "no",
                     "type": "INVALID_AUTH_DATA"
                 },
                 status_code=400
@@ -77,7 +82,7 @@ async def root(data: Union[Credentials, Token]):
         return JSONResponse(
             content={
                 "info": "Error interno del servidor",
-                "status": "error",
+                "status": "no",
                 "type": "INTERNAL_SERVER_ERROR"
             },
             status_code=500
