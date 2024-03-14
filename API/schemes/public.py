@@ -5,7 +5,7 @@ from pydantic import (
 
 #Login & Register
 class Credentials(BaseModel):
-    user: str
+    number_phone: str
     password: str
 
 #Login
