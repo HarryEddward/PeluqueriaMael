@@ -7,3 +7,5 @@ class Add(BaseModel):
 class data(BaseModel):
     reservas: dict
     info: dict
+
+
