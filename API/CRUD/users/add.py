@@ -9,3 +9,5 @@ class data(BaseModel):
     info: dict
 
 
+def add_user(data: dict):
+    pass
