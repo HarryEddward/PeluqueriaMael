@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from API.routes.app import admin, client, worker
 from routes.app import (
     admin,
     worker,

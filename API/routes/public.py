@@ -19,10 +19,10 @@ from API.database import users
 
 import json
 #Schemes
-from API.schemes.public import *
+from schemes.public import *
 
 #JWT
-from API.functionalities.auth import JWToken
+from functionalities.auth import JWToken
 
 
 router = APIRouter()
