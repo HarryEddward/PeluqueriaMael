@@ -32,6 +32,20 @@ router = APIRouter()
 #Union[Credentials, Token]
 
 @router.post('/login')
+async def root(data: Credentials):
+    try:
+        pass
+    except Exception as e:
+        return JSONResponse(
+            content={
+                "info": "Error interno del servidor",
+                "status": "no",
+                "type": "INTERNAL_SERVER_ERROR"
+            },
+            status_code=500
+        )
+
+@router.post('/autologin')
 async def root(data: Token):
 
     '''
