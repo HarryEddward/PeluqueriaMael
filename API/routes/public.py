@@ -13,7 +13,7 @@ from pydantic import ValidationError
 from typing import Union
 
 
-from API.database import users
+from database import users
 
 
 
