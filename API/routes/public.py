@@ -120,30 +120,8 @@ async def root(data: Union[NewUser, Token]):
     Validara si tienen el mismo email tambien esta replicado
     '''
     try:
-    
-    
-        if isinstance(data, Token):
-            token = validate_token(data.token)
 
-            if token["valid"] == 1:
-                return JSONResponse(
-                    content={
-                        "info": "El token se descifro",
-                        "token": token["token"],
-                        "STAT": "success"
-                    },
-                    status_code=200
-                )
-            else:
-                return JSONResponse(
-                    content={
-                        "info": token["info"],
-                        "STAT": token["STAT"]
-                    },
-                    status_code=404
-                )
-
-        elif isinstance(data, NewUser):
+        if isinstance(data, NewUser):
 
             username = data.user
             password = data.psw
@@ -164,9 +142,9 @@ async def root(data: Union[NewUser, Token]):
                     "usuario": username,
                     "contraseña": password,
                     "email": email
-                };
+                }
 
-                coleccion.insert_one(add_user);
+                coleccion.insert_one(add_user)
             
                 token = create_token({
                     "user": username,

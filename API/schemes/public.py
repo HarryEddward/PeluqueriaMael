@@ -1,7 +1,5 @@
-from pydantic import (
-    BaseModel,
-    EmailStr
-)
+from pydantic import BaseModel
+#from pydantic import EmailStr
 
 #Login & Register
 class Credentials(BaseModel):
@@ -16,4 +14,4 @@ class Token(BaseModel):
 class NewUser(BaseModel):
     user: str
     psw: str
-    email: EmailStr
+    email: str
