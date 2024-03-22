@@ -41,15 +41,30 @@ def add_user(data: Add):
         print(data)
         user_validate = Add(**data)
         print(user_validate)
-        return 0
+        return {
+            "info": "",
+            "status": "ok",
+            "type": "SUCCESS"
+        }
     
     except AttributeError:
-        print('La validación falló')
+        return {
+            "info": "INVALID_DATA",
+            "status": "no",
+            "type": ""
+        }
     except ValidationError:
-        print('La validación falló')
+        return {
+            "info": "",
+            "status": "no",
+            "type": ""
+        }
     except Exception as e:
-        print(e)
-        print('heloooooooo')
+        return {
+            "info": "",
+            "status": "no",
+            "type": ""
+        }
 
 
 input_data = {
