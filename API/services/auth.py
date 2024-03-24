@@ -3,8 +3,14 @@ import datetime
 import os
 import time
 
-#SECRET_KEY = os.environ["JWT_SECRET"]
-#print(SECRET_KEY)
+from dotenv import load_dotenv
+load_dotenv()
+
+'''SECRET_KEY = os.environ["JWT_SECRET"]
+print(SECRET_KEY)'''
+
+SECRET_KEY = os.getenv("JWT_SECRET")
+print(SECRET_KEY)
 
 class JWToken:
     
