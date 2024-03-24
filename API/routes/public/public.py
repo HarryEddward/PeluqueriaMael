@@ -11,15 +11,12 @@ from fastapi import (
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 from typing import Union
-
+import json
 
 from db.database import users
 
-
-
-import json
 #Schemes
-from schemes.general import *
+from routes.public.schemes.general import Schemes
 
 #JWT
 from services.auth import JWToken
@@ -32,7 +29,7 @@ router = APIRouter()
 #Union[Credentials, Token]
 
 @router.post('/login')
-async def root(data: Credentials):
+async def root(data: Schemes.Credentials):
     try:
         pass
     except Exception as e:
@@ -46,7 +43,7 @@ async def root(data: Credentials):
         )
 
 @router.post('/autologin')
-async def root(data: Token):
+async def root(data: Schemes.Token):
 
     '''
     La ruta /login solo recibirá como parametro el JWT
@@ -110,7 +107,7 @@ async def root(data: Token):
 
 
 @router.post('/register')
-async def root(data: Union[NewUser, Token]):
+async def root(data: Union[Schemes.NewUser, Schemes.Token]):
 
     '''
     En register primero validara si el ususario existe
@@ -190,7 +187,7 @@ async def root(
     
     #Extraera la informacion del token del supuesto usuario
     #Y lo validara y dara para hacer la operacion
-    data: Token
+    data: Schemes.Token
     
     ):
     
