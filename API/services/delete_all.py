@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 
 # Conectarse al servidor de MongoDB
-from API.database import reservas
+from db.database import reservas
 
 # Eliminar todos los documentos de la colección
 result = reservas.delete_many({})

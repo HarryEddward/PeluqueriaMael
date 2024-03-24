@@ -7,9 +7,9 @@ from pprint import pprint
 
 
 
-from API.database import reservas
-from API.database import users
-from API.database import configure
+from db.database import reservas
+from db.database import users
+from db.database import configure
 
 from datetime import datetime
 

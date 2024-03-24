@@ -1,21 +1,19 @@
 from fastapi import FastAPI
-from routes.app import (
-    admin,
-    worker,
-    client
-)
-from routes import public
 from fastapi.middleware.cors import CORSMiddleware
-
+from routes.app.admin import admin
+from routes.app.client import client
+from routes.app.worker import worker
+from routes.public import public
 
 app = FastAPI()
 
+# Incluyendo los routers
 app.include_router(admin.router, prefix="/app/admin", tags=["admin"])
-app.include_router(worker.router, prefix="/app/worker", tags=["worker"])
-app.include_router(client.router, prefix="/app/client", tags=["client"])
+app.include_router(client.router, prefix="/app/worker", tags=["worker"])
+app.include_router(worker.router, prefix="/app/client", tags=["client"])
 app.include_router(public.router, prefix="/public", tags=["public"])
 
-
+# Configuración del middleware CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["192.168.1.135"],  # O puedes especificar dominios permitidos
@@ -23,8 +21,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
 
 @app.get("/")
 def read_root():

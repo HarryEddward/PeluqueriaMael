@@ -1,4 +1,4 @@
-from API.database import users
+from db.database import users
 from pydantic import BaseModel
 from pydantic import ValidationError
 from pydantic_extra_types.phone_numbers import PhoneNumber

@@ -13,16 +13,16 @@ from pydantic import ValidationError
 from typing import Union
 
 
-from database import users
+from db.database import users
 
 
 
 import json
 #Schemes
-from schemes.public import *
+from schemes.general import *
 
 #JWT
-from functionalities.auth import JWToken
+from services.auth import JWToken
 
 
 router = APIRouter()
