@@ -5,7 +5,13 @@ from routes.app.client import client
 from routes.app.worker import worker
 from routes.public import public
 
+import os
+
+SECRET_KEY = os.environ["JWT_SECRET"]
+print(SECRET_KEY)
+
 app = FastAPI()
+
 
 # Incluyendo los routers
 app.include_router(admin.router, prefix="/app/admin", tags=["admin"])
