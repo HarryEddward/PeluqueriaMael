@@ -6,11 +6,6 @@ from routes.app.worker import worker
 from routes.public import public
 
 import os
-from dotenv import load_dotenv
-load_dotenv() 
-
-SECRET_KEY = os.environ["JWT_SECRET"]
-print(SECRET_KEY)
 
 app = FastAPI()
 
@@ -34,6 +29,10 @@ app.add_middleware(
 def read_root():
     return {"message": "¡Bienvenido a mi servidor FastAPI!"}
 
+'''
+#Dev Section
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run('server:app', host="0.0.0.0", port=8000, reload=True, workers=2)
+'''

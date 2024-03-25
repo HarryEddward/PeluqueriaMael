@@ -6,3 +6,4 @@ pyjwt
 pydantic
 pydantic-extra-types
 phonenumbers
+gunicorn
