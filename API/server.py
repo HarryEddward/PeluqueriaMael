@@ -6,6 +6,8 @@ from routes.app.worker import worker
 from routes.public import public
 
 import os
+from dotenv import load_dotenv
+load_dotenv() 
 
 SECRET_KEY = os.environ["JWT_SECRET"]
 print(SECRET_KEY)
