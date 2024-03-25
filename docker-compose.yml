@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+
+  backend:
+    image: python:3.9
+    container_name: fastapi_backend
