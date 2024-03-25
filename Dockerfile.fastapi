@@ -15,6 +15,6 @@ RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 WORKDIR /app
 
-CMD [ "gunicorn", "-k", "uvicorn.workers.UvicornWorker", "server:app", "--bind", "0.0.0.0:8000" ]
+ENTRYPOINT [ "gunicorn", "-k", "uvicorn.workers.UvicornWorker", "server:app", "--bind", "0.0.0.0:8000" ]
 
 #ENTRYPOINT ./DevOps/scripts/docker/ENTRYPOINT.sh

@@ -3,5 +3,19 @@ version: "3"
 services:
 
   backend:
-    image: python:3.9
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi
     container_name: fastapi_backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+
+  database:
+    build:
+      context: .
+      dockerfile: Dockerfile.mongodb
+    container_name: mongodb_database
+    ports:
+      - "27017:27017"
