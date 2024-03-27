@@ -13,9 +13,18 @@ services:
       - database
 
   database:
-    build:
-      context: .
-      dockerfile: Dockerfile.mongodb
-    container_name: mongodb_database
     ports:
-      - "27017:27017"
+      - '27018:27018'
+    container_name: mongodb_database
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=bdung
+    image: mongo
+    volumes:
+      - mongodb_persistant_data:/data/db
+
+
+volumes:
+  mongodb_persistant_data:
+    driver: local

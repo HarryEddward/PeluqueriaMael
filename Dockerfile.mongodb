@@ -7,4 +7,4 @@ ENV MONGO_INITDB_ROOT_PASSWORD=password
 ENV MONGO_INITDB_DATABASE=mydatabase
 
 
-ENTRYPOINT [ "mongod", "--auth" ]
+#ENTRYPOINT [ "mongod" ]
