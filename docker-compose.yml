@@ -17,6 +17,7 @@ services:
       - '27018:27018'
     container_name: mongodb_database
     restart: always
+    command: mongod --port 27018
     environment:
       - MONGO_INITDB_ROOT_USERNAME=mongoadmin
       - MONGO_INITDB_ROOT_PASSWORD=bdung
