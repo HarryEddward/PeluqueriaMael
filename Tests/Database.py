@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 
 # Configuración de la conexión a MongoDB
-client = MongoClient('mongodb://mongoadmin:bdung@localhost:27018/')
+client = MongoClient('mongodb://myrootusername:myrootpassword@localhost:30000/')
 db = client['mydatabase']  # Cambia 'mydatabase' por el nombre de tu base de datos
 collection = db['mycollection']  # Cambia 'mycollection' por el nombre de tu colección
 
