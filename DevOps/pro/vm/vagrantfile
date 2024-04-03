@@ -2,11 +2,12 @@ Vagrant.configure("2") do |config|
 
 
     config.vm.box = "ubuntu/bionic64"
-    config.vm.synced_folder "../../", "/vargant", disabled: true
 
 
     config.vm.define "master", primary: true do |config|
     
+        config.vm.provision "file", source: "../../../", destination: "/project"
+
         config.vm.hostname = "Master"
         config.vm.network "private_network", ip: "10.0.0.50"
     

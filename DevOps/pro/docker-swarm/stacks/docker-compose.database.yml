@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+
+  database:
+    
+    image: mongo
+    ports:
+      - '27018:27018'
+    container_name: mongodb_database
+    restart: always
+    command: mongod --port 27018
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=bdung
+    volumes:
+      - type: bind
+        source: /home/vagrant/data/db  # Ruta del directorio en el sistema de archivos del host
+        target: /data/db   # Ruta dentro del contenedor
