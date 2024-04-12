@@ -16,20 +16,22 @@ import json
 from db.database import users
 
 #Schemes
-from routes.public.schemes.general import Schemes
+from routes.client.schemes.general import schemes
 
 #JWT
 from services.auth import JWToken
 
+#SubRoutes
+import routes.client.restricted.main
 
 router = APIRouter()
-
+router.include_router(routes.client.restricted.main.router)
 
 
 #Union[Credentials, Token]
 
 @router.post('/login')
-async def root(data: Schemes.Credentials):
+async def root(data: schemes.Credentials):
     try:
         pass
     except Exception as e:
@@ -43,14 +45,14 @@ async def root(data: Schemes.Credentials):
         )
 
 @router.post('/autologin')
-async def root(data: Schemes.Token):
+async def root(data: schemes.Token):
 
     '''
     La ruta /login solo recibirá como parametro el JWT
     '''
 
     try:
-        if isinstance(data, Token):
+        if isinstance(data, schemes.Token):
             token_info = JWToken.check(data.token)
             if token_info["status"] == "ok":
                 user = users.find_one({
@@ -107,7 +109,7 @@ async def root(data: Schemes.Token):
 
 
 @router.post('/register')
-async def root(data: Union[Schemes.NewUser, Schemes.Token]):
+async def root(data: Union[schemes.NewUser, schemes.Token]):
 
     '''
     En register primero validara si el ususario existe
@@ -118,7 +120,7 @@ async def root(data: Union[Schemes.NewUser, Schemes.Token]):
     '''
     try:
 
-        if isinstance(data, NewUser):
+        if isinstance(data, schemes.NewUser):
 
             username = data.user
             password = data.psw
@@ -178,23 +180,25 @@ async def root(data: Union[Schemes.NewUser, Schemes.Token]):
 
 
 '''
-En booking
+En booking, para hacer uso debe pasar el token de validación no pasara las credenciales
+de ningúna manera mas que por el jwt
 '''
 
 
 @router.post('booking')
-async def root( 
+async def root(
     
-    #Extraera la informacion del token del supuesto usuario
-    #Y lo validara y dara para hacer la operacion
-    data: Schemes.Token
+    data: schemes.Token
     
     ):
     
+    #Extraera la informacion del token del supuesto usuario
+    #Y lo validara y dara para hacer la operacion
+    
+    
     
     try:
-        pass
+        return 1
     except ValidationError as e:
-        pass
-    
+        return 0
     pass

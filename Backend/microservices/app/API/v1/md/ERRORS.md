@@ -44,7 +44,8 @@ A continuación se describen los diferentes tipos de errores que pueden ocurrir 
 - **JWT_EXPIRED_ERROR**:
   - *Descripción*: Error en la expiración del token jwt
 
-
+- **UNKNOW_ERROR**:
+  - *Descripción*: Eror que esta fuera de control y no se haya registrado antes en el servidor
 
 
 *return* {

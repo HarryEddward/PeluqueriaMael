@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 #from pydantic import EmailStr
 
-class Schemes():
+class schemes:
     #Login & Register
     class Credentials(BaseModel):
         number_phone: str
