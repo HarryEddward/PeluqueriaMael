@@ -47,10 +47,20 @@ A continuación se describen los diferentes tipos de errores que pueden ocurrir 
 - **UNKNOW_ERROR**:
   - *Descripción*: Eror que esta fuera de control y no se haya registrado antes en el servidor
 
+- **PASSWORD_VALIDATED**:
+  - *Descripción*: La contraseña se validó al validar el usuario desde mongodb
+
+- **INCORRECT_PASSWORD**:
+  - *Descripción*: Encontro el usuario, pero la contraseña no coinciden 
+  
+- **USER_NOT_FOUND**:
+  - *Descripción*: No se encontró el usuario en mongodb 
+
 
 *return* {
   `"info"`: **"Informa de que trata exactamente el error"**,
   `"status"`: **"no/ok"**,
   `"type"`: **"Tipo de error específico"**  -- Úbicado en ERRORS.md, aquí --
+  `"data"`: **Datos extras al recibir**
 }
 

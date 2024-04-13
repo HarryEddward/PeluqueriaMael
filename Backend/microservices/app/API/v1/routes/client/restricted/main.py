@@ -8,7 +8,11 @@ from fastapi import (
 
 router = APIRouter(prefix="/restricted")
 
+
 @router.get('/hola')
-async def root():
-    
-    return "hola"
+async def root(request: Request):
+
+
+    return {
+        "saludo": "hola"
+    }

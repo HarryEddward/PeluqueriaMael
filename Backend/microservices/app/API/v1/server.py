@@ -21,6 +21,10 @@ base_router.include_router(worker_router, prefix="/worker", tags=["worker"])
 # Incluir el enrutador base en la aplicación con el prefijo deseado
 app.include_router(base_router, prefix="/app/api/v1")
 
+#Middlewares
+from config.middlewares.client.restricted import RestrictedMiddleware
+app.add_middleware(RestrictedMiddleware) #/app/api/v1/client/restricted/
+
 # Configuración del middleware CORS
 app.add_middleware(
     CORSMiddleware,
