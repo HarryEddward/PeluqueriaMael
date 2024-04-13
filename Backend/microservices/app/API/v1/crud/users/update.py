@@ -1,11 +1,11 @@
-from ...db.database import users
+from db.database import users
 from pydantic import BaseModel, EmailStr
 from pydantic import ValidationError
-from ...services.secrets_generator.main import secrets_generator
+from services.secrets_generator.main import secrets_generator
 from bson import ObjectId
 
 from .validation import ValidationUser
-from ...services.auth import JWToken
+from services.auth import JWToken
 
 
 
@@ -13,6 +13,8 @@ from ...services.auth import JWToken
 Aquí estaran todos los métodos que se haran uso, estan de forma controlada
 para que no se puedan modificar cualquier dato que nos de la gana.
 Para evitar fallos de seguirdad
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuZWxjYXBvQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZnVja195b3UifSwiZXhwIjoxNzE1NjI3Nzk2fQ.fTxdy_7X63-ypQnYib42HMYQ2_Zwa3o16BvBTwsugjI
 '''
 
 class UpdateUser:

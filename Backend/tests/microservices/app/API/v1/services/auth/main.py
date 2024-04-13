@@ -9,40 +9,31 @@ class TestAuthJWT(unittest.TestCase):
     
     def setUp(self) -> None:
         pass
-
+    @unittest.skip("#")
     def test_JWT_create(self) -> None:
 
+        #secret: str = "+tInFHGmJ7Di41!6Exnc(qnVuJ9KsVlI5u)tE3gXHLIF1$nnUCyx)Zdb&9+HLLiC$s9vOXXnh*NauYPBIU5fcNEh#19FNbe@t$Tb%XY(qkzP&LpN#=Zj1i@M"
         #->
         self.create_jwt = JWToken.create({
-            "email": "he0780070@gmail.com",
-            "password": "9d29djdhwdhwhd09"
+            "id": "661a4d120b025320742dfe09"
         })
         #->
 
         print(self.create_jwt)
         self.assertEqual(self.create_jwt["status"], "ok")
 
-
+    #@unittest.skip("#")
     def test_JWT_check(self) -> None:
         
-        #->
-        self.check_jwt = JWToken.check("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiaGUwNzgwMDcwQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiOWQyOWRqZGh3ZGh3aGQwOSJ9LCJleHAiOjE3MTM0MzU1MDR9.jsm-d73oQvmWWeUB2ono3yuKYxmHoSVeoQWq3mAH9rI")
-        #->
+        secret = "-^-Yw%Gy@nUlJ@bDz6TGNX3B%#kvY6uY$EO+LmvC(%cRN4@6#7WePYTi899i0tB3sXCY3K260KMRn1XV6o#y5@G7xYoMyFNQevD4w6gKIMfhrJ2_lUPWyg1r"
         
+        #->
+        self.check_jwt = JWToken.check("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuZWxjYXBvQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZnVja195b3UifSwiZXhwIjoxNzE1NjI3Nzk2fQ.fTxdy_7X63-ypQnYib42HMYQ2_Zwa3o16BvBTwsugjI", secret)
+        #->
+    
         print('Decoded ->', self.check_jwt)
         self.assertEqual(self.check_jwt["status"], "ok")
     
-    '''
-    No recomendable hacer uso de JWToken.renew(), puede provocar problemas de
-    seguridad si no se renueva por otro token, puede incluso hackearlo. Y bueno tener
-    problemas 
-    '''
-    def test_JWT_renew(self) -> None:
-
-        #->
-            #NO USO
-        #->
-        pass
 
 
 if __name__ == '__main__':

@@ -1,65 +1,104 @@
-# restricted.py
 from fastapi import Request, Response, HTTPException
 from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from typing import Callable, Awaitable
+from bson import ObjectId
 
+from crud.users.find import FindUser, FindSecretJWTID
+from crud.users.update import UpdateUser
 from services.auth import JWToken
 
-from crud.users.validation import ValidationUser
-
-
 class RestrictedMiddleware(BaseHTTPMiddleware):
-
-
-
     async def dispatch(self, request: Request, call_next: Callable[[Request], Awaitable[Response]]):
-        # Verifica si la ruta es la restringida
-
-        request.state.custom_data = request.url.path
-
-        '''
-        La ruta restringida del cliente, siempre deberá de validar por jwt su usuario
-        y siempre por el metodo post
-        '''
         if request.url.path.startswith("/app/api/v1/client/restricted/"):
 
             if request.method == "POST":
-
                 try:
-                    token = await self.get_token(request)
-                    self.validate_user(token)
-                except HTTPException as e:
-                    raise e
+                    body = await request.json()
+                    token_id = body["token_id"]
+                    token_data = body["token_data"]
+
+                    #request.state.token_id = body["token_id"] #1 Token
+                    #request.state.token_data = body["token_data"] #2 Token
+
+                    token_id_check = JWToken.check(token_id) # Clave JWT Global
+                    print(token_id_check)
+                    if token_id_check["status"] == "ok":
+                        
+                        print(token_id_check["data"]["info"]["id"])
+                        
+                        user_id = token_id_check["data"]["info"]["id"]
+
+                        #Si el token_id esta correcto, irá a buscar el usuario en el db
+                        secret = FindUser.secret_jwt(
+                            FindSecretJWTID(
+                                id=token_id_check["data"]["info"]["id"]
+                            )
+                        )
+                        
+
+                        #Si encontro el secreto en el usuario y todo salio bien
+                        if secret.response["status"] == 'ok':
+                            
+                            #print('entro')
+                            #Teniendo el secreto descifraremos el segundo token con la clave privada secreta que tiene el mismo usuario
+                            user_secret = secret.response["data"]
+                            
+                            token_data_check = JWToken.check(token_data, user_secret)
+                            print('->', token_data_check)
+                            
+                            
+                            if token_data_check["status"] == 'ok':
+                                
+                                #print(token_data_check)
+                                email = token_data_check["data"]["info"]["email"]
+                                password = token_data_check["data"]["info"]["password"]
+                                
+                                print('here!')
+                                renew_secret = UpdateUser.secret_jwt({
+                                    "email": email,
+                                    "password": password,
+                                })
+
+                                #Intenta modificar la clave secreta del usuario 
+                                if renew_secret.response["status"] == 'ok':
+
+                                    new_token = renew_secret.response["data"]["token"]
+                                    request.state.new_token = new_token
+                                    request.state.email = email
+                                    request.state.password = password
+                                    request.state.user_id = user_id
+                                else:
+                                    return JSONResponse(renew_secret.response, 401)
+
+                            else:
+                                return JSONResponse({
+                                    "more": token_data_check,
+                                    "type_token": "token_data"
+                                }, 401)
+
+                        else:
+                            return JSONResponse(secret.response, 401)
+                        
+
+                    else:
+                        return JSONResponse({
+                            "more": token_id_check,
+                            "type_token": "token_id"
+                        }, 401)
+                    
+
                 except Exception as e:
-                    raise HTTPException(status_code=401, detail="Hubo un error de validación")
-
-                self.validate_user()
-
-                # Si es la ruta restringida, agrega el encabezado personalizado
-                response = await call_next(request)
-                # Añadir el path como un encabezado en la solicitud
-                return response
-            else:
-                HTTPException(status_code=401, detail="Solo acceso con el único método: POST")
-
-        # Si no es la ruta restringida, continúa con la ejecución normal
-        return await call_next(request)
-
-    #Obtiene el token del request
-    async def get_token(self, request: Request) -> str:
-        form_data = await request.form()
-        return form_data["token"]
-    
-    def validate_user(self, token: str):
-        try:
-            jwt = JWToken.check(token)
-
-            if jwt["status"] == "ok":
+                    return JSONResponse({
+                        "info": f"Hubo un error inesperado: {e}",
+                        "status": "no",
+                        "type": "UNKNOW_ERROR"
+                    }, status_code=401)
                 
-                jwt["data"]["info"]
             else:
-                JSONResponse(jwt, status_code=401)
-
-        except Exception:
-            HTTPException(status_code=401, detail="Hubo un error de validación")
+                return JSONResponse({
+                    "info": "En las rutas: /app/api/v1/client/restricted/, solo esta permitido el método: POST",
+                    "status": "no",
+                    "type": "INVALID_METHOD"
+                })
+        return await call_next(request)       

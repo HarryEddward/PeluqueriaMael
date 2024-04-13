@@ -54,8 +54,11 @@ class JWToken:
         try:
             if secret is None:
                 secret = cls.SECRET_KEY
+            
+            
 
-            decoded_payload = jwt.decode(token, secret, algorithms=['HS256'])
+            decoded_payload = jwt.decode(token, key=secret, algorithms=['HS256'])
+            
             return {
                 "info": "Creado con éxito el token",
                 "status": "ok",

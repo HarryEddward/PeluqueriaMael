@@ -1,10 +1,10 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 #from pydantic import EmailStr
 
 class schemes:
     #Login & Register
     class Credentials(BaseModel):
-        number_phone: str
+        email: EmailStr
         password: str
 
     #Login

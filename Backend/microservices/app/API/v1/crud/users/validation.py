@@ -1,4 +1,4 @@
-from ...db.database import users
+from db.database import users
 from pydantic import BaseModel, EmailStr
 
 
