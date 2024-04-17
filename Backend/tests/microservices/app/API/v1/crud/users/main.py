@@ -14,14 +14,14 @@ class TestUsersCRUD(unittest.TestCase):
     def setUp(self) -> None:
         pass
 
-    #@unittest.skip("#")
+    @unittest.skip("#")
     def test_Find(self) -> None:
 
         #->
-        #find_user = FindUser({"email": "he070070@gmail.com"})
+        Find_user = FindUser({"email": "he070070@gmail.com"})
         
 
-        user = FindUser.secret_jwt(data=FindSecretJWTID(id="661a4d120b025320742dfe09"))
+        user = FindUser.secret_jwt(FindSecretJWTID(id="661a4d120b025320742dfe09"))
 
         
         #->
@@ -38,7 +38,6 @@ class TestUsersCRUD(unittest.TestCase):
         #->
         add_user = AddUser({
             "email": "adrianelcapo@gmail.com",
-            "number_phone": PhoneNumber("+34643567016"),
             "password": "adrianelcapo"        
         })
         #->
@@ -75,13 +74,14 @@ class TestUsersCRUD(unittest.TestCase):
 
 
         
-    @unittest.skip("#")
+    #@unittest.skip("#")
     def test_Validate(self) -> None:
 
         #->
         user = ValidationUser({
             "email": "adrianelcapo@gmail.com",
-            "password": "fuck_you"
+            "password": "fuck_you",
+            "info": False
         })
         #->
 

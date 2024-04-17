@@ -1,16 +1,20 @@
-from ...db.database import users
+from db.database import users
 from pydantic import BaseModel, EmailStr
 from pydantic import ValidationError
 from pydantic_extra_types.phone_numbers import PhoneNumber
+from services.secrets_generator.main import secrets_generator
 
 class Info(BaseModel):
     email: EmailStr
-    number_phone: PhoneNumber
     password: str
+
+class Secrets(BaseModel):
+    jwt: str
 
 class Data(BaseModel):
     reservas: dict
     info: Info
+    secrets: Secrets
 
 class Add(BaseModel):
     data: Data
@@ -28,7 +32,10 @@ class AddUser:
         self.data = {
             "data": {
                 "reservas": {},
-                "info": info
+                "info": info,
+                "secrets": {
+                    "jwt": str(secrets_generator(120))
+                }
             }
         }
 
@@ -36,6 +43,8 @@ class AddUser:
 
         try:
             self.user_validated = self.verify(self.data)
+
+            #print('user_Validate->', self.user_validated)
             self.aggregate(self.user_validated)
             self.response = {"status": "ok"}
 
@@ -61,8 +70,15 @@ class AddUser:
     def verify(self, data: dict):
         
         user = Add(**data)
-        print(user)
         return user.model_dump()
 
     def aggregate(self, user_validate):
-        users.insert_one(user_validate)
+        try:
+            users.insert_one(user_validate)
+
+        except Exception as e:
+            self.response = {
+                "info": str(e),
+                "status": "no",
+                "type": "DATABASE_ERROR"
+            }

@@ -12,6 +12,7 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next: Callable[[Request], Awaitable[Response]]):
         if request.url.path.startswith("/app/api/v1/client/restricted/"):
 
+            print(request.method)
             if request.method == "POST":
                 try:
                     body = await request.json()
@@ -21,18 +22,21 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
                     #request.state.token_id = body["token_id"] #1 Token
                     #request.state.token_data = body["token_data"] #2 Token
 
+                    #print('middleware ->', token_id)
+                    #print('middleware ->', token_data)
+
                     token_id_check = JWToken.check(token_id) # Clave JWT Global
                     print(token_id_check)
                     if token_id_check["status"] == "ok":
                         
-                        print(token_id_check["data"]["info"]["id"])
+                        print('->',token_id_check["data"]["info"])
                         
-                        user_id = token_id_check["data"]["info"]["id"]
+                        user_id = token_id_check["data"]["info"]
 
                         #Si el token_id esta correcto, irá a buscar el usuario en el db
                         secret = FindUser.secret_jwt(
                             FindSecretJWTID(
-                                id=token_id_check["data"]["info"]["id"]
+                                id=token_id_check["data"]["info"]
                             )
                         )
                         
@@ -54,7 +58,7 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
                                 email = token_data_check["data"]["info"]["email"]
                                 password = token_data_check["data"]["info"]["password"]
                                 
-                                print('here!')
+                                #print('here!')
                                 renew_secret = UpdateUser.secret_jwt({
                                     "email": email,
                                     "password": password,

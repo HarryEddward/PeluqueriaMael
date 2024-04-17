@@ -1,25 +1,19 @@
-from fastapi import APIRouter
-
-
 from fastapi import (
     APIRouter,
     Request,
     HTTPException,
     status
 )
-
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 from typing import Union
 import json
-
-#Schemes
 from routes.client.schemes.general import schemes
-
-#JWT
 from services.auth import JWToken
-
-#SubRoutes
+from crud.users.add import AddUser
+from crud.users.validation import ValidationUser
+from crud.users.update import UpdateUser
+from crud.users.find import FindUser, FindSecretJWTID, Find
 import routes.client.restricted.main
 
 router = APIRouter()
@@ -28,16 +22,132 @@ router.include_router(routes.client.restricted.main.router)
 
 #Union[Credentials, Token]
 
-@router.post('/token_id')
-async def root(request: Request, data: schemes.Credentials):
+@router.post('/login')
+async def root(request: Request, raw_data: schemes.Credentials):
 
     try:
-        pass
+        data = raw_data.model_dump()
+
+        # Busca si el usuario ya existe en la base de datos
+        existing_user = FindUser.info(Find(email=data["email"]))
+        
+        if existing_user.response["type"] == 'NO_FOUND_USER':
+            # Si el usuario ya existe, devuelve un error de usuario existente
+            return JSONResponse(existing_user.response, 400)
+        
+        # Valida al usuario recién agregado
+        validation_response = ValidationUser({
+            "email": data["email"],
+            "password": data["password"],
+            "info": False
+        })
+        print('validation ->', validation_response.response)
+
+        if validation_response.response["status"] != "ok":
+            # Si no se pudo validar al usuario, devuelve un error
+            return JSONResponse(validation_response, 400)
+
+        # Actualiza el secreto JWT del usuario
+        secret_response = UpdateUser.secret_jwt({
+            "email": data["email"],
+            "password": data["password"],
+        })
+        print('aqui bro ->', secret_response.response)
+
+        
+        if secret_response.response["status"] != 'ok':
+            print('pasa por aqui bro')
+            # Si no se pudo actualizar el secreto JWT, devuelve un error
+            return JSONResponse(secret_response, 400)
+
+        # Crea el token JWT para el usuario
+        token_id_response = JWToken.create(validation_response.response["data"])
+        print('oooo->', token_id_response)
+
+        if token_id_response["status"] != 'ok':
+            # Si no se pudo crear el token JWT, devuelve un error
+            return JSONResponse(token_id_response, 400)
+
+        print('<->',token_id_response["token"])
+        print('<->', secret_response.response["data"]["token"])
+        # Devuelve la respuesta exitosa con los tokens generados
+        return JSONResponse({
+            "token_id": token_id_response["token"],
+            "token_data": secret_response.response["data"]["token"]
+        }, 200)
+
     except Exception as e:
         return JSONResponse({
-
+            "info": "Error desconocido por el servidor",
+            "status": "no",
+            "type": "UNKNOW_ERROR",
+            "detail": str(e)
         }, 500)
 
-    return {
-        "info": "login"
-    }
+@router.post('/register')
+async def register_user(request: Request, raw_data: schemes.Credentials):
+    '''
+    Registra un nuevo usuario.
+    '''
+    try:
+        data = raw_data.model_dump()
+        
+        # Busca si el usuario ya existe en la base de datos
+        existing_user = FindUser.info(Find(email=data["email"]))
+        
+        if existing_user.response["type"] == 'FOUND_USER':
+            # Si el usuario ya existe, devuelve un error de usuario existente
+            return JSONResponse(existing_user.response, 409)
+        
+        # Agrega el usuario a la base de datos
+        add_user_response = AddUser({
+            "email": data["email"],
+            "password": data["password"]
+        })
+        
+        if add_user_response["status"] != 'ok':
+            # Si no se pudo agregar el usuario, devuelve un error
+            return JSONResponse(add_user_response, 400)
+        
+        # Valida al usuario recién agregado
+        validation_response = ValidationUser({
+            "email": data["email"],
+            "password": data["password"],
+            "info": False
+        })
+
+        if validation_response["status"] != "ok":
+            # Si no se pudo validar al usuario, devuelve un error
+            return JSONResponse(validation_response, 400)
+
+        # Actualiza el secreto JWT del usuario
+        secret_response = UpdateUser.secret_jwt({
+            "email": data["email"],
+            "password": data["password"],
+        })
+        
+        if secret_response["status"] != 'ok':
+            # Si no se pudo actualizar el secreto JWT, devuelve un error
+            return JSONResponse(secret_response, 400)
+
+        # Crea el token JWT para el usuario
+        token_id_response = JWToken.create(validation_response["data"])
+        
+        if token_id_response["status"] != 'ok':
+            # Si no se pudo crear el token JWT, devuelve un error
+            return JSONResponse(token_id_response, 400)
+
+        # Devuelve la respuesta exitosa con los tokens generados
+        return JSONResponse({
+            "token_id": token_id_response["token"],
+            "token_data": secret_response["data"]["token"]
+        }, 200)
+    
+    except Exception as e:
+        # Maneja cualquier error desconocido
+        return JSONResponse({
+            "info": "Error desconocido por el servidor",
+            "status": "no",
+            "type": "UNKNOWN_ERROR",
+            "detail": str(e)
+        }, 500)

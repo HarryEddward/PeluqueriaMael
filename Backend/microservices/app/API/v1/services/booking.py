@@ -7,24 +7,18 @@ from pprint import pprint
 
 
 
-from db.database import reservas
-from db.database import users
-from db.database import configure
+from Backend.microservices.app.API.v1.db.database import reservas
+from Backend.microservices.app.API.v1.db.database import users
+from Backend.microservices.app.API.v1.db.database import configure
 
 from datetime import datetime
 
 
 # Fecha de Python para comparar
-fecha_python = datetime(2024, 3, 24)
-#print(fecha_python)
-
-# Realizar la consulta en MongoDB
+fecha_python = datetime(2024, 3, 26)
 res = reservas.find_one({"fecha": {"$eq": fecha_python}})
+services_raw = configure.find_one({ "_id": ObjectId("65ec5f9f88701955b30661a5") })
 
-
-
-services_raw = configure.find_one({ "_id": ObjectId("65ec5f9f88701955b30661a5") });
-#print(services_raw)
 
 dict_services = {}
 
@@ -36,6 +30,8 @@ def conversorServices(services_raw):
     for service in services_raw['services']:
         service_name = service['nombre']
 
+        
+        #Verifica si las horas no superan de las 4 horas, y si en los minutos son de 0 o 30 minutos
         verify_hour = service['duracion']['horas'] >= 0 and service['duracion']['horas'] <= 4
         verify_minutes = service['duracion']['minutos'] == 0 or service['duracion']['minutos'] == 30
 
@@ -55,6 +51,37 @@ def conversorServices(services_raw):
 services = conversorServices(services_raw)
 
 
+'''
+personal: {
+    peluqueros: [
+        'peluquero_1',
+        'peluquero_2'
+    ],
+    barberos: [
+        'barbero_1',
+        'barbero_2',
+        'barbero_3'
+    ],
+    esteticistas: [
+        'esteticista_1',
+        'esteticista_2',
+        'esteticista_3'
+    ]
+}
+
+services: {
+    peluqueros: {
+        corte_de_pelo,
+        montaje_de_mechas,
+        peinar_recogido,
+        peinar_con_secador
+    },
+    barberos: {
+        corte_y_barba,
+        
+    }
+}
+'''
 
 peluqueros = ['peluquero_1', 'peluquero_2']
 barberos = ['barbero_1', 'barbero_2', 'barbero_3']
@@ -86,6 +113,21 @@ afternoon_opening_time = datetime.strptime("15:00", '%H:%M')
 afternoon_closing_time = datetime.strptime("20:00", '%H:%M')
 
 def cancel_appointment(professional, period, start_time, service_duration, person_id, service_name, id_appointment):
+    start_time_dt = datetime.strptime(start_time, '%H:%M')  # Convertir start_time a datetime
+
+    if period == 'morning':
+        if start_time_dt < morning_opening_time or start_time_dt >= morning_closing_time:
+            return {
+                "info": "No se puede cancelar una cita en la mañana fuera del horario de apertura y cierre.",
+                "status": "no"
+            }
+    elif period == 'afternoon':
+        if start_time_dt < afternoon_opening_time or start_time_dt >= afternoon_closing_time:
+            return {
+                "info": "No se puede cancelar una cita en la tarde fuera del horario de apertura y cierre.",
+                "status": "no"
+            }
+
     if start_time in professionals[professional][period]:
         if "info" in professionals[professional][period][start_time]:
             info = professionals[professional][period][start_time]["info"]
@@ -132,6 +174,22 @@ def cancel_appointment(professional, period, start_time, service_duration, perso
 
 
 def request_appointment(professional, period, start_time, service_duration, person_id, service):
+
+    start_time_dt = datetime.strptime(start_time, '%H:%M')  # Convertir start_time a datetime
+
+    if period == 'morning':
+        if start_time_dt < morning_opening_time or start_time_dt >= morning_closing_time:
+            return {
+                "info": "No se puede programar una cita en la mañana fuera del horario de apertura y cierre.",
+                "status": "no"
+            }
+    elif period == 'afternoon':
+        if start_time_dt < afternoon_opening_time or start_time_dt >= afternoon_closing_time:
+            return {
+                "info": "No se puede programar una cita en la tarde fuera del horario de apertura y cierre.",
+                "status": "no"
+            }
+
     id_appointment = str(uuid.uuid4())
     
     if period not in professionals[professional]:
@@ -165,13 +223,13 @@ def request_appointment(professional, period, start_time, service_duration, pers
             return {
                 "info": f"No se puede programar la cita para {professional} después del horario de cierre de la mañana.",
                 "status": "no",
-                "type": "ERROR4"  # Tipo de error único
+                "type": "OUT_SCHULDE_BEFORE_MORNING"  # Tipo de error único
             }
         elif period == 'afternoon' and datetime.strptime(end_time, '%H:%M') > afternoon_closing_time:
             return {
                 "info": f"No se puede programar la cita para {professional} después del horario de cierre de la tarde.",
                 "status": "no",
-                "type": "ERROR5"  # Tipo de error único
+                "type": "OUT_SCHULDE_AFTER_AFTERNOON"  # Tipo de error único
             }
 
         available_slots = list(professionals[professional][period].items())
@@ -180,16 +238,20 @@ def request_appointment(professional, period, start_time, service_duration, pers
         start_datetime = datetime.strptime(start_time, '%H:%M')
         end_datetime = datetime.strptime(end_time, '%H:%M')
         
-        overlapping_slots = [(slot, status) for slot, status in available_slots
-                             if start_datetime < datetime.strptime(slot, '%H:%M') < end_datetime
-                             or start_datetime <= datetime.strptime(slot, '%H:%M') < end_datetime]
-
+        overlapping_slots = [
+                                (slot, status) for slot, status in available_slots
+                                
+                                if start_datetime < datetime.strptime(slot, '%H:%M') < end_datetime
+                                    or start_datetime <= datetime.strptime(slot, '%H:%M') < end_datetime
+                            ]
+        
+        
         # Verificar si hay algún solapamiento en la franja horaria
         if overlapping_slots and any(status["status"] == 'ocupado' for _, status in overlapping_slots):
             return {
                 "info": f"No se puede programar la cita para {professional} en la franja horaria solicitada.",
                 "status": "no",
-                "type": "ERROR6"  # Tipo de error único
+                "type": "PROFESSIONAL_BUSY"  # Tipo de error único
             }
 
         # Marcar el intervalo parcial como ocupado y guardar la información de la cita
@@ -359,12 +421,13 @@ def buscarDisponibilidad(rama_profesionales, period, start_time, service_duratio
         if resultado["status"] == "ok":
             return resultado
         elif resultado["type"] == "DATABASE_ERROR":
+
             return resultado
         elif resultado["status"] == "no":
             return {
                 "info": "Todos los profesionales están ocupados en este momento.",
                 "status": "no",
-                "type": "NO_AVAILABILITY"  # Tipo de error único
+                "type": "NO_AVAILABILITY" 
             }
         
     return {
@@ -452,7 +515,11 @@ class BookingUser:
                 "type": "MISMATCH"  # Tipo de error único
             }    
 
-'''result3 = cancel_appointment(
+'''
+
+Antes ejecutar las funciones apra saber el mejor empleado para hacer la cita y 
+
+result3 = cancel_appointment(
     professional="peluquero_1", 
     period='afternoon',
     start_time='15:00',
@@ -486,7 +553,7 @@ print(result3)'''
 result4 = buscarDisponibilidad(
     rama_profesionales=peluqueros, 
     period='afternoon',
-    start_time='15:00',
+    start_time='7:00',
     service_duration=services['corte_de_pelo'][0], 
     person_id='65ec610288701955b30661a8',
     service='corte_de_pelo'

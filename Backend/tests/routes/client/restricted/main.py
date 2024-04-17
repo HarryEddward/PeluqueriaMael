@@ -1,17 +1,44 @@
 import requests
+import json
+import unittest
 
-url = "http://localhost:8000/app/api/v1/client/restricted/status"
+class TestSaveTokensToJson(unittest.TestCase):
+    def setUp(self):
+        self.url = "http://localhost:8000/app/api/v1/client/restricted"
 
-data = {
-    "token_id": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImlkIjoiNjYxYTRkMTIwYjAyNTMyMDc0MmRmZTA5In0sImV4cCI6MTcxNTYxNTg4Mn0.w06WV7I6dtjogrwne_HTXQX9jzzVpFbiHOhKpt-z6rI",
-    "token_data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuZWxjYXBvQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZnVja195b3UifSwiZXhwIjoxNzE1NjI5MDY4fQ.Rm_XaqodTz-MsibE_SzAjZN6zyhMDjmBD1rVbxtWj9g"
-}
+    def test_path_status(self) -> None:
 
-response = requests.post(url, json=data)
+        with open('data.json', 'r') as archivo:
+            data = json.load(archivo)
+        
+        token_id = data["token_id"]
+        token_data = data["token_data"]
 
-print("Código de estado de la respuesta:", response.status_code)
+        send = {
+            "token_id": token_id,
+            "token_data": token_data
+        }
 
-data = response.json()
+        response = requests.post(self.url + "/status", json=send)
 
-print("Contenido de la respuesta:")
-print(data)
+        #print("Código de estado de la respuesta:", response.status_code)
+
+        raw_data = response.json()
+        print('\n', raw_data, '\n')
+
+        if response.status_code == 200:
+            data["token_data"] = raw_data["renew"]["token"]
+
+            with open('data.json', 'w') as archivo:
+                json.dump(data, archivo)
+
+        #print(token_id, token_data)
+        self.assertEqual(response.status_code, 200)
+
+        
+
+
+        
+
+if __name__ == '__main__':
+    unittest.main()

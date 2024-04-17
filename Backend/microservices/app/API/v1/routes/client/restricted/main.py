@@ -6,12 +6,23 @@ from fastapi import (
     status
 )
 from fastapi.responses import JSONResponse
+from routes.client.restricted.booking.main import router as router_booking
 
 router = APIRouter(prefix="/restricted")
+router.include_router(router_booking)
+
 
 
 @router.post('/status')
 async def root(request: Request):
+
+    data: dict = {
+        "email": request.state.email,
+        "password": request.state.password,
+        "renew": {
+            "token": request.state.new_token
+        }
+    }
 
     try:
         return {

@@ -33,31 +33,66 @@ class UpdateUser:
 
     class secret_jwt:
         def __init__(self, data: SecretJWTUpdate):
+            
+            '''
+            Valida el usurio y si existe, y si existe crea una nueva clave jwt secreta para el
+            usuario, lo guarda en el db y le da al usuario el "token_data" encriptado con su clave secreta
+
+            Structure: {
+                email: "example@gmail.com",
+                password: "example"
+            }
+
+            Types of errors: 
+            - UNKNOWN_ERROR
+            - SubErrors:
+                - ValidationUser()
+                - JWToken.create()
+            
+
+            Response: {
+                "info": "Clave cambiada correctamente y jwt creado correctamente",
+                "status": "ok",
+                "type": "SUCCESS",
+                "data": {
+                    "token": jwt
+                } 
+            }
+            '''
+
             try:
+                print('1-> update jwt', data)
+
                 validation_user = ValidationUser({
                     "email": data["email"],
-                    "password": data["password"]
+                    "password": data["password"],
+                    "info": False
                 })
+                print('2-> update jwt', validation_user)
 
                 #Si el usuario esta de la forma correcta añadera el secreto de jwt en su profile
                 if validation_user.response["status"] == "ok":
                     
                     #Genera el secreto
                     secret = str(secrets_generator(120))
+                    print('3-> update jwt', secret)
                     print('secret ->', secret) 
                     print('_id ->', validation_user.response["data"]) #<- Posible Error
 
                     user_id = validation_user.response["data"]
+                    print('4-> update jwt', user_id)
 
                     users.update_one(
                         { "_id": ObjectId(user_id) },
-                        { "$set": {"data.secrets.jwt": str(secret)} }
+                        { "$set": {"data.secrets.jwt": secret} }
                     )
 
                     jwt = JWToken.create({
                         "email": data["email"],
                         "password": data["password"]
                     }, secret)
+
+                    print('5-> update jwt', jwt)
 
                     if jwt["status"] == 'ok':
                         self.response = {
