@@ -1,6 +1,6 @@
 import unittest
-from Backend.microservices.app.API.v1.crud.users.booking.add import AddBookingUser, AddAppointment
-from Backend.microservices.app.API.v1.crud.users.booking.remove import RemoveBookingUser, RemoveAppointment
+#from Backend.microservices.app.API.v1.crud.users.booking.add import AddBookingUser, AddAppointment
+from Backend.microservices.app.API.v1.crud.users.booking.remove import RemoveBookingUser
 
 from pydantic import BaseModel
 
@@ -28,16 +28,18 @@ class TestUsersBookingCRUD(unittest.TestCase):
         )
         self.assertEqual(True, True)
 
-    @unittest.skip("#")
+    #@unittest.skip("#")
     def test_Remove(self) -> None:
 
-        RemoveBookingUser(
-            RemoveAppointment(
-                id_appointment="",
-                person_id=""
+
+        remove_booking = RemoveBookingUser(
+            RemoveBookingUser.structure(
+                id_appointment="05b7f6ae-d75c-43bb-97f3-67c8044c81e0",
+                person_id="65ec610288701955b30661a8"
             )
         )
-        self.assertEqual(True, True)
+        print(remove_booking.response)
+        self.assertEqual(remove_booking.response["status"], "ok")
 
 if __name__ == '__main__':
     unittest.main()

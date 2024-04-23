@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 config = {
     "morning_opening_time": datetime.strptime("09:00", '%H:%M'),

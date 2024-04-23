@@ -4,6 +4,11 @@ from routes.admin.admin import router as admin_router
 from routes.client.client import router as client_router
 from routes.worker.worker import router as worker_router
 
+import ujson
+import fastapi
+
+fastapi.json = ujson
+
 app = FastAPI()
 
 @app.get("/")

@@ -1,4 +1,4 @@
-from Backend.microservices.app.API.v1.db.database import configure
+from db.database import configure
 from bson import ObjectId
 from pydantic import BaseModel
 

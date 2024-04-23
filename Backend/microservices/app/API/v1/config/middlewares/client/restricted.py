@@ -68,10 +68,10 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
                                 if renew_secret.response["status"] == 'ok':
 
                                     new_token = renew_secret.response["data"]["token"]
-                                    request.state.new_token = new_token
-                                    request.state.email = email
-                                    request.state.password = password
-                                    request.state.user_id = user_id
+                                    request.state.new_token = str(new_token)
+                                    request.state.email = str(email)
+                                    request.state.password = str(password)
+                                    request.state.user_id = str(user_id)
                                 else:
                                     return JSONResponse(renew_secret.response, 401)
 

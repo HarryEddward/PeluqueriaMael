@@ -25,6 +25,7 @@ dict_services = {}
 from datetime import timedelta
 
 def conversorServices(services_raw):
+    print('services_raw ->', services_raw)
     dict_services = {}
 
     for service in services_raw['services']:
@@ -45,11 +46,12 @@ def conversorServices(services_raw):
             if not verify_minutes:
                 print('Los minutos deben ser 0 o 30 minutos para el servicio:', service_name)
     
+    print('dict_services ->', dict_services)
     #pprint(dict_services)
     return dict_services
 
 services = conversorServices(services_raw)
-
+print('services conversor ->', services)
 
 '''
 personal: {
@@ -78,7 +80,7 @@ services: {
     },
     barberos: {
         corte_y_barba,
-        
+
     }
 }
 '''
@@ -420,9 +422,7 @@ def buscarDisponibilidad(rama_profesionales, period, start_time, service_duratio
 
         if resultado["status"] == "ok":
             return resultado
-        elif resultado["type"] == "DATABASE_ERROR":
 
-            return resultado
         elif resultado["status"] == "no":
             return {
                 "info": "Todos los profesionales están ocupados en este momento.",
@@ -553,7 +553,7 @@ print(result3)'''
 result4 = buscarDisponibilidad(
     rama_profesionales=peluqueros, 
     period='afternoon',
-    start_time='7:00',
+    start_time='15:00',
     service_duration=services['corte_de_pelo'][0], 
     person_id='65ec610288701955b30661a8',
     service='corte_de_pelo'

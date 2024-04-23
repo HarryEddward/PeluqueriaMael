@@ -5,8 +5,12 @@ from pydantic import BaseModel, EmailStr
 from pydantic import ValidationError
 from bson import ObjectId
 import datetime
+from datetime import datetime
 
 class AddAppointment(BaseModel):
+    day: int
+    month: int
+    year: int
     responsable_appointment: str
     id_appointment: str
     period: str
@@ -22,8 +26,10 @@ class AddBookingUser:
     
 
 
-    def __init__(self, data: AddAppointment) -> None:
-        self.response = None
+    def __init__(self, data_raw: AddAppointment) -> None:
+        self.response = {}
+
+        data = data_raw.model_dump()
 
         responsable_appointment = data["responsable_appointment"]
         id_appointment = data["id_appointment"]
@@ -31,6 +37,15 @@ class AddBookingUser:
         start_time = data["start_time"]
         person_id = data["person_id"]
         service = data["service"]
+        day_date = data["day"]
+        month_date = data["month"]
+        year_date = data["year"]
+
+        day = datetime(
+            year_date,
+            month_date,
+            day_date
+        )
 
         # Encuentra al usuario
         user = users.find_one({ "_id": ObjectId(person_id) })
@@ -42,7 +57,7 @@ class AddBookingUser:
                 "period": period,
                 "start_time": start_time,
                 "responsable_appointment": responsable_appointment,
-                "date_appointment": datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+                "date_appointment": day
             }
 
             # Actualiza el usuario con la nueva reserva
@@ -52,19 +67,19 @@ class AddBookingUser:
             )
 
             if update_result.modified_count > 0:
-                return {
+                self.response = {
                     "info": f"Reserva agregada al usuario {person_id}.",
                     "status": "ok",
                     "type": "SUCCESS"  # Tipo de éxito
                 }
             else:
-                return {
+                self.response = {
                     "info": "Error al agregar reserva al usuario.",
                     "status": "no",
                     "type": "DATABASE_ERROR"  # Tipo de error de base de datos
                 }
         else:
-            return {
+            self.response = {
                 "info": "Usuario no encontrado en la base de datos.",
                 "status": "no",
                 "type": "DATABASE_ERROR"  # Tipo de error de base de datos
