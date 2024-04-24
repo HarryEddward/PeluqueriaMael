@@ -1,4 +1,4 @@
-from db.database import configure
+from db.database import configure, personal
 from bson import ObjectId
 from pydantic import BaseModel
 
@@ -46,7 +46,7 @@ class serviceToPersonal:
             }
             return
 
-        personal = raw_personal['personal']
+        #personal = raw_personal['personal']
         services = raw_services['services']
 
         # Buscar el servicio por nombre y obtener su tipo

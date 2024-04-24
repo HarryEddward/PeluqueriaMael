@@ -5,11 +5,27 @@ from db.database import configure
 from bson import ObjectId
 
 class conversorServices:
-        
+    '''
+    SI -> Obtiene todos los servicios guardados en cofiguración
+    NO -> Obtiene el id de configruation db de la coleccion y leugo devuelve todo el personal en difernetes
+    arrays
+    '''
+
+    '''
+    Que quiero hacer?
+    Quiero que obtenga la version de la ficha del dia a reservar, y pase la version para que obtenga, devolver
+    una diccionario compatible de ese dia con ese personal.
+
+    Por cada dia que pase, se crea una ficha y en cada ficha obtiene el personal mas reciente y añade la version mas
+    actualizada, para evitar problemas de compatabilidad y prevenir errores inesperados
+    '''
 
     def __init__(self) -> dict:
+        
+        '''version -> v1, v2, v3 of services'''
         self.response = {}
         services_raw = configure.find_one({ "_id": ObjectId("65ec5f9f88701955b30661a5") })
+        
 
 
         #print('services_raw ->', services_raw)

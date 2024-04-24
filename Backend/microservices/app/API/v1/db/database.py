@@ -25,4 +25,5 @@ db.command(
 reservas = db["Reservas"]
 users = db["Users"]
 configure = db["Configure"]
-
+personal = db["Personal"]
+admin = db["Admin"]

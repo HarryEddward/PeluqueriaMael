@@ -12,7 +12,7 @@ class TestSaveTokensToJson(unittest.TestCase):
         '''
         
         '''
-        with open('./data/data.json', 'r') as archivo:
+        with open('../data.json', 'r') as archivo:
             data = json.load(archivo)
         
         token_id = data["token_id"]
@@ -38,7 +38,7 @@ class TestSaveTokensToJson(unittest.TestCase):
         #El token si aunque reciba un fallo se debe de refrescar cada vez que hace una operacion, obligatoriamente
         data["token_data"] = raw_data["renew"]["token"]
 
-        with open('./data/data.json', 'w') as archivo:
+        with open('data.json', 'w') as archivo:
             json.dump(data, archivo)
 
         #print(token_id, token_data)
@@ -47,7 +47,7 @@ class TestSaveTokensToJson(unittest.TestCase):
     
     @unittest.skip("")
     def test_path_remove(self):
-        with open('data.json', 'r') as archivo:
+        with open('../data.json', 'r') as archivo:
             data = json.load(archivo)
         
         token_id = data["token_id"]

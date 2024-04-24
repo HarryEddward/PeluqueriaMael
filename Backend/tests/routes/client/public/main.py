@@ -18,7 +18,7 @@ class TestSaveTokensToJson(unittest.TestCase):
 
         raw_data = response.json()
 
-        path = "/Users/yeray/Documents/GIT/GIT/Backend/tests/routes/client/restricted/"
+        path = "/Users/yeray/Documents/GIT/GIT/Backend/tests/routes/client/restricted/data/"
 
         with open(path + 'data.json', 'r') as archivo:
             data = json.load(archivo)

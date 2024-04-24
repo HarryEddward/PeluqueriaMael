@@ -14,7 +14,7 @@ from crud.booking.remove import RemoveBooking
 
 from pydantic import BaseModel
 
-from db.database import reservas, configure, users
+from db.database import reservas, configure, users, personal as db_personal
 from datetime import datetime
 
 from bson import ObjectId
@@ -42,6 +42,11 @@ class structureRemove(BaseModel):
 
 @router.post("/remove")
 async def root(request: Request, data: structureRemove):
+
+    """
+    Ruta para **quitar las reservas** de los **clientes**
+    """
+
 
     try:
         def Response(res: dict, status: int) -> JSONResponse:
@@ -166,8 +171,10 @@ async def root(request: Request, data: structureAdd):
         
 
         day = datetime(year_date, month_date, day_date)
+        
         try:
             appointment = reservas.find_one({"fecha": {"$eq": day}})
+            version_appointment = appointment["version"]
 
             if not appointment:
                 return Response({
@@ -183,12 +190,16 @@ async def root(request: Request, data: structureAdd):
                 "type": "ERROR_DATABASE_DATE"
             
             }, 401)
+        print(version_appointment)
         
         #Arrays de varios tipos de profesion, y da el array de las personas que hay
-        personal_raw = configure.find_one({ "_id": ObjectId("661f915fac2b216927f37257") })
+        personal_raw = db_personal.find_one({ "version": version_appointment })
+        print(personal_raw)
 
         personal = serviceToPersonal(
-            serviceToPersonal.service(service= name_service )
+            serviceToPersonal.service(
+                service= name_service
+            )
         )
         #print(personal.response)
 
@@ -263,11 +274,11 @@ async def root(request: Request, data: structureAdd):
         
         #print('acuo')
         return Response({
-            "info": "La reserva fue",
+            "info": "La reserva se realizo de forma exitosa",
             "status": "ok",
             "type": "SUCCESS",
             "data": booking.response,
-        }, 200)
+        }, 201)
     except Exception as e:
         return JSONResponse({
             "info": f"Error desconocido por el servidor: {e}",
@@ -276,4 +287,4 @@ async def root(request: Request, data: structureAdd):
             "renew": {
                 "token": request.state.new_token
             }
-        }, 401)
+        }, 500)
