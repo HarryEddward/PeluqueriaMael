@@ -62,7 +62,6 @@ async def root(request: Request, data: structureRemove):
                 {"reservas." + id_reserva: 1, "_id": 0}
             )
         except Exception as e:
-            print('bad1')
             return Response({
                 "info": "Error en la base de datos, quizas no exista y tengas mal los mismos parametros",
                 "status": "no",
@@ -85,13 +84,6 @@ async def root(request: Request, data: structureRemove):
         start_time_booked = reserva["start_time"]
         responsable_appointment_booked = reserva["responsable_appointment"]
         service_booked = reserva["service"]
-        print('->', day_booked)
-        print('->', month_booked)
-        print('->', year_booked)
-        print('->', period_booked)
-        print('->', start_time_booked)
-        print('->', responsable_appointment_booked)
-        print('->', service_booked)
 
         print(day_booked, month_booked, year_booked)
 
@@ -195,6 +187,10 @@ async def root(request: Request, data: structureAdd):
         #Arrays de varios tipos de profesion, y da el array de las personas que hay
         personal_raw = db_personal.find_one({ "version": version_appointment })
         print(personal_raw)
+
+        '''
+        Verificar que el usuario solo tenga de reservas 2, si lo supera
+        '''
 
         personal = serviceToPersonal(
             serviceToPersonal.service(

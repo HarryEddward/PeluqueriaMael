@@ -81,8 +81,7 @@ class AddBooking:
             if resultado["status"] == "ok":
                 print('lo conseguio')
                 return resultado
-                print('buscar diponibilidad self.response->', self.response)
-                return
+                
             elif resultado["status"] == "no" and resultado["type"] == "PROFESSIONAL_BUSSY":
                 print('cointunue...')
                 continue

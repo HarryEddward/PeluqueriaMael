@@ -7,6 +7,7 @@ from bson import ObjectId
 import datetime
 from datetime import datetime
 
+
 class AddAppointment(BaseModel):
     day: int
     month: int

@@ -7,7 +7,7 @@ from fastapi import (
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 from typing import Union
-import json
+import ujson
 from routes.client.schemes.general import schemes
 from services.auth import JWToken
 from crud.users.add import AddUser
@@ -15,6 +15,7 @@ from crud.users.validation import ValidationUser
 from crud.users.update import UpdateUser
 from crud.users.find import FindUser, FindSecretJWTID, Find
 import routes.client.restricted.main
+import routes.client.public.main
 
 router = APIRouter()
 router.include_router(routes.client.restricted.main.router)

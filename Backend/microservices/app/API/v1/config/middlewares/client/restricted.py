@@ -87,7 +87,9 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
 
                     else:
                         return JSONResponse({
-                            "more": token_id_check,
+                            "info": token_id_check["info"],
+                            "status": token_id_check["status"],
+                            "type": token_id_check["type"],
                             "type_token": "token_id"
                         }, 401)
                     

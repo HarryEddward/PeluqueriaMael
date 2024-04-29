@@ -1,9 +1,9 @@
 from fastapi import FastAPI, APIRouter
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from routes.admin.admin import router as admin_router
-from routes.client.client import router as client_router
+from routes.client.main import router as client_router
 from routes.worker.worker import router as worker_router
-
 import ujson
 import fastapi
 
@@ -11,9 +11,14 @@ fastapi.json = ujson
 
 app = FastAPI()
 
-@app.get("/")
+
+@app.get("/hidden_egg")
 def read_root():
-    return {"message": "¡Bienvenido a mi servidor FastAPI!"}
+    return JSONResponse({
+        "info": ":o",
+        "status": "Shhh",
+        "type": "EASTER_EGG"
+    }, 200)
 
 # Crear un enrutador base
 base_router = APIRouter()

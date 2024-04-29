@@ -4,8 +4,9 @@ from datetime import datetime, timedelta
 from .config import config
 from crud.users.booking.remove import RemoveBookingUser
 
+from crud.booking.utils.verifyUserAppointment import verifyUserAppointment
 
-class RemoveBooking:
+class  RemoveBooking:
 
 
 
@@ -38,16 +39,6 @@ class RemoveBooking:
                 service_name= data["service_name"], 
                 id_appointment= data["id_appointment"]
             )
-            print('->', data["day"])
-            print('->', data["month"])
-            print('->', data["year"])
-            print('->', data["professional"])
-            print('->', data["period"])
-            print('->', data["start_time"])
-            print('->', data["person_id"])
-            print('->', data["service_duration"])
-            print('->', data["service_name"])
-            print('->', data["id_appointment"])
         except Exception as e:
             self.response = {
                 "info": f"Error desconocido del servidor: {e}",
@@ -59,13 +50,17 @@ class RemoveBooking:
         start_time_dt = datetime.strptime(start_time, '%H:%M')  # Convertir start_time a datetime
         print('aqui?')
         try:
-            print(year, month, day)
+            #print(year, month, day)
             day_date = datetime(year, month, day)
             day_appointment = reservas.find_one({"fecha": {"$eq": day_date}})
-            print('day_appointment ->', day_appointment)
+            #print('day_appointment ->', day_appointment)
             professionals = day_appointment.get('professionals')
         except Exception as e:
-            return 
+            return {
+                "info": f"Error al acceder a la base de datos: {e}",
+                "status": "no",
+                "type": "DATABASE_ERROR"
+            }
 
         print('alla')
         morning_opening_time = config["morning_opening_time"]
@@ -92,7 +87,9 @@ class RemoveBooking:
         
         if start_time in professionals[professional][period]:
             
-            print(professionals[professional][period][start_time])
+            #print(professionals[professional][period][start_time])
+            
+            #Recorrer por cada franja de horario que tiene el personal y verifica si tiene info, si lo tiene es porque hay una cita reservada
             if "info" in professionals[professional][period][start_time]:
                 info = professionals[professional][period][start_time]["info"]
 
@@ -110,6 +107,20 @@ class RemoveBooking:
                         start_datetime += timedelta(minutes=30)
 
                     print(professionals)
+
+                    # Verifica si intenta cancelar la cita  antes de los 3 días de realizarlo
+                    # Code...
+                    today_date = datetime.now().date()
+                    verify_date = day_date - today_date
+                    
+
+                    #Aún para testear
+                    if verify_date.days < 3:
+                        return {
+                            "info": "Faltan menos de 3 dias para la reserva, y no se puede eliminarla",
+                            "status": "no",
+                            "type": "UNAUTHORIZED_APPOINTMENT_CANCELLATION"
+                        }
 
                     # Actualizar el documento en la base de datos
                     update_result = reservas.update_one(
