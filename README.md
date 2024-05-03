@@ -4,7 +4,8 @@
   <img src="https://mariospeluqueros.es/wp-content/uploads/2023/09/AF1QipM4by_QD-G1sdivQVIVYudYBPZvP3HPt7D_CkNg.jpg" alt="Texto alternativo">
 </p>
 
-Es una App/Web para la peluqueria EGO úbicada en Inca, Mallorca, Islas Baleares
+Es una App/Web para la peluqueria EGO úbicada en Inca, Mallorca, Islas Baleares.
+
 Hecho por **Adrià Martín Martorell**, como una práctica como freelancer de forma
 autodidáctica.
 
