@@ -1,18 +1,27 @@
-# CONFIGURACIÓN
+# Peluqueria EGO
 
+![Logo](https://mariospeluqueros.es/wp-content/uploads/2023/09/AF1QipM4by_QD-G1sdivQVIVYudYBPZvP3HPt7D_CkNg.jpg)
 
-## PORT FORWARDING
-**HTTP** | PORT: 9712 `Frontend`
+Es una App/Web para la peluqueria EGO úbicada en Inca, Mallorca, Islas Baleares
+Hecho por **Adrià Martín Martorell**, como una práctica como freelancer de forma
+autodidáctica.
 
-**HTTP** | PORT: 7878 `Backend`
+El proposito de la app es crear reservas de forma automática, sin intervención
+manual. Simplemente todo de forma autonoma, y los clientes simplemente puedan
+reservar de la forma mas simple y intutuitiva, y los trabajadores pueda saber rápidamente
+sus reservas en tiempo real.
 
-## JWT
+El proposito de la web es acceder en ella y descargar de forma simple la app, y
+hacer uso de links promocionales o de información para hacer uso en las redes sociales
+de la peluquería
 
-*PyJWT nunca intentar nombrar con "jwt.py" un archivo para hacer uso de jwt*
-Los JWT siempre seran creados con la clase `Token`
-**Són validos a partir de 120 semanas**
+Hago uso de una tecnología cross-platform para evitar doble código. Y como no se require
+de caracterisitcas de una app muy avanzadas, simplemente así mejora la mantenabilidad y hace único el codigo fuente.
 
-### Importante configurar en el servidor añadir el SECRET del JWT dentro del conteendor de Docker
+La app se descarga por la misma web de la peluquería
 
-En docker compose, si tendremos que definir que se ejecute en el background le
-diremos a partir que lo ejecutemos en el cmd: `docker-compose up -d`
+Modelo de distribución de software hacia la peluquería:
+- IaaS
+
+Modelo de distribución de software de la peluquería hacía sus clientes:
+- SaaS
