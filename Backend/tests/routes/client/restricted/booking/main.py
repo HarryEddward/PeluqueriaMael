@@ -4,7 +4,7 @@ import unittest
 
 class TestSaveTokensToJson(unittest.TestCase):
     def setUp(self):
-        self.url = "http://localhost:8000/app/api/v1/client/restricted/booking"
+        self.url = "https://localhost:8000/app/api/v1/client/restricted/booking"
 
     #@unittest.skip("Falta añadir la validación de pydantic en la ruta y hacer uso de la ruta por parametros")
     def test_path_add(self) -> None:
@@ -27,7 +27,7 @@ class TestSaveTokensToJson(unittest.TestCase):
             "name_service": "montaje_de_mechas"
         }
 
-        response = requests.post(self.url + "/add", json=send)
+        response = requests.post(self.url + "/add", json=send, verify=False)
 
         #print("Código de estado de la respuesta:", response.status_code)
         print(response)
@@ -59,7 +59,7 @@ class TestSaveTokensToJson(unittest.TestCase):
             "id_reserva": "6a8cf7c3-06b1-4222-b5a3-320ce31ea7ef"
         }
 
-        response = requests.post(self.url + "/remove", json=send)
+        response = requests.post(self.url + "/remove", json=send, verify=False)
 
         #print("Código de estado de la respuesta:", response.status_code)
         print(response)

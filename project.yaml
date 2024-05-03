@@ -1,0 +1,69 @@
+
+#   Este proyecto puede ser muy extenso de ver, y muy costoso de entender
+#   en este archivo se podrá ver todas las dependecias y tecnologías usadas
+
+#   d/s -> Deserizalizer/Serializer
+
+
+
+devops:
+  - docker
+  - docker-swarm
+  
+  - testing:
+    - vagrant
+
+
+docs:
+  design: |
+    Docs In Separate Unique Structure Folder (DISUSF)
+    
+    It means to make the same structure folder of the microservices in the Backend
+    and make the docs in the each folder, to separate the docs with the real project
+  
+
+frontend:
+  - app:
+    framework: react-native
+    lib:
+      - react-native-calendar
+
+  - web:
+    framework: react
+    lib:
+      - tailwind
+      - react-dom
+
+
+backend:
+  design: microservices
+
+  testing:
+    - unitest (lib py)
+    - requests (lib py)
+
+
+  microservices:
+    - v1:
+      - app
+      - web
+
+  v1/app:
+    - cache: redis
+    - db: mongodb
+    - validation: pydantic
+    - server_production: guincorn
+    - server_development: uvicorn
+    - json_d/s: ujson
+    - crud: pymongo + pydantic
+
+
+
+  v1/web:
+    - cache: redis
+    - db: mongodb
+    - validation: pydantic
+    - server_production: guincorn
+    - server_development: uvicorn
+    - json_d/s: ujson
+    - crud: pymongo + pydantic

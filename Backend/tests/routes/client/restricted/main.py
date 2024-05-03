@@ -4,7 +4,7 @@ import unittest
 
 class TestSaveTokensToJson(unittest.TestCase):
     def setUp(self):
-        self.url = "http://localhost:8000/app/api/v1/client/restricted/booking"
+        self.url = "https://localhost:8000/app/api/v1/client/restricted/booking"
 
     #@unittest.skip("Falta añadir la validación de pydantic en la ruta y hacer uso de la ruta por parametros")
     def test_path_add(self) -> None:

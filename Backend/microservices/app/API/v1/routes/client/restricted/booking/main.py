@@ -165,6 +165,9 @@ async def root(request: Request, data: structureAdd):
         day = datetime(year_date, month_date, day_date)
         
         try:
+            
+            #Verifica si existe existe la version del appointment_day y si esta vacia
+            
             appointment = reservas.find_one({"fecha": {"$eq": day}})
             version_appointment = appointment["version"]
 
@@ -217,6 +220,7 @@ async def root(request: Request, data: structureAdd):
         
         #print('worker less bussy->', worker_less_bussy.response["data"])
 
+        #Obtiene todos los servicios procesadora para hacerse uso
         services = conversorServices()
 
         #print('services ->', services.response)
@@ -266,9 +270,7 @@ async def root(request: Request, data: structureAdd):
         
         if not booking.response["status"] == 'ok':
             return Response(booking.response, 401)
-        #print('aci')
         
-        #print('acuo')
         return Response({
             "info": "La reserva se realizo de forma exitosa",
             "status": "ok",
