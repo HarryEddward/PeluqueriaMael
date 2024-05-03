@@ -1,4 +1,4 @@
-# Peluquería Mael
+# Proyecto App/Web Peluquería Mael
 ## Nombre actual: PeluqueríaEGO
 
 <p align="center">
