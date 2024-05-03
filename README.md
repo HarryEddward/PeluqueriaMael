@@ -8,7 +8,7 @@
 Es una App/Web para la peluqueria EGO úbicada en Inca, Mallorca, Islas Baleares.
 
 Hecho por **Adrià Martín Martorell**, como una práctica como freelancer de forma
-autodidáctica. No sonsiderado un trabajo, sino una ayuda.
+autodidáctica. No sonsiderado un trabajo, sino una venta hecha como particular.
 
 El proposito de la app es crear reservas de forma automática, sin intervención
 manual. Simplemente todo de forma autonoma, y los clientes simplemente puedan
