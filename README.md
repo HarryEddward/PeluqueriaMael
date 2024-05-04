@@ -46,7 +46,8 @@ En la app no simplemente se queda en hacer una app, sino dividir en difernetes a
 - Trabajadores
 - Clientes
 
-La tecnología que uso es un framework cross-platform de React Native
+La tecnología que uso es un framework cross-platform de js, llamada ```React Native```. Usando tsx como
+código mantenible por un mismo lenguaje de frontend de base, como la web y la misma app.
 
 ## Web
 El proposito de la web es acceder en ella y descargar de forma simple la app, y
