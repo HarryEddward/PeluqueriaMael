@@ -11,7 +11,6 @@
 <p align="center">
   <a href="https://peluqueriamael.com/docs"><strong>Explora en la documentación »</strong></a>
 </p>
-<br>
 <p align="center">
   <a href="https://github.com/twbs/bootstrap/issues/new?assignees=-&labels=bug&template=bug_report.yml">Report bug</a>
   ·
