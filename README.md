@@ -5,8 +5,11 @@
 <p align="center">
   <img width="200px" height="200px" src="https://i.ibb.co/82mkyXS/Dise-o-sin-t-tulo.png">
 </p>
+
+<h3 align="center">Intuitivo, Escalable & Simple</h3>
+
 <p align="center">
-  <h3>Intuitivo, Escalable & Simple</h3>
+  
 </p>
 <br>
 <!--
