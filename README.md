@@ -9,7 +9,7 @@
 <h3 align="center">Intuitivo, Escalable & Simple</h3>
 
 <p align="center">
-  <a href="https://getbootstrap.com/docs/5.3/"><strong>Explora en la documentación »</strong></a>
+  <a href="https://peluqueriamael.com/docs"><strong>Explora en la documentación »</strong></a>
 </p>
 <br>
 <!--
