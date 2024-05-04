@@ -34,20 +34,20 @@ def read_root():
 # Crear un enrutador base
 base_router = APIRouter()
 
-# Incluir el enrutador base en la aplicación con el prefijo deseado
-app.include_router(base_router, prefix="/app/api/v1")
 
 # Incluir los routers específicos en el enrutador base
 base_router.include_router(admin_router, prefix="/admin", tags=["admin"])
 base_router.include_router(client_router, prefix="/client", tags=["client"])
 base_router.include_router(worker_router, prefix="/worker", tags=["worker"])
 
+# Incluir el enrutador base en la aplicación con el prefijo deseado
+app.include_router(base_router, prefix="/app/api/v1")
 
 #Middlewares
 from config.middlewares.client.restricted import RestrictedMiddleware
-app.add_middleware(RestrictedMiddleware)                #/app/api/v1/client/restricted/
-app.add_middleware(GZipMiddleware, minimum_size=1000)   # Solo comprimir respuestas mayores a 1000 bytes
-app.add_middleware(                                     # Configuración del middleware CORS
+app.add_middleware(RestrictedMiddleware)                                #/app/api/v1/client/restricted/
+app.add_middleware(GZipMiddleware, minimum_size=1000)                   # Solo comprimir respuestas mayores a 1000 bytes
+app.add_middleware(                                                     # Configuración del middleware CORS
     CORSMiddleware,
     allow_origins=["192.168.1.135"],  
     allow_credentials=True,
@@ -60,11 +60,18 @@ app.add_middleware(                                     # Configuración del mid
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
-        "server:app",
-        host="0.0.0.0",
-        port=8000,
-        reload=True,
-        workers=2,
-        ssl_certfile='./config/certs/peluqueriamael.com_cert/peluqueriamael.com.crt',
-        ssl_keyfile='./config/certs/peluqueriamael.com_key.txt'
+        "server:app"
+        ,host="0.0.0.0"
+        ,port=6590
+        ,reload=True
+        ,workers=2
+        ,ssl_certfile='./config/certs/peluqueriamael.com_cert/peluqueriamael.com.crt'
+        ,ssl_keyfile='./config/certs/peluqueriamael.com_key.txt'
+        
     )
+
+
+"""
+
+        
+"""

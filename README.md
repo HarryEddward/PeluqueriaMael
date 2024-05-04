@@ -1,7 +1,7 @@
 # Proyecto App/Web Peluquería Mael
 ## Nombre actual: PeluqueríaEGO
 
-<p align="center">
+<p align="center" style="border: 3px solid red">
   <img src="https://mariospeluqueros.es/wp-content/uploads/2023/09/AF1QipM4by_QD-G1sdivQVIVYudYBPZvP3HPt7D_CkNg.jpg" alt="Texto alternativo">
 </p>
 
@@ -11,7 +11,7 @@ Hecho por **Adrià Martín Martorell**, como una práctica como freelancer de fo
 autodidáctica. No sonsiderado un trabajo, sino una venta hecha como particular.
 En el año que lo hize y acabé tengo 17 años.
 
-El proposito de la app es crear reservas de forma automática, sin intervención
+El propósito de la app es crear reservas de forma automática, sin intervención
 manual. Simplemente todo de forma autonoma, y los clientes simplemente puedan
 reservar de la forma mas simple y intutuitiva, y los trabajadores pueda saber rápidamente
 sus reservas en tiempo real.
