@@ -38,16 +38,15 @@ manual. Simplemente todo de forma autonoma, y los clientes simplemente puedan
 reservar de la forma mas simple y intutuitiva, y los trabajadores pueda saber rápidamente
 sus reservas en tiempo real.
 
+Hago uso de una tecnología cross-platform para evitar doble código. Y como no se require
+de caracterisitcas de una app muy avanzadas, simplemente así mejora la mantenabilidad y hace único el codigo fuente.
+
 ## Web
 El proposito de la web es acceder en ella y descargar de forma simple la app, y
 hacer uso de links promocionales o de información para hacer uso en las redes sociales
 de la peluquería
 
-Hago uso de una tecnología cross-platform para evitar doble código. Y como no se require
-de caracterisitcas de una app muy avanzadas, simplemente así mejora la mantenabilidad y hace único el codigo fuente.
-
-La app se descarga por la misma web de la peluquería
-
+## Distribución de software
 Modelo de distribución de software hacia la peluquería:
 - IaaS
 
