@@ -32,11 +32,13 @@ Hecho por **Adrià Martín Martorell**, como una práctica como freelancer de fo
 autodidáctica. No sonsiderado un trabajo, sino una venta hecha como particular.
 En el año que lo hize y acabé tengo 17 años.
 
+## App
 El propósito de la app es crear reservas de forma automática, sin intervención
 manual. Simplemente todo de forma autonoma, y los clientes simplemente puedan
 reservar de la forma mas simple y intutuitiva, y los trabajadores pueda saber rápidamente
 sus reservas en tiempo real.
 
+## Web
 El proposito de la web es acceder en ella y descargar de forma simple la app, y
 hacer uso de links promocionales o de información para hacer uso en las redes sociales
 de la peluquería
