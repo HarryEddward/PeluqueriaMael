@@ -6,7 +6,7 @@
   <img width="200px" height="200px" src="https://i.ibb.co/82mkyXS/Dise-o-sin-t-tulo.png">
 </p>
 
-<h3 align="center">Intuitivo, Escalable & Simple</h3>
+<h3 align="center">Reserva de forma: Intuitivo, Escalable & Simple</h3>
 
 <p align="center">
   <a href="https://peluqueriamael.com/docs"><strong>Explora en la documentación »</strong></a>
