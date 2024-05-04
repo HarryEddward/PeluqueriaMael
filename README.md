@@ -35,7 +35,7 @@ En el año que lo hize y acabé tengo 17 años.
 ## App
 El propósito de la app es crear reservas de forma automática, sin intervención
 manual. Simplemente todo de forma autonoma, y los clientes simplemente puedan
-reservar de la forma mas simple y intutuitiva, y los trabajadores pueda saber rápidamente
+reservar de la forma mas simple y intutuitiva para los clientes, y los trabajadores pueda saber rápidamente
 sus reservas en tiempo real.
 
 Hago uso de una tecnología cross-platform para evitar doble código. Y como no se require
