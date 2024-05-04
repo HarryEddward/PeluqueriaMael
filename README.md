@@ -55,11 +55,26 @@ Las tecnologías que uso es:
 - Pydantic
 - Gunicorn (Producción)
 - Uvicorn (Desarrollo)
-- Fastapi_cache["redis"]
+- Fastapi_cache[redis]
 - Redis
 - PyMongo
 - Ujson
+- PyJWT
 
+Haciendo uso de un backend moderno, y fácil de mantener, y uno de los mas rapidos de Python.
+Teniendo un íncreible rendimiento por su lenguaje de alto nivel, superando a Express.js y a node.js.
+
+Implemente mi propio middleware que restringe un grupo de rutas especificas, que implemente doble auth
+con jwt. En ```./config/middleware/restricted.py```
+
+## Bases de datos
+
+Hago uso de 2 bases de datos, de forma local:
+- Redis
+- MongoDB
+
+Redis para el almacenamiento temporal de caché, mientras que MongoDB una base de datos persistente
+para guardar todos los datos de forma ordenada, flexible, y rapida.
 
 ## Diseño del backend
 Tiene una estructura dividida por microservicios, separado por diferentes versiónes para futuras
