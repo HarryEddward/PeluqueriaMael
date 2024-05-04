@@ -24,7 +24,7 @@
 </p> -->
 
 
-## Nombre actual: *PeluqueríaEGO
+## *Nombre actual: PeluqueríaEGO
 
 ### Es una App/Web para la *PeluqueríaMael úbicada en Inca, Mallorca, Islas Baleares.
 
