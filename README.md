@@ -1,5 +1,4 @@
 # Proyecto App/Web Peluquería Mael
-## Nombre actual: PeluqueríaEGO
 
 <br>
 <p align="center">
@@ -23,6 +22,9 @@
 <p align="center">
   <img src="https://mariospeluqueros.es/wp-content/uploads/2023/09/AF1QipM4by_QD-G1sdivQVIVYudYBPZvP3HPt7D_CkNg.jpg" alt="Texto alternativo">
 </p> -->
+
+
+## Nombre actual: PeluqueríaEGO
 
 ### Es una App/Web para la peluqueria EGO úbicada en Inca, Mallorca, Islas Baleares.
 
