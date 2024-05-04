@@ -1,8 +1,7 @@
 # Proyecto App/Web Peluquería Mael
 ## Nombre actual: PeluqueríaEGO
 
-<img src="https://ibb.co/5v1ZQ2f">
-
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/82mkyXS/Dise-o-sin-t-tulo.png" alt="Dise-o-sin-t-tulo" border="0" /></a>
 <p align="center" style="border: 3px solid red">
   <img src="https://mariospeluqueros.es/wp-content/uploads/2023/09/AF1QipM4by_QD-G1sdivQVIVYudYBPZvP3HPt7D_CkNg.jpg" alt="Texto alternativo">
 </p>
