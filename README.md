@@ -41,6 +41,11 @@ sus reservas en tiempo real.
 Hago uso de una tecnología cross-platform para evitar doble código. Y como no se require
 de caracterisitcas de una app muy avanzadas, simplemente así mejora la mantenabilidad y hace único el codigo fuente.
 
+En la app no simplemente se queda en hacer una app, sino dividir en difernetes apps, por su úso:
+- Administrador
+- Cliente
+- Trabajadores
+
 ## Web
 El proposito de la web es acceder en ella y descargar de forma simple la app, y
 hacer uso de links promocionales o de información para hacer uso en las redes sociales
