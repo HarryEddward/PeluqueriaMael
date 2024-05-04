@@ -55,7 +55,7 @@ Las tecnologías que uso es:
 - Pydantic
 - Gunicorn (Producción)
 - Uvicorn (Desarrollo)
-- Fastapi_cache[redis]
+- Fastapi_cache["redis"]
 - Redis
 - PyMongo
 - Ujson
