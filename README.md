@@ -43,8 +43,17 @@ de caracterisitcas de una app muy avanzadas, simplemente así mejora la mantenab
 
 En la app no simplemente se queda en hacer una app, sino dividir en difernetes apps, por su úso:
 - Administrador
-- Cliente
 - Trabajadores
+- Clientes
+
+<h3>Administrador</h3>
+Se centra en...
+
+<h3>Trabajadores</h3>
+Se centra en...
+
+<h3>Clientes</h3>
+Se centra en...
 
 ## Web
 El proposito de la web es acceder en ella y descargar de forma simple la app, y
