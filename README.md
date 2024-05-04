@@ -46,6 +46,26 @@ El proposito de la web es acceder en ella y descargar de forma simple la app, y
 hacer uso de links promocionales o de información para hacer uso en las redes sociales
 de la peluquería
 
+## Backend
+El backend se hizo separado por el forntend haciendo una RestAPI, separado de forma independiente,
+así evitando modularizando mucho mas el código y incluso mejorando el rendimiento del mismo.
+
+Las tecnologías que uso es:
+- FastAPI
+- Pydantic
+- Gunicorn (Producción)
+- Uvicorn (Desarrollo)
+- Fastapi_cache[redis]
+- Redis
+- PyMongo
+- Ujson
+
+
+## Diseño del backend
+Tiene una estructura dividida por microservicios, separado por diferentes versiónes para futuras
+actualziaciones que se hagan
+
+
 ## Distribución de software
 Modelo de distribución de software hacia la peluquería:
 - IaaS
