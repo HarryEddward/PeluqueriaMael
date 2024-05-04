@@ -6,7 +6,7 @@
   <img width="200px" height="200px" src="https://i.ibb.co/82mkyXS/Dise-o-sin-t-tulo.png">
 </p>
 <p align="center">
-  <b>Olvidate de pensar en las reservas!</b>
+  <h3>Intuitivo, Escalable & Simple</h3>
 </p>
 <br>
 <!--
