@@ -12,11 +12,13 @@
   <a href="https://peluqueriamael.com/docs"><strong>Explora en la documentación »</strong></a>
 </p>
 <br>
-<a href="https://github.com/twbs/bootstrap/issues/new?assignees=-&labels=bug&template=bug_report.yml">Report bug</a>
+<p align="center">
+  <a href="https://github.com/twbs/bootstrap/issues/new?assignees=-&labels=bug&template=bug_report.yml">Report bug</a>
   ·
   <a href="https://github.com/twbs/bootstrap/issues/new?assignees=&labels=feature&template=feature_request.yml">Request feature</a>
   ·
   <a href="https://themes.getbootstrap.com/">Themes</a>
+</p>
 <br>
 <!--
 <p align="center">
