@@ -5,7 +5,7 @@
   <img width="200px" height="200px" src="https://i.ibb.co/82mkyXS/Dise-o-sin-t-tulo.png">
 </p>
 
-<h3 align="center">Reserva de forma: Intuitivo, Escalable & Simple</h3>
+<h3 align="center">Reserva de forma: Intuitiva, Escalable & Simple</h3>
 
 <p align="center">
   <a href="https://peluqueriamael.com/docs"><strong>Explora en la documentación »</strong></a>
@@ -33,7 +33,7 @@ autodidáctica. No sonsiderado un trabajo, sino una venta hecha como particular.
 En el año que lo hize y acabé tengo 17 años.
 
 ## App
-El propósito de la app es crear reservas de forma automática, sin intervención
+El propósito de la app es ```crear reservas de forma automática```, sin intervención
 manual. Simplemente todo de forma autonoma, y los clientes simplemente puedan
 reservar de la forma mas simple y intutuitiva para los clientes, y los trabajadores pueda saber rápidamente
 sus reservas en tiempo real.
@@ -46,14 +46,7 @@ En la app no simplemente se queda en hacer una app, sino dividir en difernetes a
 - Trabajadores
 - Clientes
 
-<h3>Administrador</h3>
-Se centra en...
-
-<h3>Trabajadores</h3>
-Se centra en...
-
-<h3>Clientes</h3>
-Se centra en...
+La tecnología que uso es un framework cross-platform de React Native
 
 ## Web
 El proposito de la web es acceder en ella y descargar de forma simple la app, y
@@ -74,6 +67,7 @@ Las tecnologías que uso es:
 - PyMongo
 - Ujson
 - PyJWT
+- Fastapi_limiter
 
 Haciendo uso de un backend moderno, y fácil de mantener, y uno de los mas rapidos de Python.
 Teniendo un íncreible rendimiento por su lenguaje de alto nivel, superando a Express.js y a node.js.
