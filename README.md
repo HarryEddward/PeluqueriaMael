@@ -65,7 +65,9 @@ Haciendo uso de un backend moderno, y fácil de mantener, y uno de los mas rapid
 Teniendo un íncreible rendimiento por su lenguaje de alto nivel, superando a Express.js y a node.js.
 
 Implemente mi propio middleware que restringe un grupo de rutas especificas, que implemente doble auth
-con jwt. En ```./config/middleware/restricted.py```
+con jwt. En ```.../config/middleware/restricted.py```. Es extremadamente extricto al hacer cualquier operación
+del usuario, y protegiendo la misma información renovando por cada operación su propia clave secreta del jwt
+que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no autorizadas.
 
 ## Bases de datos
 
@@ -73,7 +75,7 @@ Hago uso de 2 bases de datos, de forma local:
 - Redis
 - MongoDB
 
-Redis para el almacenamiento temporal de caché, mientras que MongoDB una base de datos persistente
+**Redis** para el almacenamiento temporal de ```caché```, mientras que **MongoDB** una base de datos ```persistente```
 para guardar todos los datos de forma ordenada, flexible, y rapida.
 
 ## Diseño del backend
