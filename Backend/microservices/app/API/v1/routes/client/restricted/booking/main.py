@@ -49,11 +49,16 @@ async def root(request: Request, data: structureRemove):
 
 
     try:
+        #-> Responde de forma añadiendo el jwt integrado
+        
         def Response(res: dict, status: int) -> JSONResponse:
             res["renew"] = {"token": request.state.new_token}
             return JSONResponse(res, status)
         
+        #-> Responde de forma añadiendo el jwt integrado
 
+
+        #-> Obtiene el usuario del id, y la ficha de reserva de ese día
         try:
             user_id: str = request.state.user_id
             id_reserva: str = data.id_reserva
@@ -74,9 +79,12 @@ async def root(request: Request, data: structureRemove):
                 "status": "no",
                 "type": "NOT_EXIST_BOOKING_ID"
             }, 401)
-
+    
         reserva = user["reservas"][id_reserva]
+        #-> Obtiene el usuario del id, y la ficha de reserva de ese día
 
+
+        #-> Parsea las variables para hacerlo úso en la ruta
         day_booked = reserva["date_appointment"].day
         month_booked = reserva["date_appointment"].month
         year_booked = reserva["date_appointment"].year
@@ -86,7 +94,10 @@ async def root(request: Request, data: structureRemove):
         service_booked = reserva["service"]
 
         print(day_booked, month_booked, year_booked)
+        #-> Parsea las variables para hacerlo úso en la ruta
 
+
+        #-> Obtiene los servicios actuales para reservar
         services = conversorServices()
 
         print('services ->', services.response)
@@ -102,7 +113,18 @@ async def root(request: Request, data: structureRemove):
             }, 401)
 
         services = services.response["data"]
+        #-> Obtiene los servicios actuales
 
+        
+        #-> Verifica que si faltan 3 dias
+        '''/crud/booking/remove/utils/verify_days.py'''
+
+
+        #-> Verifica que si faltan 3 dias
+
+
+
+        #-> Quita de la parte del usuario la reserva
         remove_booking = RemoveBooking(
             RemoveBooking.structure(
                 day= day_booked,
@@ -117,21 +139,27 @@ async def root(request: Request, data: structureRemove):
                 id_appointment= id_reserva
             )
         )
+        #-> Quita de la parte del usuario la reserva
 
+
+        #-> Verifica si pudo quitar la reserva del usuario sin problemas
         if not remove_booking.response["status"] == "ok":
-            print('aqui?')
+            #print('aqui?')
             return Response(remove_booking.response, 401)
+        #-> Verifica si pudo quitar la reserva del usuario sin problemas
 
-        print('good')
+
+        #-> Obtiene el resultado de forma éxitosa
         return Response({
             "info": "Se elimino la reserva correctamente",
             "status": "ok",
             "type": "SUCCESS",
             "data": remove_booking.response
         }, 200)
+        #-> Obtiene el resultado de forma éxitosa
 
     except Exception as e:
-        print('bad2')
+        #print('bad2')
         return Response({
             "info": f"Error desconocdio del servidor: {e}",
             "status": "no",
