@@ -108,6 +108,7 @@ async def root(request: Request, data: structureRemove):
         else:
             return Response({
                 "info": "Error al obtener los servicios.",
+                "sub_response": services.response,
                 "status": "no",
                 "type": "SERVICE_ERROR"
             }, 401)
@@ -118,7 +119,17 @@ async def root(request: Request, data: structureRemove):
         
         #-> Verifica que si faltan 3 dias
         '''/crud/booking/utils/remove/verify_days.py'''
+        from crud.booking.utils.remove.verifyDays import verifyDays
 
+        verify_days = verifyDays()
+
+        if not verify_days.response["status"] == 'ok':
+            return Response({
+                "info": "Error al verificar los dias antes posibles al cancelar la reserva.",
+                "sub_response": verify_days.response,
+                "status": "no",
+                "type": "UNKNOW_ERROR"
+            }, 401)
 
         #-> Verifica que si faltan 3 dias
 
@@ -145,7 +156,6 @@ async def root(request: Request, data: structureRemove):
 
         #-> Verifica si pudo quitar la reserva del usuario sin problemas
         if not remove_booking.response["status"] == "ok":
-            #print('aqui?')
             return Response(remove_booking.response, 401)
         #-> Verifica si pudo quitar la reserva del usuario sin problemas
 
