@@ -117,7 +117,7 @@ async def root(request: Request, data: structureRemove):
 
         
         #-> Verifica que si faltan 3 dias
-        '''/crud/booking/remove/utils/verify_days.py'''
+        '''/crud/booking/utils/remove/verify_days.py'''
 
 
         #-> Verifica que si faltan 3 dias
@@ -125,6 +125,7 @@ async def root(request: Request, data: structureRemove):
 
 
         #-> Quita de la parte del usuario la reserva
+        '''/crud/booking/remove.py'''
         remove_booking = RemoveBooking(
             RemoveBooking.structure(
                 day= day_booked,
