@@ -18,6 +18,10 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
                     body = await request.json()
                     token_id = body["token_id"]
                     token_data = body["token_data"]
+                    print(token_id)
+                    print(token_data)
+
+                    
 
                     #request.state.token_id = body["token_id"] #1 Token
                     #request.state.token_data = body["token_data"] #2 Token
@@ -47,7 +51,8 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
                             #print('entro')
                             #Teniendo el secreto descifraremos el segundo token con la clave privada secreta que tiene el mismo usuario
                             user_secret = secret.response["data"]
-                            
+                            print('')
+
                             token_data_check = JWToken.check(token_data, user_secret)
                             print('->', token_data_check)
                             
@@ -63,7 +68,7 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
                                     "email": email,
                                     "password": password,
                                 })
-
+                                print('final ->>>>')
                                 #Intenta modificar la clave secreta del usuario 
                                 if renew_secret.response["status"] == 'ok':
 

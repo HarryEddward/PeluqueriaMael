@@ -6,13 +6,13 @@ class TestSaveTokensToJson(unittest.TestCase):
     def setUp(self):
         self.url = "https://localhost:8000/app/api/v1/client/restricted/booking"
 
-    #@unittest.skip("Falta añadir la validación de pydantic en la ruta y hacer uso de la ruta por parametros")
+    @unittest.skip("Falta añadir la validación de pydantic en la ruta y hacer uso de la ruta por parametros")
     def test_path_add(self) -> None:
 
         '''
         
         '''
-        with open('../data.json', 'r') as archivo:
+        with open('./data.json', 'r') as archivo:
             data = json.load(archivo)
         
         token_id = data["token_id"]
@@ -38,16 +38,16 @@ class TestSaveTokensToJson(unittest.TestCase):
         #El token si aunque reciba un fallo se debe de refrescar cada vez que hace una operacion, obligatoriamente
         data["token_data"] = raw_data["renew"]["token"]
 
-        with open('data.json', 'w') as archivo:
+        with open('./data.json', 'w') as archivo:
             json.dump(data, archivo)
 
         #print(token_id, token_data)
         self.assertEqual(response.status_code, 200)
 
     
-    @unittest.skip("")
+    #@unittest.skip("")
     def test_path_remove(self):
-        with open('../data.json', 'r') as archivo:
+        with open('data.json', 'r') as archivo:
             data = json.load(archivo)
         
         token_id = data["token_id"]
@@ -56,7 +56,7 @@ class TestSaveTokensToJson(unittest.TestCase):
         send = {
             "token_id": token_id,
             "token_data": token_data,
-            "id_reserva": "6a8cf7c3-06b1-4222-b5a3-320ce31ea7ef"
+            "id_reserva": "5bb574f9-da23-425f-b12a-ce543e3c8766"
         }
 
         response = requests.post(self.url + "/remove", json=send, verify=False)

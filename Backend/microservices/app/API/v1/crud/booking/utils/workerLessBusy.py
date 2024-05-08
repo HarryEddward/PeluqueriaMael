@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import List
+import numba as nb
 
 class workerLessBusy:
 
@@ -7,6 +8,7 @@ class workerLessBusy:
         rama_profesionales: List[str]
         professionals: dict
 
+    #@nb.jit(nopython=True)
     def __init__(self, data: structure) -> None:
 
         try:

@@ -6,7 +6,7 @@ from pydantic import ValidationError
 from bson import ObjectId
 import datetime
 from datetime import datetime
-
+import numba as nb
 
 class AddAppointment(BaseModel):
     day: int
@@ -27,6 +27,7 @@ class AddBookingUser:
     
 
 
+    #@nb.jit(nopython=True)
     def __init__(self, data_raw: AddAppointment) -> None:
         self.response = {}
 

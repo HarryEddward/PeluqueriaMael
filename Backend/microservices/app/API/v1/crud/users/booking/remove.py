@@ -1,12 +1,14 @@
 from db.database import users
 from pydantic import BaseModel, EmailStr
 from bson import ObjectId
+import numba as nb
 
 class RemoveBookingUser:
     class structure(BaseModel):
         id_appointment: str
         person_id: str
 
+    #@nb.jit(nopython=True)
     def __init__(self, data_raw: structure) -> None:
         self.response = None
 

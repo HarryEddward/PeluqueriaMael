@@ -8,12 +8,14 @@ from fastapi import (
 from fastapi.responses import JSONResponse
 from routes.client.restricted.booking.main import router as router_booking
 from routes.client.restricted.data.main import router as router_data
+from routes.client.restricted.user.main import router as router_user
 from pydantic import BaseModel
 
 router = APIRouter(prefix="/restricted")
 
 router.include_router(router_data)
 router.include_router(router_booking)
+router.include_router(router_user)
 
 
 @router.post('/status')

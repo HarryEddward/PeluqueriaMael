@@ -1,12 +1,14 @@
 from db.database import configure, personal
 from bson import ObjectId
 from pydantic import BaseModel
+import numba as nb
 
 class serviceToPersonal:
 
     class service(BaseModel):
         service: str
-
+    
+    #@nb.jit(nopython=True)
     def __init__(self, data: service) -> None:
         self.response = {}
 

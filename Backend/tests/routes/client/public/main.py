@@ -4,7 +4,7 @@ import unittest
 
 class TestSaveTokensToJson(unittest.TestCase):
     def setUp(self):
-        self.url = "http://localhost:8000/app/api/v1/client"
+        self.url = "https://localhost:8000/app/api/v1/client"
 
     def test_path_tokens(self) -> None:
 
@@ -14,11 +14,11 @@ class TestSaveTokensToJson(unittest.TestCase):
         }
 
         ext = "/login"
-        response = requests.post(self.url + ext, json=send)
+        response = requests.post(self.url + ext, json=send, verify=False)
 
         raw_data = response.json()
 
-        path = "/Users/yeray/Documents/GIT/GIT/Backend/tests/routes/client/restricted/data/"
+        path = "/Users/yeray/Documents/GIT/GIT/Backend/tests/routes/client/restricted/booking/"
 
         with open(path + 'data.json', 'r') as archivo:
             data = json.load(archivo)

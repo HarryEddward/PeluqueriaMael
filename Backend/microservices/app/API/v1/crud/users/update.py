@@ -3,6 +3,7 @@ from pydantic import BaseModel, EmailStr
 from pydantic import ValidationError
 from services.secrets_generator.main import secrets_generator
 from bson import ObjectId
+import numba as nb
 
 from .validation import ValidationUser
 from services.auth import JWToken
@@ -32,6 +33,8 @@ class UpdateUser:
         password: str
 
     class secret_jwt:
+
+        #@nb.jit(nopython=True)
         def __init__(self, data: SecretJWTUpdate):
             
             '''
@@ -117,6 +120,8 @@ class UpdateUser:
                 }
 
     class password:
+
+        #@nb.jit(nopython=True)
         def __init__(self, data: PasswordUpdate):
             try:
                 self.response = None
@@ -128,6 +133,7 @@ class UpdateUser:
                     "type": "UNKNOWN_ERROR"
                 }
 
+        #@nb.jit(nopython=True)
         def change_password(self, data):
 
             validation_user = ValidationUser({

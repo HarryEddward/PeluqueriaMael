@@ -5,6 +5,7 @@ from bson import ObjectId
 from typing import Union
 
 from .validation import ValidationUser
+import numba as nb
 
 class Find(BaseModel):
     email: EmailStr
@@ -21,6 +22,8 @@ class FindSecretJWTID(BaseModel):
 
 class FindUser:
     class info:
+
+        #@nb.jit(nopython=True)
         def __init__(self, find: Find) -> None:
             self.email = find.email
 
@@ -53,7 +56,7 @@ class FindUser:
 
     class secret_jwt:
         
-
+        #@nb.jit(nopython=True)
         def __init__(self, data: Union[FindSecretJWTCredentials, FindSecretJWTID]):
             self.response = None
 

@@ -8,7 +8,17 @@ from bson import ObjectId
 from pydantic import BaseModel
 from datetime import datetime, timedelta
 
+import numpy as np
+from numpy import short
+import numba as nb
 
+'''
+Hace uso de numpy:
+- np.array()
+
+Hace uso de numba:
+- 
+'''
 
 class AddBooking:
 
@@ -54,6 +64,7 @@ class AddBooking:
         
         '''
 
+    #@nb.jit(nopython=True)
     def __init__(self, data_raw: structure):
         try:
             self.response = self.buscar_disponibilidad(data_raw)
@@ -68,7 +79,7 @@ class AddBooking:
             }
             return
 
-        
+    #@nb.jit(nopython=True)
     def buscar_disponibilidad(self, data_raw):
         data = data_raw.model_dump()
         professionals = data["professionals"]
@@ -97,14 +108,15 @@ class AddBooking:
             "type": "NO_AVAILABILITY"
         }
     
+    #@nb.jit(nopython=True)
     def add(self, data_raw, professional_selected: str):
         self.response = {}
 
         try:
             data = data_raw.model_dump()
-            day: int = data["day"]
-            month: int = data["month"]
-            year: int = data["year"]
+            day: short = data["day"]
+            month: short = data["month"]
+            year: short = data["year"]
             professional: str = professional_selected
             period: str = data["period"]
             start_time: str = data["start_time"]
@@ -195,7 +207,9 @@ class AddBooking:
                         "type": "OUT_SCHULDE_AFTER_AFTERNOON"  # Tipo de error único
                     }
 
-                available_slots = list(professionals[professional][period].items())
+                available_slots = np.array(list(professionals[professional][period].items()))
+                #available_slots = set(professionals[professional][period].keys())
+
                 
                 # Verificar si algún intervalo parcial está disponible
                 start_datetime = datetime.strptime(start_time, '%H:%M')
@@ -218,7 +232,7 @@ class AddBooking:
                         "type": "PROFESSIONAL_BUSSY"  # Tipo de error único
                     }
                     print('add self.response->', self.response)
-                    return
+                    
 
                 print('asd')
                 # Marcar el intervalo parcial como ocupado y guardar la información de la cita
@@ -268,7 +282,6 @@ class AddBooking:
                         "status": "no",
                         "type": "DATABASE_ERROR"  # Tipo de error único
                     }
-                    return
 
                 if not update_result.modified_count > 0:
                     return {
@@ -276,7 +289,6 @@ class AddBooking:
                         "status": "no",
                         "type": "DATABASE_ERROR"  # Tipo de error único
                     }
-                    return
 
                 print('reservo')
                 return {
@@ -284,7 +296,6 @@ class AddBooking:
                     "status": "ok",
                     "type": "SUCCESS"  # Tipo de error único
                 }
-                return
             else:
                
                 return {

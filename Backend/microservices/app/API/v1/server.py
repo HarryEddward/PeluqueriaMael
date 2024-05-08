@@ -49,7 +49,7 @@ app.add_middleware(RestrictedMiddleware)                                #/app/ap
 app.add_middleware(GZipMiddleware, minimum_size=1000)                   # Solo comprimir respuestas mayores a 1000 bytes
 app.add_middleware(                                                     # Configuración del middleware CORS
     CORSMiddleware,
-    allow_origins=["192.168.1.135"],  
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -61,17 +61,11 @@ if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
         "server:app"
-        ,host="0.0.0.0"
-        ,port=6590
+        ,host="localhost"
+        ,port=8000
         ,reload=True
         ,workers=2
         ,ssl_certfile='./config/certs/peluqueriamael.com_cert/peluqueriamael.com.crt'
         ,ssl_keyfile='./config/certs/peluqueriamael.com_key.txt'
         
     )
-
-
-"""
-
-        
-"""

@@ -3,8 +3,7 @@ from pydantic import BaseModel
 from datetime import datetime, timedelta
 from .config import config
 from crud.users.booking.remove import RemoveBookingUser
-
-from crud.booking.utils.verifyUserAppointment import verifyUserAppointment
+import numba as nb
 
 class  RemoveBooking:
 
@@ -23,6 +22,8 @@ class  RemoveBooking:
         id_appointment: str
 
 
+
+    #@nb.jit(nopython=True)
     def __init__(self, data_raw: structure) -> None:
         self.response = None
         try:
@@ -46,6 +47,7 @@ class  RemoveBooking:
                 "type": "UNKNOW_ERROR"
             }
 
+    #@nb.jit(nopython=True)
     def remove(self, day, month, year, professional, period, start_time, service_duration, person_id, service_name, id_appointment) -> dict:
         start_time_dt = datetime.strptime(start_time, '%H:%M')  # Convertir start_time a datetime
         print('aqui?')
@@ -110,17 +112,7 @@ class  RemoveBooking:
 
                     # Verifica si intenta cancelar la cita  antes de los 3 días de realizarlo
                     # Code...
-                    today_date = datetime.now().date()
-                    verify_date = day_date - today_date
                     
-
-                    #Aún para testear
-                    if verify_date.days < 3:
-                        return {
-                            "info": "Faltan menos de 3 dias para la reserva, y no se puede eliminarla",
-                            "status": "no",
-                            "type": "UNAUTHORIZED_APPOINTMENT_CANCELLATION"
-                        }
 
                     # Actualizar el documento en la base de datos
                     update_result = reservas.update_one(

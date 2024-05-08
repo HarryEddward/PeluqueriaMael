@@ -18,8 +18,8 @@ from db.database import reservas, configure, users, personal as db_personal
 from datetime import datetime
 
 from bson import ObjectId
-
 from typing import Optional
+import numba as nb
 
 router = APIRouter(prefix="/booking")
 
@@ -51,6 +51,7 @@ async def root(request: Request, data: structureRemove):
     try:
         #-> Responde de forma añadiendo el jwt integrado
         
+        #@nb.jit(nopython=True)
         def Response(res: dict, status: int) -> JSONResponse:
             res["renew"] = {"token": request.state.new_token}
             return JSONResponse(res, status)
@@ -121,22 +122,24 @@ async def root(request: Request, data: structureRemove):
         '''/crud/booking/utils/remove/verify_days.py'''
         from crud.booking.utils.remove.verifyDays import verifyDays
 
-        verify_days = verifyDays()
-
+        verify_days = verifyDays(day_booked, month_booked, year_booked)
+        
         if not verify_days.response["status"] == 'ok':
             return Response({
                 "info": "Error al verificar los dias antes posibles al cancelar la reserva.",
                 "sub_response": verify_days.response,
                 "status": "no",
-                "type": "UNKNOW_ERROR"
+                "type": "VERIFY_DAYS_ERROR"
             }, 401)
-
+        print(verify_days.response)
         #-> Verifica que si faltan 3 dias
+
 
 
 
         #-> Quita de la parte del usuario la reserva
         '''/crud/booking/remove.py'''
+        print('------------')
         remove_booking = RemoveBooking(
             RemoveBooking.structure(
                 day= day_booked,
@@ -152,13 +155,13 @@ async def root(request: Request, data: structureRemove):
             )
         )
         #-> Quita de la parte del usuario la reserva
-
+        print('------------')
 
         #-> Verifica si pudo quitar la reserva del usuario sin problemas
         if not remove_booking.response["status"] == "ok":
             return Response(remove_booking.response, 401)
         #-> Verifica si pudo quitar la reserva del usuario sin problemas
-
+        print('------------')
 
         #-> Obtiene el resultado de forma éxitosa
         return Response({
@@ -196,6 +199,7 @@ async def root(request: Request, data: structureAdd):
         name_service = data.name_service
         user_id = request.state.user_id
 
+        #@nb.jit(nopython=True)
         def Response(res: dict, status: int) -> JSONResponse:
             res["renew"] = {"token": request.state.new_token}
             return JSONResponse(res, status)
@@ -315,7 +319,7 @@ async def root(request: Request, data: structureAdd):
             "status": "ok",
             "type": "SUCCESS",
             "data": booking.response,
-        }, 201)
+        }, 200)
     except Exception as e:
         return JSONResponse({
             "info": f"Error desconocido por el servidor: {e}",

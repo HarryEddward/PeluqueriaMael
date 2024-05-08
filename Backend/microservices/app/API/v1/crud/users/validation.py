@@ -1,6 +1,6 @@
 from db.database import users
 from pydantic import BaseModel, EmailStr
-
+import numba as nb
 
 class Credentials(BaseModel):
     email: EmailStr
@@ -10,6 +10,7 @@ class Credentials(BaseModel):
 
 class ValidationUser:
 
+    #@nb.jit(nopython=True)
     def __init__(self, data: Credentials):
         '''
         Validar si el usuario exite, si existe, devolver el id del db
@@ -50,6 +51,7 @@ class ValidationUser:
                 "type": "UNKNOWN_ERROR"
             }
 
+    #@nb.jit(nopython=True)
     def search_user(self, data):
         user = users.find_one({"data.info.email": data["email"]})
         print('user -> ', user)
@@ -62,6 +64,7 @@ class ValidationUser:
                 "type": "USER_NOT_FOUND"
             }
 
+    #@nb.jit(nopython=True)
     def validate_password(self, user, data):
 
 

@@ -3,6 +3,7 @@ from pydantic import BaseModel, EmailStr
 from pydantic import ValidationError
 from pydantic_extra_types.phone_numbers import PhoneNumber
 from services.secrets_generator.main import secrets_generator
+import numba as nb
 
 class Info(BaseModel):
     email: EmailStr
@@ -27,6 +28,8 @@ class AddUser:
     al crear el usuario, y como ya este creado, lo otro no lo hara
     uso hasta que haga otras acciónes
     '''
+
+    #@nb.jit(nopython=True)
     def __init__(self, info: Info):
 
         self.data = {
@@ -67,11 +70,13 @@ class AddUser:
                 "type": "UNKNOW_ERROR"
             }
 
+    #@nb.jit(nopython=True)
     def verify(self, data: dict):
         
         user = Add(**data)
         return user.model_dump()
 
+    #@nb.jit(nopython=True)
     def aggregate(self, user_validate):
         try:
             users.insert_one(user_validate)
