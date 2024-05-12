@@ -12,10 +12,6 @@ router = APIRouter(prefix="/config")
 from datetime import datetime
 import numba as nb
 
-class middleware_struct(BaseModel):
-    token_id: Optional[str] = None
-    token_data: Optional[str] = None
-
 
 '''
 Porque no se usa el parametro data en las rutas?
@@ -24,18 +20,34 @@ Porque no se usa el parametro data en las rutas?
 
 '''
 
+
+class structureResetPassword(BaseModel):
+    token_id: Optional[str] = None
+    token_data: Optional[str] = None
+    current_psw: str
+    new_psw: str
+
 @router.post('/reset_password')
-async def root(request: Request, data: middleware_struct) -> JSONResponse:
+async def root(request: Request, data: structureResetPassword) -> JSONResponse:
 
     '''
-    Enseña las reservas que hizo el **usuario**
+    La ruta **cambia** la contraseña actual **por la nueva** del usuario
     '''
     def code() -> dict:
 
+        current_psw = str(data.current_psw)
+        new_psw = str(data.new_psw)
+
         try:
+            #print('--------------------')
             user_id = str(request.state.user_id)
-            appointments = users.find_one({ "_id": ObjectId(user_id) }, {'_id': 0, 'reservas': 1})
-            print('appointments ->', appointments)
+
+            #Obtiene la contraseña sin ser procesado
+            current_psw_db_raw = users.find_one({ "_id": ObjectId(user_id) }, {'_id': 0, 'data.info.password': 1})
+            
+            #Obtiene la contraseña procesado
+            current_psw_db = current_psw_db_raw["data"]["info"]["password"]
+            #print('appointments ->', current_psw)
 
         except Exception as e:
             return Response({
@@ -44,23 +56,52 @@ async def root(request: Request, data: middleware_struct) -> JSONResponse:
                 "type": "DATABASE_ERROR"
             }, 401)
         
-        if not appointments:
+        if not current_psw_db:
             return Response({
                 "info": "No se encontro el usuario, o esta en el db vació",
                 "status": "no",
                 "type": "USER_NOT_FOUND"
-            }, 200)
+            }, 401)
+        
+        #print('current_psw ->', current_psw)
+        #print('new_psw ->', new_psw)
+        #print('current_psw_db ->', current_psw_db)
+        
 
-        # Convertir objetos datetime a cadenas de texto
-        for _, reservas in appointments['reservas'].items():
-            print('reservas---->', reservas)
-            reservas["date_appointment"] = str(reservas["date_appointment"])
+        
+        # Valida si la contraseña puesta "actual" es el mismo que la contraseña actual en el db
+        if not current_psw_db == current_psw:
+
+            print('No cuadra la contraseña con el db')
+            return Response({
+                "info": "La contraseña no cuadra con la actual",
+                "status": "no",
+                "type": "PASSWORD_DONT_MATCH"
+            }, 401)
+        
+        print('--------------------')
+        
+        #Cambia la contraseña si todo fué bien
+        try:
+            users.update_one(
+                {"_id": ObjectId(user_id)},
+                { "$set": {
+                        "data.info.password": new_psw
+                    }
+                }
+            )
+        except Exception as e:
+            return Response({
+                "info": "Hubo un error a la base de datos",
+                "status": "no",
+                "type": "DATABASE_ERROR"
+            }, 401)
 
         return Response({
-            "info": "Se obtuvo del usuario sus reservas",
+            "info": "Se cambio la contraseña actual por la nueva contraseña",
             "status": "ok",
             "type": "SUCCESS",
-            "data": appointments
+            "data": new_psw
         }, 200)
 
 

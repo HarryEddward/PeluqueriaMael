@@ -1,5 +1,5 @@
 from fastapi import FastAPI, APIRouter
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_cache import FastAPICache
 from fastapi.middleware.gzip import GZipMiddleware
@@ -16,6 +16,9 @@ fastapi.json = ujson
 
 app = FastAPI()
 
+#Entorno de: prod -> Producción | dev -> Desarrollo 
+enviroment = "prod"
+
 @app.on_event("startup")
 async def startup_event():
 
@@ -25,11 +28,21 @@ async def startup_event():
 
 @app.get("/hidden_egg")
 def read_root():
-    return JSONResponse({
-        "info": ":o",
-        "status": "Shhh",
-        "type": "EASTER_EGG"
-    }, 200)
+    return HTMLResponse(
+        content="""
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Hidden egg</title>
+        </head>
+        <body>
+            <img src="https://images.pexels.com/photos/3343/easter-eggs.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=0">
+        </body>
+        </html>
+        """, 
+        status_code=200)
 
 # Crear un enrutador base
 base_router = APIRouter()
@@ -58,14 +71,16 @@ app.add_middleware(                                                     # Config
 
 # Para ejecutar el servidor
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(
-        "server:app"
-        ,host="localhost"
-        ,port=8000
-        ,reload=True
-        ,workers=2
-        ,ssl_certfile='./config/certs/peluqueriamael.com_cert/peluqueriamael.com.crt'
-        ,ssl_keyfile='./config/certs/peluqueriamael.com_key.txt'
-        
-    )
+
+    if enviroment == "dev":
+        import uvicorn
+        uvicorn.run(
+            "server:app"
+            ,host="localhost"
+            ,port=8000
+            ,reload=True
+            ,workers=2
+            ,ssl_certfile='./config/certs/peluqueriamael.com_cert/peluqueriamael.com.crt'
+            ,ssl_keyfile='./config/certs/peluqueriamael.com_key.txt'
+            
+        )

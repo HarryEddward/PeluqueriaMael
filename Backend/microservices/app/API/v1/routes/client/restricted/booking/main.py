@@ -45,6 +45,13 @@ async def root(request: Request, data: structureRemove):
 
     """
     Ruta para **quitar las reservas** de los **clientes**
+
+    Errores exitentes:
+    - DATABASE_ERROR
+    - NOT_EXIST_BOOKING_ID
+    - UNKNOW_ERROR
+    - SERVICE_ERROR
+    - VERIFY_DAYS_ERROR
     """
 
 
@@ -191,6 +198,15 @@ class structureAdd(BaseModel):
 
 @router.post("/add")
 async def root(request: Request, data: structureAdd):
+
+    '''
+    Ruta para **crear una reserva** del usuario
+    
+    Errores exitentes:
+    - ERROR_DATABASE_DATE
+    - UNKNOW_ERROR
+    - SERVICE_ERROR
+    '''
 
     try:
         day_date = data.day_date

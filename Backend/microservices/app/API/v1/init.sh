@@ -1,1 +1,1 @@
-uvicorn server:app --reload
+gunicorn -c gunicorn.py server:app

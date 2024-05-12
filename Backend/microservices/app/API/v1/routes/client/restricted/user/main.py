@@ -33,18 +33,29 @@ Porque no se usa el parametro data en las rutas?
 
 '''
 
+class structureDelete(BaseModel):
+    token_id: Optional[str] = None
+    token_data: Optional[str] = None
+    verify: bool
+
+
 @router.post('/delete')
-async def root(request: Request, data: middleware_struct) -> JSONResponse:
+async def root(request: Request, data: structureDelete) -> JSONResponse:
 
     '''
-    Enseña las reservas que hizo el **usuario**
+    Ruta para **eliminar** la cuenta del **usuario existente**
+
+
+    Errores exitentes:
+    - DATABASE_ERROR
+    - USER_NOT_FOUND
+    - UNKNOW_ERROR
     '''
     def code() -> dict:
 
         try:
             user_id = str(request.state.user_id)
-            appointments = users.find_one({ "_id": ObjectId(user_id) }, {'_id': 0, 'reservas': 1})
-            print('appointments ->', appointments)
+            user = users.find_one({ "_id": ObjectId(user_id) }, {'_id': 0})
 
         except Exception as e:
             return Response({
@@ -53,7 +64,8 @@ async def root(request: Request, data: middleware_struct) -> JSONResponse:
                 "type": "DATABASE_ERROR"
             }, 401)
         
-        if not appointments:
+        #Verifica si existe el usuario
+        if not user:
             return Response({
                 "info": "No se encontro el usuario, o esta en el db vació",
                 "status": "no",
