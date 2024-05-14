@@ -34,9 +34,12 @@ class UserDelete:
         
         #Obtiene las reservas y luego verifica si no hay ningúna
         reservas = users.find_one({ "_id": ObjectId(user_id) }, { "_id": 0, "data.reservas": 1 })
+        print(reservas)
+
 
         # Si no hay alguna reserva devolver que no debería tener
         if not len(reservas) == 0:
+            print('Existen reservas.')
             return {
                 "info": "Exiten reservas pendientes a verificar, no se puede eliminar la cuenta",
                 "status": "no",
@@ -45,6 +48,7 @@ class UserDelete:
         
         # Si no hay reservas pendientes a verificar, se eliminará la cuenta del usuario
         try:
+            print('Como no existen reservas comienza a eliminar la cuenta.')
             users.delete_one({ "_id": ObjectId(user_id) })
         except Exception as e:
             return {
@@ -53,6 +57,7 @@ class UserDelete:
                 "type": "DATABASE_ERROR"
             }
         
+        print('Todo salió bien, se eliminó la cuenta exitosamente.')
         return {
             "info": "Se eliminó la cuenta de forma correcta",
             "status": "ok",

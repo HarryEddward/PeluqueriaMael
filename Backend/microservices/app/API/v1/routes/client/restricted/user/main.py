@@ -6,7 +6,7 @@ from datetime import datetime
 from bson import ObjectId
 from typing import Optional
 from config.config import conf
-
+from crud.users.delete import UserDelete
 
 '''
 En esta ruta solamnete es operaciónes internas del usaurio y no cambios en si.
@@ -50,12 +50,13 @@ async def root(request: Request, data: structureDelete) -> JSONResponse:
     - DATABASE_ERROR
     - USER_NOT_FOUND
     - UNKNOW_ERROR
+    - APPOINTMENTS_EXISTENTS
     '''
     def code() -> dict:
 
         try:
             user_id = str(request.state.user_id)
-            user = users.find_one({ "_id": ObjectId(user_id) }, {'_id': 0})
+            user = users.find_one({ "_id": ObjectId(user_id) }, { '_id': 0 })
 
         except Exception as e:
             return Response({
@@ -64,24 +65,19 @@ async def root(request: Request, data: structureDelete) -> JSONResponse:
                 "type": "DATABASE_ERROR"
             }, 401)
         
-        #Verifica si existe el usuario
-        if not user:
-            return Response({
-                "info": "No se encontro el usuario, o esta en el db vació",
-                "status": "no",
-                "type": "USER_NOT_FOUND"
-            }, 200)
-
-        # Convertir objetos datetime a cadenas de texto
-        for _, reservas in appointments['reservas'].items():
-            print('reservas---->', reservas)
-            reservas["date_appointment"] = str(reservas["date_appointment"])
-
+        
+        delete_user = UserDelete(
+            UserDelete.structure(
+                user_id=user_id
+            )
+        )
+        
+        print('Delete User->', delete_user)
+        print('sus ->', print)
         return Response({
             "info": "Se obtuvo del usuario sus reservas",
             "status": "ok",
-            "type": "SUCCESS",
-            "data": appointments
+            "type": "SUCCESS"
         }, 200)
 
 
