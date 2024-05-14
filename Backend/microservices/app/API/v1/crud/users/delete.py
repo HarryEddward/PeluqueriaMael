@@ -52,3 +52,9 @@ class UserDelete:
                 "status": "no",
                 "type": "DATABASE_ERROR"
             }
+        
+        return {
+            "info": "Se eliminó la cuenta de forma correcta",
+            "status": "ok",
+            "type": "SUCCESS"
+        }
