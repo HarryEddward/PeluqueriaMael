@@ -53,6 +53,16 @@ async def root(request: Request, data: structureDelete) -> JSONResponse:
     - APPOINTMENTS_EXISTENTS
     '''
     def code() -> dict:
+        
+        verify = data["verify"]
+
+        # Si la eliminación de la cuenta no esta verificada, no se puede eliminar. Puede ser que manera no intencionada
+        if not verify:
+            return {
+                "info": "No quiso eliminar la cuenta de forma intenconada",
+                "status": "no",
+                "type": "VERIFY_NOT_TRUE"
+            }
 
         try:
             user_id = str(request.state.user_id)
@@ -65,14 +75,14 @@ async def root(request: Request, data: structureDelete) -> JSONResponse:
                 "type": "DATABASE_ERROR"
             }, 401)
         
-        
+        #Elimina la cuenta del usuario
         delete_user = UserDelete(
             UserDelete.structure(
                 user_id=user_id
             )
         )
         
-        print('Delete User->', delete_user)
+        print('Delete User->', delete_user.response)
         print('sus ->', print)
         return Response({
             "info": "Se obtuvo del usuario sus reservas",

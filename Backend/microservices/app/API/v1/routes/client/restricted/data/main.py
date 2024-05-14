@@ -35,6 +35,7 @@ async def root(request: Request, data: middleware_struct) -> JSONResponse:
     - DATABASE_ERROR
     - USER_NOT_FOUND
     - UNKNOW_ERROR
+    - VERIFY_NOT_TRUE
     '''
     def code() -> dict:
 
