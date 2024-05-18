@@ -26,7 +26,6 @@
 
 ## *Nombre actual: PeluqueríaEGO
 
-[Descargar PDF](https://i.ibb.co/4MWfnTK/Presupuesto-servicios-creativos-simple-blanco-y-celeste.png)
 ### Es una App/Web para la *PeluqueríaMael úbicada en Inca, Mallorca, Islas Baleares.
 
 Hecho por **Adrià Martín Martorell**, como una práctica como freelancer de forma
@@ -99,3 +98,16 @@ Modelo de distribución de software hacia la peluquería:
 
 Modelo de distribución de software de la peluquería hacía sus clientes:
 - SaaS
+
+
+## Presupuesto PC Servidor
+Creé un presupuesto ajustado de 550€, y realmente priorize la baja latencia entre la potencia misma del pc, y tuvé como conclusión que realmente invertir en mejorar la baja latencia sea una parte crítica del servidor web. Y para evitar la perdida de datos en malas condiciónes como en tormentas o en fluctuaciónes de tensiónes el mismo SAI protegería al mismo PC.
+
+Aquí esta el presupuesot hecho para el dueño de la peluquería, para Mael, buscando en Pcomponentes. 
+```(Los precios y productos puede ser que no aparezcan o no sean los mismos)````
+
+
+
+<p align="center">
+  <img width="200px" height="200px" src="https://i.ibb.co/4MWfnTK/Presupuesto-servicios-creativos-simple-blanco-y-celeste.png">
+</p>
