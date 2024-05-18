@@ -26,6 +26,7 @@
 
 ## *Nombre actual: PeluqueríaEGO
 
+[Descargar PDF](https://i.ibb.co/4MWfnTK/Presupuesto-servicios-creativos-simple-blanco-y-celeste.png)
 ### Es una App/Web para la *PeluqueríaMael úbicada en Inca, Mallorca, Islas Baleares.
 
 Hecho por **Adrià Martín Martorell**, como una práctica como freelancer de forma

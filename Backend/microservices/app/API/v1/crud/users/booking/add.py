@@ -65,7 +65,7 @@ class AddBookingUser:
             # Actualiza el usuario con la nueva reserva
             update_result = users.update_one(
                 { "_id": ObjectId(person_id) },
-                { "$set": { f"reservas.{id_appointment}": booking_data } }
+                { "$set": { f"data.reservas.{id_appointment}": booking_data } }
             )
 
             if update_result.modified_count > 0:

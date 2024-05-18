@@ -54,7 +54,7 @@ async def root(request: Request, data: structureDelete) -> JSONResponse:
     '''
     def code() -> dict:
         
-        verify = data["verify"]
+        verify = data.verify
 
         # Si la eliminación de la cuenta no esta verificada, no se puede eliminar. Puede ser que manera no intencionada
         if not verify:
@@ -83,6 +83,9 @@ async def root(request: Request, data: structureDelete) -> JSONResponse:
         )
         
         print('Delete User->', delete_user.response)
+        if not delete_user.response["status"] == 'ok':
+            return Response(delete_user.response, 401)
+
         print('sus ->', print)
         return Response({
             "info": "Se obtuvo del usuario sus reservas",

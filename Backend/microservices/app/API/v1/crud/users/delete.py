@@ -25,6 +25,7 @@ class UserDelete:
     
     #@nb.jit(nopython=True)
     def __init__(self, raw_data: structure) -> None:
+        raw_data = raw_data.model_dump()
         user_id = raw_data["user_id"]
 
         self.response = self.remove(user_id)
@@ -36,9 +37,11 @@ class UserDelete:
         reservas = users.find_one({ "_id": ObjectId(user_id) }, { "_id": 0, "data.reservas": 1 })
         print(reservas)
 
+        print(len(reservas) == 0)
+
 
         # Si no hay alguna reserva devolver que no debería tener
-        if not len(reservas) == 0:
+        if len(reservas) != 0:
             print('Existen reservas.')
             return {
                 "info": "Exiten reservas pendientes a verificar, no se puede eliminar la cuenta",

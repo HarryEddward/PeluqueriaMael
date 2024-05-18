@@ -26,7 +26,7 @@ class RemoveBookingUser:
                 }
                 return
 
-            reservation = user.get("reservas", {}).get(id_appointment)
+            reservation = user.get("data", {}).get("reservas", {}).get(id_appointment)
             if not reservation:
                 self.response = {
                     "info": f"No se encontró la reserva con ID {id_appointment} en el usuario con ID {person_id}.",
@@ -37,7 +37,7 @@ class RemoveBookingUser:
 
             update_result = users.update_one(
                 { "_id": ObjectId(person_id) },
-                { "$unset": { f"reservas.{id_appointment}": "" } }
+                { "$unset": { f"data.reservas.{id_appointment}": "" } }
             )
 
             if update_result.modified_count > 0:

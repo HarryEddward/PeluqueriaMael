@@ -13,12 +13,15 @@ from crud.booking.add import AddBooking
 from crud.booking.remove import RemoveBooking
 
 from pydantic import BaseModel
+from pydantic import validator
+from pydantic import ValidationError
 
 from db.database import reservas, configure, users, personal as db_personal
 from datetime import datetime
 
 from bson import ObjectId
 from typing import Optional
+from typing import Literal
 import numba as nb
 
 router = APIRouter(prefix="/booking")
@@ -72,8 +75,11 @@ async def root(request: Request, data: structureRemove):
             id_reserva: str = data.id_reserva
             user = users.find_one(
                 { "_id": ObjectId(user_id) },
-                {"reservas." + id_reserva: 1, "_id": 0}
+                {f"data.reservas.{id_reserva}": 1, "_id": 0}
             )
+            user = user['data']['reservas']
+
+            print(f'data.reservas.{id_reserva}:', user)
         except Exception as e:
             return Response({
                 "info": "Error en la base de datos, quizas no exista y tengas mal los mismos parametros",
@@ -81,14 +87,18 @@ async def root(request: Request, data: structureRemove):
                 "type": "DATABASE_ERROR"
             }, 401)
         
-        if id_reserva not in user["reservas"]:
+        if id_reserva not in user:
+            print('->', id_reserva)
+            print('->', id_reserva not in user)
+            print('->', user)
+
             return Response({
                 "info": "La id que pasaste no existe dentro del usuario",
                 "status": "no",
                 "type": "NOT_EXIST_BOOKING_ID"
             }, 401)
     
-        reserva = user["reservas"][id_reserva]
+        reserva = user[id_reserva]
         #-> Obtiene el usuario del id, y la ficha de reserva de ese día
 
 
@@ -169,6 +179,7 @@ async def root(request: Request, data: structureRemove):
             return Response(remove_booking.response, 401)
         #-> Verifica si pudo quitar la reserva del usuario sin problemas
         print('------------')
+        print('llego a eliminar la resera correctamente')
 
         #-> Obtiene el resultado de forma éxitosa
         return Response({
@@ -194,7 +205,37 @@ class structureAdd(BaseModel):
     day_date: int
     month_date: int
     year_date: int
+    hour: str
+    period: Literal['morning', 'afternoon']
     name_service: str
+
+    
+    #Verifica si el periodo del dia coincide con las horas aplicadas
+    @validator('hour')
+    def validate_hour(cls, v, values):
+        period = values.get('period')
+
+        morning_hours = [
+            '9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
+        ]
+        afternoon_hours = [
+            '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30',
+        ]
+
+        print('comprueba la hora')
+        if period == 'morning' and v not in morning_hours:
+            print('no concuerda el periodo de morning')
+            raise JSONResponse({
+                "info": f'Hour {v} is not valid for the morning period'
+            }, 401)
+        
+        if period == 'afternoon' and v not in afternoon_hours:
+            print('no concuerda el periodo de afternoon')
+            raise JSONResponse({
+                "info": f'La hora {v} no es valida para el periódo de la tarde'
+            }, 401)
+
+        return v
 
 @router.post("/add")
 async def root(request: Request, data: structureAdd):
@@ -213,6 +254,8 @@ async def root(request: Request, data: structureAdd):
         month_date = data.month_date
         year_date = data.year_date
         name_service = data.name_service
+        hour = data.hour
+        period = data.period
         user_id = request.state.user_id
 
         #@nb.jit(nopython=True)
@@ -318,8 +361,8 @@ async def root(request: Request, data: structureAdd):
                 month=month_date,
                 year=year_date,
                 professionals=worker_less_bussy.response["data"],
-                period='morning',
-                start_time='10:00',
+                period=period,
+                start_time=hour,
                 service_duration=services[name_service][0],
                 person_id=user_id,
                 service=name_service

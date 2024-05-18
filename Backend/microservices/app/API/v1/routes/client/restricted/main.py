@@ -17,7 +17,7 @@ router.include_router(router_data)
 router.include_router(router_booking)
 router.include_router(router_user)
 
-
+'''
 @router.post('/status')
 async def root(request: Request):
 
@@ -51,3 +51,4 @@ async def root(request: Request):
             "status": "no",
             "type": "ATTRIBUTE_ERROR"
         }, 401)
+'''

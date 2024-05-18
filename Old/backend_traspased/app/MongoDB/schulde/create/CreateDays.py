@@ -8,7 +8,7 @@ db = client["PeluqueriaMael"]
 collection = db["Reservas"]
 
 # Esquema de disponibilidad para los próximos 30 días
-num_days_ahead = 90
+num_days_ahead = 120
 start_date = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 dates = [start_date + timedelta(days=i) for i in range(num_days_ahead)]
 
@@ -46,7 +46,8 @@ professionals = {
                 f"{hour:02d}:{minute:02d}": {"status": "libre"} for hour in range(15, 20) for minute in (0, 30)
             }
         },
-    }
+    },
+    "version": "v2"
 }
 # Insertar disponibilidad en la base de datos
 for date in dates:

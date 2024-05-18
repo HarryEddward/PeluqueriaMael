@@ -155,7 +155,6 @@ class AddBooking:
                         "status": "no",
                         "type": "OUT_TRY_BOOKING"
                     }
-                    return
             elif period == 'afternoon':
                 if start_time_dt < afternoon_opening_time or start_time_dt >= afternoon_closing_time:
                     return {
@@ -176,18 +175,28 @@ class AddBooking:
 
             morning_schedule = professionals[professional]['morning']
             last_hour_morning = str(max(morning_schedule.keys(), key=lambda x: datetime.strptime(x, "%H:%M")))
-            print('aqux')
+            #print('aqux')
+            
+            
             if period == 'morning' and start_time >= last_hour_morning:
+                print('start_time ->', start_time)
+                print('last_hour_morning ->', last_hour_morning)
+
+                print(f'{start_time}, {last_hour_morning} = {start_time >= last_hour_morning}')
+                print(f'{period} == "morning", {period == 'morning'}')
+
+                print(start_time >= last_hour_morning)
                 return {
                     "info": "No se puede programar una cita en la mañana después del mediodía.",
                     "status": "no",
-                    "type": "ERROR2"  # Tipo de error único
+                    "type": "ERROR2"
                 }
+            
             elif period == 'afternoon' and start_time < last_hour_morning:
                 return {
                     "info": "No se puede programar una cita en la tarde antes del mediodía.",
                     "status": "no",
-                    "type": "ERROR3"  # Tipo de error único
+                    "type": "ERROR3"
                 }
 
             if start_time in professionals[professional][period]:
@@ -303,7 +312,6 @@ class AddBooking:
                     "status": "no",
                     "type": "NO_AVAILABILITY"  # Tipo de error único
                 }
-                return
             
         except Exception as e:
             self.response = {
