@@ -109,5 +109,5 @@ Aquí esta el presupuesot hecho para el dueño de la peluquería, para Mael, bus
 
 
 <p align="center">
-  <img src="https://i.ibb.co/4MWfnTK/Presupuesto-servicios-creativos-simple-blanco-y-celeste.png">
+  <img width="60%" height="60%" src="https://i.ibb.co/4MWfnTK/Presupuesto-servicios-creativos-simple-blanco-y-celeste.png">
 </p>
