@@ -49,6 +49,8 @@ En la app no simplemente se queda en hacer una app, sino dividir en difernetes a
 La tecnología que uso es un framework cross-platform de js, llamada ```React Native```. Usando tsx como
 código mantenible por un mismo lenguaje de frontend de base, como la web y la misma app.
 
+Esta hecho por react-native cli, y usando stores con zustand. Mientras guardar los datos de forma persistente hará úso de Sqlite
+
 ## Web
 El proposito de la web es acceder en ella y descargar de forma simple la app, y
 hacer uso de links promocionales o de información para hacer uso en las redes sociales
@@ -116,4 +118,4 @@ Lo siguienete es conectar el cable Ethernet CAT 7 directamente en el router a la
 
 
 ## Configuración Del Servidor
-Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y uso nativamente de conteendores llamado jails en FreeBSD
+Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y uso nativamente de contendores llamado jails en FreeBSD.
