@@ -137,12 +137,11 @@ Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro a
   <a href="https://www.instagram.com/__adrian__martin__/"><b>Instagram</b></a> ·
   <a href="https://pypi.org/user/AdriaMartin/"><b>PyPi</b></a> ·
   <a href="https://gravatar.com/au7812ooae32"><b>Profile</b></a>
-  <ul align="center">
-    <li>Hola</li>
-    <li>Hola</li>
-  </ul>
 </p>
-
-## Desarrollador
-
-## 
+<p align="center">
+  <span>Desarrollador frontend</span>
+  <span>Desarrollador backend</span>
+  <span>Desarrollador devops</span>
+  <span>Instalador</span>
+  <span>Configurador</span>
+</p>
