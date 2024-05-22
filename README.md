@@ -109,7 +109,7 @@ Aquí esta el presupuesot hecho para el dueño de la peluquería, para Mael, bus
 ```(Los precios y productos puede ser que no aparezcan o no sean los mismos)```
 
 <p align="center">
-  <img width="60%" height="60%" src="https://i.ibb.co/4MWfnTK/Presupuesto-servicios-creativos-simple-blanco-y-celeste.png">
+  <img width="60%" height="60%" src="https://i.ibb.co/2jtGPvW/Presupuesto-servicios-creativos-simple-blanco-y-celeste-2.png">
 </p>
 
 ## Instalación Del Servidor

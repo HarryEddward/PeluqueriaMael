@@ -22,6 +22,7 @@ from datetime import datetime
 from bson import ObjectId
 from typing import Optional
 from typing import Literal
+from typing import Union
 import numba as nb
 
 router = APIRouter(prefix="/booking")
@@ -199,43 +200,43 @@ async def root(request: Request, data: structureRemove):
         }, 500)
 
 
+morning_time = Literal[
+    '9:00',
+    '9:30',
+    '10:00',
+    '10:30',
+    '11:00',
+    '11:30',
+    '12:00',
+    '12:30',
+    '13:00',
+    '13:30',  
+        ]
+afternoon_time = Literal[
+            '15:00',
+            '15:30',
+            '16:00',
+            '16:30',
+            '17:00',
+            '17:30',
+            '18:00',
+            '18:30',
+            '19:00',
+            '19:30',
+        ]
+
 class structureAdd(BaseModel):
     token_id: Optional[str] = None
     token_data: Optional[str] = None
     day_date: int
     month_date: int
     year_date: int
-    hour: str
+    hour: Union[
+        morning_time,
+        afternoon_time
+    ]
     period: Literal['morning', 'afternoon']
     name_service: str
-
-    
-    #Verifica si el periodo del dia coincide con las horas aplicadas
-    @validator('hour')
-    def validate_hour(cls, v, values):
-        period = values.get('period')
-
-        morning_hours = [
-            '9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
-        ]
-        afternoon_hours = [
-            '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30',
-        ]
-
-        print('comprueba la hora')
-        if period == 'morning' and v not in morning_hours:
-            print('no concuerda el periodo de morning')
-            raise JSONResponse({
-                "info": f'Hour {v} is not valid for the morning period'
-            }, 401)
-        
-        if period == 'afternoon' and v not in afternoon_hours:
-            print('no concuerda el periodo de afternoon')
-            raise JSONResponse({
-                "info": f'La hora {v} no es valida para el periódo de la tarde'
-            }, 401)
-
-        return v
 
 @router.post("/add")
 async def root(request: Request, data: structureAdd):

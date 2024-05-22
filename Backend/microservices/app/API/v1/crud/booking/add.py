@@ -146,7 +146,24 @@ class AddBooking:
             afternoon_opening_time = config["afternoon_opening_time"]
             afternoon_closing_time = config["afternoon_closing_time"]
 
+            #Verifica si tiene menos de 4 caracteres Ok(09:00) No(9:00)
+            if len(start_time) == 4:
+                print('len')
+                # Si falta algún zero se le añade, se supone que si la hora se queda a 4 caracteres es por la falta de ese 0.
+                start_time = "0"+start_time
+
+            # Si realmente no cumple con la longitud de la misma cadena no es una hora
+            elif 4 > len(start_time) > 5:
+                print('len2')
+                return {
+                    "info": f"No es una hora valida, por lo visto: {start_time}",
+                    "status": "no",
+                    "type": "INVALID_HOUR"
+                }
+            print(start_time)
+
             start_time_dt = datetime.strptime(start_time, '%H:%M')  # Convertir start_time a datetime
+            print(start_time_dt)
 
             if period == 'morning':
                 if start_time_dt < morning_opening_time or start_time_dt >= morning_closing_time:
@@ -156,6 +173,7 @@ class AddBooking:
                         "type": "OUT_TRY_BOOKING"
                     }
             elif period == 'afternoon':
+                print(start_time_dt, afternoon_closing_time, '|', start_time_dt, afternoon_opening_time)
                 if start_time_dt < afternoon_opening_time or start_time_dt >= afternoon_closing_time:
                     return {
                         "info": "No se puede programar una cita en la tarde fuera del horario de apertura y cierre.",
@@ -178,6 +196,7 @@ class AddBooking:
             #print('aqux')
             
             
+
             if period == 'morning' and start_time >= last_hour_morning:
                 print('start_time ->', start_time)
                 print('last_hour_morning ->', last_hour_morning)
@@ -192,14 +211,27 @@ class AddBooking:
                     "type": "ERROR2"
                 }
             
-            elif period == 'afternoon' and start_time < last_hour_morning:
+            
+            if period == 'afternoon' and start_time < last_hour_morning:
                 return {
                     "info": "No se puede programar una cita en la tarde antes del mediodía.",
                     "status": "no",
                     "type": "ERROR3"
                 }
+            
+            
+
+
+            '''
+            Procurar que sean exactamente igual los valores que se valida la hora,
+            deben de ser 5 caracteres, y no 4.
+            Esto esta mal -> 9:00
+            Esto esta bien -> 09:00
+            '''
 
             if start_time in professionals[professional][period]:
+
+                print(f'EL PROFESSIONAL {professionals[professional]} tiene el {start_time}')
                 end_time = (datetime.strptime(start_time, '%H:%M') + service_duration).strftime('%H:%M')
 
                 # Verificar si la cita programada se extiende más allá del horario de cierre de la mañana o tarde
