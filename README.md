@@ -116,7 +116,7 @@ Aquí esta el presupuesot hecho para el dueño de la peluquería, para Mael, bus
 La instalación consistiría 2 mini pc de sobremesa con un procesador de N100 con 16GB cada uno. Para mejorar las operaciónes de criptografía
 
 <p align="center">
-  <img width="100px" height="100px" src="https://i.ibb.co/gWtSfTr/61y-D0tp4-GCL-AC-AA360.jpg">
+  <img width="200px" height="200px" src="https://i.ibb.co/gWtSfTr/61y-D0tp4-GCL-AC-AA360.jpg">
 </p>
 
 ## Configuración Del Servidor
