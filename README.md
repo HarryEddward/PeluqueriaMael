@@ -117,6 +117,7 @@ La instalación consistiría 2 mini pc de sobremesa con un procesador de N100 co
 
 <p align="center">
   <img width="200px" height="200px" src="https://i.ibb.co/gWtSfTr/61y-D0tp4-GCL-AC-AA360.jpg">
+  <img width="200px" height="200px" src="https://i.ibb.co/VHMyQp5/71z-ZVl0dj4-L-AC-AA360.jpg">
 </p>
 
 ## Configuración Del Servidor
