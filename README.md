@@ -71,7 +71,7 @@ Las tecnologías que uso es:
 - Ujson
 - PyJWT
 - Fastapi_limiter
-- To_literal (Creador)
+- To_literal (Creador) [https://github.com/HarryEddward/to_literal]
 - Sphinx
 
 Haciendo uso de un backend moderno, y fácil de mantener, y uno de los mas rapidos de Python.
@@ -140,7 +140,7 @@ Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro a
   <a href="https://www.instagram.com/__adrian__martin__/"><b>Instagram</b></a> ·
   <a href="https://pypi.org/user/AdriaMartin/"><b>PyPi</b></a> ·
   <a href="https://gravatar.com/au7812ooae32"><b>Profile</b></a> ·
-  <!--<a href="https://paypal.me/cassocup"><b>Paypal</b></a>-->
+  <a href="https://github.com/HarryEddward/to_literal"><b>Github</b></a>
 </p>
 <p align="center">
   <span><b>Desarrollador frontend</b></span> -
