@@ -71,6 +71,7 @@ Las tecnologías que uso es:
 - Ujson
 - PyJWT
 - Fastapi_limiter
+- to_literal (Creador)
 
 Haciendo uso de un backend moderno, y fácil de mantener, y uno de los mas rapidos de Python.
 Teniendo un íncreible rendimiento por su lenguaje de alto nivel, superando a Express.js y a node.js.
