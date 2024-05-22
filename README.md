@@ -126,7 +126,7 @@ La instalación consistiría 2 mini pc de sobremesa con un procesador de N100 co
 </p>
 
 ## Configuración Del Servidor
-Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y uso nativamente de contendores llamado jails en FreeBSD.
+Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y úso nativamente de contendores llamado jails en FreeBSD.
 
 ## Créditos
 
