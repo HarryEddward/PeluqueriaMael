@@ -128,7 +128,6 @@ La instalación consistiría 2 mini pc de sobremesa con un procesador de N100 co
 Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y uso nativamente de contendores llamado jails en FreeBSD.
 
 ## Créditos
-https://gravatar.com/au7812ooae32
 
 <p align="center">
   <img width="120px" height="120px" src="https://pypi-camo.freetls.fastly.net/36f397b09a7781d43d862d849361e2e6ae718ca6/68747470733a2f2f7365637572652e67726176617461722e636f6d2f6176617461722f39663431306239623365363937333832303965366131343163636137623339653f73697a653d313430">
@@ -138,6 +137,10 @@ https://gravatar.com/au7812ooae32
   <a href="https://www.instagram.com/__adrian__martin__/"><b>Instagram</b></a> ·
   <a href="https://pypi.org/user/AdriaMartin/"><b>PyPi</b></a> ·
   <a href="https://gravatar.com/au7812ooae32"><b>Profile</b></a>
+  <li>
+    <ul>Hola</ul>
+    <ul>Hola</ul>
+  </li>
 </p>
 
 ## Desarrollador
