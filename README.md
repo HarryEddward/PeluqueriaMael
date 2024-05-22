@@ -136,7 +136,7 @@ https://gravatar.com/au7812ooae32
 </p>
 <p align="center">
   <a href="https://www.instagram.com/__adrian__martin__/"><b>Instagram</b></a> ·
-  <a href="https://pypi.org/user/AdriaMartin/"><b>PyPi</b></a>
+  <a href="https://pypi.org/user/AdriaMartin/"><b>PyPi</b></a> ·
   <a href="https://gravatar.com/au7812ooae32"><b>Profile</b></a>
 </p>
 
