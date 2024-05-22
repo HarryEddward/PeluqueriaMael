@@ -113,9 +113,11 @@ Aquí esta el presupuesot hecho para el dueño de la peluquería, para Mael, bus
 </p>
 
 ## Instalación Del Servidor
-A la instalación del servidor se conecta el pc montado con la tarjeta de red se conecta con el SAI y protege contra sobretensiónes, y problemas agénos a la electricidad.
-Lo siguienete es conectar el cable Ethernet CAT 7 directamente en el router a la tarjeta de red
+La instalación consistiría 2 mini pc de sobremesa con un procesador de N100 con 16GB cada uno. Para mejorar las operaciónes de criptografía
 
+<p align="center">
+  <img width="60%" height="60%" src="https://i.ibb.co/gWtSfTr/61y-D0tp4-GCL-AC-AA360.jpg">
+</p>
 
 ## Configuración Del Servidor
 Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y uso nativamente de contendores llamado jails en FreeBSD.
