@@ -139,9 +139,9 @@ Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro a
   <a href="https://gravatar.com/au7812ooae32"><b>Profile</b></a>
 </p>
 <p align="center">
-  <span>Desarrollador frontend</span>
-  <span>Desarrollador backend</span>
-  <span>Desarrollador devops</span>
-  <span>Instalador</span>
-  <span>Configurador</span>
+  <span><b>Desarrollador frontend</b></span>
+  <span><b>Desarrollador backend</b></span>
+  <span><b>Desarrollador devops</b></span>
+  <span><b>Instalador</b></span>
+  <span><b>Configurador</b></span>
 </p>
