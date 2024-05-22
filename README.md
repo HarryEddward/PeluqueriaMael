@@ -116,7 +116,7 @@ Aquí esta el presupuesot hecho para el dueño de la peluquería, para Mael, bus
 La instalación consistiría 2 mini pc de sobremesa con un procesador de N100 con 16GB cada uno. Para mejorar las operaciónes de criptografía
 
 <p align="center">
-  <img width="170px" height="170px" src="https://i.ibb.co/gWtSfTr/61y-D0tp4-GCL-AC-AA360.jpg">hello</img>
+  <img width="170px" height="170px" src="https://i.ibb.co/gWtSfTr/61y-D0tp4-GCL-AC-AA360.jpg">
   <img width="170px" height="170px" src="https://i.ibb.co/VHMyQp5/71z-ZVl0dj4-L-AC-AA360.jpg">
   <img width="170px" height="200px" src="https://i.ibb.co/FDgpgWF/51vn-NQp56-QL-AC-AA360.jpg">
   <img width="170px" height="170px" src="https://i.ibb.co/VwrpXpf/61-GDv-Jm-GF5-L-AC-AA360.jpg">
@@ -128,6 +128,7 @@ La instalación consistiría 2 mini pc de sobremesa con un procesador de N100 co
 Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y uso nativamente de contendores llamado jails en FreeBSD.
 
 ## Créditos
+[Me](https://gravatar.com/au7812ooae32)
 
 ## Desarrollador
 
