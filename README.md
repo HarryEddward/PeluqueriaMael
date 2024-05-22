@@ -131,7 +131,7 @@ Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro a
 https://gravatar.com/au7812ooae32
 
 <p align="center">
-  <img width="120px" height="120px" src="https://0.gravatar.com/avatar/1e1c4f4081bc6b308c04fff7ce69fe773879c5fe0b18da34619822ef1c2d1bc5?size=512">
+  <img width="120px" height="120px" src="https://pypi-camo.freetls.fastly.net/36f397b09a7781d43d862d849361e2e6ae718ca6/68747470733a2f2f7365637572652e67726176617461722e636f6d2f6176617461722f39663431306239623365363937333832303965366131343163636137623339653f73697a653d313430">
 </p>
 
 ## Desarrollador
