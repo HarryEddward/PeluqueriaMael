@@ -39,7 +39,7 @@
 2. [Web](#Web)
 3. [Backend](#Backend)
 4. [Conclusión](#conclusión)
-5. [Bases de datos](#Bases de datos)
+5. [Bases_de_datos](#Bases_de_datos)
 
 ## *Nombre actual: PeluqueríaEGO
 
