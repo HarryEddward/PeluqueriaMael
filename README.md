@@ -24,6 +24,8 @@
   ·
   <a href="https://themes.getbootstrap.com/">Themes</a>
 </p>
+
+
 <br>
 <!--
 <p align="center">
@@ -66,6 +68,8 @@ de la peluquería
 ## Backend
 El backend se hizo separado por el forntend haciendo una RestAPI, separado de forma independiente,
 así evitando modularizando mucho mas el código y incluso mejorando el rendimiento del mismo.
+<img width="100px" height="100px" src="https://avatars.githubusercontent.com/u/7468980?s=200&v=4">
+
 
 Las tecnologías que uso es:
 - Tornado (Framework Websocket API) + RethinkDB
@@ -79,8 +83,10 @@ Las tecnologías que uso es:
 - Ujson
 - PyJWT
 - Fastapi_limiter
-- To_literal (Creador) [https://github.com/HarryEddward/to_literal]
+- To_literal (Creador de la libreria) [https://github.com/HarryEddward/to_literal]
 - Sphinx
+- Pytest
+- Unitest
 
 Haciendo uso de un backend moderno, y fácil de mantener, y uno de los mas rapidos de Python.
 Teniendo un íncreible rendimiento por su lenguaje de alto nivel, superando a Express.js y a node.js.

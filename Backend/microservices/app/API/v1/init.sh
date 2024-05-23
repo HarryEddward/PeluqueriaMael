@@ -1,1 +1,1 @@
-gunicorn -c gunicorn.py server:app
+gunicorn -c gunicorn.py server_fastapi:app
