@@ -164,7 +164,7 @@ Aquí esta el presupuesot hecho para el dueño de la peluquería, para Mael, bus
 ## Factura_De_La_Compra
 Quizás te hayas preguntado si esto es simplemente es un montaje? No y para que me creaís, ponga la factura de Amazon con los datos, están censurados por motivos de seguridad y privacidad.
 
-<img width="60%" height="60%" src="https://i.ibb.co/q5jh7QS/Amazon-es-Pedido-402-5908292-4861967-1.png">
+<img width="50%" src="https://i.ibb.co/q5jh7QS/Amazon-es-Pedido-402-5908292-4861967-1.png">
 
 
 
