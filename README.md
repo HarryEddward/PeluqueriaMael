@@ -39,7 +39,15 @@
 2. [Web](#Web)
 3. [Backend](#Backend)
 4. [Conclusión](#conclusión)
-5. [Bases_de_datos](#Bases_de_datos)
+5. [Bases_De_datos](#Bases_de_datos)
+6. [Diseño_Del_Backend](#Diseño_del_backend)
+7. [Distribución_De_Software](#Distribución_De_Software)
+8. [Presupuesto_Pc_Servidor](#Presupuesto_Pc_Servidor)
+9. [Factura_De_La_Compra](#Factura_De_La_Compra)
+10. [Instalación_Del_Servidor](#Instalación_Del_Servidor)
+11. [Configuración_Del_Servidor](#Configuración_Del_Servidor)
+12. [Créditos](#Créditos)
+
 
 ## *Nombre actual: PeluqueríaEGO
 
@@ -105,7 +113,7 @@ con jwt. En ```.../config/middleware/restricted.py```. Es extremadamente extrict
 del usuario, y protegiendo la misma información renovando por cada operación su propia clave secreta del jwt
 que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no autorizadas.
 
-## Bases_de_datos
+## Bases_De_Datos
 
 <p align="center">
 
@@ -130,12 +138,12 @@ para guardar todos los datos de forma ordenada, flexible, y rapida. Haciendo ús
 
 Juntando dos diferentes mundos pero separado, con su íncreible asíncronidad.
 
-## Diseño del backend
+## Diseño_Del_Backend
 Tiene una estructura dividida por microservicios, separado por diferentes versiónes para futuras
 actualziaciones que se hagan
 
 
-## Distribución de software
+## Distribución_De_Software
 Modelo de distribución de software hacia la peluquería:
 - IaaS
 
@@ -143,7 +151,7 @@ Modelo de distribución de software de la peluquería hacía sus clientes:
 - SaaS
 
 
-## Presupuesto PC Servidor
+## Presupuesto_Pc_Servidor
 Creé un presupuesto ajustado de 550€, y realmente priorize la baja latencia entre la potencia misma del pc, y tuvé como conclusión que realmente invertir en mejorar la baja latencia sea una parte crítica del servidor web. Y para evitar la perdida de datos en malas condiciónes como en tormentas o en fluctuaciónes de tensiónes el mismo SAI protegería al mismo PC.
 
 Aquí esta el presupuesot hecho para el dueño de la peluquería, para Mael, buscando en Pcomponentes. 
@@ -153,11 +161,11 @@ Aquí esta el presupuesot hecho para el dueño de la peluquería, para Mael, bus
   <img width="60%" height="60%" src="https://i.ibb.co/2jtGPvW/Presupuesto-servicios-creativos-simple-blanco-y-celeste-2.png">
 </p>
 
-## Factura De La Compra
+## Factura_De_La_Compra
 Quizás te hayas preguntado si esto es simplemente es un montaje? No y para que me creaís, ponga la factura de Amazon con los datos, están censurados por motivos de seguridad y privacidad.
 
 
-## Instalación Del Servidor
+## Instalación_Del_Servidor
 La instalación consistiría 2 mini pc de sobremesa con un procesador de N100 con 16GB cada uno. Para mejorar las operaciónes de criptografía y no sobrecargar la carga central de mismo pc, se hace uso de una gráfica GT 710 con 1GB sea suficiente para no sobrecargarlo. Como no se hará úso de interfaz gráfica se dedicará con un script de python para encriptar y desencriptar con el úso de la gpu, y preocuparando no hace run cuello de botella.
 
 Entre los 2 pc, se hace un sistema maestro & esclavo, consiste en conectar el cable de ethernet al 1r pc y luego conectar el 1r al 2n, pero teniendo en cuenta que los 2 pc deben de estar conectados al ethernet. Pero a la hora de coordinar las peticiónes con docker-swarm se tendra en cuenta de esta forma.
@@ -175,7 +183,7 @@ Y se utilizarían 3 cables ethernet uno de CAT 8, mientras que otro por CAT 6a, 
   <img width="110px" height="110px" src="https://i.ibb.co/X4QXWSg/41sw-Rzq-Jbd-L-AC-AA360.jpg">
 </p>
 
-## Configuración Del Servidor
+## Configuración_Del_Servidor
 Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y úso nativamente de contendores llamado jails en FreeBSD.
 
 ## Créditos
