@@ -33,6 +33,14 @@
 </p> -->
 
 
+# Índice
+
+1. [App](#App)
+2. [Web](#Web)
+3. [Backend](#Backend)
+4. [Conclusión](#conclusión)
+5. [Bases de datos](#Bases de datos)
+
 ## *Nombre actual: PeluqueríaEGO
 
 ### Es una App/Web para la *PeluqueríaMael úbicada en Inca, Mallorca, Islas Baleares.
@@ -144,6 +152,10 @@ Aquí esta el presupuesot hecho para el dueño de la peluquería, para Mael, bus
 <p align="center">
   <img width="60%" height="60%" src="https://i.ibb.co/2jtGPvW/Presupuesto-servicios-creativos-simple-blanco-y-celeste-2.png">
 </p>
+
+## Factura De La Compra
+Quizás te hayas preguntado si esto es simplemente es un montaje? No y para que me creaís, ponga la factura de Amazon con los datos, están censurados por motivos de seguridad y privacidad.
+
 
 ## Instalación Del Servidor
 La instalación consistiría 2 mini pc de sobremesa con un procesador de N100 con 16GB cada uno. Para mejorar las operaciónes de criptografía y no sobrecargar la carga central de mismo pc, se hace uso de una gráfica GT 710 con 1GB sea suficiente para no sobrecargarlo. Como no se hará úso de interfaz gráfica se dedicará con un script de python para encriptar y desencriptar con el úso de la gpu, y preocuparando no hace run cuello de botella.
