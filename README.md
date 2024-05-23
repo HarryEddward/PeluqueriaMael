@@ -105,7 +105,7 @@ con jwt. En ```.../config/middleware/restricted.py```. Es extremadamente extrict
 del usuario, y protegiendo la misma información renovando por cada operación su propia clave secreta del jwt
 que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no autorizadas.
 
-## Bases de datos
+## Bases_de_datos
 
 <p align="center">
 
