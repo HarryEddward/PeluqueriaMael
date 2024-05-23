@@ -68,6 +68,7 @@ de la peluquería
 ## Backend
 El backend se hizo separado por el forntend haciendo una RestAPI, separado de forma independiente,
 así evitando modularizando mucho mas el código y incluso mejorando el rendimiento del mismo.
+
 <img width="100px" height="100px" src="https://avatars.githubusercontent.com/u/7468980?s=200&v=4">
 
 
