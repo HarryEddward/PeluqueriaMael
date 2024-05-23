@@ -9,8 +9,6 @@
 
 ![PyPI - Downloads](https://img.shields.io/pypi/:period/to_literal)
 
-
-
 <br>
 <p align="center">
   <img width="200px" height="200px" src="https://i.ibb.co/82mkyXS/Dise-o-sin-t-tulo.png">
