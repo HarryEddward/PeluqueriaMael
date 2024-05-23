@@ -104,9 +104,9 @@ que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no 
 
 <img height="100px" src="https://i.ibb.co/8bN03FF/mongodb-logo-1-1-30.png">
 
-<img height="75px" src="https://img.stackshare.io/service/531/Sp0fIxul_400x400.jpg">
+<img height="100px" src="https://img.stackshare.io/service/531/Sp0fIxul_400x400.jpg">
 
-<img height="75px" src="https://i.ibb.co/QX9kmhT/redis-logo.png">
+<img height="100px" src="https://i.ibb.co/QX9kmhT/redis-logo.png">
 
 </p>
 
