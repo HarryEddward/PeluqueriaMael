@@ -100,6 +100,8 @@ que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no 
 
 ## Bases de datos
 
+<img height="100px" src="https://i.ibb.co/8bN03FF/mongodb-logo-1-1-30.png">
+
 Hago uso de 2 bases de datos, de forma local:
 - Redis
 - MongoDB
