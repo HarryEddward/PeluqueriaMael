@@ -68,7 +68,8 @@ El backend se hizo separado por el forntend haciendo una RestAPI, separado de fo
 así evitando modularizando mucho mas el código y incluso mejorando el rendimiento del mismo.
 
 Las tecnologías que uso es:
-- FastAPI
+- Tornado (Framework Websocket API) + RethinkDB
+- FastAPI (Framework Full API)
 - Pydantic
 - Gunicorn (Producción)
 - Uvicorn (Desarrollo)
@@ -94,9 +95,14 @@ que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no 
 Hago uso de 2 bases de datos, de forma local:
 - Redis
 - MongoDB
+- RethinkDB
 
 **Redis** para el almacenamiento temporal de ```caché```, mientras que **MongoDB** una base de datos ```persistente```
 para guardar todos los datos de forma ordenada, flexible, y rapida.
+
+**RethinkDB** se hará exclusivamente su úso para la app de los trabajadores para la ```obtención en tiempo real``` de las reservas de ese día, usando como API framework **Tornado** como para solo úso exlcusivo para webosocket evitando úso de fastapi, aprovechando su caracteristíca junto con RethinkDB para hacerlo mas eficiente a producción.
+
+Juntando dos diferentes mundos pero separado, con su íncreible asíncronidad.
 
 ## Diseño del backend
 Tiene una estructura dividida por microservicios, separado por diferentes versiónes para futuras
@@ -122,7 +128,13 @@ Aquí esta el presupuesot hecho para el dueño de la peluquería, para Mael, bus
 </p>
 
 ## Instalación Del Servidor
-La instalación consistiría 2 mini pc de sobremesa con un procesador de N100 con 16GB cada uno. Para mejorar las operaciónes de criptografía
+La instalación consistiría 2 mini pc de sobremesa con un procesador de N100 con 16GB cada uno. Para mejorar las operaciónes de criptografía y no sobrecargar la carga central de mismo pc, se hace uso de una gráfica GT 710 con 1GB sea suficiente para no sobrecargarlo. Como no se hará úso de interfaz gráfica se dedicará con un script de python para encriptar y desencriptar con el úso de la gpu, y preocuparando no hace run cuello de botella.
+
+Entre los 2 pc, se hace un sistema maestro & esclavo, consiste en conectar el cable de ethernet al 1r pc y luego conectar el 1r al 2n, pero teniendo en cuenta que los 2 pc deben de estar conectados al ethernet. Pero a la hora de coordinar las peticiónes con docker-swarm se tendra en cuenta de esta forma.
+
+El 2n pc se le quita la RAM que tiene instalada del minipc para insertar el adapatado de la gráfica, es verdad que reduces la cantidad de memoria disponible, pero como no es el pc maestro no hay que procuparse, y tendrá una API dedicada en ese pc, para tareas de cryptografía. Como encriptar y desencriptar, pero así mejora la seguridad porque como el pc esta separado y de forma interna sin estar esta API expuesto a ethernet evitaríamos ataques de fuera.
+
+Y se utilizarían 3 cables ethernet uno de CAT 8, mientras que otro por CAT 6a, mientras entre pc debe de ser instanteanea, entre el router, por la velocidad del ethernet va bien que sea CAT 6a por la velocidad que tiene.
 
 <p align="center">
   <img width="110px" height="110px" src="https://i.ibb.co/gWtSfTr/61y-D0tp4-GCL-AC-AA360.jpg">
