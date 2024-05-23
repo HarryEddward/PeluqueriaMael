@@ -3,10 +3,11 @@
 <p align="center">
 
   <a href="https://app.gitter.im/#/room/!zmNuqYngGtLfIxbPCC:gitter.im">
-    <img src="https://badges.gitter.im/Join%20Chat.svg">
+    <img src="">
   </a>
 </p>
 
+[![Redis](https://img.shields.io/badge/Redis-%23DD0031.svg?logo=redis&logoColor=white)](#)
 [![Redis](https://img.shields.io/badge/Redis-%23DD0031.svg?logo=redis&logoColor=white)](#)
 [![Sphinx](https://img.shields.io/badge/Sphinx-000?logo=sphinx&logoColor=fff)](#)
 [![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#)
