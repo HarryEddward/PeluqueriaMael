@@ -7,7 +7,8 @@
   </a>
 </p>
 
-![PyPI - Downloads](https://img.shields.io/pypi/:period/to_literal)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/to_literal)
+
 
 <br>
 <p align="center">
