@@ -6,6 +6,8 @@
     <img src="https://badges.gitter.im/Join%20Chat.svg">
   </a>
 </p>
+![PyPI - Downloads](https://img.shields.io/pypi/:period/to_literal)
+
 
 
 <br>
