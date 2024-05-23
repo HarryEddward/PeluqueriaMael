@@ -69,7 +69,7 @@ de la peluquería
 El backend se hizo separado por el forntend haciendo una RestAPI, separado de forma independiente,
 así evitando modularizando mucho mas el código y incluso mejorando el rendimiento del mismo.
 
-<img width="100px" height="100px" src="https://avatars.githubusercontent.com/u/7468980?s=200&v=4"><img height="100px" src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"><img height="70px" src="https://www.sphinx-doc.org/en/master/_static/sphinx-logo.svg">
+<img width="100px" height="100px" src="https://avatars.githubusercontent.com/u/7468980?s=200&v=4"><img height="100px" src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"><img height="60px" src="https://www.sphinx-doc.org/en/master/_static/sphinx-logo.svg"><img height="100px" src="https://camo.githubusercontent.com/18387d2dd6723fd0bdc7daf00e83f521c8b8dfe3de3476170d6f1d8d73b0e211/68747470733a2f2f692e6962622e636f2f436e386868647a2f696d6167652e706e67">
 
 
 
