@@ -1,5 +1,13 @@
 # Proyecto App/Web Peluquería Mael
 
+<p align="center">
+
+  <a href="https://app.gitter.im/#/room/!zmNuqYngGtLfIxbPCC:gitter.im">
+    <img src="https://badges.gitter.im/Join%20Chat.svg">
+  </a>
+</p>
+
+
 <br>
 <p align="center">
   <img width="200px" height="200px" src="https://i.ibb.co/82mkyXS/Dise-o-sin-t-tulo.png">
