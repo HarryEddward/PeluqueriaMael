@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Test</title>
+</head>
+<body>
+    <div id="data-container">
+        <!-- Aquí se mostrarán los datos recibidos del servidor WebSocket -->
+    </div>
+
+    <script>
+        const ws = new WebSocket('ws://localhost:3000/app/api/v1/ws/test');
+
+        ws.onopen = function() {
+            console.log('Connected to WebSocket server');
+        };
+
+        ws.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            console.log('Received message from server:', data);
+            // Aquí puedes procesar los datos recibidos y mostrarlos en el HTML
+            document.getElementById('data-container').innerText = JSON.stringify(data);
+        };
+
+        ws.onclose = function() {
+            console.log('Disconnected from WebSocket server');
+        };
+    </script>
+</body>
+</html>
