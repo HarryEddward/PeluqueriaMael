@@ -110,7 +110,8 @@ Las tecnologías que uso es APIWS (Websockets):
 - Express.js
 - Socket.io
 - RethinkDB
-- http
+- Http
+- Jsdocs
 
 (**Comentar que haré una libreria en Node.js un framework de una API completamente de WebSOcket usando Socket.io como dependencia, realmente con Express-ws no fuñe realmente bien, en un futuro, no me gustó para nada manejar con scoekt.io de esta forma**)
 

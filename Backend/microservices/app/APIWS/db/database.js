@@ -4,12 +4,28 @@
 
 const r = require('rethinkdb');
 
+
+/**
+ * Clase para manejar la conexión a la base de datos RethinkDB.
+ */
 class Database {
 
+
+    /**
+     * Crea una instancia de Database
+     */
     constructor() {
+        /**
+         * La conexión actual a la base de datos
+         * @type {import('rethinkdb').Connection | null}
+         */
         this.connection = null;
     }
 
+    /**
+     * Conexta a la base de datos RethinkDB
+     * @returns {Promise<void>} Una promesa que se devuelve cuando se establece la conexión a la DB.
+     */
     async connect() {
 
         try {
@@ -25,6 +41,11 @@ class Database {
         }
     }
 
+    /**
+     * 
+     * @returns Instancia de la clase Database, lista para ser exportada.
+     * @type {Database}
+     */
     getConnection() {
         return this.connection;
     }
