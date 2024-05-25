@@ -10,21 +10,22 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
+
 // Local pkg
 const database = require('./db/database');
 const AsyncTable = require('./db/asyncTable');
 
 database.connect().then(() => {
     
-    const table = new AsyncTable('authors');
+    const table = new AsyncTable('booking_card');
     table.start();
     table.on('change', (row) => {
-        io.emit('mensaje', row);
+        io.emit('booking_card_change', row);
     })
 
 })
 .catch((err) => {
-    console.error('Error al conectar a la base de datos:', err);
+    console.error('Se desconecto de forma repentina la base de datos:', err);
 });
 
 
@@ -38,11 +39,8 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
     console.log('Un cliente se ha conectado');
 
-    // Manejar eventos de ejemplo
-    socket.on('mensaje', (data) => {
-        //console.log('Mensaje recibido:', data);
-        // Puedes hacer cualquier cosa con el mensaje recibido aquí
-        //socket.emit('mensaje', '¡Mensaje recibido! A llegado el mensaje.');
+    // Ruta: "booking_card_change"
+    socket.on('booking_card_change', (data) => {
 
     });
 

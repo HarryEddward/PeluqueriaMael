@@ -32,7 +32,7 @@ class AsyncTable extends EventEmitter {
             const connection = database.getConnection();
             /**
              * Cursor que representa la secuencia de cambios en la tabla.
-             * @type {import('rethinkdb').Cursor}
+             * @type {require('rethinkdb').Cursor}
              */
             const cursor = await r.table(this.tableName).changes().run(connection);
             cursor.each((err, row) => {

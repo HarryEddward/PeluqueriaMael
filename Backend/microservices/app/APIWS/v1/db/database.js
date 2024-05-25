@@ -7,24 +7,28 @@ const r = require('rethinkdb');
 
 /**
  * Clase para manejar la conexión a la base de datos RethinkDB.
+ * 
  */
 class Database {
 
 
     /**
      * Crea una instancia de Database
+     * 
+     * @example
+     * database.connection().then()
      */
     constructor() {
         /**
          * La conexión actual a la base de datos
-         * @type {import('rethinkdb').Connection | null}
+         * @type {require('rethinkdb').Connection | null}
          */
         this.connection = null;
     }
 
     /**
      * Conexta a la base de datos RethinkDB
-     * @returns {Promise<void>} Una promesa que se devuelve cuando se establece la conexión a la DB.
+     * @returns {Promise<r.Connection>} Una promesa que se devuelve cuando se establece la conexión a la DB.
      */
     async connect() {
 
@@ -32,7 +36,7 @@ class Database {
             this.connection = await r.connect({
                 host: 'localhost',
                 port: 28015,
-                db: 'test'
+                db: 'PeluqueriaMael'
             });
             console.log('Conectado a RethinkDB');
 
