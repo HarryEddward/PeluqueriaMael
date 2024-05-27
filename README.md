@@ -185,6 +185,9 @@ Quizás te hayas preguntado si esto es simplemente es un montaje? No y para que 
 
 
 ## Instalación_Del_Servidor
+Usare Cubic in Launchpad, haré mi propio os personalizado
+
+## Caracteríticas_Técnicas_Y_Montaje_Del_Hardware
 La instalación consistiría 2 mini pc de sobremesa con un procesador de N100 con 16GB cada uno. Para mejorar las operaciónes de criptografía y no sobrecargar la carga central de mismo pc, se hace uso de una gráfica GT 710 con 1GB sea suficiente para no sobrecargarlo. Como no se hará úso de interfaz gráfica se dedicará con un script de python para encriptar y desencriptar con el úso de la gpu, y preocuparando no hace run cuello de botella.
 
 Entre los 2 pc, se hace un sistema maestro & esclavo, consiste en conectar el cable de ethernet al 1r pc y luego conectar el 1r al 2n, pero teniendo en cuenta que los 2 pc deben de estar conectados al ethernet. Pero a la hora de coordinar las peticiónes con docker-swarm se tendra en cuenta de esta forma.
@@ -192,6 +195,19 @@ Entre los 2 pc, se hace un sistema maestro & esclavo, consiste en conectar el ca
 El 2n pc se le quita la RAM que tiene instalada del minipc para insertar el adapatado de la gráfica, es verdad que reduces la cantidad de memoria disponible, pero como no es el pc maestro no hay que procuparse, y tendrá una API dedicada en ese pc, para tareas de cryptografía. Como encriptar y desencriptar, pero así mejora la seguridad porque como el pc esta separado y de forma interna sin estar esta API expuesto a ethernet evitaríamos ataques de fuera.
 
 Y se utilizarían 3 cables ethernet uno de CAT 8, mientras que otro por CAT 6a, mientras entre pc debe de ser instanteanea, entre el router, por la velocidad del ethernet va bien que sea CAT 6a por la velocidad que tiene.
+
+**IMPORTANTE:**
+Los mini pc estan trucados interanmente, para que no peudas poner ningún os, y incluso ni siquiera wsl. Claramente así no puedo trabajar ya que con Docker-swarm no me funciona de forma correcta. Si que por aprovechar 2 minipc barratos, acabe pagando mas en tiempo que en dinero.
+Suelen estar a 199€ por algún buen motivo.
+
+Devolveré los 2 minipc mas el adaptador de la gráfica
+
+<p align ="center">
+  <img width="110px" src="https://i.ibb.co/3YbhcPp/Informe-pc-de-servidor.png">
+  <img width="110px" src="https://i.ibb.co/kHf57kF/Presupuesto-Renovado.png">
+  <img width="110px" src="https://i.ibb.co/7W4tT5K/Devolucion-del-presupuesto.png">
+</p>
+
 
 <p align="center">
   <img width="110px" height="110px" src="https://i.ibb.co/gWtSfTr/61y-D0tp4-GCL-AC-AA360.jpg">
