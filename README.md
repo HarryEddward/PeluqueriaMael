@@ -211,6 +211,8 @@ Suelen estar a 199€ por algún buen motivo.
 
 Devolveré los 2 minipc mas el adaptador de la gráfica
 
+Realizé 3 docuementos al dueño de la peluquería, informando el estado de los productos comprados para el pc, luego otro documento especificando los productos a devolver y por último, el presupuesto renovado para el nuevo pc.
+
 <p align ="center">
   <img width="40%" src="https://i.ibb.co/3YbhcPp/Informe-pc-de-servidor.png">
   <img width="40%" src="https://i.ibb.co/kHf57kF/Presupuesto-Renovado.png">
