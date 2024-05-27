@@ -196,19 +196,6 @@ El 2n pc se le quita la RAM que tiene instalada del minipc para insertar el adap
 
 Y se utilizarían 3 cables ethernet uno de CAT 8, mientras que otro por CAT 6a, mientras entre pc debe de ser instanteanea, entre el router, por la velocidad del ethernet va bien que sea CAT 6a por la velocidad que tiene.
 
-**IMPORTANTE:**
-Los mini pc estan trucados interanmente, para que no peudas poner ningún os, y incluso ni siquiera wsl. Claramente así no puedo trabajar ya que con Docker-swarm no me funciona de forma correcta. Si que por aprovechar 2 minipc barratos, acabe pagando mas en tiempo que en dinero.
-Suelen estar a 199€ por algún buen motivo.
-
-Devolveré los 2 minipc mas el adaptador de la gráfica
-
-<p align ="center">
-  <img width="110px" src="https://i.ibb.co/3YbhcPp/Informe-pc-de-servidor.png">
-  <img width="110px" src="https://i.ibb.co/kHf57kF/Presupuesto-Renovado.png">
-  <img width="110px" src="https://i.ibb.co/7W4tT5K/Devolucion-del-presupuesto.png">
-</p>
-
-
 <p align="center">
   <img width="110px" height="110px" src="https://i.ibb.co/gWtSfTr/61y-D0tp4-GCL-AC-AA360.jpg">
   <img width="110px" height="110px" src="https://i.ibb.co/VHMyQp5/71z-ZVl0dj4-L-AC-AA360.jpg">
@@ -217,6 +204,21 @@ Devolveré los 2 minipc mas el adaptador de la gráfica
   <img width="110px" height="110px" src="https://i.ibb.co/71wC7mR/61f9r59-Chr-L-AC-AA360.jpg">
   <img width="110px" height="110px" src="https://i.ibb.co/X4QXWSg/41sw-Rzq-Jbd-L-AC-AA360.jpg">
 </p>
+
+**IMPORTANTE:**
+Los mini pc estan trucados interanmente, para que no peudas poner ningún os, y incluso ni siquiera wsl. Claramente así no puedo trabajar ya que con Docker-swarm no me funciona de forma correcta. Si que por aprovechar 2 minipc barratos, acabe pagando mas en tiempo que en dinero.
+Suelen estar a 199€ por algún buen motivo.
+
+Devolveré los 2 minipc mas el adaptador de la gráfica
+
+<p align ="center">
+  <img width="34%" src="https://i.ibb.co/3YbhcPp/Informe-pc-de-servidor.png">
+  <img width="34%" src="https://i.ibb.co/kHf57kF/Presupuesto-Renovado.png">
+  <img width="34%" src="https://i.ibb.co/7W4tT5K/Devolucion-del-presupuesto.png">
+</p>
+
+
+
 
 ## Configuración_Del_Servidor
 Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y úso nativamente de contendores llamado jails en FreeBSD.
