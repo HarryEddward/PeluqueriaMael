@@ -212,9 +212,9 @@ Suelen estar a 199€ por algún buen motivo.
 Devolveré los 2 minipc mas el adaptador de la gráfica
 
 <p align ="center">
-  <img width="34%" src="https://i.ibb.co/3YbhcPp/Informe-pc-de-servidor.png">
-  <img width="34%" src="https://i.ibb.co/kHf57kF/Presupuesto-Renovado.png">
-  <img width="34%" src="https://i.ibb.co/7W4tT5K/Devolucion-del-presupuesto.png">
+  <img width="40%" src="https://i.ibb.co/3YbhcPp/Informe-pc-de-servidor.png">
+  <img width="40%" src="https://i.ibb.co/kHf57kF/Presupuesto-Renovado.png">
+  <img width="40%" src="https://i.ibb.co/7W4tT5K/Devolucion-del-presupuesto.png">
 </p>
 
 
