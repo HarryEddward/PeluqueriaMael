@@ -206,7 +206,7 @@ Y se utilizarían 3 cables ethernet uno de CAT 8, mientras que otro por CAT 6a, 
 </p>
 
 **IMPORTANTE:**
-Los mini pc estan trucados interanmente, para que no peudas poner ningún os, y incluso ni siquiera wsl. Claramente así no puedo trabajar ya que con Docker-swarm no me funciona de forma correcta. Si que por aprovechar 2 minipc barratos, acabe pagando mas en tiempo que en dinero.
+Los mini pc estan trucados internamente, para que no peudas poner ningún os, y incluso ni siquiera wsl. Claramente así no puedo trabajar ya que con Docker-swarm no me funciona de forma correcta. Si que por aprovechar 2 minipc barratos, acabe pagando mas en tiempo que en dinero.
 Suelen estar a 199€ por algún buen motivo.
 
 Devolveré los 2 minipc mas el adaptador de la gráfica
@@ -219,8 +219,16 @@ Realizé 3 docuementos al dueño de la peluquería, informando el estado de los 
   <img width="45%" src="https://i.ibb.co/7W4tT5K/Devolucion-del-presupuesto.png">
 </p>
 
+## Devolución_de_productos_sin_úso
+La devolución se hara por SEUR, y le tenemos que dar el mismo producto a la oficina en Palma. Se realiza la devolución con las mismas cajas enviadas.
 
+Como estoy haciendo prácticas a una tienda de electrónica, no me puedo encargar yo. Pero mi cliente tampoco sabe muy bien manejar la informatica.
 
+La solución fué imprimir los qr de seur es pegarlos por las 2 cajas, y así directamente cuando mi cliente pueda devolverlos a seur no tenga ningún problema ya que el mismo contenido esta dentro de las mismas cajas.
+
+<p align="center">
+  <img width="70%" src="https://i.ibb.co/KqZjzqf/IMG-20240528-152238.jpg">
+</p>
 
 
 ## Configuración_Del_Servidor
