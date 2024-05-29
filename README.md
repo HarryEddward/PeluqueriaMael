@@ -227,7 +227,7 @@ Como estoy haciendo prácticas a una tienda de electrónica, no me puedo encarga
 La solución fué imprimir los qr de seur es pegarlos por las 2 cajas, y así directamente cuando mi cliente pueda devolverlos a seur no tenga ningún problema ya que el mismo contenido esta dentro de las mismas cajas.
 
 <p align="center">
-  <img width="70%" src="https://i.ibb.co/KqZjzqf/IMG-20240528-152238.jpg">
+  <img width="60%" src="https://i.ibb.co/KqZjzqf/IMG-20240528-152238.jpg">
 </p>
 
 
