@@ -10,6 +10,12 @@ router.include_router(router_public)
 @router.get('/status')
 async def root():
 
-    return JSONResponse({
-        "status": "ok"
-    }, 200)
+    try:
+        return JSONResponse({
+            "schemaVersion": 1,
+            "label": "status",
+            "message": "ok",
+            "color": "green"
+        }, 200)
+    except Exception as e:
+        pass

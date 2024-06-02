@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pymongo
+email_validator
+pyjwt
+pydantic
+pydantic-extra-types
+phonenumbers
+gunicorn
+typing-extensions <- x
