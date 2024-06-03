@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
     });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3200;
 server.listen(PORT, () => {
     console.log(`Servidor Socket.io escuchando en el puerto ${PORT}`);
 });

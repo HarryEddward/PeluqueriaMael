@@ -12,6 +12,16 @@ import fastapi
 from redis import asyncio as aioredis
 
 
+'''
+IMPORTANTE!
+
+Aplicar en la documentación con Shields.io el status de los
+diferentes API en GitHub en la Documentación, y próximamente
+en la app del admin.
+
+'''
+
+
 fastapi.json = ujson
 
 app = FastAPI()
@@ -57,7 +67,7 @@ if __name__ == "__main__":
         uvicorn.run(
             "server:app"
             ,host="localhost"
-            ,port=8000
+            ,port=8300
             ,reload=True
             ,workers=2
             ,ssl_certfile='./config/certs/peluqueriamael.com_cert/peluqueriamael.com.crt'
