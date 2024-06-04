@@ -1,7 +1,7 @@
-from fastapi import FastAPI
+from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
-router = FastAPI()
+router = APIRouter()
 
 def verify_cryptoapi() -> None:
     pass

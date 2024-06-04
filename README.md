@@ -153,7 +153,7 @@ Hago uso de 2 bases de datos, de forma local:
 **Redis** para el almacenamiento temporal de ```caché```, mientras que **MongoDB** una base de datos ```persistente```
 para guardar todos los datos de forma ordenada, flexible, y rapida. Haciendo úso en FastAPI.
 
-**RethinkDB** se hará exclusivamente su úso para la app de los trabajadores para la ```obtención en tiempo real``` de las reservas de ese día, usando como API framework **Tornado** como para solo úso exlcusivo para webosocket evitando úso de fastapi, aprovechando su caracteristíca junto con RethinkDB para hacerlo mas eficiente a producción.
+**RethinkDB** se hará exclusivamente su úso para la app de los trabajadores para la ```obtención en tiempo real``` de las reservas de ese día, usando como API framework **Express.js + Socket.io** como para solo úso exlcusivo para webosocket evitando úso de fastapi, aprovechando su caracteristíca junto con RethinkDB para hacerlo mas eficiente a producción.
 
 Juntando dos diferentes mundos pero separado, con su íncreible asíncronidad.
 
