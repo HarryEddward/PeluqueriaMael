@@ -44,6 +44,10 @@ io.on('connection', (socket) => {
 
     });
 
+    socket.on('status', (data) => {
+        socket.emit('status', 'ok');
+    });
+
     socket.on('disconnect', () => {
         console.log('Cliente desconectado');
     });
@@ -53,3 +57,12 @@ const PORT = process.env.PORT || 3200;
 server.listen(PORT, () => {
     console.log(`Servidor Socket.io escuchando en el puerto ${PORT}`);
 });
+
+
+/**
+ * 
+ * Que hacer?
+ * 
+ * - Crear unarchivo de node.js para su configuracion
+ * - O crear un archivo json para luego adaptarlo a su lengauje!
+ */

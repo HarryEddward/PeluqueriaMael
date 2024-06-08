@@ -10,14 +10,16 @@ from routes.worker.worker import router as worker_router
 import ujson
 import fastapi
 from redis import asyncio as aioredis
+from Backend.microservices.app.conversor.config.config import Config
 
+print(Config())
 
 fastapi.json = ujson
 
 app = FastAPI()
 
 #Entorno de: prod -> Producción | dev -> Desarrollo 
-enviroment = "prod"
+enviroment = "env"
 
 @app.on_event("startup")
 async def startup_event():

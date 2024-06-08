@@ -17,5 +17,10 @@ async def root():
             "message": "ok",
             "color": "green"
         }, 200)
-    except Exception as e:
-        pass
+    except Exception:
+        return JSONResponse({
+            "schemaVersion": 1,
+            "label": "status",
+            "message": "ok",
+            "color": "green"
+        }, 200)

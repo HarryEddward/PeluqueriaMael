@@ -1,7 +1,13 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 from Backend.microservices.app.config import net
 import requests
+import json
+import warnings
+import urllib3
+
+# Ignorar advertencias de solicitudes HTTPS no verificadas
+warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWarning)
 
 router = APIRouter()
 
@@ -11,40 +17,51 @@ protocol = net['api']['protocol']
 
 @router.get('/shields.io')
 async def root():
-
     try:
-        #Ex.: https://localhost:8000
+        # Construir el enlace
         link = f'{protocol}://{host}:{port}'
-
-
-        print(link + '/app/v1/client/status')
-
-        headers = {
-
-        }
-        res = requests.get(link + '/app/v1/client/status', headers=headers, verify=False)
+        endpoint = f'{link}/api/app/api/v1/client/status'
         
-        print(res)
-        match res.status_code:
-            case 200:
-                return JSONResponse({
-                    "schemaVersion": 1,
-                    "label": "status",
-                    "message": "ok",
-                    "color": "green"
-                }, 200)
-                
-            case _:
-                return JSONResponse({
-                    "schemaVersion": 1,
-                    "label": "status",
-                    "message": "no",
-                    "color": "red"
-                }, 200)
-                
-    except Exception as e:
+        headers = {
+            "Content-Type": "application/json",
+            "Origin": link
+        }
+
+        print('Endpoint:', endpoint)
+        print('Headers:', headers)
+
+        res = requests.get(endpoint, headers=headers, verify=False)
+
+        print('Response:', res)
+        print('Response JSON:', res.json() if res.content else 'No content')
+
+        if res.status_code == 200:
+            return JSONResponse({
+                "schemaVersion": 1,
+                "label": "status",
+                "message": "ok",
+                "color": "green"
+            }, status_code=200)
+        else:
+            return JSONResponse({
+                "schemaVersion": 1,
+                "label": "status",
+                "message": "no",
+                "color": "red"
+            }, status_code=res.status_code)
+
+    except requests.RequestException as e:
         return JSONResponse({
-
-        }, 500)
-
-    
+            "schemaVersion": 1,
+            "label": "status",
+            "message": "no",
+            "color": "red"
+        }, status_code=500)
+    except Exception as e:
+        print(f"Exception: {e}")
+        return JSONResponse({
+            "schemaVersion": 1,
+            "label": "status",
+            "message": "no",
+            "color": "red"
+        }, status_code=500)

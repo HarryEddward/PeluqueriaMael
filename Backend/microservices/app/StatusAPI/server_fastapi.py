@@ -4,22 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi_cache import FastAPICache
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi_cache.backends.redis import RedisBackend
-from routes.api.main import router as api_router
-from routes.apiws.main import router as apiws_router
-from routes.cryptoapi.main import router as cryptoapi_router
+from routes.api import router as api_router
+from routes.apiws import router as apiws_router
+from routes.cryptoapi import router as cryptoapi_router
 import ujson
 import fastapi
 from redis import asyncio as aioredis
-
-
-'''
-IMPORTANTE!
-
-Aplicar en la documentación con Shields.io el status de los
-diferentes API en GitHub en la Documentación, y próximamente
-en la app del admin.
-
-'''
 
 
 fastapi.json = ujson
@@ -37,25 +27,14 @@ async def startup_event():
     FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
 
 
-@app.exception_handler(ValueError)
-async def root(request, exc):
-    return JSONResponse(
-        status_code=400,
-        content={
-            "info": f"Hubo un error de valor al procesar la solicitud: {str(exc)}",
-            "status": "no",
-            "type": "VALUE_ERROR"
-        }
-    )
-
 # Crear un enrutador base
 base_router = APIRouter()
 
 
 # Incluir los routers específicos en el enrutador base
-base_router.include_router(api_router, prefix="/api", tags=["api"])
-base_router.include_router(apiws_router, prefix="/apiws", tags=["apiws"])
-base_router.include_router(cryptoapi_router, prefix="/cryptoapi", tags=["cryptoapi"])
+base_router.include_router(admin_router, prefix="/admin", tags=["admin"])
+base_router.include_router(client_router, prefix="/client", tags=["client"])
+base_router.include_router(worker_router, prefix="/worker", tags=["worker"])
 
 # Incluir el enrutador base en la aplicación con el prefijo deseado
 app.include_router(base_router, prefix="/statusapi/app/api/v1")
@@ -78,7 +57,7 @@ if __name__ == "__main__":
         uvicorn.run(
             "server:app"
             ,host="localhost"
-            ,port=8300
+            ,port=8000
             ,reload=True
             ,workers=2
             ,ssl_certfile='./config/certs/peluqueriamael.com_cert/peluqueriamael.com.crt'
