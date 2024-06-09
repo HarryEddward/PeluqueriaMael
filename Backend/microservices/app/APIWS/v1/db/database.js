@@ -2,8 +2,14 @@
 
 'use strict';
 
+var colors = require('colors');
 const r = require('rethinkdb');
+const { config } = require('../server');
 
+const rethinkdb = config.db.persistant.rethinkdb;
+const port = rethinkdb.port.client;
+const host = rethinkdb.host;
+const db = rethinkdb.db;
 
 /**
  * Clase para manejar la conexión a la base de datos RethinkDB.
@@ -34,14 +40,16 @@ class Database {
 
         try {
             this.connection = await r.connect({
-                host: 'localhost',
-                port: 28015,
-                db: 'PeluqueriaMael'
+                host: host,
+                port: port,
+                db: db
             });
-            console.log('Conectado a RethinkDB');
+            console.log('-> RethinkDB:'.bgGreen + ' ' + 'Conectado a RethinkDB'.underline);
+            console.log(`-> RethinkDB:`.bgGreen + ` ` + `PORT:${port}, HOST:${host}, DB:${db}`.underline);
+
 
         } catch (err) {
-            console.error('Error al conectar a RethinkDB:', err)
+            console.error(`-> RethinkDB:`.bgGreen + ' ' + `Error al conectarse: ${err}`.bgRed);
         }
     }
 

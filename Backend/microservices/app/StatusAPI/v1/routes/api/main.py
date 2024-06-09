@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
-from Backend.microservices.app.config import net
+from Backend.microservices.app.conversor.config.config import Config
 import requests
 import json
 import warnings
@@ -11,9 +11,10 @@ warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWar
 
 router = APIRouter()
 
-host = net['host']
-port = net['api']['port']
-protocol = net['api']['protocol']
+config = Config()
+host = config['host']
+port = config['API']['net']['port']
+protocol = config['API']['net']['protocol']
 
 @router.get('/shields.io')
 async def root():

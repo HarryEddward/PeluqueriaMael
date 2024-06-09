@@ -10,6 +10,8 @@ from routes.cryptoapi.main import router as cryptoapi_router
 import ujson
 import fastapi
 from redis import asyncio as aioredis
+from Backend.microservices.app.conversor.config.config import Config
+
 
 
 '''
@@ -26,8 +28,21 @@ fastapi.json = ujson
 
 app = FastAPI()
 
+config = Config()
+
+#comm
+ssl_cert = config['ssl']['cert']
+ssl_key = config['ssl']['key']
+
+#spec
+app = config['app']
+port = int(app['StatusAPI']['net']['port'])
+host = config["host"]
+
+
+
 #Entorno de: prod -> Producción | dev -> Desarrollo 
-enviroment = "prod"
+enviroment = "dev"
 
 @app.on_event("startup")
 async def startup_event():
@@ -74,14 +89,17 @@ app.add_middleware(                                                     # Config
 if __name__ == "__main__":
 
     if enviroment == "dev":
+
+        print('MODE DEV')
+
         import uvicorn
         uvicorn.run(
-            "server:app"
-            ,host="localhost"
-            ,port=8300
+            "server_fastapi:app"
+            ,host=host
+            ,port=port
             ,reload=True
             ,workers=2
-            ,ssl_certfile='./config/certs/peluqueriamael.com_cert/peluqueriamael.com.crt'
-            ,ssl_keyfile='./config/certs/peluqueriamael.com_key.txt'
+            ,ssl_certfile='../../../certs/peluqueriamael.com_cert/peluqueriamael.com.crt'
+            ,ssl_keyfile='../../../certs/peluqueriamael.com_key.txt'
             
         )

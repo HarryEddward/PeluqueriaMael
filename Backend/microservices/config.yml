@@ -1,0 +1,86 @@
+name_version: "v1"
+
+host: "localhost"
+
+ssl:
+  cert: "../../../certs/peluqueriamael.com_cert/peluqueriamael.com.crt"
+  key: "../../../certs/peluqueriamael.com_key.txt"
+
+common:
+  gzip: &common.gzip
+    enabled: true
+    min_size: 1000
+  cors: &common.cors
+    enabled: true
+    origins:
+      - "*"
+    methods:
+      - "*"
+    headers:
+      - "*"
+
+app:
+  API:
+    net:
+      protocol: "http"
+      port: 8000
+    ssl: true
+    gzip: *common.gzip
+    cors: *common.cors
+
+  APIWS:
+    net:
+      protocol: "ws"
+      port: 8100
+      ssl: false
+
+  CryptoAPI:
+    net:
+      protocol: "http"
+      port: 8200
+    ssl: false
+    gzip: *common.gzip
+    cors: *common.cors
+    graphic_card: "gt-710"
+
+  StatusAPI:
+    net:
+      protocol: "http"
+      port: 8300
+    ssl: true
+    cors: *common.cors
+
+web:
+  API:
+    net:
+      protocol: "http"
+      port: 8000
+    ssl: true
+    gzip: *common.gzip
+    cors: *common.cors
+
+  StatusAPI:
+    net:
+      protocol: "https"
+      port: 8300
+    ssl: true
+    gzip: *common.gzip
+    cors: *common.cors
+
+db:
+  persistant:
+    rethinkdb:
+      host: "localhost"
+      port:
+        intercluster: 29015
+        client: 28015
+      db: "PeluqueriaMael"
+    
+    mongodb:
+      host: "localhost"
+      port: 27017
+      db: "PeluqueriaMael"
+  
+  cache:
+    Redis:
+      host: "localhost"

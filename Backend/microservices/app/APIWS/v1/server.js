@@ -1,10 +1,19 @@
+// server.js
+
 'use strict';
 
+var colors = require('colors');
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const r = require('rethinkdb');
+const { Config } = require('../../conversor/config/config');
 
+const config = Config();
+module.exports = { config };
+
+const port = config.app.APIWS.net.port;
+const host = config['host'];
 
 const app = express();
 const server = http.createServer(app);
@@ -53,9 +62,11 @@ io.on('connection', (socket) => {
     });
 });
 
-const PORT = process.env.PORT || 3200;
+const PORT = process.env.PORT || port;
+const HOST = host;
 server.listen(PORT, () => {
-    console.log(`Servidor Socket.io escuchando en el puerto ${PORT}`);
+    console.log('\nENCENDIENDO SERVIDOR...'.green);
+    console.log('->'.bgGreen + ` Servidor Socket.io escuchando en el puerto`.underline + ' ' + ` ws://${HOST}:${PORT} `.underline.bgGreen);
 });
 
 

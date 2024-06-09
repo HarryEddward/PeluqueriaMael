@@ -3,7 +3,7 @@ const yaml = require('js-yaml');
 const path = require('path');
 
 
-const configPath = path.join(__dirname, '../../config.yml');
+const configPath = path.join(__dirname, '../../../config.yml');
 
 
 const Config = () => {
@@ -17,4 +17,8 @@ const Config = () => {
     }
 };
 
+
+module.exports = {
+    Config
+}
 //console.log(Config());

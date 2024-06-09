@@ -8,18 +8,21 @@ from routes.admin.admin import router as admin_router
 from routes.client.main import router as client_router
 from routes.worker.worker import router as worker_router
 import ujson
+import os
 import fastapi
 from redis import asyncio as aioredis
 from Backend.microservices.app.conversor.config.config import Config
 
-print(Config())
+config = Config()
+cors = config["API"]["cors"]
+gzip = config["API"]["gzip"]
 
 fastapi.json = ujson
 
 app = FastAPI()
 
 #Entorno de: prod -> Producción | dev -> Desarrollo 
-enviroment = "env"
+enviroment = "dev"
 
 @app.on_event("startup")
 async def startup_event():
@@ -61,15 +64,24 @@ app.include_router(base_router, prefix="/api/app/api/v1")
 #Middlewares
 from config.middlewares.client.restricted import RestrictedMiddleware
 app.add_middleware(RestrictedMiddleware)                                #/app/api/v1/client/restricted/
-app.add_middleware(GZipMiddleware, minimum_size=1000)                   # Solo comprimir respuestas mayores a 1000 bytes
-app.add_middleware(                                                     # Configuración del middleware CORS
-    CORSMiddleware,
-    allow_origins=["*"],  
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
+'''
+Si gzip esta activado del archivo de configuración lo añade el middleware!
+'''
+if gzip['enabled']:
+    app.add_middleware(GZipMiddleware, minimum_size=1000)                   # Solo comprimir respuestas mayores a 1000 bytes
+
+'''
+Si cors esta activado del archivo de configuración lo añade el middleware!
+'''
+if cors['enabled']:
+    app.add_middleware(                                                     # Configuración del middleware CORS
+        CORSMiddleware,
+        allow_origins=cors["origins"],  
+        allow_credentials=True,
+        allow_methods=cors["methods"],
+        allow_headers=cors["headers"],
+    )
 
 # Para ejecutar el servidor
 if __name__ == "__main__":
@@ -77,12 +89,12 @@ if __name__ == "__main__":
     if enviroment == "dev":
         import uvicorn
         uvicorn.run(
-            "server:app"
+            "server_fastapi:app"
             ,host="localhost"
             ,port=8000
             ,reload=True
             ,workers=2
-            ,ssl_certfile='./config/certs/peluqueriamael.com_cert/peluqueriamael.com.crt'
-            ,ssl_keyfile='./config/certs/peluqueriamael.com_key.txt'
+            ,ssl_certfile="../../../certs/peluqueriamael.com_cert/peluqueriamael.com.crt"
+            ,ssl_keyfile="../../../certs/peluqueriamael.com_key.txt"
             
         )

@@ -1,14 +1,15 @@
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-from Backend.microservices.app.config import net
+from Backend.microservices.app.conversor.config.config import Config
 import asyncio
 import websockets
 
 router = APIRouter()
 
-host = net['host']
-port = net['apiws']['port']
-protocol = net['apiws']['protocol']
+config = Config()
+host = config['host']
+port = config['APIWS']['net']['port']
+protocol = config['APIWS']['net']['protocol']
 
 async def websocket_status(url: str, endpoint: str) -> JSONResponse:
     try:

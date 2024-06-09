@@ -7,4 +7,3 @@ pydantic
 pydantic-extra-types
 phonenumbers
 gunicorn
-typing-extensions <- x
