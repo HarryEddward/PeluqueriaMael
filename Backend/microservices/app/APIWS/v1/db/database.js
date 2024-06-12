@@ -45,7 +45,7 @@ class Database {
                 db: db
             });
             console.log('-> RethinkDB:'.bgGreen + ' ' + 'Conectado a RethinkDB'.underline);
-            console.log(`-> RethinkDB:`.bgGreen + ` ` + `PORT:${port}, HOST:${host}, DB:${db}`.underline);
+            console.log(`-> RethinkDB:`.bgGreen + ` ` + `PORT:`.green+`${port}, `+`HOST:`.green + `${host}, `+`DB:`.green+`${db}`);
 
 
         } catch (err) {

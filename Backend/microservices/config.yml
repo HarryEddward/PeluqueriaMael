@@ -1,3 +1,8 @@
+# ___________
+# ADVERTENCIA: Al referenciar variables, nunca usar puntos para separar de trabajos: Ex.: &common.zip -> &common_zip
+# -----------
+# MOTIVO: Javascript lo soporta, Python no. Trabajamos mas en compatibilidad que en legbilidad
+# ------
 name_version: "v1"
 
 host: "localhost"
@@ -7,10 +12,10 @@ ssl:
   key: "../../../certs/peluqueriamael.com_key.txt"
 
 common:
-  gzip: &common.gzip
+  gzip: &common_gzip
     enabled: true
     min_size: 1000
-  cors: &common.cors
+  cors: &common_cors
     enabled: true
     origins:
       - "*"
@@ -25,22 +30,38 @@ app:
       protocol: "http"
       port: 8000
     ssl: true
-    gzip: *common.gzip
-    cors: *common.cors
+    cache: true
+    gzip: *common_gzip
+    cors:
+      enabled: true
+      origins:
+        - "*"
+      methods:
+        - "GET"
+        - "POST"
+      headers:
+        - "*"
 
   APIWS:
     net:
       protocol: "ws"
       port: 8100
-      ssl: false
+    ssl: false
 
   CryptoAPI:
     net:
       protocol: "http"
       port: 8200
-    ssl: false
-    gzip: *common.gzip
-    cors: *common.cors
+    ssl: true
+    cache: true
+    gzip: *common_gzip
+    cors:
+      enabled: true
+      # Se quito el apartado de origins, ya que solo hará úso de la API Estática
+      methods:
+        - "*"
+      headers:
+        - "*"
     graphic_card: "gt-710"
 
   StatusAPI:
@@ -48,7 +69,8 @@ app:
       protocol: "http"
       port: 8300
     ssl: true
-    cors: *common.cors
+    cache: true
+    cors: *common_cors
 
 web:
   API:
@@ -56,30 +78,50 @@ web:
       protocol: "http"
       port: 8000
     ssl: true
-    gzip: *common.gzip
-    cors: *common.cors
+    cache: true
+    gzip: *common_gzip
+    cors: *common_cors
 
   StatusAPI:
     net:
       protocol: "https"
       port: 8300
     ssl: true
-    gzip: *common.gzip
-    cors: *common.cors
+    cache: true
+    gzip: *common_gzip
+    cors:
+      enabled: true
+      origins:
+        - "*"
+      methods:
+        - "GET"
+      headers:
+        - "*"
 
 db:
+  general_name_db: &general_name_db "PeluqueriaMael"
+
   persistant:
     rethinkdb:
       host: "localhost"
       port:
         intercluster: 29015
         client: 28015
-      db: "PeluqueriaMael"
+      db: *general_name_db
+      tables:
+        reservas: booking_card
     
     mongodb:
       host: "localhost"
       port: 27017
-      db: "PeluqueriaMael"
+      db: *general_name_db
+      collections:
+        reservas: "Reservas"
+        usuarios: "Users"
+        configuracion: "Configure"
+        personal: "Personal"
+        administrador: "Admin"
+        tipos_de_pydantic: "Types"
   
   cache:
     Redis:

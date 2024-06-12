@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">Get Routes</button>
+    <ul id="data-list"></ul>
+</body>
+<script>
+    const btn = document.getElementById('btn');
+    const dataList = document.getElementById('data-list');
+  
+    btn.addEventListener('click', () => {
+      fetch('http://localhost:8100/routes')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.data);
+            let html = '';
+            if (data.data) {
+            for (const key in data.data) {
+                    html += `<li><b>${key}</b>: ${data.data[key]}</li>`;
+                }
+            }
+            console.log(html);
+            dataList.innerHTML = html;
+        })
+        .catch(error => console.error('Error:', error));
+    });
+  </script>
+</html>

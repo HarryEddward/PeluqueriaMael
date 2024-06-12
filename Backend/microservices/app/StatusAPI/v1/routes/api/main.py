@@ -13,14 +13,17 @@ router = APIRouter()
 
 config = Config()
 host = config['host']
-port = config['API']['net']['port']
-protocol = config['API']['net']['protocol']
+app = config['app']
+port = app['API']['net']['port']
+ssl = app['API']['ssl']
+secure = "https" if ssl else "http"
 
 @router.get('/shields.io')
 async def root():
     try:
         # Construir el enlace
-        link = f'{protocol}://{host}:{port}'
+
+        link = f'{secure}://{host}:{port}'
         endpoint = f'{link}/api/app/api/v1/client/status'
         
         headers = {

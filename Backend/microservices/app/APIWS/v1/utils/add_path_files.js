@@ -27,6 +27,8 @@ function modifyIndexFile(filePath, relativePath) {
             //const index = lines.findIndex(line => line.trim().startsWith('const _ ='));
             
             // Reemplazar la línea con la nueva ruta relativa
+
+            relativePath = relativePath == "/" ? "" : relativePath;
             lines[0] = `const _ = "/${relativePath}";`;
             const newContent = lines.join('\n');
             fs.writeFileSync(filePath, newContent, 'utf8');

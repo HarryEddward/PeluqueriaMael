@@ -1,4 +1,4 @@
-from Backend.microservices.app.conversor.config.config import Config
+from Backend.microservices.conversor.config.config import Config
 
 
 '''
@@ -11,9 +11,12 @@ Como gunicorn es para producción
 config = Config()
 host = config['host']
 port = config['API']['net']['port']
+ssl = config['ssl']
+ssl_cert = ssl['cert']
+ssl_key = ssl['key']
 
 bind = f"{host}:{port}"  # Escucha en todas las interfaces en el puerto 8000
 workers = 4  # Número de procesos de trabajadores
 worker_class = "uvicorn.workers.UvicornWorker"  # Usar Uvicorn como clase de trabajador
-keyfile = "../../../certs/peluqueriamael.com_key.txt"  # Ruta a tu archivo de clave privada
-certfile = "../../../certs/peluqueriamael.com_cert/peluqueriamael.com.crt"  # Ruta a tu archivo de certificado
+keyfile = ssl_key  # Ruta a tu archivo de clave privada
+certfile = ssl_cert  # Ruta a tu archivo de certificado

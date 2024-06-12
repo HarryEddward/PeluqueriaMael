@@ -11,11 +11,22 @@ import ujson
 import os
 import fastapi
 from redis import asyncio as aioredis
-from Backend.microservices.app.conversor.config.config import Config
+from Backend.microservices.conversor.config.config import Config
 
-config = Config()
-cors = config["API"]["cors"]
-gzip = config["API"]["gzip"]
+config =     Config()
+host =      config['host']
+
+ssl_cert =  config['ssl']['cert']
+ssl_key =   config['ssl']['key']
+
+app =       config['app']
+ssl =       app['API']['ssl']
+cache =     app['API']['cache']
+cors =      app["API"]["cors"]
+gzip =      app["API"]["gzip"]
+
+port =      app['API']['net']['port']
+
 
 fastapi.json = ujson
 
@@ -27,9 +38,13 @@ enviroment = "dev"
 @app.on_event("startup")
 async def startup_event():
 
-    #Cache for API
-    redis = aioredis.from_url("redis://localhost", encoding="utf8", decode_responses=True)
-    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+    if cache:
+        #Cache for API
+        redis = aioredis.from_url(f"redis://{host}", encoding="utf8", decode_responses=True)
+        FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+        print(f'-> REDIS: redis://{host}')
+    else:
+        print('NO SE ACTIVO EL CACHÉ')
 
 @app.get("/hidden_egg")
 def read_root():
@@ -69,7 +84,7 @@ app.add_middleware(RestrictedMiddleware)                                #/app/ap
 Si gzip esta activado del archivo de configuración lo añade el middleware!
 '''
 if gzip['enabled']:
-    app.add_middleware(GZipMiddleware, minimum_size=1000)                   # Solo comprimir respuestas mayores a 1000 bytes
+    app.add_middleware(GZipMiddleware, minimum_size=gzip['min_size'])                   # Solo comprimir respuestas mayores a 1000 bytes
 
 '''
 Si cors esta activado del archivo de configuración lo añade el middleware!
@@ -88,13 +103,22 @@ if __name__ == "__main__":
 
     if enviroment == "dev":
         import uvicorn
-        uvicorn.run(
-            "server_fastapi:app"
-            ,host="localhost"
-            ,port=8000
-            ,reload=True
-            ,workers=2
-            ,ssl_certfile="../../../certs/peluqueriamael.com_cert/peluqueriamael.com.crt"
-            ,ssl_keyfile="../../../certs/peluqueriamael.com_key.txt"
-            
-        )
+
+        if ssl:
+            uvicorn.run(
+                "server_fastapi:app"
+                ,host=host
+                ,port=port
+                ,reload=True
+                ,workers=2
+                ,ssl_certfile=ssl_cert
+                ,ssl_keyfile=ssl_key   
+            )
+        else :
+            uvicorn.run(
+                "server_fastapi:app"
+                ,host=host
+                ,port=port
+                ,reload=True
+                ,workers=2
+            )

@@ -26,30 +26,65 @@ en la app del admin.
 
 fastapi.json = ujson
 
-app = FastAPI()
 
 config = Config()
 
-#comm
-ssl_cert = config['ssl']['cert']
-ssl_key = config['ssl']['key']
+host =      config['host']
 
-#spec
-app = config['app']
-port = int(app['StatusAPI']['net']['port'])
-host = config["host"]
+ssl_cert =  config['ssl']['cert']
+ssl_key =   config['ssl']['key']
+
+app =       config['app']
+ssl =       app['StatusAPI']['ssl']
+cache =     app['StatusAPI']['cache']
+cors =      app["StatusAPI"]["cors"]
+
+port =      app['StatusAPI']['net']['port']
 
 
+
+app = FastAPI()
 
 #Entorno de: prod -> Producción | dev -> Desarrollo 
 enviroment = "dev"
 
+
+# Crear un enrutador base
+base_router = APIRouter()
+
+
 @app.on_event("startup")
 async def startup_event():
 
-    #Cache for API
-    redis = aioredis.from_url("redis://localhost", encoding="utf8", decode_responses=True)
-    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+    if cache:
+        #Cache for API
+        redis = aioredis.from_url(f"redis://{host}", encoding="utf8", decode_responses=True)
+        FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+        print(f'-> REDIS: redis://{host}')
+    else:
+        print('NO SE ACTIVO EL CACHÉ')
+
+
+
+# Incluir los routers específicos en el enrutador base
+base_router.include_router(api_router, prefix="/api", tags=["api"])
+base_router.include_router(apiws_router, prefix="/apiws", tags=["apiws"])
+base_router.include_router(cryptoapi_router, prefix="/cryptoapi", tags=["cryptoapi"])
+
+# Incluir el enrutador base en la aplicación con el prefijo deseado
+app.include_router(base_router, prefix="/statusapi/app/api/v1")
+
+'''
+Si cors esta activado del archivo de configuración lo añade el middleware!
+'''
+if cors['enabled']:
+    app.add_middleware(                                                     # Configuración del middleware CORS
+        CORSMiddleware,
+        allow_origins=cors["origins"],  
+        allow_credentials=True,
+        allow_methods=cors["methods"],
+        allow_headers=cors["headers"],
+    )
 
 
 @app.exception_handler(ValueError)
@@ -63,43 +98,28 @@ async def root(request, exc):
         }
     )
 
-# Crear un enrutador base
-base_router = APIRouter()
-
-
-# Incluir los routers específicos en el enrutador base
-base_router.include_router(api_router, prefix="/api", tags=["api"])
-base_router.include_router(apiws_router, prefix="/apiws", tags=["apiws"])
-base_router.include_router(cryptoapi_router, prefix="/cryptoapi", tags=["cryptoapi"])
-
-# Incluir el enrutador base en la aplicación con el prefijo deseado
-app.include_router(base_router, prefix="/statusapi/app/api/v1")
-
-app.add_middleware(GZipMiddleware, minimum_size=1000)                   # Solo comprimir respuestas mayores a 1000 bytes
-app.add_middleware(                                                     # Configuración del middleware CORS
-    CORSMiddleware,
-    allow_origins=["*"],  
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 
 # Para ejecutar el servidor
 if __name__ == "__main__":
 
     if enviroment == "dev":
-
-        print('MODE DEV')
-
         import uvicorn
-        uvicorn.run(
-            "server_fastapi:app"
-            ,host=host
-            ,port=port
-            ,reload=True
-            ,workers=2
-            ,ssl_certfile='../../../certs/peluqueriamael.com_cert/peluqueriamael.com.crt'
-            ,ssl_keyfile='../../../certs/peluqueriamael.com_key.txt'
-            
-        )
+
+        if ssl:
+            uvicorn.run(
+                "server_fastapi:app"
+                ,host=host
+                ,port=port
+                ,reload=True
+                ,workers=2
+                ,ssl_certfile=ssl_cert
+                ,ssl_keyfile=ssl_key   
+            )
+        else :
+            uvicorn.run(
+                "server_fastapi:app"
+                ,host=host
+                ,port=port
+                ,reload=True
+                ,workers=2
+            )

@@ -1,13 +1,25 @@
 from pymongo import (
     MongoClient
 )
+from Backend.microservices.conversor.config.config import Config
+
+config = Config()
+db_config = config['db']['persistant']['mongodb']
+port = db_config['port']
+host = db_config['host']
+use_db = db_config['db']
+collection = db_config['collections']
+
+use_reservas = collection['reservas']
+use_usuarios = collection['usuarios']
+use_configuracion = collection['configuracion']
+use_personal = collection['personal']
+use_administrador = collection['administrador']
+use_tipos_de_pydantic = collection['tipos_de_pydantic']
 
 
-client = MongoClient("localhost", 27017)
-
-
-
-db = client["PeluqueriaMael"]
+client = MongoClient(host, port)
+db = client[use_db]
 
 
 # Definir los roles para el nuevo usuario
@@ -22,9 +34,9 @@ db.command(
 )
 '''
 
-reservas = db["Reservas"]
-users = db["Users"]
-configure = db["Configure"]
-personal = db["Personal"]
-admin = db["Admin"]
-types = db["Types"]
+reservas = db[use_reservas]
+users = db[use_usuarios]
+configure = db[use_configuracion]
+personal = db[use_personal]
+admin = db[use_administrador]
+types = db[use_tipos_de_pydantic]

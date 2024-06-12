@@ -7,7 +7,7 @@ def Config() -> dict:
     current_dir = os.path.dirname(os.path.abspath(__file__))
     
     # Construir la ruta absoluta del archivo config.yml
-    config_path = os.path.join(current_dir, '../../../config.yml')
+    config_path = os.path.join(current_dir, '../../config.yml')
 
     with open(config_path, 'r') as file:
         try:
@@ -15,8 +15,6 @@ def Config() -> dict:
             
         except yaml.YAMLError as e:
             print(e)
-
-#print(Config()["host"])
 
 
 '''
