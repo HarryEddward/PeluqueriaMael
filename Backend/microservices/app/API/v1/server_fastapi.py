@@ -7,25 +7,26 @@ from fastapi_cache.backends.redis import RedisBackend
 from routes.admin.admin import router as admin_router
 from routes.client.main import router as client_router
 from routes.worker.worker import router as worker_router
+from starlette.middleware.sessions import SessionMiddleware
 import ujson
 import os
 import fastapi
 from redis import asyncio as aioredis
 from Backend.microservices.conversor.config.config import Config
 
-config =     Config()
-host =      config['host']
+config = Config()
+host = config['host']
 
-ssl_cert =  config['ssl']['cert']
-ssl_key =   config['ssl']['key']
+ssl_cert = config['ssl']['cert']
+ssl_key = config['ssl']['key']
 
-app =       config['app']
-ssl =       app['API']['ssl']
-cache =     app['API']['cache']
-cors =      app["API"]["cors"]
-gzip =      app["API"]["gzip"]
+app = config['app']
+ssl = app['API']['ssl']
+cache = app['API']['cache']
+cors = app["API"]["cors"]
+gzip = app["API"]["gzip"]
 
-port =      app['API']['net']['port']
+port = app['API']['net']['port']
 
 
 fastapi.json = ujson
@@ -79,6 +80,9 @@ app.include_router(base_router, prefix="/api/app/api/v1")
 #Middlewares
 from config.middlewares.client.restricted import RestrictedMiddleware
 app.add_middleware(RestrictedMiddleware)                                #/app/api/v1/client/restricted/
+
+app.add_middleware(SessionMiddleware, secret_key="your-secret-key")
+
 
 '''
 Si gzip esta activado del archivo de configuración lo añade el middleware!
