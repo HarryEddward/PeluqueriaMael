@@ -7,7 +7,7 @@ from fastapi_cache.backends.redis import RedisBackend
 from routes.admin.admin import router as admin_router
 from routes.client.main import router as client_router
 from routes.worker.worker import router as worker_router
-from starlette.middleware.sessions import SessionMiddleware
+#from starlette.middleware.sessions import SessionMiddleware
 import ujson
 import os
 import fastapi
@@ -81,7 +81,7 @@ app.include_router(base_router, prefix="/api/app/api/v1")
 from config.middlewares.client.restricted import RestrictedMiddleware
 app.add_middleware(RestrictedMiddleware)                                #/app/api/v1/client/restricted/
 
-app.add_middleware(SessionMiddleware, secret_key="your-secret-key")
+#app.add_middleware(SessionMiddleware, secret_key="your-secret-key")
 
 
 '''

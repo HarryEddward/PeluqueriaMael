@@ -15,6 +15,7 @@ common:
   gzip: &common_gzip
     enabled: true
     min_size: 1000
+
   cors: &common_cors
     enabled: true
     origins:
@@ -60,9 +61,14 @@ app:
       # Se quito el apartado de origins, ya que solo hará úso de la API Estática
       methods:
         - "*"
+      origins:
+        - "*"
       headers:
         - "*"
-    graphic_card: "gt-710"
+    cpu: true
+    gpu:
+      enabled: false
+      graphic_card: "gt-710"
 
   StatusAPI:
     net:
