@@ -234,10 +234,10 @@ La solución fué imprimir los qr de seur es pegarlos por las 2 cajas, y así di
 
 
 ## Performance de encritpación
-A la hora de hacer la api de encriptaci´on (CryptoAPI), haciendo por separado 2 Routers, uno para la cpu y la otra
-para la gpu. Hize intencionalemnte la cpu por si alg´un motivo la gpu deja de funcionar, y evitar depender de varios
+A la hora de hacer la api de encriptación (CryptoAPI), haciendo por separado 2 Routers, uno para la cpu y la otra
+para la gpu. Hice intencionalmente la cpu por si algún motivo la gpu deja de funcionar, y evitar depender de varios
 dispositivos.
-Inicie un testeo r´apio por encima el performance que tendr´ia que entre los 2 tipos de formas en encriptaci´on por
+Inicie un testeo rápido por encima el performance que tendría que entre los 2 tipos de formas en encriptación por
 diferentes dispositivos.
 El resultado es el siguiente:
 
@@ -255,6 +255,7 @@ Use el repositorio de github llamado (Cuda-AES) y modifique para en vez de usar 
 mas senzillo de implementarlo importarlo en otro código en el archivo principal de AES.py
 
 Repo: https://github.com/aranscha/CUDA-AES
+
 
 
 
