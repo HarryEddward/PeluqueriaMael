@@ -10,10 +10,12 @@ from pycuda.compiler import SourceModule
 import pycuda.autoinit
 
 import sys
-
+import os
 
 class AES:
     def __init__(self):
+
+
         self.get_source_module_encrypt()
         self.get_source_module_decrypt()
 
@@ -115,65 +117,68 @@ class AES:
 
 
     def get_source_module_encrypt(self):
+        main_pth = os.path.dirname(os.path.abspath(__file__))
+
         private_sharedlut = """
         #define AES_PRIVATESTATE_SHAREDLUT
         #define LUT_IN_SHARED
         """
 
-        file = open("kernels/general.cuh", "r")
+        file = open(main_pth + "/kernels/general.cuh", "r")
         kernelwrapper = file.read()
         file.close()
-        file = open("kernels/SubBytes.cuh", "r")
+        file = open(main_pth + "/kernels/SubBytes.cuh", "r")
         kernelwrapper += file.read()
         file.close()
-        file = open("kernels/ShiftRows.cuh", "r")
+        file = open(main_pth + "/kernels/ShiftRows.cuh", "r")
         kernelwrapper += file.read()
         file.close()
-        file = open("kernels/MixColumns.cuh", "r")
+        file = open(main_pth + "/kernels/MixColumns.cuh", "r")
         kernelwrapper += file.read()
         file.close()
-        file = open("kernels/AddRoundKey.cuh", "r")
+        file = open(main_pth + "/kernels/AddRoundKey.cuh", "r")
         kernelwrapper += file.read()
         file.close()
-        file = open("kernels/Round.cuh", "r")
+        file = open(main_pth + "/kernels/Round.cuh", "r")
         kernelwrapper += file.read()
         file.close()
-        file = open("kernels/KeyExpansion.cuh", "r")
+        file = open(main_pth + "/kernels/KeyExpansion.cuh", "r")
         kernelwrapper += file.read()
         file.close()
-        file = open("kernels/FinalRound.cuh", "r")
+        file = open(main_pth + "/kernels/FinalRound.cuh", "r")
         kernelwrapper += file.read()
         file.close()
-        file = open("kernels/AES.cuh", "r")
+        file = open(main_pth + "/kernels/AES.cuh", "r")
         kernelwrapper += file.read()
         file.close()
 
         self.module_encrypt = SourceModule(private_sharedlut + kernelwrapper)
 
     def get_source_module_decrypt(self):
+        main_pth = os.path.dirname(os.path.abspath(__file__))
         sharedLut = """
         #define LUT_IN_SHARED
         """
 
-        with open("kernels/general.cuh", "r") as f:
+        with open(main_pth + "/kernels/general.cuh", "r") as f:
             kernelwrapper = f.read()
-        with open("kernels/InvSubbytes.cuh", "r") as f:
+        with open(main_pth + "/kernels/InvSubbytes.cuh", "r") as f:
             kernelwrapper += f.read()
-        with open("kernels/InvShiftRows.cuh", "r") as f:
+        with open(main_pth + "/kernels/InvShiftRows.cuh", "r") as f:
             kernelwrapper += f.read()
-        with open("kernels/MixColumns.cuh", "r") as f: # inv Mix Columns depends on mix Columns!
+        with open(main_pth + "/kernels/MixColumns.cuh", "r") as f: # inv Mix Columns depends on mix Columns!
             kernelwrapper += f.read()
-        with open("kernels/InvMixColumns.cuh", "r") as f:
+        with open(main_pth + "/kernels/InvMixColumns.cuh", "r") as f:
             kernelwrapper += f.read()
-        with open("kernels/AddRoundKey.cuh", "r") as f:
+        with open(main_pth + "/kernels/AddRoundKey.cuh", "r") as f:
             kernelwrapper += f.read()
-        with open("kernels/InvRound.cuh", "r") as f:
+        with open(main_pth + "/kernels/InvRound.cuh", "r") as f:
             kernelwrapper += f.read()
-        with open("kernels/KeyExpansion.cuh", "r") as f:
+        with open(main_pth + "/kernels/KeyExpansion.cuh", "r") as f:
             kernelwrapper += f.read()
-        with open("kernels/InvFinalRound.cuh", "r") as f:
+        with open(main_pth + "/kernels/InvFinalRound.cuh", "r") as f:
             kernelwrapper += f.read()
-        with open("kernels/InvAES.cuh", "r") as f:
+        with open(main_pth + "/kernels/InvAES.cuh", "r") as f:
             kernelwrapper += f.read()
 
         self.module_decrpyt = SourceModule(sharedLut + kernelwrapper)
@@ -272,6 +277,74 @@ class AES:
 
         return res
 
+
+class CryptoGPUT:
+
+    def __init__(self) -> None:
+        self.computer = AES()
+        self.key_gpu_crypto = self.key_crypto_gpu()
+
+    
+    def key_crypto_gpu(self) -> bytearray:
+
+        hex_key = "6f1d4a944d2a6a1e6b83f6d3a4e3c6f527f4f73576a9f8b5e3a1c7d8e9f2a6b4"
+        byte_key = bytes.fromhex(hex_key)
+        byte_array_key = np.frombuffer(byte_key, dtype=np.byte)
+        return byte_array_key
+
+    
+    def encrypt(self, text: str) -> bytearray:
+
+        input = text.encode('utf-8')
+        hex_str = input.hex()
+        byte_in = bytes.fromhex(hex_str)
+        byte_array_in = np.frombuffer(byte_in, dtype=np.byte)
+
+        out = self.computer.encrypt_gpu(byte_array_in, self.key_gpu_crypto, byte_array_in.size)
+        #out_hex = bytes(out).hex()
+        return out
+
+    
+    def decypt(self, out: bytearray) -> bytes:
+
+
+        in_decrpyted = self.computer.decrypt_gpu(out, self.key_crypto_gpu, out.size)
+        
+        in_decrpyted = "".join([chr(item) for item in in_decrpyted])
+        print('------->', in_decrpyted)
+        in_decrpyted = in_decrpyted[:len(input)] 
+        return in_decrpyted
+    
+
+class CryptoGPU:
+
+    def __init__(self) -> None:
+        
+        # Get random key
+        hex_key = "000102030405060708090a0b0c0d0e0f"
+        byte_key = bytes.fromhex(hex_key)
+        self.byte_array_key = np.frombuffer(byte_key, dtype=np.byte)
+
+    def encrypt(self, input: str) -> str:
+        input_bytes = input.encode('utf-8')
+        byte_array_in = np.frombuffer(input_bytes, dtype=np.byte)
+
+        computer = AES()
+        
+        encrypted = computer.encrypt_gpu(byte_array_in, self.byte_array_key, byte_array_in.size)
+        encrypted_hex = bytes(encrypted).hex()
+        return encrypted_hex
+    
+
+    def decrypt(self, encrypted_hex: str) -> str:
+        encrypted_bytes = bytes.fromhex(encrypted_hex)
+        byte_array_in = np.frombuffer(encrypted_bytes, dtype=np.byte)
+
+        computer = AES()
+        decrypted = computer.decrypt_gpu(byte_array_in, self.byte_array_key, byte_array_in.size)
+        
+        decrypted_str = bytes(decrypted).decode('utf-8').rstrip('\x00')  # Removing potential padding
+        return decrypted_str
 
 
 if __name__== "__main__":

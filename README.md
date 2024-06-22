@@ -233,6 +233,26 @@ La solución fué imprimir los qr de seur es pegarlos por las 2 cajas, y así di
 </p>
 
 
+## Performance de encritpaci´on
+A la hora de hacer la api de encriptaci´on (CryptoAPI), haciendo por separado 2 Routers, uno para la cpu y la otra
+para la gpu. Hize intencionalemnte la cpu por si alg´un motivo la gpu deja de funcionar, y evitar depender de varios
+dispositivos.
+Inicie un testeo r´apio por encima el performance que tendr´ia que entre los 2 tipos de formas en encriptaci´on por
+diferentes dispositivos.
+El resultado es el siguiente:
+
+  - CPU: MacBookAir (13): 18-20s por 100 encriptaci´ones y 100 decriptaci´ones
+  - GPU: i5 9gen, solo por GPU(gt-710): 8.9s por 1000 encriptaci´ones y 1000 decriptaci´ones
+
+Decir que la MacBookAir estaba ya con mucho estres, pero como las cpu's de las mac suelen ser mas eficientes que las
+de intel, por su propia inteligenic artificial que mejora mucho los procesos, no esta nada mal.
+
+La gpu realmente puede tener cargas de trabajo intensivas a la criptografía sin ningún problema y es mucho mas
+eficiente y prometedor que la misma cpu que aparte lo sobrecarga de mas.
+
+Podríamos decir que el % de mejora es muy alto de un +368.42% en tareas criptográficas por la GPU
+
+
 ## Configuración_Del_Servidor
 Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y úso nativamente de contendores llamado jails en FreeBSD.
 
