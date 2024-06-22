@@ -250,7 +250,7 @@ de intel, por su propia inteligenic artificial que mejora mucho los procesos, no
 La gpu realmente puede tener cargas de trabajo intensivas a la criptografía sin ningún problema y es mucho mas
 eficiente y prometedor que la misma cpu que aparte lo sobrecarga de mas.
 
-### Podríamos decir que el % de mejora es muy alto de un **+368.42%** en tareas criptográficas por la GPU
+Podríamos decir que el % de mejora es muy alto de un **+368.42%** en tareas criptográficas por la GPU
 
 
 ## Configuración_Del_Servidor
