@@ -244,7 +244,7 @@ El resultado es el siguiente:
   - CPU: MacBookAir (Sonoma 14.1.1): 18-20s por 100 encriptaciónes y 100 decriptaciónes
   - GPU: i5 9gen, solo por GPU(gt-710): 8.9s por 1000 encriptaciónes y 1000 decriptaciónes
 
-Decir que la MacBookAir estaba ya con mucho estres, pero como las cpu's de las mac suelen ser mas eficientes que las
+Decir que la MacBookAir estaba ya con mucho estrés, pero como las cpu's de las mac suelen ser mas eficientes que las
 de intel, por su propia inteligenic artificial que mejora mucho los procesos, no esta nada mal.
 
 La gpu realmente puede tener cargas de trabajo intensivas a la criptografía sin ningún problema y es mucho mas
