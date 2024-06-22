@@ -39,7 +39,7 @@ async def root(request: Request):
             content={
                 "info": "El contenido del texto no puede estar vacío",
                 "status": "no",
-                "type": "EMPTY_STRING"
+                "type": "EMPTY_STRING SUS"
             }, status_code=400
         )
 
