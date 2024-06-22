@@ -233,7 +233,7 @@ La solución fué imprimir los qr de seur es pegarlos por las 2 cajas, y así di
 </p>
 
 
-## Performance de encritpaci´on
+## Performance de encritpación
 A la hora de hacer la api de encriptaci´on (CryptoAPI), haciendo por separado 2 Routers, uno para la cpu y la otra
 para la gpu. Hize intencionalemnte la cpu por si alg´un motivo la gpu deja de funcionar, y evitar depender de varios
 dispositivos.
@@ -253,6 +253,7 @@ eficiente y prometedor que la misma cpu que aparte lo sobrecarga de mas.
 Podríamos decir que el % de mejora es muy alto de un **+368.42%** en tareas criptográficas por la GPU
 Use el repositorio de github llamado (Cuda-AES) y modifique para en vez de usar su cli, lo convirtiese en un código
 mas senzillo de implementarlo importarlo en otro código en el archivo principal de AES.py
+
 Repo: https://github.com/aranscha/CUDA-AES
 
 
