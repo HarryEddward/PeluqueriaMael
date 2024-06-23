@@ -278,54 +278,60 @@ class AES:
         return res
 
 
-class CryptoGPUT:
-
-    def __init__(self) -> None:
-        self.computer = AES()
-        self.key_gpu_crypto = self.key_crypto_gpu()
-
-    
-    def key_crypto_gpu(self) -> bytearray:
-
-        hex_key = "6f1d4a944d2a6a1e6b83f6d3a4e3c6f527f4f73576a9f8b5e3a1c7d8e9f2a6b4"
-        byte_key = bytes.fromhex(hex_key)
-        byte_array_key = np.frombuffer(byte_key, dtype=np.byte)
-        return byte_array_key
-
-    
-    def encrypt(self, text: str) -> bytearray:
-
-        input = text.encode('utf-8')
-        hex_str = input.hex()
-        byte_in = bytes.fromhex(hex_str)
-        byte_array_in = np.frombuffer(byte_in, dtype=np.byte)
-
-        out = self.computer.encrypt_gpu(byte_array_in, self.key_gpu_crypto, byte_array_in.size)
-        #out_hex = bytes(out).hex()
-        return out
-
-    
-    def decypt(self, out: bytearray) -> bytes:
-
-
-        in_decrpyted = self.computer.decrypt_gpu(out, self.key_crypto_gpu, out.size)
-        
-        in_decrpyted = "".join([chr(item) for item in in_decrpyted])
-        print('------->', in_decrpyted)
-        in_decrpyted = in_decrpyted[:len(input)] 
-        return in_decrpyted
-    
-
 class CryptoGPU:
 
-    def __init__(self) -> None:
+    def __init__(self, key: str) -> None:
         
         # Get random key
         hex_key = "000102030405060708090a0b0c0d0e0f"
         byte_key = bytes.fromhex(hex_key)
         self.byte_array_key = np.frombuffer(byte_key, dtype=np.byte)
 
+    def hidde_key(self, secret: str) -> None:
+        """
+        Esconde la llave en la variable de entorno, para luego en úso de producción
+        tener una misma llave especifica para integrar sin hacer mas verboso el código.
+
+        Como usarlo directo con Dokcer o tu propia PC
+
+        Comprueba la compatibilidad de la misma clave antes de aplicarlo y esto conlleva que si
+        hay algún problema lanazara un raise donde parara el código
+
+        La variable se llama EASY_CRYPTO_CUDA_GPU_CRYPTO_GPU
+
+        Args:
+            secret (str): La clave de encriptación secreta a esconder en la variable de entorno.
+
+        Raises:
+            ValueError: Si la clave no es válida para encriptar y desencriptar 'test'.
+            SystemError: Si hay un error fatal al configurar la clave en la variable de entorno.
+        """
+        try:
+            os.environ['EASY_CRYPTO_CUDA_GPU_CRYPTO_GPU'] = str(secret)
+
+            try:
+                test_encrypt = self.encrypt('test')
+                test_decypt = self.decrypt(test_encrypt)
+            except Exception:
+                raise ValueError("La clave no es valida para el úso")
+
+        except Exception as e:
+            raise SystemError("Hubo un error fatal al implementar y a verificar la clave de encriptación")
+        
+        pass
+
     def encrypt(self, input: str) -> str:
+
+        """
+        Encripta por medio de CUDA a través de la GPU Nvidia
+
+        Args:
+            input (str): Entrada de texto a encriptar
+        
+        Result:
+            str: Texto encriptado por string
+        """
+
         input_bytes = input.encode('utf-8')
         byte_array_in = np.frombuffer(input_bytes, dtype=np.byte)
 
@@ -337,6 +343,17 @@ class CryptoGPU:
     
 
     def decrypt(self, encrypted_hex: str) -> str:
+
+        """
+        Decripta por medio de CUDA a través de la GPU Nvidia
+
+        Args:
+            input (str): Entrada de texto a decriptar
+        
+        Result:
+            str: Texto decriptado por string
+        """
+
         encrypted_bytes = bytes.fromhex(encrypted_hex)
         byte_array_in = np.frombuffer(encrypted_bytes, dtype=np.byte)
 
@@ -345,53 +362,3 @@ class CryptoGPU:
         
         decrypted_str = bytes(decrypted).decode('utf-8').rstrip('\x00')  # Removing potential padding
         return decrypted_str
-
-
-if __name__== "__main__":
-    '''if len(sys.argv) != 3 and len(sys.argv) != 4:
-        raise Exception("Invalid number of input arguments")
-    if len(sys.argv) == 3:
-        print("warning: decrypt output file not specified. Will only output encrypted input!")
-    '''
-    # read in input file and convert to hex
-    '''print(f"Reading input from {sys.argv[1]} ...")
-    with open(sys.argv[1], "r") as f:
-        input = f.read()
-    '''
-
-    input = "Hola esto es un ejemplo de encriptacion"
-    print('INPUT: ', input)
-    
-    input = input.encode('utf-8')
-    hex_str = input.hex()
-    byte_in = bytes.fromhex(hex_str)
-    byte_array_in = np.frombuffer(byte_in, dtype=np.byte)
-
-    # Get random key
-    hex_key = "000102030405060708090a0b0c0d0e0f"
-    byte_key = bytes.fromhex(hex_key)
-    byte_array_key = np.frombuffer(byte_key, dtype=np.byte)
-
-    # get encoder and encode
-    print("Encrypting the input...")
-    computer = AES()
-    
-    out = computer.encrypt_gpu(byte_array_in, byte_array_key, byte_array_in.size)
-    out_hex = bytes(out).hex()
-    print("Encryption complete!")
-
-    # write output to output file
-    print(f"Writing output to...")
-    print('-> ', out_hex)
-
-    #if len(sys.argv) == 4:
-    print("Decrypting the encrypted input...")
-    in_decrpyted = computer.decrypt_gpu(out, byte_array_key, out.size)
-    print('------->', in_decrpyted)
-    in_decrpyted = "".join([chr(item) for item in in_decrpyted])
-    print('------->', in_decrpyted)
-    in_decrpyted = in_decrpyted[:len(input)] # cut off the padding (assume that the length of the input is known)
-
-    # write decrpyted ouptput
-    print(f"Writing decrypted input to...")
-    print('-> ', in_decrpyted)

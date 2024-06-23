@@ -256,8 +256,13 @@ mas senzillo de implementarlo importarlo en otro código en el archivo principal
 
 Repo: https://github.com/aranscha/CUDA-AES
 
+Haré una librería para tener una fácil implementación de ecnriptación por gpu a través de esta repo
+con creditos todos suyos, para que cualquiera pueda implementarlo al escargar la librería de forma fácil
+de descargarlo y implementarlo. Lo llamaré easy_cuda_crypto_gpu
 
 
+### 23/6/2024
+Conseguí hacer la libreria de encritpación en 1 día para úso de GPU, se llama: gpu_cuda_aes. Es fácil de usar y consigua alcanzar niveles grandes de rendimiento por simple úso de la GPU. Estará listo para publciarse hoy mismo luego de añadir los docs, el testeo y lo compile!
 
 ## Configuración_Del_Servidor
 Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y úso nativamente de contendores llamado jails en FreeBSD.
