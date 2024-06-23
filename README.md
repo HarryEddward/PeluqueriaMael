@@ -262,7 +262,7 @@ de descargarlo y implementarlo. Lo llamaré easy_cuda_crypto_gpu
 
 
 ### 23/6/2024
-Conseguí hacer la libreria de encritpación en 1 día de python para úso de GPU, se llama: gpu_cuda_aes. Es fácil de usar y consigua alcanzar niveles grandes de rendimiento por simple úso de la GPU. Estará listo para publciarse hoy mismo luego de añadir los docs, el testeo y lo compile!
+Conseguí hacer la libreria de encritpación en 1 día de python para úso de GPU, se llama: gpu_cuda_aes. Es fácil de usar y consigua alcanzar niveles grandes de rendimiento por simple úso de la GPU. Estará listo para publicarse hoy mismo luego de añadir los docs, el testeo y lo compile!
 
 ## Configuración_Del_Servidor
 Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y úso nativamente de contendores llamado jails en FreeBSD.
