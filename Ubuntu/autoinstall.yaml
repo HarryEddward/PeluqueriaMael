@@ -55,6 +55,8 @@ autoinstall:
   shutdown: reboot
   storage:
     config:
+    #Pendiente a revisar y a rescribirlo
+    
       - id: disk-vda
         type: disk
         ptable: gpt
@@ -68,59 +70,6 @@ autoinstall:
         size: 600M
         flag: boot
         grub_device: true
-
-      - id: bootpart
-        type: partition
-        device: disk-vda
-        size: 1G
-
-      - id: pvpart
-        type: partition
-        device: disk-vda
-        size: -1
-
-      - id: pvpart-crypt
-        type: dm_crypt
-        volume: pvpart
-        key: mysecretpassword
-
-      - id: vg0
-        type: lvm_volgroup
-        name: vg0
-        devices:
-          - pvpart-crypt
-
-      - id: root_lv
-        type: lvm_partition
-        name: root_lv
-        volgroup: vg0
-        size: 45G
- 
-      - id: home_lv
-        type: lvm_partition
-        name: home_lv
-        volgroup: vg0
-        size: 50G
-
-      - id: efipart_fs
-        type: format
-        volume: efipart
-        fstype: fat32
-
-      - id: bootpart_fs
-        type: format
-        volume: bootpart
-        fstype: ext4
-
-      - id: root_lv_fs
-        type: format
-        volume: root_lv
-        fstype: ext4
-
-      - id: home_lv_fs
-        type: format
-        volume: home_lv
-        fstype: ext4
 
       - id: efipart-mount
         type: mount
