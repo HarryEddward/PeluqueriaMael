@@ -1,0 +1,143 @@
+#cloud-config
+autoinstall:
+  version: 1
+
+  source:
+    id: ubuntu-server
+
+  locale: en_US.UTF-8
+  keyboard:
+    layout: es
+  timezone: Europe/Madrid
+
+  network:
+    version: 2
+    ethernets:
+      enp1s0:
+        dhcp4: true
+
+  identity:
+    username: mael
+    hostname: servidor_peluqueria_mael
+    password: 'peluqueria333'
+
+  ssh:
+    install-server: true
+    allow-pw: true
+    authorized-keys: []
+
+  packages:
+    - git
+    - python3-pip
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+  late-commands:
+    - |
+      # Add Docker’s official GPG key
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    - |
+      # Add Docker APT repository
+      echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+    - |
+      # Update package index and install Docker
+      apt-get update
+      apt-get install -y docker-ce docker-ce-cli containerd.io
+
+    - docker pull python
+    - docker pull redis
+    - docker pull mongo
+    - docker pull rethinkdb
+    - docker pull nvidia/cuda:11.4.3-runtime-ubuntu20.04
+  
+  shutdown: reboot
+  storage:
+    config:
+      - id: disk-vda
+        type: disk
+        ptable: gpt
+        path: /dev/vda
+        wipe: superblock-recursive
+
+      - id: efipart
+        type: partition
+        device: disk-vda
+        offset: 1048576
+        size: 600M
+        flag: boot
+        grub_device: true
+
+      - id: bootpart
+        type: partition
+        device: disk-vda
+        size: 1G
+
+      - id: pvpart
+        type: partition
+        device: disk-vda
+        size: -1
+
+      - id: pvpart-crypt
+        type: dm_crypt
+        volume: pvpart
+        key: mysecretpassword
+
+      - id: vg0
+        type: lvm_volgroup
+        name: vg0
+        devices:
+          - pvpart-crypt
+
+      - id: root_lv
+        type: lvm_partition
+        name: root_lv
+        volgroup: vg0
+        size: 45G
+ 
+      - id: home_lv
+        type: lvm_partition
+        name: home_lv
+        volgroup: vg0
+        size: 50G
+
+      - id: efipart_fs
+        type: format
+        volume: efipart
+        fstype: fat32
+
+      - id: bootpart_fs
+        type: format
+        volume: bootpart
+        fstype: ext4
+
+      - id: root_lv_fs
+        type: format
+        volume: root_lv
+        fstype: ext4
+
+      - id: home_lv_fs
+        type: format
+        volume: home_lv
+        fstype: ext4
+
+      - id: efipart-mount
+        type: mount
+        device: efipart_fs
+        path: /boot/efi
+
+      - id: bootpart-mount
+        type: mount
+        device: bootpart_fs
+        path: /boot
+
+      - id: root_lv_mount
+        type: mount
+        device: root_lv_fs
+        path: /
+
+      - id: home_lv_mount
+        type: mount
+        device: home_lv_fs
+        path: /home
