@@ -5,7 +5,7 @@ autoinstall:
   source:
     id: ubuntu-server
 
-  locale: en_US.UTF-8
+  locale: es_ES.UTF-8
   keyboard:
     layout: es
   timezone: Europe/Madrid
@@ -13,7 +13,9 @@ autoinstall:
   network:
     version: 2
     ethernets:
-      enp1s0:
+      enp3s0:
+        dhcp4: true
+      eno1:
         dhcp4: true
 
   identity:
@@ -49,7 +51,7 @@ autoinstall:
       # Enable and start the SSH service
       systemctl enable ssh
       systemctl start ssh
-      
+
     - docker pull python
     - docker pull redis
     - docker pull mongo
@@ -59,38 +61,61 @@ autoinstall:
   shutdown: reboot
   storage:
     config:
-    #Pendiente a revisar y a rescribirlo
-    
-      - id: disk-vda
+      - id: disk-CT1000BX500SSD1
         type: disk
         ptable: gpt
-        path: /dev/vda
+        path: /dev/sda  # Ajustar al dispositivo correcto, /dev/sda en este caso
         wipe: superblock-recursive
 
+      # Partición EFI
       - id: efipart
         type: partition
-        device: disk-vda
-        offset: 1048576
+        device: disk-CT1000BX500SSD1
+        offset: 1048576   # 1 MiB
         size: 600M
         flag: boot
         grub_device: true
-
+  
+      # Partición /boot
+      - id: bootpart
+        type: partition
+        device: disk-CT1000BX500SSD1
+        size: 1G
+  
+      # Partición raíz /
+      - id: rootpart
+        type: partition
+        device: disk-CT1000BX500SSD1
+        size: -1   # Utiliza todo el espacio restante del disco
+  
+      # Formatear particiones
+      - id: efipart-format
+        type: format
+        volume: efipart
+        fstype: fat32
+  
+      - id: bootpart-format
+        type: format
+        volume: bootpart
+        fstype: ext4
+  
+      - id: rootpart-format
+        type: format
+        volume: rootpart
+        fstype: ext4
+  
+      # Montaje de particiones
       - id: efipart-mount
         type: mount
-        device: efipart_fs
+        device: efipart-format
         path: /boot/efi
-
+  
       - id: bootpart-mount
         type: mount
-        device: bootpart_fs
+        device: bootpart-format
         path: /boot
-
-      - id: root_lv_mount
+  
+      - id: rootpart-mount
         type: mount
-        device: root_lv_fs
+        device: rootpart-format
         path: /
-
-      - id: home_lv_mount
-        type: mount
-        device: home_lv_fs
-        path: /home
