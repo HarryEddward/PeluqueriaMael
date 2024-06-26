@@ -25,8 +25,9 @@ autoinstall:
 
   ssh:
     install-server: true
-    allow-pw: true
-    authorized-keys: []
+    allow-pw: false
+    authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC2gRBvsnqbwpeLuys9c6wbWTOQVloh5luRf8JdebjWDjGDyLE4nopSL12a2FIyzRNNsTslYvisv69Sl5cEEbK4ulb7YznypHFTe47vWRXDyBq8jqTzBfdXZ6ZUbPQIKED4Veu1FgX1KzsV6bDHKeG984f6Zc7FRANZkprRYMzl469JzJuGiKzs3pEi1sx/l4WL+s9REyvFUjc41fh83VlrVAjFL3X72/zV0akejFtVIvBtbXZnyu4mQQTaS7E5SQwqFoeSyYIcWBrs74GAluFLDKx1Cr+p8GO2qGu0EpuiHj2jdlV6EiumCkkG85TiipfeWHdsjewKeIQsM9jxvNLOOb5D1HockCiaXO8ZBmk0iIHhOoiP/shDLGFgYgKfb3bt514Q19/w2xpccquf6qaBDZbHs12MxN7luDm2s3S1HXjieHmh4wvQ/I0acD+NnD04SOl2S113xWkPCgABVHDXh59LFNA5c32CMTObfV16pdqJbiVVcIuPsWMadu2ynfPzBeiZ0dkPRRq1agHnKb+9B2ZJkRemHroySgJrs0BRDhb0pclFiBD3ElEgcdculu6x3Oe5VM+AcL7V+1/qQjy4UvWRlrS9756HN0HJy1zjFkeOWGfgm2gtSVVKTtrQWvT2oyPlteD14aqzcdIffGqvfSMWmSKh58+6gf4By4yXSQ== he0780070@gmail.com
 
   packages:
     - git
