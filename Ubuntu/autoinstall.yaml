@@ -45,7 +45,11 @@ autoinstall:
       # Update package index and install Docker
       apt-get update
       apt-get install -y docker-ce docker-ce-cli containerd.io
-
+    - |
+      # Enable and start the SSH service
+      systemctl enable ssh
+      systemctl start ssh
+      
     - docker pull python
     - docker pull redis
     - docker pull mongo
