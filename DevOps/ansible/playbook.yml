@@ -1,0 +1,72 @@
+---
+- name: Configure server for Nvidia drivers, Docker, and Docker Swarm
+  hosts: master
+  become: yes
+  gather_facts: yes
+  become_method: sudo
+
+  tasks:
+    - name: Get server IP address
+      shell: ip -4 addr show | grep -oP 'inet \K[\d.]+' | tail -1
+      register: ip_address
+
+    - name: Set IP address as a fact
+      set_fact:
+        ip_router_pv: "{{ ip_address.stdout }}"
+
+    - name: Add Nvidia graphics driver repository
+      apt_repository:
+        repo: 'ppa:graphics-drivers/ppa'
+        state: present
+
+    - name: Update apt package cache
+      apt:
+        update_cache: yes
+
+    - name: Install Nvidia graphics driver 470
+      apt:
+        name: nvidia-driver-470
+        state: present
+
+    - name: Install Docker dependencies
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Add Docker GPG key
+      shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable'
+        state: present
+
+    - name: Update apt package cache (Docker)
+      apt:
+        update_cache: yes
+
+    - name: Install Docker CE
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Pull Docker images
+      docker_image:
+        name: "{{ item }}"
+        source: pull
+      loop:
+        - rethinkdb
+        - redis
+        - python
+        - mongo
+        - node
+        - nvidia/cuda:11.4.3-runtime-ubuntu20.04
+
+    - name: Initialize Docker Swarm
+      shell: docker swarm init --advertise-addr {{ ip_router_pv }}:2377
+      args:
+        executable: /bin/bash
