@@ -21,7 +21,7 @@ autoinstall:
   identity:
     username: mael
     hostname: servidor_peluqueria_mael
-    password: ?
+    password:
 
   ssh:
     install-server: true
