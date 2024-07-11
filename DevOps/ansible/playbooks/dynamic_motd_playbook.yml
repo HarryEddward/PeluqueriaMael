@@ -1,0 +1,7 @@
+---
+# tasks file for dynamic_motd
+- name: Configure Dynamic motd
+  hosts: all
+  become: yes
+  roles:
+    - dynamic_motd

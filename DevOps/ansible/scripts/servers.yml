@@ -1,0 +1,13 @@
+version: v1
+
+
+#Values
+#name_ref: [ name_ssh, ip_ssh ]
+
+servers:
+
+  master:
+    server_master: mael@172.30.52.177
+
+  developer:
+    ubuntu_desktop: adrian@127.0.0.1

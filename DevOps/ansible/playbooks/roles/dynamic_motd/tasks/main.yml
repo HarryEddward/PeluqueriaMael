@@ -1,0 +1,7 @@
+---
+# tasks file for dynamic_motd
+- name: Copy dynamic motd template
+  template:
+    src: motd.j2
+    dest: /etc/motd
+  become: yes

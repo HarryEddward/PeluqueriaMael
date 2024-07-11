@@ -1,0 +1,6 @@
+---
+- name: Setup Docker environment
+  hosts: all
+  become: true
+  roles:
+    - docker

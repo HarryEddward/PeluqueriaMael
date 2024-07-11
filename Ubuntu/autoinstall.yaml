@@ -54,6 +54,7 @@ autoinstall:
       systemctl start ssh
 
     - docker pull python
+    - docker pull node
     - docker pull redis
     - docker pull mongo
     - docker pull rethinkdb
