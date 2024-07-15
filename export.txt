@@ -1,0 +1,659 @@
+.
+├── Backend
+│   ├── __init__.py
+│   ├── microservices
+│   │   ├── app
+│   │   │   ├── API
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── save_branch.sh
+│   │   │   │   ├── save.sh
+│   │   │   │   └── v1
+│   │   │   │       ├── config
+│   │   │   │       │   ├── config.py
+│   │   │   │       │   ├── __init__.py
+│   │   │   │       │   └── middlewares
+│   │   │   │       │       └── client
+│   │   │   │       │           └── restricted.py
+│   │   │   │       ├── crud
+│   │   │   │       │   ├── booking
+│   │   │   │       │   │   ├── add.py
+│   │   │   │       │   │   ├── config.py
+│   │   │   │       │   │   ├── __init__.py
+│   │   │   │       │   │   ├── remove.py
+│   │   │   │       │   │   └── utils
+│   │   │   │       │   │       ├── conversorServices.py
+│   │   │   │       │   │       ├── __init__.py
+│   │   │   │       │   │       ├── main.py
+│   │   │   │       │   │       ├── remove
+│   │   │   │       │   │       │   └── verifyDays.py
+│   │   │   │       │   │       ├── serviceToPersonal.py
+│   │   │   │       │   │       └── workerLessBusy.py
+│   │   │   │       │   ├── IMPORTANT.md
+│   │   │   │       │   ├── __init__.py
+│   │   │   │       │   └── users
+│   │   │   │       │       ├── add.py
+│   │   │   │       │       ├── booking
+│   │   │   │       │       │   ├── add.py
+│   │   │   │       │       │   ├── __init__.py
+│   │   │   │       │       │   └── remove.py
+│   │   │   │       │       ├── delete.py
+│   │   │   │       │       ├── find.py
+│   │   │   │       │       ├── __init__.py
+│   │   │   │       │       ├── update.py
+│   │   │   │       │       └── validation.py
+│   │   │   │       ├── db
+│   │   │   │       │   ├── create_db.py
+│   │   │   │       │   ├── database.py
+│   │   │   │       │   ├── __init__.py
+│   │   │   │       │   └── rethinkdb
+│   │   │   │       │       ├── create_db.py
+│   │   │   │       │       ├── database.py
+│   │   │   │       │       └── __init__.py
+│   │   │   │       ├── deployment
+│   │   │   │       │   └── Dockerfile
+│   │   │   │       ├── gunicorn.py
+│   │   │   │       ├── __init__.py
+│   │   │   │       ├── init.sh
+│   │   │   │       ├── md
+│   │   │   │       │   └── ERRORS.md
+│   │   │   │       ├── requirements.txt
+│   │   │   │       ├── routes
+│   │   │   │       │   ├── admin
+│   │   │   │       │   │   ├── admin.py
+│   │   │   │       │   │   ├── __init__.py
+│   │   │   │       │   │   ├── restricted
+│   │   │   │       │   │   │   ├── __init__.py
+│   │   │   │       │   │   │   └── main.py
+│   │   │   │       │   │   └── schemes
+│   │   │   │       │   │       └── __init__.py
+│   │   │   │       │   ├── client
+│   │   │   │       │   │   ├── __init__.py
+│   │   │   │       │   │   ├── main.py
+│   │   │   │       │   │   ├── public
+│   │   │   │       │   │   │   ├── __init__.py
+│   │   │   │       │   │   │   ├── limiter.py
+│   │   │   │       │   │   │   └── main.py
+│   │   │   │       │   │   ├── restricted
+│   │   │   │       │   │   │   ├── booking
+│   │   │   │       │   │   │   │   ├── __init__.py
+│   │   │   │       │   │   │   │   ├── main.py
+│   │   │   │       │   │   │   │   └── type.py
+│   │   │   │       │   │   │   ├── data
+│   │   │   │       │   │   │   │   ├── __init__.py
+│   │   │   │       │   │   │   │   └── main.py
+│   │   │   │       │   │   │   ├── IMPORTANT.md
+│   │   │   │       │   │   │   ├── __init__.py
+│   │   │   │       │   │   │   ├── limiter.py
+│   │   │   │       │   │   │   ├── main.py
+│   │   │   │       │   │   │   └── user
+│   │   │   │       │   │   │       ├── config
+│   │   │   │       │   │   │       │   ├── __init__.py
+│   │   │   │       │   │   │       │   └── main.py
+│   │   │   │       │   │   │       ├── __init__.py
+│   │   │   │       │   │   │       └── main.py
+│   │   │   │       │   │   └── schemes
+│   │   │   │       │   │       ├── general.py
+│   │   │   │       │   │       └── __init__.py
+│   │   │   │       │   ├── __init__.py
+│   │   │   │       │   └── worker
+│   │   │   │       │       ├── __init__.py
+│   │   │   │       │       ├── schemes
+│   │   │   │       │       │   └── __init__.py
+│   │   │   │       │       └── worker.py
+│   │   │   │       ├── server_fastapi.py
+│   │   │   │       ├── services
+│   │   │   │       │   ├── auth.py
+│   │   │   │       │   ├── booking.py
+│   │   │   │       │   ├── delete_all.py
+│   │   │   │       │   ├── __init__.py
+│   │   │   │       │   ├── query.py
+│   │   │   │       │   └── secrets_generator
+│   │   │   │       │       ├── __init__.py
+│   │   │   │       │       └── main.py
+│   │   │   │       ├── shared_microservices
+│   │   │   │       │   ├── cryptoapi
+│   │   │   │       │   │   ├── __init__.py
+│   │   │   │       │   │   └── main.py
+│   │   │   │       │   └── __init__.py
+│   │   │   │       └── utils
+│   │   │   │           ├── gunicorn.py
+│   │   │   │           ├── __init__.py
+│   │   │   │           ├── init.sh
+│   │   │   │           ├── requirements.txt
+│   │   │   │           └── server_fastapi.py
+│   │   │   ├── APIWS
+│   │   │   │   ├── package.json
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── v1
+│   │   │   │       ├── avaible_routes.json
+│   │   │   │       ├── db
+│   │   │   │       │   ├── asyncTable.js
+│   │   │   │       │   └── database.js
+│   │   │   │       ├── deployment
+│   │   │   │       │   └── Dockerfile
+│   │   │   │       ├── middlewares
+│   │   │   │       │   └── errorHandler.js
+│   │   │   │       ├── namespaces
+│   │   │   │       │   └── rethinkdb
+│   │   │   │       │       └── booking_card_change.js
+│   │   │   │       ├── server.js
+│   │   │   │       ├── test
+│   │   │   │       │   └── index.js
+│   │   │   │       ├── utils
+│   │   │   │       │   └── add_path_files.js
+│   │   │   │       └── view
+│   │   │   │           └── index.html
+│   │   │   ├── CryptoAPI
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── v1
+│   │   │   │       ├── dependencies
+│   │   │   │       │   ├── CUDA_AES_main
+│   │   │   │       │   │   ├── AES.py
+│   │   │   │       │   │   ├── E4750_2022Fall_PAES_anr2157_rd3033.report.pdf
+│   │   │   │       │   │   ├── Fig
+│   │   │   │       │   │   │   ├── blockSize.py
+│   │   │   │       │   │   │   ├── graphs.ipynb
+│   │   │   │       │   │   │   └── inputdataSize.py
+│   │   │   │       │   │   ├── __init__.py
+│   │   │   │       │   │   ├── input.txt
+│   │   │   │       │   │   ├── kernels
+│   │   │   │       │   │   │   ├── AddRoundKey.cuh
+│   │   │   │       │   │   │   ├── AES.cuh
+│   │   │   │       │   │   │   ├── FinalRound.cuh
+│   │   │   │       │   │   │   ├── general.cuh
+│   │   │   │       │   │   │   ├── InvAES.cuh
+│   │   │   │       │   │   │   ├── InvFinalRound.cuh
+│   │   │   │       │   │   │   ├── InvMixColumns.cuh
+│   │   │   │       │   │   │   ├── InvRound.cuh
+│   │   │   │       │   │   │   ├── InvShiftRows.cuh
+│   │   │   │       │   │   │   ├── InvSubbytes.cuh
+│   │   │   │       │   │   │   ├── KeyExpansion.cuh
+│   │   │   │       │   │   │   ├── MixColumns.cuh
+│   │   │   │       │   │   │   ├── Round.cuh
+│   │   │   │       │   │   │   ├── ShiftRows.cuh
+│   │   │   │       │   │   │   └── SubBytes.cuh
+│   │   │   │       │   │   ├── output_decrypted.txt
+│   │   │   │       │   │   ├── output_encrypted.txt
+│   │   │   │       │   │   ├── profiling_reports
+│   │   │   │       │   │   │   └── metrics.nsight-cuprof-report
+│   │   │   │       │   │   ├── README.md
+│   │   │   │       │   │   ├── ref
+│   │   │   │       │   │   │   ├── AES_Python.py
+│   │   │   │       │   │   │   └── __init__.py
+│   │   │   │       │   │   ├── requirements.txt
+│   │   │   │       │   │   └── tb
+│   │   │   │       │   │       ├── AddRoundKey_test.py
+│   │   │   │       │   │       ├── AES_test.py
+│   │   │   │       │   │       ├── AES_test.txt
+│   │   │   │       │   │       ├── AES_time.py
+│   │   │   │       │   │       ├── __init__.py
+│   │   │   │       │   │       ├── InvAES_test.py
+│   │   │   │       │   │       ├── InvMixColumns_test.py
+│   │   │   │       │   │       ├── InvRound_test.py
+│   │   │   │       │   │       ├── InvShiftRows_test.py
+│   │   │   │       │   │       ├── KeyExpansion_test.py
+│   │   │   │       │   │       ├── MixColumns_test.py
+│   │   │   │       │   │       ├── Round_test.py
+│   │   │   │       │   │       ├── ShiftRows_test.py
+│   │   │   │       │   │       ├── SubBytes_test.py
+│   │   │   │       │   │       └── test_cases
+│   │   │   │       │   │           └── create_test_cases.py
+│   │   │   │       │   └── __init__.py
+│   │   │   │       ├── deployment
+│   │   │   │       │   └── Dockerfile
+│   │   │   │       ├── execute.sh
+│   │   │   │       ├── middlewares
+│   │   │   │       │   ├── __init__.py
+│   │   │   │       │   └── text_plain.py
+│   │   │   │       ├── requirements.txt
+│   │   │   │       ├── routes
+│   │   │   │       │   ├── cpu
+│   │   │   │       │   │   ├── __init__.py
+│   │   │   │       │   │   └── main.py
+│   │   │   │       │   ├── gpu
+│   │   │   │       │   │   ├── __init__.py
+│   │   │   │       │   │   └── main.py
+│   │   │   │       │   └── __init__.py
+│   │   │   │       ├── server_fastapi.py
+│   │   │   │       └── services
+│   │   │   │           ├── gpu_cryptography
+│   │   │   │           │   ├── __init__.py
+│   │   │   │           │   └── main.py
+│   │   │   │           └── __init__.py
+│   │   │   ├── docker-compose.yml
+│   │   │   ├── __init__.py
+│   │   │   └── StatusAPI
+│   │   │       ├── __init__.py
+│   │   │       ├── requirements.txt
+│   │   │       └── v1
+│   │   │           ├── deployment
+│   │   │           │   └── Dockerfile
+│   │   │           ├── gunicorn.py
+│   │   │           ├── __init__.py
+│   │   │           ├── init.sh
+│   │   │           ├── requirements.txt
+│   │   │           ├── routes
+│   │   │           │   ├── api
+│   │   │           │   │   ├── __init__.py
+│   │   │           │   │   └── main.py
+│   │   │           │   ├── apiws
+│   │   │           │   │   ├── __init__.py
+│   │   │           │   │   └── main.py
+│   │   │           │   ├── cryptoapi
+│   │   │           │   │   ├── __init__.py
+│   │   │           │   │   └── main.py
+│   │   │           │   └── __init__.py
+│   │   │           └── server_fastapi.py
+│   │   ├── certs
+│   │   │   ├── peluqueriamael.com_cert
+│   │   │   │   ├── peluqueriamael.com.ca-bundle
+│   │   │   │   ├── peluqueriamael.com.crt
+│   │   │   │   └── peluqueriamael.com.p7b
+│   │   │   └── peluqueriamael.com_key.txt
+│   │   ├── config_deploy.py
+│   │   ├── config.yml
+│   │   ├── conversor
+│   │   │   ├── config
+│   │   │   │   ├── config.js
+│   │   │   │   ├── config.py
+│   │   │   │   └── __init__.py
+│   │   │   ├── __init__.py
+│   │   │   ├── package.json
+│   │   │   ├── package-lock.json
+│   │   │   └── requirements.txt
+│   │   ├── db
+│   │   │   ├── docker-compose.yml
+│   │   │   ├── dump
+│   │   │   │   ├── admin
+│   │   │   │   │   ├── system.version.bson
+│   │   │   │   │   └── system.version.metadata.json
+│   │   │   │   ├── cassocup
+│   │   │   │   │   ├── euro_to_cryptos.bson
+│   │   │   │   │   ├── euro_to_cryptos.metadata.json
+│   │   │   │   │   ├── latest_event.bson
+│   │   │   │   │   ├── latest_event.metadata.json
+│   │   │   │   │   ├── users.bson
+│   │   │   │   │   └── users.metadata.json
+│   │   │   │   ├── PeluqueriaMael
+│   │   │   │   │   ├── Admin.bson
+│   │   │   │   │   ├── Admin.metadata.json
+│   │   │   │   │   ├── Configure.bson
+│   │   │   │   │   ├── Configure.metadata.json
+│   │   │   │   │   ├── Personal.bson
+│   │   │   │   │   ├── Personal.metadata.json
+│   │   │   │   │   ├── Reservas.bson
+│   │   │   │   │   ├── Reservas.metadata.json
+│   │   │   │   │   ├── Types.bson
+│   │   │   │   │   ├── Types.metadata.json
+│   │   │   │   │   ├── Users.bson
+│   │   │   │   │   └── Users.metadata.json
+│   │   │   │   └── public
+│   │   │   │       ├── schulde_products.bson
+│   │   │   │       └── schulde_products.metadata.json
+│   │   │   └── scripts
+│   │   │       ├── dump_mongodb.sh
+│   │   │       └── install_mongodb.sh
+│   │   ├── __init__.py
+│   │   └── web
+│   │       ├── API
+│   │       │   └── v1
+│   │       │       ├── config
+│   │       │       │   ├── config.py
+│   │       │       │   └── __init__.py
+│   │       │       ├── crud
+│   │       │       │   ├── __init__.py
+│   │       │       │   └── users
+│   │       │       │       ├── add.py
+│   │       │       │       ├── delete.py
+│   │       │       │       └── __init__.py
+│   │       │       ├── db
+│   │       │       │   ├── database.py
+│   │       │       │   └── __init__.py
+│   │       │       ├── __init__.py
+│   │       │       ├── md
+│   │       │       │   └── ERRORS.md
+│   │       │       ├── requirements.txt
+│   │       │       ├── routes
+│   │       │       │   ├── app
+│   │       │       │   │   ├── admin
+│   │       │       │   │   │   ├── admin.py
+│   │       │       │   │   │   ├── __init__.py
+│   │       │       │   │   │   └── schemes
+│   │       │       │   │   │       └── __init__.py
+│   │       │       │   │   ├── client
+│   │       │       │   │   │   ├── client.py
+│   │       │       │   │   │   ├── __init__.py
+│   │       │       │   │   │   └── schemes
+│   │       │       │   │   │       └── __init__.py
+│   │       │       │   │   ├── __init__.py
+│   │       │       │   │   └── worker
+│   │       │       │   │       ├── __init__.py
+│   │       │       │   │       ├── schemes
+│   │       │       │   │       │   └── __init__.py
+│   │       │       │   │       └── worker.py
+│   │       │       │   ├── __init__.py
+│   │       │       │   └── public
+│   │       │       │       ├── __init__.py
+│   │       │       │       ├── login.py
+│   │       │       │       ├── public.py
+│   │       │       │       └── schemes
+│   │       │       │           ├── general.py
+│   │       │       │           └── __init__.py
+│   │       │       ├── server.py
+│   │       │       ├── services
+│   │       │       │   ├── auth.py
+│   │       │       │   ├── booking.py
+│   │       │       │   ├── delete_all.py
+│   │       │       │   ├── __init__.py
+│   │       │       │   └── query.py
+│   │       │       └── utils
+│   │       │           └── __init__.py
+│   │       └── docker-compose.yml
+│   ├── old
+│   │   └── backend_traspased
+│   │       ├── app
+│   │       │   ├── Booking.py
+│   │       │   ├── database
+│   │       │   │   ├── db.py
+│   │       │   │   ├── __init__.py
+│   │       │   │   ├── models
+│   │       │   │   │   ├── staff
+│   │       │   │   │   │   └── __init__.py
+│   │       │   │   │   └── user
+│   │       │   │   │       └── __init__.py
+│   │       │   │   ├── models.json
+│   │       │   │   ├── test_staff.db
+│   │       │   │   └── test_users.db
+│   │       │   ├── HFeAu
+│   │       │   ├── info.md
+│   │       │   ├── MongoDB
+│   │       │   │   ├── schulde
+│   │       │   │   │   ├── create
+│   │       │   │   │   │   └── CreateDays.py
+│   │       │   │   │   ├── querys
+│   │       │   │   │   │   ├── RenewDaysSchulde.py
+│   │       │   │   │   │   └── SchuldeObtain.py
+│   │       │   │   │   └── task_os
+│   │       │   │   │       └── SetRenewSchulde.py
+│   │       │   │   └── users
+│   │       │   │       ├── create
+│   │       │   │       │   └── user.py
+│   │       │   │       └── querys
+│   │       │   │           └── MongoDBQuery.py
+│   │       │   ├── requirements
+│   │       │   │   └── requirements.txt
+│   │       │   ├── routes
+│   │       │   │   ├── __init__.py
+│   │       │   │   ├── schemes
+│   │       │   │   │   ├── staff.py
+│   │       │   │   │   └── user.py
+│   │       │   │   ├── staff.py
+│   │       │   │   └── user.py
+│   │       │   ├── schulde.json
+│   │       │   ├── server.py
+│   │       │   ├── test.py
+│   │       │   ├── tests
+│   │       │   │   ├── mongodb
+│   │       │   │   │   └── userAdd.py
+│   │       │   │   └── user
+│   │       │   │       ├── login.py
+│   │       │   │       └── register.py
+│   │       │   ├── test_staff.db
+│   │       │   ├── token.json
+│   │       │   └── utils
+│   │       │       ├── logging
+│   │       │       │   ├── app.log
+│   │       │       │   └── __init__.py
+│   │       │       ├── schulde.bat
+│   │       │       ├── security.py
+│   │       │       └── validation.py
+│   │       └── __init__.py
+│   └── tests
+│       ├── __init__.py
+│       ├── microservices
+│       │   ├── app
+│       │   │   ├── API
+│       │   │   │   ├── __init__.py
+│       │   │   │   └── v1
+│       │   │   │       ├── crud
+│       │   │   │       │   ├── booking
+│       │   │   │       │   │   ├── __init__.py
+│       │   │   │       │   │   ├── main.py
+│       │   │   │       │   │   └── utils
+│       │   │   │       │   │       ├── __init__.py
+│       │   │   │       │   │       ├── main.py
+│       │   │   │       │   │       └── testdb.py
+│       │   │   │       │   ├── __init__.py
+│       │   │   │       │   └── users
+│       │   │   │       │       ├── booking
+│       │   │   │       │       │   ├── __init__.py
+│       │   │   │       │       │   └── main.py
+│       │   │   │       │       ├── __init__.py
+│       │   │   │       │       └── main.py
+│       │   │   │       ├── db
+│       │   │   │       │   ├── __init__.py
+│       │   │   │       │   └── working.py
+│       │   │   │       ├── __init__.py
+│       │   │   │       ├── main.py
+│       │   │   │       └── services
+│       │   │   │           ├── auth
+│       │   │   │           │   ├── __init__.py
+│       │   │   │           │   └── main.py
+│       │   │   │           └── __init__.py
+│       │   │   └── __init__.py
+│       │   └── __init__.py
+│       └── routes
+│           ├── admin
+│           │   └── __init__.py
+│           ├── client
+│           │   ├── public
+│           │   │   ├── __init__.py
+│           │   │   └── main.py
+│           │   └── restricted
+│           │       ├── booking
+│           │       │   ├── data.json
+│           │       │   ├── __init__.py
+│           │       │   └── main.py
+│           │       ├── data
+│           │       │   ├── data.json
+│           │       │   ├── __init__.py
+│           │       │   └── main.py
+│           │       ├── data.json
+│           │       ├── __init__.py
+│           │       ├── main.py
+│           │       └── user
+│           │           ├── config
+│           │           │   ├── data.json
+│           │           │   ├── __init__.py
+│           │           │   └── main.py
+│           │           ├── data.json
+│           │           ├── __init__.py
+│           │           └── main.py
+│           └── worker
+│               └── __init__.py
+├── DevOps
+│   ├── ansible
+│   │   ├── ansible.cfg
+│   │   ├── hosts.ini
+│   │   ├── playbooks
+│   │   │   ├── docker_setup.yml
+│   │   │   ├── dynamic_motd_playbook.yml
+│   │   │   └── roles
+│   │   │       └── dynamic_motd
+│   │   │           ├── defaults
+│   │   │           │   └── main.yml
+│   │   │           ├── files
+│   │   │           ├── handlers
+│   │   │           │   └── main.yml
+│   │   │           ├── meta
+│   │   │           │   └── main.yml
+│   │   │           ├── README.md
+│   │   │           ├── tasks
+│   │   │           │   └── main.yml
+│   │   │           ├── templates
+│   │   │           │   └── motd.j2
+│   │   │           ├── tests
+│   │   │           │   ├── inventory
+│   │   │           │   └── test.yml
+│   │   │           └── vars
+│   │   │               └── main.yml
+│   │   ├── README.md
+│   │   └── scripts
+│   │       ├── config.py
+│   │       └── servers.yml
+│   ├── create_keys_rsa.sh
+│   ├── create_venv.sh
+│   ├── docker
+│   │   └── init.sh
+│   ├── install_server_dependencies.sh
+│   └── internal
+│       └── port_forwarding.sh
+├── Docs
+│   ├── Backend
+│   │   ├── init.md
+│   │   └── microservices
+│   │       └── app
+│   │           └── APIWS
+│   │               ├── create.sh
+│   │               ├── docs
+│   │               │   ├── AsyncTable.html
+│   │               │   ├── Database.html
+│   │               │   ├── db_asyncTable.js.html
+│   │               │   ├── db_database.js.html
+│   │               │   ├── fonts
+│   │               │   │   ├── Montserrat
+│   │               │   │   │   ├── Montserrat-Bold.eot
+│   │               │   │   │   ├── Montserrat-Bold.ttf
+│   │               │   │   │   ├── Montserrat-Bold.woff
+│   │               │   │   │   ├── Montserrat-Bold.woff2
+│   │               │   │   │   ├── Montserrat-Regular.eot
+│   │               │   │   │   ├── Montserrat-Regular.ttf
+│   │               │   │   │   ├── Montserrat-Regular.woff
+│   │               │   │   │   └── Montserrat-Regular.woff2
+│   │               │   │   ├── OpenSans-BoldItalic-webfont.eot
+│   │               │   │   ├── OpenSans-BoldItalic-webfont.svg
+│   │               │   │   ├── OpenSans-BoldItalic-webfont.woff
+│   │               │   │   ├── OpenSans-Bold-webfont.eot
+│   │               │   │   ├── OpenSans-Bold-webfont.svg
+│   │               │   │   ├── OpenSans-Bold-webfont.woff
+│   │               │   │   ├── OpenSans-Italic-webfont.eot
+│   │               │   │   ├── OpenSans-Italic-webfont.svg
+│   │               │   │   ├── OpenSans-Italic-webfont.woff
+│   │               │   │   ├── OpenSans-LightItalic-webfont.eot
+│   │               │   │   ├── OpenSans-LightItalic-webfont.svg
+│   │               │   │   ├── OpenSans-LightItalic-webfont.woff
+│   │               │   │   ├── OpenSans-Light-webfont.eot
+│   │               │   │   ├── OpenSans-Light-webfont.svg
+│   │               │   │   ├── OpenSans-Light-webfont.woff
+│   │               │   │   ├── OpenSans-Regular-webfont.eot
+│   │               │   │   ├── OpenSans-Regular-webfont.svg
+│   │               │   │   ├── OpenSans-Regular-webfont.woff
+│   │               │   │   └── Source-Sans-Pro
+│   │               │   │       ├── sourcesanspro-light-webfont.eot
+│   │               │   │       ├── sourcesanspro-light-webfont.svg
+│   │               │   │       ├── sourcesanspro-light-webfont.ttf
+│   │               │   │       ├── sourcesanspro-light-webfont.woff
+│   │               │   │       ├── sourcesanspro-light-webfont.woff2
+│   │               │   │       ├── sourcesanspro-regular-webfont.eot
+│   │               │   │       ├── sourcesanspro-regular-webfont.svg
+│   │               │   │       ├── sourcesanspro-regular-webfont.ttf
+│   │               │   │       ├── sourcesanspro-regular-webfont.woff
+│   │               │   │       └── sourcesanspro-regular-webfont.woff2
+│   │               │   ├── global.html
+│   │               │   ├── index.html
+│   │               │   ├── middlewares_errorHandler.js.html
+│   │               │   ├── scripts
+│   │               │   │   ├── collapse.js
+│   │               │   │   ├── commonNav.js
+│   │               │   │   ├── linenumber.js
+│   │               │   │   ├── nav.js
+│   │               │   │   ├── polyfill.js
+│   │               │   │   ├── prettify
+│   │               │   │   │   ├── Apache-License-2.0.txt
+│   │               │   │   │   ├── lang-css.js
+│   │               │   │   │   └── prettify.js
+│   │               │   │   └── search.js
+│   │               │   └── styles
+│   │               │       ├── jsdoc.css
+│   │               │       ├── jsdoc-default.css
+│   │               │       ├── prettify.css
+│   │               │       ├── prettify-jsdoc.css
+│   │               │       └── prettify-tomorrow.css
+│   │               ├── package.json
+│   │               └── package-lock.json
+│   └── DevOps
+│       ├── dev
+│       │   └── init.md
+│       ├── init.md
+│       └── pro
+│           └── init.md
+├── export.txt
+├── Frontend
+│   ├── App
+│   │   └── Client
+│   ├── README.md
+│   └── Web
+│       ├── index.html
+│       ├── package.json
+│       ├── package-lock.json
+│       ├── public
+│       │   └── vite.svg
+│       ├── README.md
+│       ├── src
+│       │   ├── App.css
+│       │   ├── App.tsx
+│       │   ├── assets
+│       │   │   └── react.svg
+│       │   ├── index.css
+│       │   ├── main.tsx
+│       │   └── vite-env.d.ts
+│       ├── tsconfig.json
+│       ├── tsconfig.node.json
+│       └── vite.config.ts
+├── Github
+│   ├── img
+│   │   ├── 68747470733a2f2f646f63732e7079746573742e6f72672f656e2f382e322e782f5f7374617469632f707974657374312e706e67.webp
+│   │   ├── 68747470733a2f2f666173746170692e7469616e676f6c6f2e636f6d2f696d672f6c6f676f2d6d617267696e2f6c6f676f2d7465616c2e706e67.png
+│   │   ├── 68747470733a2f2f692e6962622e636f2f326a74475076572f507265737570756573746f2d736572766963696f732d637265617469766f732d73696d706c652d626c616e636f2d792d63656c657374652d322e706e67.png
+│   │   ├── 68747470733a2f2f692e6962622e636f2f3352777163437a2f6c6f676f2e706e67.png
+│   │   ├── 68747470733a2f2f692e6962622e636f2f335962686350702f496e666f726d652d70632d64652d7365727669646f722e706e67.png
+│   │   ├── 68747470733a2f2f692e6962622e636f2f37317743376d522f363166397235392d4368722d4c2d41432d41413336302e6a7067.jpeg
+│   │   ├── 68747470733a2f2f692e6962622e636f2f3757347454354b2f4465766f6c7563696f6e2d64656c2d707265737570756573746f2e706e67.png
+│   │   ├── 68747470733a2f2f692e6962622e636f2f38326d6b7958532f446973652d6f2d73696e2d742d74756c6f2e706e67.png
+│   │   ├── 68747470733a2f2f692e6962622e636f2f38624e303346462f6d6f6e676f64622d6c6f676f2d312d312d33302e706e67.png
+│   │   ├── 68747470733a2f2f692e6962622e636f2f436e386868647a2f696d6167652e706e67.png
+│   │   ├── 68747470733a2f2f692e6962622e636f2f464467706757462f3531766e2d4e517035362d514c2d41432d41413336302e6a7067.jpeg
+│   │   ├── 68747470733a2f2f692e6962622e636f2f4b715a6a7a71662f494d472d32303234303532382d3135323233382e6a7067.jpeg
+│   │   ├── 68747470733a2f2f692e6962622e636f2f4d7359366444792f3538343830376636636566313031346330623565343865302e706e67.png
+│   │   ├── 68747470733a2f2f692e6962622e636f2f5158396b6d68542f72656469732d6c6f676f2e706e67.png
+│   │   ├── 68747470733a2f2f692e6962622e636f2f56484d795170352f37317a2d5a566c30646a342d4c2d41432d41413336302e6a7067.jpeg
+│   │   ├── 68747470733a2f2f692e6962622e636f2f567772705870662f36312d4744762d4a6d2d4746352d4c2d41432d41413336302e6a7067.jpeg
+│   │   ├── 68747470733a2f2f692e6962622e636f2f583451585753672f343173772d527a712d4a62642d4c2d41432d41413336302e6a7067.jpeg
+│   │   ├── 68747470733a2f2f692e6962622e636f2f675774536654722f3631792d44307470342d47434c2d41432d41413336302e6a7067.jpeg
+│   │   ├── 68747470733a2f2f692e6962622e636f2f6856334676476b2f6d617872657364656661756c742e6a7067.jpeg
+│   │   ├── 68747470733a2f2f692e6962622e636f2f6b486635376b462f507265737570756573746f2d52656e6f7661646f2e706e67.png
+│   │   ├── 68747470733a2f2f692e6962622e636f2f71356a683751532f416d617a6f6e2d65732d50656469646f2d3430322d353930383239322d343836313936372d312e706e67.png
+│   │   ├── 68747470733a2f2f692e6962622e636f2f7642346b7263772f657870726573736a732d617232312e706e67.png
+│   │   ├── 68747470733a2f2f696d672e737461636b73686172652e696f2f736572766963652f3533312f537030664978756c5f343030783430302e6a7067.jpeg
+│   │   ├── 68747470733a2f2f7777772e737068696e782d646f632e6f72672f656e2f6d61737465722f5f7374617469632f737068696e782d6c6f676f2e737667.svg
+│   │   └── 68747470733a2f2f7777772e757669636f726e2e6f72672f757669636f726e2e706e67.png
+│   └── scripts
+│       ├── rebase.sh
+│       └── save.sh
+├── __init__.py
+├── LICENSE
+├── project.yaml
+├── README.md
+├── RethinkDB
+│   ├── client.py
+│   ├── index.html
+│   ├── test.py
+│   └── ws
+│       ├── package.json
+│       ├── package-lock.json
+│       └── test.js
+└── Ubuntu
+    └── autoinstall.yaml
+
+193 directories, 464 files

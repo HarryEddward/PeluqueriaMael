@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from typing import List
-import numba as nb
 
 class workerLessBusy:
 

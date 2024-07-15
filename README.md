@@ -265,6 +265,12 @@ de descargarlo y implementarlo. Lo llamaré easy_cuda_crypto_gpu
 Conseguí hacer la libreria de encritpación en 1 día de python para úso de GPU, se llama: gpu_cuda_aes. Es fácil de usar y consigua alcanzar niveles grandes de rendimiento por simple úso de la GPU. Estará listo para publicarse hoy mismo luego de añadir los docs, el testeo y lo compile!
 Así evito dependencias por repositorios y ayudo a la misma comunidad, aparte de un código mas simple y legible.
 
+## Docker
+Hare úso de docker-swarm, por el hecho que se autogestióna por el mismo. No es
+tan complejo como kubernetes y por la simplicidad de la tecnología, y el úso a
+producción a nivel regional no sera necesario la capacidad de hacer úso de muchos servidores.
+
+
 ## Configuración_Del_Servidor
 Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y úso nativamente de contendores llamado jails en FreeBSD.
 
