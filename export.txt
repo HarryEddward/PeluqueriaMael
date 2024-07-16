@@ -5,50 +5,60 @@
 │   │   ├── app
 │   │   │   ├── API
 │   │   │   │   ├── __init__.py
+│   │   │   │   ├── __pycache__
 │   │   │   │   ├── save_branch.sh
 │   │   │   │   ├── save.sh
 │   │   │   │   └── v1
 │   │   │   │       ├── config
 │   │   │   │       │   ├── config.py
 │   │   │   │       │   ├── __init__.py
-│   │   │   │       │   └── middlewares
-│   │   │   │       │       └── client
-│   │   │   │       │           └── restricted.py
+│   │   │   │       │   ├── middlewares
+│   │   │   │       │   │   └── client
+│   │   │   │       │   │       ├── __pycache__
+│   │   │   │       │   │       └── restricted.py
+│   │   │   │       │   └── __pycache__
 │   │   │   │       ├── crud
 │   │   │   │       │   ├── booking
 │   │   │   │       │   │   ├── add.py
 │   │   │   │       │   │   ├── config.py
 │   │   │   │       │   │   ├── __init__.py
+│   │   │   │       │   │   ├── __pycache__
 │   │   │   │       │   │   ├── remove.py
 │   │   │   │       │   │   └── utils
 │   │   │   │       │   │       ├── conversorServices.py
 │   │   │   │       │   │       ├── __init__.py
 │   │   │   │       │   │       ├── main.py
+│   │   │   │       │   │       ├── __pycache__
 │   │   │   │       │   │       ├── remove
 │   │   │   │       │   │       │   └── verifyDays.py
 │   │   │   │       │   │       ├── serviceToPersonal.py
 │   │   │   │       │   │       └── workerLessBusy.py
 │   │   │   │       │   ├── IMPORTANT.md
 │   │   │   │       │   ├── __init__.py
+│   │   │   │       │   ├── __pycache__
 │   │   │   │       │   └── users
 │   │   │   │       │       ├── add.py
 │   │   │   │       │       ├── booking
 │   │   │   │       │       │   ├── add.py
 │   │   │   │       │       │   ├── __init__.py
+│   │   │   │       │       │   ├── __pycache__
 │   │   │   │       │       │   └── remove.py
 │   │   │   │       │       ├── delete.py
 │   │   │   │       │       ├── find.py
 │   │   │   │       │       ├── __init__.py
+│   │   │   │       │       ├── __pycache__
 │   │   │   │       │       ├── update.py
 │   │   │   │       │       └── validation.py
 │   │   │   │       ├── db
 │   │   │   │       │   ├── create_db.py
 │   │   │   │       │   ├── database.py
 │   │   │   │       │   ├── __init__.py
+│   │   │   │       │   ├── __pycache__
 │   │   │   │       │   └── rethinkdb
 │   │   │   │       │       ├── create_db.py
 │   │   │   │       │       ├── database.py
-│   │   │   │       │       └── __init__.py
+│   │   │   │       │       ├── __init__.py
+│   │   │   │       │       └── __pycache__
 │   │   │   │       ├── deployment
 │   │   │   │       │   └── Dockerfile
 │   │   │   │       ├── gunicorn.py
@@ -56,49 +66,64 @@
 │   │   │   │       ├── init.sh
 │   │   │   │       ├── md
 │   │   │   │       │   └── ERRORS.md
+│   │   │   │       ├── __pycache__
 │   │   │   │       ├── requirements.txt
 │   │   │   │       ├── routes
 │   │   │   │       │   ├── admin
 │   │   │   │       │   │   ├── admin.py
 │   │   │   │       │   │   ├── __init__.py
+│   │   │   │       │   │   ├── __pycache__
 │   │   │   │       │   │   ├── restricted
 │   │   │   │       │   │   │   ├── __init__.py
-│   │   │   │       │   │   │   └── main.py
+│   │   │   │       │   │   │   ├── main.py
+│   │   │   │       │   │   │   └── __pycache__
 │   │   │   │       │   │   └── schemes
-│   │   │   │       │   │       └── __init__.py
+│   │   │   │       │   │       ├── __init__.py
+│   │   │   │       │   │       └── __pycache__
 │   │   │   │       │   ├── client
 │   │   │   │       │   │   ├── __init__.py
 │   │   │   │       │   │   ├── main.py
 │   │   │   │       │   │   ├── public
 │   │   │   │       │   │   │   ├── __init__.py
 │   │   │   │       │   │   │   ├── limiter.py
-│   │   │   │       │   │   │   └── main.py
+│   │   │   │       │   │   │   ├── main.py
+│   │   │   │       │   │   │   └── __pycache__
+│   │   │   │       │   │   ├── __pycache__
 │   │   │   │       │   │   ├── restricted
 │   │   │   │       │   │   │   ├── booking
 │   │   │   │       │   │   │   │   ├── __init__.py
 │   │   │   │       │   │   │   │   ├── main.py
+│   │   │   │       │   │   │   │   ├── __pycache__
 │   │   │   │       │   │   │   │   └── type.py
 │   │   │   │       │   │   │   ├── data
 │   │   │   │       │   │   │   │   ├── __init__.py
-│   │   │   │       │   │   │   │   └── main.py
+│   │   │   │       │   │   │   │   ├── main.py
+│   │   │   │       │   │   │   │   └── __pycache__
 │   │   │   │       │   │   │   ├── IMPORTANT.md
 │   │   │   │       │   │   │   ├── __init__.py
 │   │   │   │       │   │   │   ├── limiter.py
 │   │   │   │       │   │   │   ├── main.py
+│   │   │   │       │   │   │   ├── __pycache__
 │   │   │   │       │   │   │   └── user
 │   │   │   │       │   │   │       ├── config
 │   │   │   │       │   │   │       │   ├── __init__.py
-│   │   │   │       │   │   │       │   └── main.py
+│   │   │   │       │   │   │       │   ├── main.py
+│   │   │   │       │   │   │       │   └── __pycache__
 │   │   │   │       │   │   │       ├── __init__.py
-│   │   │   │       │   │   │       └── main.py
+│   │   │   │       │   │   │       ├── main.py
+│   │   │   │       │   │   │       └── __pycache__
 │   │   │   │       │   │   └── schemes
 │   │   │   │       │   │       ├── general.py
-│   │   │   │       │   │       └── __init__.py
+│   │   │   │       │   │       ├── __init__.py
+│   │   │   │       │   │       └── __pycache__
 │   │   │   │       │   ├── __init__.py
+│   │   │   │       │   ├── __pycache__
 │   │   │   │       │   └── worker
 │   │   │   │       │       ├── __init__.py
+│   │   │   │       │       ├── __pycache__
 │   │   │   │       │       ├── schemes
-│   │   │   │       │       │   └── __init__.py
+│   │   │   │       │       │   ├── __init__.py
+│   │   │   │       │       │   └── __pycache__
 │   │   │   │       │       └── worker.py
 │   │   │   │       ├── server_fastapi.py
 │   │   │   │       ├── services
@@ -106,19 +131,24 @@
 │   │   │   │       │   ├── booking.py
 │   │   │   │       │   ├── delete_all.py
 │   │   │   │       │   ├── __init__.py
+│   │   │   │       │   ├── __pycache__
 │   │   │   │       │   ├── query.py
 │   │   │   │       │   └── secrets_generator
 │   │   │   │       │       ├── __init__.py
-│   │   │   │       │       └── main.py
+│   │   │   │       │       ├── main.py
+│   │   │   │       │       └── __pycache__
 │   │   │   │       ├── shared_microservices
 │   │   │   │       │   ├── cryptoapi
 │   │   │   │       │   │   ├── __init__.py
-│   │   │   │       │   │   └── main.py
-│   │   │   │       │   └── __init__.py
+│   │   │   │       │   │   ├── main.py
+│   │   │   │       │   │   └── __pycache__
+│   │   │   │       │   ├── __init__.py
+│   │   │   │       │   └── __pycache__
 │   │   │   │       └── utils
 │   │   │   │           ├── gunicorn.py
 │   │   │   │           ├── __init__.py
 │   │   │   │           ├── init.sh
+│   │   │   │           ├── __pycache__
 │   │   │   │           ├── requirements.txt
 │   │   │   │           └── server_fastapi.py
 │   │   │   ├── APIWS
@@ -146,6 +176,7 @@
 │   │   │   │           └── index.html
 │   │   │   ├── CryptoAPI
 │   │   │   │   ├── __init__.py
+│   │   │   │   ├── __pycache__
 │   │   │   │   └── v1
 │   │   │   │       ├── dependencies
 │   │   │   │       │   ├── CUDA_AES_main
@@ -222,9 +253,424 @@
 │   │   │   │           │   └── main.py
 │   │   │   │           └── __init__.py
 │   │   │   ├── docker-compose.yml
+│   │   │   ├── docs
+│   │   │   │   ├── build
+│   │   │   │   │   ├── doctrees
+│   │   │   │   │   │   ├── API.doctree
+│   │   │   │   │   │   ├── API.v1.config.doctree
+│   │   │   │   │   │   ├── API.v1.crud.booking.doctree
+│   │   │   │   │   │   ├── API.v1.crud.booking.utils.doctree
+│   │   │   │   │   │   ├── API.v1.crud.doctree
+│   │   │   │   │   │   ├── API.v1.crud.users.booking.doctree
+│   │   │   │   │   │   ├── API.v1.crud.users.doctree
+│   │   │   │   │   │   ├── API.v1.db.doctree
+│   │   │   │   │   │   ├── API.v1.db.rethinkdb.doctree
+│   │   │   │   │   │   ├── API.v1.doctree
+│   │   │   │   │   │   ├── API.v1.routes.admin.doctree
+│   │   │   │   │   │   ├── API.v1.routes.admin.restricted.doctree
+│   │   │   │   │   │   ├── API.v1.routes.admin.schemes.doctree
+│   │   │   │   │   │   ├── API.v1.routes.client.doctree
+│   │   │   │   │   │   ├── API.v1.routes.client.public.doctree
+│   │   │   │   │   │   ├── API.v1.routes.client.restricted.booking.doctree
+│   │   │   │   │   │   ├── API.v1.routes.client.restricted.data.doctree
+│   │   │   │   │   │   ├── API.v1.routes.client.restricted.doctree
+│   │   │   │   │   │   ├── API.v1.routes.client.restricted.user.config.doctree
+│   │   │   │   │   │   ├── API.v1.routes.client.restricted.user.doctree
+│   │   │   │   │   │   ├── API.v1.routes.client.schemes.doctree
+│   │   │   │   │   │   ├── API.v1.routes.doctree
+│   │   │   │   │   │   ├── API.v1.routes.worker.doctree
+│   │   │   │   │   │   ├── API.v1.routes.worker.schemes.doctree
+│   │   │   │   │   │   ├── API.v1.services.doctree
+│   │   │   │   │   │   ├── API.v1.services.secrets_generator.doctree
+│   │   │   │   │   │   ├── API.v1.shared_microservices.cryptoapi.doctree
+│   │   │   │   │   │   ├── API.v1.shared_microservices.doctree
+│   │   │   │   │   │   ├── API.v1.utils.doctree
+│   │   │   │   │   │   ├── app.API.doctree
+│   │   │   │   │   │   ├── app.API.v1.config.doctree
+│   │   │   │   │   │   ├── app.API.v1.crud.booking.doctree
+│   │   │   │   │   │   ├── app.API.v1.crud.booking.utils.doctree
+│   │   │   │   │   │   ├── app.API.v1.crud.doctree
+│   │   │   │   │   │   ├── app.API.v1.crud.users.booking.doctree
+│   │   │   │   │   │   ├── app.API.v1.crud.users.doctree
+│   │   │   │   │   │   ├── app.API.v1.db.doctree
+│   │   │   │   │   │   ├── app.API.v1.db.rethinkdb.doctree
+│   │   │   │   │   │   ├── app.API.v1.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.admin.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.admin.restricted.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.admin.schemes.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.client.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.client.public.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.booking.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.data.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.user.config.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.user.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.client.schemes.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.worker.doctree
+│   │   │   │   │   │   ├── app.API.v1.routes.worker.schemes.doctree
+│   │   │   │   │   │   ├── app.API.v1.services.doctree
+│   │   │   │   │   │   ├── app.API.v1.services.secrets_generator.doctree
+│   │   │   │   │   │   ├── app.API.v1.shared_microservices.cryptoapi.doctree
+│   │   │   │   │   │   ├── app.API.v1.shared_microservices.doctree
+│   │   │   │   │   │   ├── app.API.v1.utils.doctree
+│   │   │   │   │   │   ├── app.CryptoAPI.doctree
+│   │   │   │   │   │   ├── app.doctree
+│   │   │   │   │   │   ├── app.StatusAPI.doctree
+│   │   │   │   │   │   ├── app.StatusAPI.v1.doctree
+│   │   │   │   │   │   ├── app.StatusAPI.v1.routes.api.doctree
+│   │   │   │   │   │   ├── app.StatusAPI.v1.routes.apiws.doctree
+│   │   │   │   │   │   ├── app.StatusAPI.v1.routes.cryptoapi.doctree
+│   │   │   │   │   │   ├── app.StatusAPI.v1.routes.doctree
+│   │   │   │   │   │   ├── environment.pickle
+│   │   │   │   │   │   ├── index.doctree
+│   │   │   │   │   │   └── modules.doctree
+│   │   │   │   │   ├── html
+│   │   │   │   │   │   ├── API.html
+│   │   │   │   │   │   ├── API.v1.config.html
+│   │   │   │   │   │   ├── API.v1.crud.booking.html
+│   │   │   │   │   │   ├── API.v1.crud.booking.utils.html
+│   │   │   │   │   │   ├── API.v1.crud.html
+│   │   │   │   │   │   ├── API.v1.crud.users.booking.html
+│   │   │   │   │   │   ├── API.v1.crud.users.html
+│   │   │   │   │   │   ├── API.v1.db.html
+│   │   │   │   │   │   ├── API.v1.db.rethinkdb.html
+│   │   │   │   │   │   ├── API.v1.html
+│   │   │   │   │   │   ├── API.v1.routes.admin.html
+│   │   │   │   │   │   ├── API.v1.routes.admin.restricted.html
+│   │   │   │   │   │   ├── API.v1.routes.admin.schemes.html
+│   │   │   │   │   │   ├── API.v1.routes.client.html
+│   │   │   │   │   │   ├── API.v1.routes.client.public.html
+│   │   │   │   │   │   ├── API.v1.routes.client.restricted.booking.html
+│   │   │   │   │   │   ├── API.v1.routes.client.restricted.data.html
+│   │   │   │   │   │   ├── API.v1.routes.client.restricted.html
+│   │   │   │   │   │   ├── API.v1.routes.client.restricted.user.config.html
+│   │   │   │   │   │   ├── API.v1.routes.client.restricted.user.html
+│   │   │   │   │   │   ├── API.v1.routes.client.schemes.html
+│   │   │   │   │   │   ├── API.v1.routes.html
+│   │   │   │   │   │   ├── API.v1.routes.worker.html
+│   │   │   │   │   │   ├── API.v1.routes.worker.schemes.html
+│   │   │   │   │   │   ├── API.v1.services.html
+│   │   │   │   │   │   ├── API.v1.services.secrets_generator.html
+│   │   │   │   │   │   ├── API.v1.shared_microservices.cryptoapi.html
+│   │   │   │   │   │   ├── API.v1.shared_microservices.html
+│   │   │   │   │   │   ├── API.v1.utils.html
+│   │   │   │   │   │   ├── app.API.html
+│   │   │   │   │   │   ├── app.API.v1.config.html
+│   │   │   │   │   │   ├── app.API.v1.crud.booking.html
+│   │   │   │   │   │   ├── app.API.v1.crud.booking.utils.html
+│   │   │   │   │   │   ├── app.API.v1.crud.html
+│   │   │   │   │   │   ├── app.API.v1.crud.users.booking.html
+│   │   │   │   │   │   ├── app.API.v1.crud.users.html
+│   │   │   │   │   │   ├── app.API.v1.db.html
+│   │   │   │   │   │   ├── app.API.v1.db.rethinkdb.html
+│   │   │   │   │   │   ├── app.API.v1.html
+│   │   │   │   │   │   ├── app.API.v1.routes.admin.html
+│   │   │   │   │   │   ├── app.API.v1.routes.admin.restricted.html
+│   │   │   │   │   │   ├── app.API.v1.routes.admin.schemes.html
+│   │   │   │   │   │   ├── app.API.v1.routes.client.html
+│   │   │   │   │   │   ├── app.API.v1.routes.client.public.html
+│   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.booking.html
+│   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.data.html
+│   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.html
+│   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.user.config.html
+│   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.user.html
+│   │   │   │   │   │   ├── app.API.v1.routes.client.schemes.html
+│   │   │   │   │   │   ├── app.API.v1.routes.html
+│   │   │   │   │   │   ├── app.API.v1.routes.worker.html
+│   │   │   │   │   │   ├── app.API.v1.routes.worker.schemes.html
+│   │   │   │   │   │   ├── app.API.v1.services.html
+│   │   │   │   │   │   ├── app.API.v1.services.secrets_generator.html
+│   │   │   │   │   │   ├── app.API.v1.shared_microservices.cryptoapi.html
+│   │   │   │   │   │   ├── app.API.v1.shared_microservices.html
+│   │   │   │   │   │   ├── app.API.v1.utils.html
+│   │   │   │   │   │   ├── app.CryptoAPI.html
+│   │   │   │   │   │   ├── app.html
+│   │   │   │   │   │   ├── app.StatusAPI.html
+│   │   │   │   │   │   ├── app.StatusAPI.v1.html
+│   │   │   │   │   │   ├── app.StatusAPI.v1.routes.api.html
+│   │   │   │   │   │   ├── app.StatusAPI.v1.routes.apiws.html
+│   │   │   │   │   │   ├── app.StatusAPI.v1.routes.cryptoapi.html
+│   │   │   │   │   │   ├── app.StatusAPI.v1.routes.html
+│   │   │   │   │   │   ├── genindex.html
+│   │   │   │   │   │   ├── index.html
+│   │   │   │   │   │   ├── _modules
+│   │   │   │   │   │   │   ├── API
+│   │   │   │   │   │   │   │   └── v1
+│   │   │   │   │   │   │   │       ├── crud
+│   │   │   │   │   │   │   │       │   └── booking
+│   │   │   │   │   │   │   │       │       └── utils
+│   │   │   │   │   │   │   │       │           └── workerLessBusy.html
+│   │   │   │   │   │   │   │       ├── routes
+│   │   │   │   │   │   │   │       │   ├── admin
+│   │   │   │   │   │   │   │       │   │   └── restricted
+│   │   │   │   │   │   │   │       │   │       └── main.html
+│   │   │   │   │   │   │   │       │   ├── client
+│   │   │   │   │   │   │   │       │   │   └── schemes
+│   │   │   │   │   │   │   │       │   │       └── general.html
+│   │   │   │   │   │   │   │       │   └── worker
+│   │   │   │   │   │   │   │       │       └── worker.html
+│   │   │   │   │   │   │   │       ├── services
+│   │   │   │   │   │   │   │       │   ├── auth.html
+│   │   │   │   │   │   │   │       │   └── secrets_generator
+│   │   │   │   │   │   │   │       │       └── main.html
+│   │   │   │   │   │   │   │       └── shared_microservices
+│   │   │   │   │   │   │   │           └── cryptoapi
+│   │   │   │   │   │   │   │               └── main.html
+│   │   │   │   │   │   │   ├── app
+│   │   │   │   │   │   │   │   ├── API
+│   │   │   │   │   │   │   │   │   └── v1
+│   │   │   │   │   │   │   │   │       ├── crud
+│   │   │   │   │   │   │   │   │       │   └── booking
+│   │   │   │   │   │   │   │   │       │       └── utils
+│   │   │   │   │   │   │   │   │       │           └── workerLessBusy.html
+│   │   │   │   │   │   │   │   │       ├── routes
+│   │   │   │   │   │   │   │   │       │   ├── admin
+│   │   │   │   │   │   │   │   │       │   │   └── restricted
+│   │   │   │   │   │   │   │   │       │   │       └── main.html
+│   │   │   │   │   │   │   │   │       │   ├── client
+│   │   │   │   │   │   │   │   │       │   │   └── schemes
+│   │   │   │   │   │   │   │   │       │   │       └── general.html
+│   │   │   │   │   │   │   │   │       │   └── worker
+│   │   │   │   │   │   │   │   │       │       └── worker.html
+│   │   │   │   │   │   │   │   │       ├── services
+│   │   │   │   │   │   │   │   │       │   ├── auth.html
+│   │   │   │   │   │   │   │   │       │   └── secrets_generator
+│   │   │   │   │   │   │   │   │       │       └── main.html
+│   │   │   │   │   │   │   │   │       └── shared_microservices
+│   │   │   │   │   │   │   │   │           └── cryptoapi
+│   │   │   │   │   │   │   │   │               └── main.html
+│   │   │   │   │   │   │   │   └── StatusAPI
+│   │   │   │   │   │   │   │       └── v1
+│   │   │   │   │   │   │   │           └── routes
+│   │   │   │   │   │   │   │               └── cryptoapi
+│   │   │   │   │   │   │   │                   └── main.html
+│   │   │   │   │   │   │   └── index.html
+│   │   │   │   │   │   ├── modules.html
+│   │   │   │   │   │   ├── objects.inv
+│   │   │   │   │   │   ├── py-modindex.html
+│   │   │   │   │   │   ├── search.html
+│   │   │   │   │   │   ├── searchindex.js
+│   │   │   │   │   │   ├── _sources
+│   │   │   │   │   │   │   ├── API.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.config.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.crud.booking.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.crud.booking.utils.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.crud.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.crud.users.booking.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.crud.users.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.db.rethinkdb.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.db.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.admin.restricted.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.admin.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.admin.schemes.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.client.public.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.client.restricted.booking.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.client.restricted.data.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.client.restricted.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.client.restricted.user.config.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.client.restricted.user.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.client.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.client.schemes.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.worker.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.routes.worker.schemes.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.services.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.services.secrets_generator.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.shared_microservices.cryptoapi.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.shared_microservices.rst.txt
+│   │   │   │   │   │   │   ├── API.v1.utils.rst.txt
+│   │   │   │   │   │   │   ├── app.API.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.config.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.crud.booking.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.crud.booking.utils.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.crud.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.crud.users.booking.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.crud.users.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.db.rethinkdb.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.db.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.admin.restricted.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.admin.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.admin.schemes.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.client.public.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.booking.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.data.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.user.config.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.client.restricted.user.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.client.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.client.schemes.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.worker.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.routes.worker.schemes.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.services.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.services.secrets_generator.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.shared_microservices.cryptoapi.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.shared_microservices.rst.txt
+│   │   │   │   │   │   │   ├── app.API.v1.utils.rst.txt
+│   │   │   │   │   │   │   ├── app.CryptoAPI.rst.txt
+│   │   │   │   │   │   │   ├── app.rst.txt
+│   │   │   │   │   │   │   ├── app.StatusAPI.rst.txt
+│   │   │   │   │   │   │   ├── app.StatusAPI.v1.routes.api.rst.txt
+│   │   │   │   │   │   │   ├── app.StatusAPI.v1.routes.apiws.rst.txt
+│   │   │   │   │   │   │   ├── app.StatusAPI.v1.routes.cryptoapi.rst.txt
+│   │   │   │   │   │   │   ├── app.StatusAPI.v1.routes.rst.txt
+│   │   │   │   │   │   │   ├── app.StatusAPI.v1.rst.txt
+│   │   │   │   │   │   │   ├── index.rst.txt
+│   │   │   │   │   │   │   └── modules.rst.txt
+│   │   │   │   │   │   └── _static
+│   │   │   │   │   │       ├── 0fecf1cc5677455886b4.woff2
+│   │   │   │   │   │       ├── 1d5fc702ab9000c3247a.woff
+│   │   │   │   │   │       ├── 2fe080a3bf49bdc12fcb.woff2
+│   │   │   │   │   │       ├── 39bd78ffb50669d6855a.woff
+│   │   │   │   │   │       ├── 4f183a25813446a47ad9.woff2
+│   │   │   │   │   │       ├── 5f68b8c26e28d783a591.woff2
+│   │   │   │   │   │       ├── 63a0f5d460fb58135365.woff
+│   │   │   │   │   │       ├── 70e1dc5f5622381d6e9e.woff
+│   │   │   │   │   │       ├── 84504970850f0632d9c3.woff
+│   │   │   │   │   │       ├── a1e4997bd1fb9d7822e1.woff2
+│   │   │   │   │   │       ├── a61d04152f1635036f0d.woff2
+│   │   │   │   │   │       ├── alabaster.css
+│   │   │   │   │   │       ├── awesome-docsearch.css
+│   │   │   │   │   │       ├── awesome-docsearch.js
+│   │   │   │   │   │       ├── awesome-sphinx-design.css
+│   │   │   │   │   │       ├── awesome-sphinx-design.js
+│   │   │   │   │   │       ├── base-stemmer.js
+│   │   │   │   │   │       ├── basic.css
+│   │   │   │   │   │       ├── c226d7283d0d52c2d32c.woff
+│   │   │   │   │   │       ├── custom.css
+│   │   │   │   │   │       ├── doctools.js
+│   │   │   │   │   │       ├── documentation_options.js
+│   │   │   │   │   │       ├── file.png
+│   │   │   │   │   │       ├── language_data.js
+│   │   │   │   │   │       ├── minus.png
+│   │   │   │   │   │       ├── plus.png
+│   │   │   │   │   │       ├── pygments.css
+│   │   │   │   │   │       ├── searchtools.js
+│   │   │   │   │   │       ├── spanish-stemmer.js
+│   │   │   │   │   │       ├── sphinx_highlight.js
+│   │   │   │   │   │       ├── theme.css
+│   │   │   │   │   │       ├── theme.js
+│   │   │   │   │   │       ├── theme.js.LICENSE.txt
+│   │   │   │   │   │       └── translations.js
+│   │   │   │   │   └── singlehtml
+│   │   │   │   │       ├── index.html
+│   │   │   │   │       ├── objects.inv
+│   │   │   │   │       └── _static
+│   │   │   │   │           ├── 0fecf1cc5677455886b4.woff2
+│   │   │   │   │           ├── 1d5fc702ab9000c3247a.woff
+│   │   │   │   │           ├── 2fe080a3bf49bdc12fcb.woff2
+│   │   │   │   │           ├── 39bd78ffb50669d6855a.woff
+│   │   │   │   │           ├── 4f183a25813446a47ad9.woff2
+│   │   │   │   │           ├── 5f68b8c26e28d783a591.woff2
+│   │   │   │   │           ├── 63a0f5d460fb58135365.woff
+│   │   │   │   │           ├── 70e1dc5f5622381d6e9e.woff
+│   │   │   │   │           ├── 84504970850f0632d9c3.woff
+│   │   │   │   │           ├── a1e4997bd1fb9d7822e1.woff2
+│   │   │   │   │           ├── a61d04152f1635036f0d.woff2
+│   │   │   │   │           ├── awesome-docsearch.css
+│   │   │   │   │           ├── awesome-docsearch.js
+│   │   │   │   │           ├── awesome-sphinx-design.css
+│   │   │   │   │           ├── awesome-sphinx-design.js
+│   │   │   │   │           ├── base-stemmer.js
+│   │   │   │   │           ├── basic.css
+│   │   │   │   │           ├── c226d7283d0d52c2d32c.woff
+│   │   │   │   │           ├── doctools.js
+│   │   │   │   │           ├── documentation_options.js
+│   │   │   │   │           ├── file.png
+│   │   │   │   │           ├── language_data.js
+│   │   │   │   │           ├── minus.png
+│   │   │   │   │           ├── plus.png
+│   │   │   │   │           ├── pygments.css
+│   │   │   │   │           ├── searchtools.js
+│   │   │   │   │           ├── spanish-stemmer.js
+│   │   │   │   │           ├── sphinx_highlight.js
+│   │   │   │   │           ├── theme.css
+│   │   │   │   │           ├── theme.js
+│   │   │   │   │           ├── theme.js.LICENSE.txt
+│   │   │   │   │           └── translations.js
+│   │   │   │   ├── build_docs.sh
+│   │   │   │   ├── make.bat
+│   │   │   │   ├── Makefile
+│   │   │   │   └── source
+│   │   │   │       ├── API.rst
+│   │   │   │       ├── API.v1.config.rst
+│   │   │   │       ├── API.v1.crud.booking.rst
+│   │   │   │       ├── API.v1.crud.booking.utils.rst
+│   │   │   │       ├── API.v1.crud.rst
+│   │   │   │       ├── API.v1.crud.users.booking.rst
+│   │   │   │       ├── API.v1.crud.users.rst
+│   │   │   │       ├── API.v1.db.rethinkdb.rst
+│   │   │   │       ├── API.v1.db.rst
+│   │   │   │       ├── API.v1.routes.admin.restricted.rst
+│   │   │   │       ├── API.v1.routes.admin.rst
+│   │   │   │       ├── API.v1.routes.admin.schemes.rst
+│   │   │   │       ├── API.v1.routes.client.public.rst
+│   │   │   │       ├── API.v1.routes.client.restricted.booking.rst
+│   │   │   │       ├── API.v1.routes.client.restricted.data.rst
+│   │   │   │       ├── API.v1.routes.client.restricted.rst
+│   │   │   │       ├── API.v1.routes.client.restricted.user.config.rst
+│   │   │   │       ├── API.v1.routes.client.restricted.user.rst
+│   │   │   │       ├── API.v1.routes.client.rst
+│   │   │   │       ├── API.v1.routes.client.schemes.rst
+│   │   │   │       ├── API.v1.routes.rst
+│   │   │   │       ├── API.v1.routes.worker.rst
+│   │   │   │       ├── API.v1.routes.worker.schemes.rst
+│   │   │   │       ├── API.v1.rst
+│   │   │   │       ├── API.v1.services.rst
+│   │   │   │       ├── API.v1.services.secrets_generator.rst
+│   │   │   │       ├── API.v1.shared_microservices.cryptoapi.rst
+│   │   │   │       ├── API.v1.shared_microservices.rst
+│   │   │   │       ├── API.v1.utils.rst
+│   │   │   │       ├── app.API.rst
+│   │   │   │       ├── app.API.v1.config.rst
+│   │   │   │       ├── app.API.v1.crud.booking.rst
+│   │   │   │       ├── app.API.v1.crud.booking.utils.rst
+│   │   │   │       ├── app.API.v1.crud.rst
+│   │   │   │       ├── app.API.v1.crud.users.booking.rst
+│   │   │   │       ├── app.API.v1.crud.users.rst
+│   │   │   │       ├── app.API.v1.db.rethinkdb.rst
+│   │   │   │       ├── app.API.v1.db.rst
+│   │   │   │       ├── app.API.v1.routes.admin.restricted.rst
+│   │   │   │       ├── app.API.v1.routes.admin.rst
+│   │   │   │       ├── app.API.v1.routes.admin.schemes.rst
+│   │   │   │       ├── app.API.v1.routes.client.public.rst
+│   │   │   │       ├── app.API.v1.routes.client.restricted.booking.rst
+│   │   │   │       ├── app.API.v1.routes.client.restricted.data.rst
+│   │   │   │       ├── app.API.v1.routes.client.restricted.rst
+│   │   │   │       ├── app.API.v1.routes.client.restricted.user.config.rst
+│   │   │   │       ├── app.API.v1.routes.client.restricted.user.rst
+│   │   │   │       ├── app.API.v1.routes.client.rst
+│   │   │   │       ├── app.API.v1.routes.client.schemes.rst
+│   │   │   │       ├── app.API.v1.routes.rst
+│   │   │   │       ├── app.API.v1.routes.worker.rst
+│   │   │   │       ├── app.API.v1.routes.worker.schemes.rst
+│   │   │   │       ├── app.API.v1.rst
+│   │   │   │       ├── app.API.v1.services.rst
+│   │   │   │       ├── app.API.v1.services.secrets_generator.rst
+│   │   │   │       ├── app.API.v1.shared_microservices.cryptoapi.rst
+│   │   │   │       ├── app.API.v1.shared_microservices.rst
+│   │   │   │       ├── app.API.v1.utils.rst
+│   │   │   │       ├── app.CryptoAPI.rst
+│   │   │   │       ├── app.rst
+│   │   │   │       ├── app.StatusAPI.rst
+│   │   │   │       ├── app.StatusAPI.v1.routes.api.rst
+│   │   │   │       ├── app.StatusAPI.v1.routes.apiws.rst
+│   │   │   │       ├── app.StatusAPI.v1.routes.cryptoapi.rst
+│   │   │   │       ├── app.StatusAPI.v1.routes.rst
+│   │   │   │       ├── app.StatusAPI.v1.rst
+│   │   │   │       ├── conf.py
+│   │   │   │       ├── index.rst
+│   │   │   │       ├── modules.rst
+│   │   │   │       ├── _static
+│   │   │   │       └── _templates
 │   │   │   ├── __init__.py
+│   │   │   ├── __pycache__
 │   │   │   └── StatusAPI
 │   │   │       ├── __init__.py
+│   │   │       ├── __pycache__
 │   │   │       ├── requirements.txt
 │   │   │       └── v1
 │   │   │           ├── deployment
@@ -232,18 +678,23 @@
 │   │   │           ├── gunicorn.py
 │   │   │           ├── __init__.py
 │   │   │           ├── init.sh
+│   │   │           ├── __pycache__
 │   │   │           ├── requirements.txt
 │   │   │           ├── routes
 │   │   │           │   ├── api
 │   │   │           │   │   ├── __init__.py
-│   │   │           │   │   └── main.py
+│   │   │           │   │   ├── main.py
+│   │   │           │   │   └── __pycache__
 │   │   │           │   ├── apiws
 │   │   │           │   │   ├── __init__.py
-│   │   │           │   │   └── main.py
+│   │   │           │   │   ├── main.py
+│   │   │           │   │   └── __pycache__
 │   │   │           │   ├── cryptoapi
 │   │   │           │   │   ├── __init__.py
-│   │   │           │   │   └── main.py
-│   │   │           │   └── __init__.py
+│   │   │           │   │   ├── main.py
+│   │   │           │   │   └── __pycache__
+│   │   │           │   ├── __init__.py
+│   │   │           │   └── __pycache__
 │   │   │           └── server_fastapi.py
 │   │   ├── certs
 │   │   │   ├── peluqueriamael.com_cert
@@ -257,10 +708,12 @@
 │   │   │   ├── config
 │   │   │   │   ├── config.js
 │   │   │   │   ├── config.py
-│   │   │   │   └── __init__.py
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── __pycache__
 │   │   │   ├── __init__.py
 │   │   │   ├── package.json
 │   │   │   ├── package-lock.json
+│   │   │   ├── __pycache__
 │   │   │   └── requirements.txt
 │   │   ├── db
 │   │   │   ├── docker-compose.yml
@@ -295,6 +748,7 @@
 │   │   │       ├── dump_mongodb.sh
 │   │   │       └── install_mongodb.sh
 │   │   ├── __init__.py
+│   │   ├── __pycache__
 │   │   └── web
 │   │       ├── API
 │   │       │   └── v1
@@ -409,6 +863,7 @@
 │   │       │       ├── security.py
 │   │       │       └── validation.py
 │   │       └── __init__.py
+│   ├── __pycache__
 │   └── tests
 │       ├── __init__.py
 │       ├── microservices
@@ -656,4 +1111,4 @@
 └── Ubuntu
     └── autoinstall.yaml
 
-193 directories, 464 files
+282 directories, 830 files

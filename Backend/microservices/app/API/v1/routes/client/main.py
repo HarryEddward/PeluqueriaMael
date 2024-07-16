@@ -9,7 +9,11 @@ router.include_router(router_public)
 
 @router.get('/status')
 async def root():
+    """_summary_
 
+    Returns:
+        _type_: _description_
+    """
     try:
         return JSONResponse({
             "schemaVersion": 1,

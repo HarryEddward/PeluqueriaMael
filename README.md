@@ -270,6 +270,9 @@ Hare úso de docker-swarm, por el hecho que se autogestióna por el mismo. No es
 tan complejo como kubernetes y por la simplicidad de la tecnología, y el úso a
 producción a nivel regional no sera necesario la capacidad de hacer úso de muchos servidores.
 
+## Testing
+Por cada API que se hace tiene su apartado de tesetos, en caso de Python se usa pytest y httpx. Y el directorio donde se hacen
+los testeos dentro del API estan dentro de la misma versión que se usa. Se llama ```__tests__```
 
 ## Configuración_Del_Servidor
 Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y úso nativamente de contendores llamado jails en FreeBSD.
