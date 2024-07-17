@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>server.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AsyncTable.html">AsyncTable</a><ul class='methods'><li data-type='method'><a href="AsyncTable.html#start">start</a></li></ul></li><li><a href="Database.html">Database</a><ul class='methods'><li data-type='method'><a href="Database.html#connect">connect</a></li><li data-type='method'><a href="Database.html#getConnection">getConnection</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="AsyncTable.html#event:change">change</a></li></ul><h3>Global</h3><ul><li><a href="global.html#available_routes">available_routes</a></li><li><a href="global.html#errorHandler">errorHandler</a></li><li><a href="global.html#general_rp">general_rp</a></li><li><a href="global.html#router">router</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">server.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// server.js
+
+'use strict';
+
+var colors = require('colors');
+const path = require('path');
+const express = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
+const cors = require('cors');
+const r = require('rethinkdb');
+const { Config } = require('../../../conversor/config/config');
+
+const config = Config();
+
+const port = config.app.APIWS.net.port;
+const ssl = config.app.APIWS.ssl;
+const host = config['host'];
+const v = config['name_version']
+
+const app = express();
+app.use(cors({ origin: '*' }));
+
+
+const server = http.createServer(app);
+const io = socketIo(server);
+
+
+const v_proj = path.basename(path.resolve(__dirname, '.')).toLowerCase();
+const name_proj = path.basename(path.resolve(__dirname, '..')).toLowerCase();
+
+/*
+ * Comprueba si la ruta esta relacionada con la
+ * estrctura de la capreta y el archivo principal
+ * de configruación con la versión
+ */
+// console.log(v_proj, v, name_proj, 'apiws');
+
+if (v_proj === v &amp;&amp; name_proj === 'apiws'){
+    var basePath = `/${name_proj}/app/api/${v}`;
+    //module.exports += { basePath };
+}
+else if (v_proj !== v) {
+    console.log('La versión no cuadra con el de la API'.red);
+
+} else if (name_proj !== 'apiws') {
+    console.log('El nombre del proyecto no cuadra con el de la API'.red);
+
+} else {
+    console.log('La versión/nombre del proyecto no cuadra con el de la API'.red);
+}
+
+
+/**
+ * Junta el prefijo de la misma api para juntarlo con el
+ * prefijo de la msima ruta
+ */
+const router = (path) => basePath + path;
+
+module.exports = { config, basePath, router };
+
+
+// Local pkg
+const database = require('./db/database');
+const AsyncTable = require('./db/asyncTable');
+
+database.connect().then(() => {
+    
+    const table = new AsyncTable('booking_card');
+    table.start();
+    table.on('change', (row) => {
+        io.emit('booking_card_change', row);
+    });
+
+})
+.catch((err) => {
+    console.error('Se desconecto de forma repentina la base de datos:', err);
+});
+
+
+// Rutas Estaticas
+app.get('/status', (req, res) => {
+    res.json({
+        'info': 'Servidor Socket.io funcionando correctamente.',
+        'status': 'ok'
+    });
+});
+
+app.get('/routes', (req, res) => {
+    res.json({
+        'data': available_routes
+    });
+});
+
+
+/**
+ * RUTA GENERAL WS
+ */
+const general_rp = router('/general');
+const generalNamespace = io.of(general_rp);
+
+generalNamespace.on('connection', (socket) => {
+    console.log('Un cliente se ha conectado');
+
+    // Ruta: "booking_card_change"
+    socket.on('booking_card_change', (data) => {
+        console.log(data);
+    });
+
+    /*
+    socket.on('status', (data) => {
+        socket.emit('status', 'ok');
+    });
+    */
+
+    socket.on('disconnect', () => {
+        console.log('Cliente desconectado');
+    });
+});
+
+const PORT = process.env.PORT || port;
+const HOST = host;
+const secure = ssl ? "wss" : "ws";
+const base_url = `${secure}://${HOST}:${PORT}`
+
+server.listen(PORT, () => {
+    console.log('\nENCENDIENDO SERVIDOR...'.green);
+    console.log('->'.bgGreen + ` Servidor Socket.io escuchando en el puerto`.underline + ' ' + ` ${base_url} `.underline.bgGreen);
+});
+
+/**
+ * ROUTES
+ * ------
+ * rp -> router_prefix
+ */
+var available_routes = {};
+const formatUrl = (rp) => base_url + rp;
+
+//-------------
+const {
+    Router: booking_card_change,
+    router_prefix: booking_card_change_rp
+} = require('./namespaces/rethinkdb/booking_card_change');
+
+booking_card_change(io);
+//-------------
+
+available_routes['general'] = formatUrl(general_rp);
+available_routes['booking_card_change'] = formatUrl(booking_card_change_rp);
+
+console.log(available_routes);
+
+//*
+ //* 
+ //* Que hacer?
+ //* 
+ //* - Crear unarchivo de node.js para su configuracion
+ //* - O crear un archivo json para luego adaptarlo a su lengauje!
+ //*
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Wed Jul 17 2024 10:19:39 GMT+0200 (hora de verano de Europa central) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

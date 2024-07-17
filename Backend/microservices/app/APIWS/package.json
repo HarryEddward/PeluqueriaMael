@@ -6,10 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node ./v1/server.js",
-    "create_routes": "node ./v1/utils/add_path_files.js"
+    "create_routes": "node ./v1/utils/add_path_files.js",
+    "docs": "jsdoc -d docs --configure config/jsdocConf.json"
   },
   "keywords": [],
-  "author": "",
+  "author": "Adrià Martín Martorell",
   "license": "ISC",
   "dependencies": {
     "@socket.io/admin-ui": "^0.5.1",
