@@ -221,7 +221,7 @@ Realizé 3 docuementos al dueño de la peluquería, informando el estado de los 
   <img width="45%" src="https://i.ibb.co/7W4tT5K/Devolucion-del-presupuesto.png">
 </p>
 
-## Devolución_de_productos_sin_úso
+## Return_Of_Products_Without_Use
 La devolución se hara por SEUR, y le tenemos que dar el mismo producto a la oficina en Palma. Se realiza la devolución con las mismas cajas enviadas.
 
 Como estoy haciendo prácticas a una tienda de electrónica, no me puedo encargar yo. Pero mi cliente tampoco sabe muy bien manejar la informatica.
@@ -233,7 +233,7 @@ La solución fué imprimir los qr de seur es pegarlos por las 2 cajas, y así di
 </p>
 
 
-## Performance of encryptation
+## Performance_Of_Encryptation
 When creating the CryptoAPI, I intentionally created two separate routers, one for CPU and one for GPU, in case the GPU fails and to avoid relying on multiple devices.
 
 I ran a quick test to compare the performance of encryption between the two types of devices. The results are as follows:
@@ -259,7 +259,7 @@ I was able to create a library for encryption on a GPU in just one day of Python
 
 This way, I avoid dependencies on repositories and help the community, along with a simpler and more readable code.
 
-### Librería semi-lista a publicar
+### Library almost already for release 
 The repo is already usable, but not adapted for public use on PyPi. Repo: https://github.com/HarryEddward/gpu_cuda_aes
 
 ## Docker
@@ -268,11 +268,11 @@ I will use Docker Swarm, as it automates itself. It's not as complex as Kubernet
 ## Testing
 Each API has its own testing section. For Python, we use pytest and httpx. The testing directory is **located inside the same version used within the API** and is called ```__tests__```. We use it in Python and JavaScript; while Python doesn't conventionally apply it this way, we standardize API's in this manner within the project.
 
-## Documentación
+## Documentation
 Python APIs use Sphinx to write documentation using docstrings with a Google-standardized format. For JavaScript APIs, we will use the jsdocs library.
 
 
-## Configuración_Del_Servidor
+## Server_Configuration
 We used Linux as the default OS for the server, with plans to adapt it to FreeBSD in the future due to its high performance and native support for containers called jails in FreeBSD.
 
 ## License
