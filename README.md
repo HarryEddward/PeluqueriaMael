@@ -234,59 +234,46 @@ La solución fué imprimir los qr de seur es pegarlos por las 2 cajas, y así di
 
 
 ## Performance de encritpación
-A la hora de hacer la api de encriptación (CryptoAPI), haciendo por separado 2 Routers, uno para la cpu y la otra
-para la gpu. Hice intencionalmente la cpu por si algún motivo la gpu deja de funcionar, y evitar depender de varios
-dispositivos.
-Inicie un testeo rápido por encima el performance que tendría que entre los 2 tipos de formas en encriptación por
-diferentes dispositivos.
-El resultado es el siguiente:
+When creating the CryptoAPI, I intentionally created two separate routers, one for CPU and one for GPU, in case the GPU fails and to avoid relying on multiple devices.
 
-  - CPU: MacBookAir (Sonoma 14.1.1): 18-20s por 100 encriptaciónes y 100 decriptaciónes
-  - GPU: i5 9gen, solo por GPU(gt-710): 8.9s por 1000 encriptaciónes y 1000 decriptaciónes
+I ran a quick test to compare the performance of encryption between the two types of devices. The results are as follows:
 
-Decir que la MacBookAir estaba ya con mucho estrés, pero como las cpu's de las mac suelen ser mas eficientes que las
-de intel, por su propia inteligenic artificial que mejora mucho los procesos, no esta nada mal.
+    CPU: MacBook Air (Sonoma 14.1.1): 18-20 seconds for 100 encryptions and 100 decryptations
+    GPU: i5 9th gen, using only the GPU (GT-710): 8.9 seconds for 1000 encryptions and 1000 decryptations
 
-La gpu realmente puede tener cargas de trabajo intensivas a la criptografía sin ningún problema y es mucho mas
-eficiente y prometedor que la misma cpu que aparte lo sobrecarga de mas.
+I want to note that the MacBook Air was already under heavy load, but since Mac CPUs tend to be more efficient than Intel CPUs due to their artificial intelligence that improves processes, it's not bad.
 
-Podríamos decir que el % de mejora es muy alto de un **+368.42%** en tareas criptográficas por la GPU
-Use el repositorio de github llamado (Cuda-AES) y modifique para en vez de usar su cli, lo convirtiese en un código
-mas senzillo de implementarlo importarlo en otro código en el archivo principal de AES.py
+The GPU can handle intense cryptography loads without any issues and is much more efficient and promising than the same CPU, which would overload it even more.
+
+We could say that the improvement is extremely high, with a **+368.42%** increase in cryptographic tasks using the GPU.
+
+I used the GitHub repository called Cuda-AES and modified it to convert it into a simpler code that can be easily implemented in another code in the main AES.py file.
 
 Repo: https://github.com/aranscha/CUDA-AES
 
-Haré una librería para tener una fácil implementación de ecnriptación por gpu a través de esta repo
-con creditos todos suyos, para que cualquiera pueda implementarlo al escargar la librería de forma fácil
-de descargarlo y implementarlo. Lo llamaré easy_cuda_crypto_gpu
+I will create a library for easy implementation of GPU encryption through this repo, giving credits to its original authors, so that anyone can easily implement it by downloading and integrating it. I'll call it easy_cuda_crypto_gpu.
 
 
 ### 23/6/2024
-Conseguí hacer la libreria de encritpación en 1 día de python para úso de GPU, se llama: gpu_cuda_aes. Es fácil de usar y consigua alcanzar niveles grandes de rendimiento por simple úso de la GPU. Estará listo para publicarse hoy mismo luego de añadir los docs, el testeo y lo compile!
-Así evito dependencias por repositorios y ayudo a la misma comunidad, aparte de un código mas simple y legible.
+I was able to create a library for encryption on a GPU in just one day of Python usage. It's easy to use and achieves high performance levels with simple GPU usage. It will be ready for publication today after adding documentation, testing, and compilation!
+
+This way, I avoid dependencies on repositories and help the community, along with a simpler and more readable code.
 
 ### Librería semi-lista a publicar
-El repo ya se puede usar la librería, pero no esta adaptada al uso al hacerlo público en
-PyPi. Repo: https://github.com/HarryEddward/gpu_cuda_aes
+The repo is already usable, but not adapted for public use on PyPi. Repo: https://github.com/HarryEddward/gpu_cuda_aes
 
 ## Docker
-Hare úso de docker-swarm, por el hecho que se autogestióna por el mismo. No es
-tan complejo como kubernetes y por la simplicidad de la tecnología, y el úso a
-producción a nivel regional no sera necesario la capacidad de hacer úso de muchos servidores.
+I will use Docker Swarm, as it automates itself. It's not as complex as Kubernetes, and its simplicity makes it suitable for regional production-level use without requiring capacity to manage many servers.
 
 ## Testing
-Por cada API que se hace tiene su apartado de tesetos, en caso de Python se usa pytest y httpx. Y el directorio donde se hacen
-los testeos dentro del API estan **dentro de la misma versión que se usa**. Se llama: ```__tests__```.
-Se usa en Python y Javascript, no tiene la convención Python de aplicarlo de esta manera, pero para estandarizar API's se usa en
-el proyecto de esta manera.
+Each API has its own testing section. For Python, we use pytest and httpx. The testing directory is **located inside the same version used within the API** and is called ```__tests__```. We use it in Python and JavaScript; while Python doesn't conventionally apply it this way, we standardize API's in this manner within the project.
 
 ## Documentación
-Las API's hechas con Python se usan Sphinx para redactar la documentación mediante los docstringscon formato de estandarización de Google.
-Mientras las API's por javascript se haran por la librería jsdocs.
+Python APIs use Sphinx to write documentation using docstrings with a Google-standardized format. For JavaScript APIs, we will use the jsdocs library.
 
 
 ## Configuración_Del_Servidor
-Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y úso nativamente de contendores llamado jails en FreeBSD.
+We used Linux as the default OS for the server, with plans to adapt it to FreeBSD in the future due to its high performance and native support for containers called jails in FreeBSD.
 
 ## License
 
@@ -313,3 +300,5 @@ Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro a
   <span><b>Instalador</b></span> -
   <span><b>Configurador</b></span>
 </p>
+
+
