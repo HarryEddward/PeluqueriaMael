@@ -233,7 +233,7 @@ La solución fué imprimir los qr de seur es pegarlos por las 2 cajas, y así di
 </p>
 
 
-## Performance de encritpación
+## Performance of encryptation
 When creating the CryptoAPI, I intentionally created two separate routers, one for CPU and one for GPU, in case the GPU fails and to avoid relying on multiple devices.
 
 I ran a quick test to compare the performance of encryption between the two types of devices. The results are as follows:
