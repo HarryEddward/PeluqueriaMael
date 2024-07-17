@@ -287,6 +287,8 @@ Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro a
 ## License
 
 [Apache License](https://github.com/HarryEddward/PeluqueriaMael/blob/main/LICENSE)
+
+
 ## Créditos
 
 <p align="center">
