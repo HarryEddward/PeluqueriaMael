@@ -284,6 +284,9 @@ Mientras las API's por javascript se haran por la librería jsdocs.
 ## Configuración_Del_Servidor
 Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y úso nativamente de contendores llamado jails en FreeBSD.
 
+## License
+
+[Apache License](https://github.com/HarryEddward/PeluqueriaMael/blob/main/LICENSE)
 ## Créditos
 
 <p align="center">
