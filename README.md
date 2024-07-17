@@ -115,7 +115,7 @@ Las tecnologías que uso es APIWS (Websockets):
 - Http
 - Jsdocs
 
-(**Comentar que haré una libreria en Node.js un framework de una API completamente de WebSOcket usando Socket.io como dependencia, realmente con Express-ws no fuñe realmente bien, en un futuro, no me gustó para nada manejar con scoekt.io de esta forma**)
+(**Comentar que haré una libreria en Node.js un framework de una API completamente de WebSocket usando Socket.io como dependencia, realmente con Express-ws no fuñe realmente bien, en un futuro, no me gustó para nada manejar con socket.io de esta forma**)
 
 Las tecnologías que uso es API (Estática Criptográfica):
 - FastAPI
@@ -132,7 +132,7 @@ con jwt. En ```.../config/middleware/restricted.py```. Es extremadamente extrict
 del usuario, y protegiendo la misma información renovando por cada operación su propia clave secreta del jwt
 que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no autorizadas.
 
-## Bases_De_Datos
+## Data_Base
 
 <p align="center">
 
@@ -187,7 +187,9 @@ Quizás te hayas preguntado si esto es simplemente es un montaje? No y para que 
 
 
 ## Instalación_Del_Servidor
-Usare Cubic in Launchpad, haré mi propio os personalizado
+I use a preset of Ubuntu to do an automatic installation in all of the computers to implement in the server. To automatize all of the installation and if the manager want in the future add others servers, implement an estandard installation of all from his servers.
+To avoid wasting time dedicate to installing all dependencies they need to implement to run
+correctly when all servers need to turn on to directly implement from ansible the dependecies 
 
 ## Technical_Characteristics_And_Hardware_Setup
 The setup would consist of 2 mini PCs with N100 processors, each with 16GB of RAM. To improve cryptographic operations and avoid overloading the central processing unit, a GT 710 graphics card with 1GB of memory would be used. Since no graphical interface would be used, a Python script would be dedicated to encrypting and decrypting using the GPU, ensuring that there are no bottlenecks.
@@ -233,7 +235,7 @@ La solución fué imprimir los qr de seur es pegarlos por las 2 cajas, y así di
 </p>
 
 
-## Performance_Of_Encryptation
+## Encryptation_Performance
 When creating the CryptoAPI, I intentionally created two separate routers, one for CPU and one for GPU, in case the GPU fails and to avoid relying on multiple devices.
 
 I ran a quick test to compare the performance of encryption between the two types of devices. The results are as follows:
@@ -280,7 +282,7 @@ We used Linux as the default OS for the server, with plans to adapt it to FreeBS
 [Apache License](https://github.com/HarryEddward/PeluqueriaMael/blob/main/LICENSE)
 
 
-## Créditos
+## Credits
 
 <p align="center">
   <a href="https://gravatar.com/au7812ooae32">
