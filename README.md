@@ -238,8 +238,8 @@ When creating the CryptoAPI, I intentionally created two separate routers, one f
 
 I ran a quick test to compare the performance of encryption between the two types of devices. The results are as follows:
 
-    CPU: MacBook Air (Sonoma 14.1.1): 18-20 seconds for 100 encryptions and 100 decryptations
-    GPU: i5 9th gen, using only the GPU (GT-710): 8.9 seconds for 1000 encryptions and 1000 decryptations
+  - CPU: MacBook Air (Sonoma 14.1.1): 18-20 seconds for 100 encryptions and 100 decryptations
+  - GPU: i5 9th gen, using only the GPU (GT-710): 8.9 seconds for 1000 encryptions and 1000 decryptations
 
 I want to note that the MacBook Air was already under heavy load, but since Mac CPUs tend to be more efficient than Intel CPUs due to their artificial intelligence that improves processes, it's not bad.
 
