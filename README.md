@@ -189,14 +189,14 @@ Quizás te hayas preguntado si esto es simplemente es un montaje? No y para que 
 ## Instalación_Del_Servidor
 Usare Cubic in Launchpad, haré mi propio os personalizado
 
-## Caracteríticas_Técnicas_Y_Montaje_Del_Hardware
-La instalación consistiría 2 mini pc de sobremesa con un procesador de N100 con 16GB cada uno. Para mejorar las operaciónes de criptografía y no sobrecargar la carga central de mismo pc, se hace uso de una gráfica GT 710 con 1GB sea suficiente para no sobrecargarlo. Como no se hará úso de interfaz gráfica se dedicará con un script de python para encriptar y desencriptar con el úso de la gpu, y preocuparando no hace run cuello de botella.
+## Technical_Characteristics_And_Hardware_Setup
+The setup would consist of 2 mini PCs with N100 processors, each with 16GB of RAM. To improve cryptographic operations and avoid overloading the central processing unit, a GT 710 graphics card with 1GB of memory would be used. Since no graphical interface would be used, a Python script would be dedicated to encrypting and decrypting using the GPU, ensuring that there are no bottlenecks.
 
-Entre los 2 pc, se hace un sistema maestro & esclavo, consiste en conectar el cable de ethernet al 1r pc y luego conectar el 1r al 2n, pero teniendo en cuenta que los 2 pc deben de estar conectados al ethernet. Pero a la hora de coordinar las peticiónes con docker-swarm se tendra en cuenta de esta forma.
+Between the two PCs, a master-slave system would be implemented, consisting of connecting an Ethernet cable from the first PC to the second PC, but with the understanding that both PCs must be connected to the Ethernet. However, when coordinating requests with Docker-Swarm, this setup would be taken into account.
 
-El 2n pc se le quita la RAM que tiene instalada del minipc para insertar el adapatado de la gráfica, es verdad que reduces la cantidad de memoria disponible, pero como no es el pc maestro no hay que procuparse, y tendrá una API dedicada en ese pc, para tareas de cryptografía. Como encriptar y desencriptar, pero así mejora la seguridad porque como el pc esta separado y de forma interna sin estar esta API expuesto a ethernet evitaríamos ataques de fuera.
+The second PC would have its existing RAM removed and replaced with an adapter for the graphics card. Although this would reduce the available memory, as it is not the master PC, it would not be a concern. The second PC would have a dedicated API for cryptographic tasks, such as encrypting and decrypting. This would improve security because the PC would be isolated and internally exposed to the API, preventing external attacks.
 
-Y se utilizarían 3 cables ethernet uno de CAT 8, mientras que otro por CAT 6a, mientras entre pc debe de ser instanteanea, entre el router, por la velocidad del ethernet va bien que sea CAT 6a por la velocidad que tiene.
+Three Ethernet cables would be used: one CAT 8 and two CAT 6a. The cable between PCs should be instantaneously fast, while the router cable can use CAT 6a due to its speed.
 
 <p align="center">
   <img width="110px" height="110px" src="https://i.ibb.co/gWtSfTr/61y-D0tp4-GCL-AC-AA360.jpg">
