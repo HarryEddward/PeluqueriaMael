@@ -265,6 +265,10 @@ de descargarlo y implementarlo. Lo llamaré easy_cuda_crypto_gpu
 Conseguí hacer la libreria de encritpación en 1 día de python para úso de GPU, se llama: gpu_cuda_aes. Es fácil de usar y consigua alcanzar niveles grandes de rendimiento por simple úso de la GPU. Estará listo para publicarse hoy mismo luego de añadir los docs, el testeo y lo compile!
 Así evito dependencias por repositorios y ayudo a la misma comunidad, aparte de un código mas simple y legible.
 
+### Librería semi-lista a publicar
+El repo ya se puede usar la librería, pero no esta adaptada al uso al hacerlo público en
+PyPi. Repo: https://github.com/HarryEddward/gpu_cuda_aes
+
 ## Docker
 Hare úso de docker-swarm, por el hecho que se autogestióna por el mismo. No es
 tan complejo como kubernetes y por la simplicidad de la tecnología, y el úso a
