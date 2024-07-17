@@ -272,7 +272,14 @@ producción a nivel regional no sera necesario la capacidad de hacer úso de muc
 
 ## Testing
 Por cada API que se hace tiene su apartado de tesetos, en caso de Python se usa pytest y httpx. Y el directorio donde se hacen
-los testeos dentro del API estan **dentro de la misma versión que se usa**. Se llama: ```__tests__```
+los testeos dentro del API estan **dentro de la misma versión que se usa**. Se llama: ```__tests__```.
+Se usa en Python y Javascript, no tiene la convención Python de aplicarlo de esta manera, pero para estandarizar API's se usa en
+el proyecto de esta manera.
+
+## Documentación
+Las API's hechas con Python se usan Sphinx para redactar la documentación mediante los docstringscon formato de estandarización de Google.
+Mientras las API's por javascript se haran por la librería jsdocs.
+
 
 ## Configuración_Del_Servidor
 Usó Linux como OS predeterminado para el servidor, tengo pensado en el futuro adaptarselo con FreeBSD por su alto performance y úso nativamente de contendores llamado jails en FreeBSD.

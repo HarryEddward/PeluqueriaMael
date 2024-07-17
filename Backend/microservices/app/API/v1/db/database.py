@@ -17,18 +17,15 @@ use_personal = collection['personal']
 use_administrador = collection['administrador']
 use_tipos_de_pydantic = collection['tipos_de_pydantic']
 
-
-client = MongoClient(host, port)
+#/////////////////////////////////////////////////////////////////////////////////
+client = MongoClient('mongodb://%s:%s@' + '{host}:{port}' % (username, password))
 db = client[use_db]
 
-
-# Definir los roles para el nuevo usuario
-roles = [{"role": "readWrite", "db": "PeluqueriaMael"}]
 
 # Crear el nuevo usuario
 '''
 db.command(
-    'createUser', 'maelsilvero',
+    'createUser', 'ddsfsdf',
     pwd='AXGRbLjzQsMChDnJWdUpNr#87',
     roles=roles
 )

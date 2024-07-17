@@ -120,6 +120,9 @@ db:
     mongodb:
       host: "localhost"
       port: 27017
+      # Env's to use it in production
+      username: "MONGODB_HAIRDRESSER_USERNAME"
+      password: "MONGODB_HAIRDRESSER_PASSWORD"
       db: *general_name_db
       collections:
         reservas: "Reservas"
