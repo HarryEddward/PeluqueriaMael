@@ -65,7 +65,7 @@ app:
         - "*"
       headers:
         - "*"
-    cpu: true
+    cpu: false
     gpu:
       enabled: false
       graphic_card: "gt-710"

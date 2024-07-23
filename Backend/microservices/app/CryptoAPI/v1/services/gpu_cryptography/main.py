@@ -1,4 +1,4 @@
-from Backend.microservices.app.CryptoAPI.v1.dependencies.CUDA_AES_main.AES import AES, CryptoGPU
+from Backend.microservices.app.CryptoAPI.v1.dependencies.simply_cuda_aes.AES import AES, CryptoGPU
 from dotenv import load_dotenv, find_dotenv
 import numpy as np
 
@@ -15,7 +15,7 @@ import time
 
 start_time = time.time()
 
-for i in range(10000):
+for i in range(1000):
     encrypted = gpu.encrypt('Hola')
     decrypted = gpu.decrypt(encrypted)
 

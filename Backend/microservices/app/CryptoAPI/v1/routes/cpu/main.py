@@ -40,7 +40,7 @@ class CryptoManager:
                 env_path = find_dotenv()
                 load_dotenv(dotenv_path=env_path)
 
-            cryptography_key = os.getenv('CRYPTO_KEY')
+            cryptography_key = os.getenv('KEY_CRYPTO_CPU')
             print(cryptography_key)
             if cryptography_key:
                 cryptography_key = cryptography_key.encode()

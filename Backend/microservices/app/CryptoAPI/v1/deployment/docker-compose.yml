@@ -1,0 +1,25 @@
+
+
+services:
+  peluqueriamael:
+    image: peluqueriamael
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../../../../../../Backend:/peluqueriamael/Backend
+      - ../../../../../../__init__.py:/peluqueriamael/__init__.py
+      - ../../../../../../LICENSE:/peluqueriamael/LICENSE
+      - ../../../../../../README.md:/peluqueriamael/README.md
+    ports:
+      - "8200:8200"
+    environment:
+      - CUDA_HOME=/usr/local/cuda/bin
+      - PATH=${CUDA_HOME}/bin:${PATH}
+      - LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
+      - CUDA_INC_DIR=${CUDA_HOME}/include
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
