@@ -603,7 +603,7 @@
 │   │   │   │       │   │   ├── __init__.py
 │   │   │   │       │   │   └── main.py
 │   │   │   │       │   └── __init__.py
-│   │   │   │       └── tests
+│   │   │   │       └── __tests__
 │   │   │   │           ├── __init__.py
 │   │   │   │           └── test_routes.py
 │   │   │   ├── docker-compose.yml
