@@ -14,15 +14,18 @@ class TextPlainMiddleware(BaseHTTPMiddleware):
             if request.url.path.startswith(path):
                 return await call_next(request)
         
-        if request.headers.get('content-type') != 'text/plain':
+        content_type = request.headers.get('content-type')
+
+        if content_type not in (
+            'application/octet-stream'
+        ):
             return JSONResponse(content={
-                "info": "Content-Type debe ser text/plain"
+                "info": "Content-Type debe ser application/octet-stream"
             }, status_code=400)
         
         # Leer y decodificar el cuerpo de la solicitud
         try:
-            body = await request.body()
-            request.state.decoded_body = body.decode('utf-8')
+            request.state.body = await request.body()
         except UnicodeDecodeError:
             raise JSONResponse(
                 content={

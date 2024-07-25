@@ -47,9 +47,6 @@ RUN pip3 install \
 # Cambiar al directorio del proyecto de la API de CryptoAPI
 WORKDIR /peluqueriamael/Backend/microservices/app/CryptoAPI/v1
 
-# Exponer el puerto 8200
-EXPOSE 8200
-
 # Copiar el script de entrada
 COPY ./scripts/entrypoint.sh /peluqueriamael/entrypoint.sh
 

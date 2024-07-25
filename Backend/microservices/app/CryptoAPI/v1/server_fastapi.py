@@ -4,8 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi_cache import FastAPICache
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi_cache.backends.redis import RedisBackend
-from routes.cpu.main import router as cpu_router
-from routes.gpu.main import router as gpu_router
+from Backend.microservices.app.CryptoAPI.v1.routes.cpu.main import router as cpu_router
+from Backend.microservices.app.CryptoAPI.v1.routes.gpu.main import router as gpu_router
 #from starlette.middleware.sessions import SessionMiddleware
 import ujson
 import os
@@ -13,21 +13,21 @@ import fastapi
 from redis import asyncio as aioredis
 from Backend.microservices.conversor.config.config import Config
 
-config = Config()
-host = config['host']
+config: dict = Config()
+host: str = config['host']
 
-ssl_cert = config['ssl']['cert']
-ssl_key = config['ssl']['key']
+ssl_cert: str = config['ssl']['cert']
+ssl_key: str = config['ssl']['key']
 
-app = config['app']
-ssl = app['CryptoAPI']['ssl']
-cache = app['CryptoAPI']['cache']
-cors = app["CryptoAPI"]["cors"]
-gzip = app["CryptoAPI"]["gzip"]
+app: str = config['app']
+ssl: str = app['CryptoAPI']['ssl']
+cache: str = app['CryptoAPI']['cache']
+cors: str = app["CryptoAPI"]["cors"]
+gzip: str = app["CryptoAPI"]["gzip"]
 
-port = app['CryptoAPI']['net']['port']
-cpu = app['CryptoAPI']['cpu']
-gpu = app['CryptoAPI']['gpu']['enabled']
+port: str = app['CryptoAPI']['net']['port']
+cpu: str = app['CryptoAPI']['cpu']
+gpu: str = app['CryptoAPI']['gpu']['enabled']
 
 
 fastapi.json = ujson
@@ -42,7 +42,7 @@ async def startup_event():
 
     if cache:
         #Cache for API
-        redis = aioredis.from_url(f"redis://{host}", encoding="utf8", decode_responses=True)
+        redis: str = aioredis.from_url(f"redis://{host}", encoding="utf8", decode_responses=True)
         FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
         print(f'-> REDIS: redis://{host}')
     else:
@@ -74,7 +74,7 @@ base_router = APIRouter()
 
 if cpu:
     print('ADD CPU')
-    #base_router.include_router(cpu_router, prefix="/cpu", tags=["cpu"])
+    base_router.include_router(cpu_router, prefix="/cpu", tags=["cpu"])
 if gpu:
     print('ADD GPU')
     base_router.include_router(gpu_router, prefix="/gpu", tags=["gpu"])
@@ -90,7 +90,7 @@ Comprueba si es texto en plano, no va a comprobar mas que simple texto
 '''
 from middlewares.text_plain import TextPlainMiddleware
 # Rutas que el middleware debe omitir
-skip_paths = ["/docs", "/redoc", "/openapi"]
+skip_paths: list = ["/docs", "/redoc", "/openapi"]
 
 # Agregar el middleware a la aplicación y pasar las rutas a omitir
 app.add_middleware(TextPlainMiddleware, skip_paths=skip_paths)

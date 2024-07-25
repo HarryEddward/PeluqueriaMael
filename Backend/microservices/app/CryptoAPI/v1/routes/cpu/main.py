@@ -33,7 +33,7 @@ class CryptoManager:
     __instance = None
 
     @staticmethod
-    def get_instance():
+    def get_instance() -> None:
         if CryptoManager.__instance is None:
             # Aquí puedes cargar la clave desde tu entorno o configuración
             if env == "dev":
@@ -113,7 +113,8 @@ async def Decrypt_(request: Request):
         resultado = crypto_manager.decrypt(bytes_)
         
     except Exception as e:
-        del bytes_, resultado
+        # No se elimina de forma explicita la vairbale resultado, porque si hay un error, no se podra borrar por el error, y generara otro error
+        del bytes_
         return Response(content=b'0', media_type='application/octet-stream')
 
     return Response(content=resultado, media_type='application/octet-stream')

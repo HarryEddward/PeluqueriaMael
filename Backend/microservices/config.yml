@@ -5,7 +5,7 @@
 # ------
 name_version: "v1"
 
-host: "localhost"
+host: "0.0.0.0"
 
 ssl:
   cert: "../../../certs/peluqueriamael.com_cert/peluqueriamael.com.crt"
@@ -53,7 +53,7 @@ app:
     net:
       protocol: "http"
       port: 8200
-    ssl: true
+    ssl: false
     cache: true
     gzip: *common_gzip
     cors:
@@ -65,7 +65,7 @@ app:
         - "*"
       headers:
         - "*"
-    cpu: false
+    cpu: true
     gpu:
       enabled: false
       graphic_card: "gt-710"
@@ -121,6 +121,7 @@ db:
       host: "localhost"
       port: 27017
       # Env's to use it in production
+      # Hahahaha, you can't hacker, forget to know the prodcution envs
       username: "MONGODB_HAIRDRESSER_USERNAME"
       password: "MONGODB_HAIRDRESSER_PASSWORD"
       db: *general_name_db
