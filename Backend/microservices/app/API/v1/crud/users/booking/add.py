@@ -1,6 +1,6 @@
 #-> ChatGPT debera de comprobar si el codigo sin protección esta bien para hacerse uso
 
-from db.database import users
+from Backend.microservices.app.API.v1.db.mongodb.database import users
 from pydantic import BaseModel, EmailStr
 from pydantic import ValidationError
 from bson import ObjectId

@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import timedelta
 
-from db.database import configure
+from Backend.microservices.app.API.v1.db.mongodb.database import configure
 from bson import ObjectId
 
 class conversorServices:

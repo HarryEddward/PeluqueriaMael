@@ -57,7 +57,7 @@ crypto_manager = CryptoManager.get_instance()
 router = APIRouter()
 
 @router.post('/encrypt', responses=responses_encrypt)
-async def Encrypt_(request: Request):
+async def Encrypt_CPU(request: Request):
     
     """
     Encripta información por bytes a través por el content-type: application/octet-stream
@@ -87,7 +87,7 @@ async def Encrypt_(request: Request):
 
 
 @router.post('/decrypt', responses=responses_decrypt)
-async def Decrypt_(request: Request):
+async def Decrypt_CPU(request: Request):
     
     """
     Decripta información por bytes a través por el content-type: application/octet-stream

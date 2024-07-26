@@ -283,7 +283,7 @@ class CryptoGPU:
     def __init__(self, key: str) -> None:
         
         # Get random key
-        hex_key = "000102030405060708090a0b0c0d0e0f"
+        hex_key = key or "000102030405060708090a0b0c0d0e0f"
         byte_key = bytes.fromhex(hex_key)
         self.byte_array_key = np.frombuffer(byte_key, dtype=np.byte)
 

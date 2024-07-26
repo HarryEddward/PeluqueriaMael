@@ -1,4 +1,4 @@
-from db.database import users, reservas
+from Backend.microservices.app.API.v1.db.mongodb.database import users, reservas
 from pydantic import BaseModel
 from datetime import datetime, timedelta
 from .config import config

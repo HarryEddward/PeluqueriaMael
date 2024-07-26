@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from db.database import reservas
+from Backend.microservices.app.API.v1.db.mongodb.database import reservas
 
 # Fecha de Python para comparar
 fecha_python = datetime(2024, 3, 15)

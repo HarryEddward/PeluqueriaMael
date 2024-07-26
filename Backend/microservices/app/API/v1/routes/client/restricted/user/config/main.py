@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from db.database import reservas, configure, users, personal as db_personal
+from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
 from datetime import datetime
 from bson import ObjectId
 from typing import Optional

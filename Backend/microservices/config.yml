@@ -1,7 +1,7 @@
 # ___________
 # ADVERTENCIA: Al referenciar variables, nunca usar puntos para separar de trabajos: Ex.: &common.zip -> &common_zip
 # -----------
-# MOTIVO: Javascript lo soporta, Python no. Trabajamos mas en compatibilidad que en legbilidad
+# MOTIVO: Javascript lo soporta, Python no (almenos en la libreria usada: pyyaml). Trabajamos mas en compatibilidad que en legbilidad
 # ------
 name_version: "v1"
 
@@ -67,8 +67,8 @@ app:
         - "*"
     cpu: true
     gpu:
-      enabled: false
-      graphic_card: "gt-710"
+      enabled: true
+      graphic_card: "gt-710"  # Caracterítica no desarrollada
 
   StatusAPI:
     net:

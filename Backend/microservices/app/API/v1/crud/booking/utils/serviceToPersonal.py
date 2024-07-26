@@ -1,4 +1,4 @@
-from db.database import configure, personal
+from Backend.microservices.app.API.v1.db.mongodb.database import configure, personal
 from bson import ObjectId
 from pydantic import BaseModel
 import numba as nb

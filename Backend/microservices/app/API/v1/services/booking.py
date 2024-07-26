@@ -7,9 +7,9 @@ from pprint import pprint
 
 
 
-from Backend.microservices.app.API.v1.db.database import reservas
-from Backend.microservices.app.API.v1.db.database import users
-from Backend.microservices.app.API.v1.db.database import configure
+from Backend.microservices.app.API.v1.db.mongodb.database import reservas
+from Backend.microservices.app.API.v1.db.mongodb.database import users
+from Backend.microservices.app.API.v1.db.mongodb.database import configure
 
 from datetime import datetime
 

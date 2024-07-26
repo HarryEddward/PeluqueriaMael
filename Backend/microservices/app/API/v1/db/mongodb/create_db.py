@@ -1,7 +1,7 @@
 #PYMONGO STRUCTURE DATABASE!
 
 from Backend.microservices.conversor.config.config import Config
-from Backend.microservices.app.API.v1.db.database import client
+from Backend.microservices.app.API.v1.db.mongodb.database import client
 
 config = Config()
 db_config = config['db']['persistant']['mongodb']

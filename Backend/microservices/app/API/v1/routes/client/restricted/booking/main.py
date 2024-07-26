@@ -16,7 +16,7 @@ from pydantic import BaseModel
 from pydantic import validator
 from pydantic import ValidationError
 
-from db.database import reservas, configure, users, personal as db_personal
+from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
 from datetime import datetime
 
 from bson import ObjectId

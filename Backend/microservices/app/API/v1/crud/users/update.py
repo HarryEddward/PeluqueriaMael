@@ -1,4 +1,4 @@
-from db.database import users
+from Backend.microservices.app.API.v1.db.mongodb.database import users
 from pydantic import BaseModel, EmailStr
 from pydantic import ValidationError
 from services.secrets_generator.main import secrets_generator

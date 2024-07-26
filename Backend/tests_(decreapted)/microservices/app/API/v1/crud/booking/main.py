@@ -3,7 +3,7 @@ from Backend.microservices.app.API.v1.crud.booking.add import AddBooking
 from Backend.microservices.app.API.v1.crud.booking.utils.conversorServices import conversorServices
 from Backend.microservices.app.API.v1.crud.booking.utils.serviceToPersonal import serviceToPersonal
 from Backend.microservices.app.API.v1.crud.booking.utils.workerLessBusy import workerLessBusy
-from Backend.microservices.app.API.v1.db.database import configure, reservas
+from Backend.microservices.app.API.v1.db.mongodb.database import configure, reservas
 
 from pydantic import BaseModel
 from pydantic_extra_types.phone_numbers import PhoneNumber

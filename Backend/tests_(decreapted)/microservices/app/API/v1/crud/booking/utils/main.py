@@ -3,8 +3,8 @@ from Backend.microservices.app.API.v1.crud.booking.utils.serviceToPersonal impor
 from Backend.microservices.app.API.v1.crud.booking.utils.workerLessBusy import workerLessBusy
 from Backend.microservices.app.API.v1.crud.booking.utils.conversorServices import conversorServices
 
-from Backend.microservices.app.API.v1.db.database import reservas
-from Backend.microservices.app.API.v1.db.database import configure
+from Backend.microservices.app.API.v1.db.mongodb.database import reservas
+from Backend.microservices.app.API.v1.db.mongodb.database import configure
 from datetime import datetime
 from bson import ObjectId
 

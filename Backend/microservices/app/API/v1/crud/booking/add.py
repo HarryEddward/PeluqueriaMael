@@ -1,5 +1,5 @@
-from db.database import reservas
-from db.database import configure
+from Backend.microservices.app.API.v1.db.mongodb.database import reservas
+from Backend.microservices.app.API.v1.db.mongodb.database import configure
 import datetime
 from .config import config
 import uuid
