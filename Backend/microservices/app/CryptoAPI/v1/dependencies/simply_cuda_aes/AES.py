@@ -8,6 +8,7 @@ import numpy as np
 import pycuda.driver as cuda
 from pycuda.compiler import SourceModule
 import pycuda.autoinit
+import secrets
 
 import sys
 import os
@@ -283,10 +284,15 @@ class CryptoGPU:
     def __init__(self, key: str) -> None:
         
         # Get random key
-        hex_key = key or "000102030405060708090a0b0c0d0e0f"
-        byte_key = bytes.fromhex(hex_key)
-        self.byte_array_key = np.frombuffer(byte_key, dtype=np.byte)
+        self.hex_key = key if key else self.generate_secret_hex()
+        self.byte_key = bytes.fromhex(self.hex_key)
+        self.byte_array_key = np.frombuffer(self.byte_key, dtype=np.byte)
 
+    @staticmethod
+    def generate_secret_hex():
+        return secrets.token_hex(32)
+
+    # En pruebas
     def hidde_key(self, secret: str) -> None:
         """
         Esconde la llave en la variable de entorno, para luego en úso de producción
@@ -320,7 +326,7 @@ class CryptoGPU:
         
         pass
 
-    def encrypt(self, input: str) -> str:
+    def encrypt(self, input_bytes: bytes) -> str:
 
         """
         Encripta por medio de CUDA a través de la GPU Nvidia
@@ -332,13 +338,13 @@ class CryptoGPU:
             str: Texto encriptado por string
         """
 
-        input_bytes = input.encode('utf-8')
+        #input_bytes = input.encode('utf-8')
         byte_array_in = np.frombuffer(input_bytes, dtype=np.byte)
 
         computer = AES()
         
         encrypted = computer.encrypt_gpu(byte_array_in, self.byte_array_key, byte_array_in.size)
-        encrypted_hex = bytes(encrypted).hex()
+        encrypted_hex: str = bytes(encrypted).hex()
         return encrypted_hex
     
 
@@ -353,12 +359,33 @@ class CryptoGPU:
         Result:
             str: Texto decriptado por string
         """
+        # Convertir bytes a cadena de texto hexadecimal
+        if isinstance(encrypted_hex, bytes):
+            hex_string = encrypted_hex.decode()
+        else:
+            hex_string = encrypted_hex
 
-        encrypted_bytes = bytes.fromhex(encrypted_hex)
+        #print(f"Cadena hexadecimal: {hex_string}")
+
+        # Convertir la cadena hexadecimal a bytes
+        encrypted_bytes = bytes.fromhex(hex_string)
+        #print(f"Bytes decodificados: {encrypted_bytes}")
+
         byte_array_in = np.frombuffer(encrypted_bytes, dtype=np.byte)
 
         computer = AES()
         decrypted = computer.decrypt_gpu(byte_array_in, self.byte_array_key, byte_array_in.size)
         
-        decrypted_str = bytes(decrypted).decode('utf-8').rstrip('\x00')  # Removing potential padding
+
+        # Convertir resultado a string, manejando el padding si es necesario
+        decrypted_bytes = bytes(decrypted)
+        #print(f"Bytes desencriptados: {decrypted_bytes}")
+
+        # Intentar decodificar
+        try:
+            decrypted_str = decrypted_bytes.decode('utf-8').rstrip('\x00')  # Removing potential padding
+        except UnicodeDecodeError:
+            # Manejo de errores si la decodificación UTF-8 falla
+            print(f"Decodificación fallida con UTF-8, usando latin-1: {decrypted_str}")
+
         return decrypted_str

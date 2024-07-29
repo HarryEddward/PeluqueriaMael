@@ -195,9 +195,41 @@ def test_decrypt_repetitive_data():
  `--`------' `--`---'    `--`..---'    
 """
 
+from termcolor import cprint
 
 def test_encrypt_gpu():
-    pass
+    with httpx.Client() as client:
+
+        text_to_encrypt: bytes = b'TextToEncrypt'
+        response = client.post(f"{BASE_URL}/cryptoapi/app/api/v1/gpu/encrypt", content=text_to_encrypt, headers={"Content-Type": "application/octet-stream"})
+
+        assert response.status_code == 200
+        encrypted_content = response.content
+
+        assert  encrypted_content != b'0'
+
+        cprint(f"\nEncrypted content: {encrypted_content}\n", "green", "on_black")
+
 
 def test_decrypt_gpu():
-    pass
+    with httpx.Client() as client:
+
+        text_to_encrypt: bytes = b'TextToEncrypt'
+        response = client.post(f"{BASE_URL}/cryptoapi/app/api/v1/gpu/encrypt", content=text_to_encrypt, headers={"Content-Type": "application/octet-stream"})
+
+        assert response.status_code == 200
+        encrypted_content = response.content
+
+        assert  encrypted_content != b'0'
+
+        cprint(f"\nEncrypted content: {encrypted_content}\n", "green", "on_black")
+
+
+
+        response = client.post(f"{BASE_URL}/cryptoapi/app/api/v1/gpu/decrypt", content=encrypted_content, headers={"Content-Type": "application/octet-stream"})
+        assert response.status_code == 200
+        decrypted_content = response.content
+
+        assert  decrypted_content != b'0'
+
+        cprint(f"\nDecrypted content: {decrypted_content}\n", "green", "on_black")

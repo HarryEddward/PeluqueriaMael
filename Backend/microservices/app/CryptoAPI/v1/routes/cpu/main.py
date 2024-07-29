@@ -29,30 +29,30 @@ cipher_suite = Fernet(cryptography_key)
 '''
 
 
-class CryptoManager:
+class CryptoManagerCPU:
     __instance = None
 
     @staticmethod
     def get_instance() -> None:
-        if CryptoManager.__instance is None:
+        if CryptoManagerCPU.__instance is None:
             # Aquí puedes cargar la clave desde tu entorno o configuración
             if env == "dev":
                 env_path = find_dotenv()
                 load_dotenv(dotenv_path=env_path)
 
             cryptography_key = os.getenv('KEY_CRYPTO_CPU')
-            print(cryptography_key)
+            #print(cryptography_key)
             if cryptography_key:
                 cryptography_key = cryptography_key.encode()
             else:
                 raise ValueError("No se encontró la clave de cifrado en el entorno.")
             
             
-            CryptoManager.__instance = Fernet(cryptography_key)
+            CryptoManagerCPU.__instance = Fernet(cryptography_key)
         
-        return CryptoManager.__instance
+        return CryptoManagerCPU.__instance
     
-crypto_manager = CryptoManager.get_instance()
+crypto_manager_cpu = CryptoManagerCPU.get_instance()
 
 router = APIRouter()
 
@@ -78,7 +78,7 @@ async def Encrypt_CPU(request: Request):
 
     # Procesar el texto
     try:
-        resultado = crypto_manager.encrypt(bytes_)
+        resultado = crypto_manager_cpu.encrypt(bytes_)
         
     except Exception:
         return Response(content=b'0', media_type='application/octet-stream')
@@ -110,7 +110,7 @@ async def Decrypt_CPU(request: Request):
 
     try:
         # Procesar el texto
-        resultado = crypto_manager.decrypt(bytes_)
+        resultado = crypto_manager_cpu.decrypt(bytes_)
         
     except Exception as e:
         # No se elimina de forma explicita la vairbale resultado, porque si hay un error, no se podra borrar por el error, y generara otro error

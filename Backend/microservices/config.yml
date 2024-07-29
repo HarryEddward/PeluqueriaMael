@@ -27,6 +27,7 @@ common:
 
 app:
   API:
+    env: prod
     net:
       protocol: "http"
       port: 8000
@@ -44,14 +45,15 @@ app:
         - "*"
 
   APIWS:
+    env: dev
     net:
       protocol: "ws"
       port: 8100
     ssl: false
 
   CryptoAPI:
+    env: dev
     net:
-      protocol: "http"
       port: 8200
     ssl: false
     cache: true
@@ -59,10 +61,11 @@ app:
     cors:
       enabled: true
       # Se quito el apartado de origins, ya que solo hará úso de la API Estática
-      methods:
-        - "*"
       origins:
-        - "*"
+        - "http://0.0.0.0:8000"
+        - "http://0.0.0.0:8300"
+      methods:
+        - "POST"
       headers:
         - "*"
     cpu: true
@@ -71,6 +74,11 @@ app:
       graphic_card: "gt-710"  # Caracterítica no desarrollada
 
   StatusAPI:
+    env: dev
+    mirror:
+      - CryptoAPI
+      - APIWS
+      - API
     net:
       protocol: "http"
       port: 8300
@@ -80,8 +88,8 @@ app:
 
 web:
   API:
+    env: dev
     net:
-      protocol: "http"
       port: 8000
     ssl: true
     cache: true
@@ -89,8 +97,8 @@ web:
     cors: *common_cors
 
   StatusAPI:
+    env: prod
     net:
-      protocol: "https"
       port: 8300
     ssl: true
     cache: true

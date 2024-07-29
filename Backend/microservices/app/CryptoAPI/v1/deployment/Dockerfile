@@ -26,9 +26,12 @@ RUN pip3 install --upgrade pip setuptools wheel
 # Verificar que CUDA está configurado correctamente
 RUN nvcc --version
 
+# Instalar pycuda por separado
+RUN pip3 install numpy==1.24.4
+RUN pip3 install pycuda==2024.1
+
 # Instalar paquetes de Python
 RUN pip3 install \
-    pycuda \
     uvicorn \
     gunicorn \
     ujson \
@@ -41,8 +44,8 @@ RUN pip3 install \
     starlette \
     pytest \
     sphinxawesome-theme \
-    numpy \
-    httpx
+    httpx \
+    termcolor
 
 # Cambiar al directorio del proyecto de la API de CryptoAPI
 WORKDIR /peluqueriamael/Backend/microservices/app/CryptoAPI/v1
