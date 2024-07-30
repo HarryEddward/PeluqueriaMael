@@ -2,6 +2,12 @@ import httpx
 
 from Backend.microservices.conversor.config.config import Config
 
+"""
+A la hora de hacer úso encriptar y decriptar texto hay que tener estas consideraciónes:
+
+La codificación y la decodificación se hace mediante utf-8, la forma de encriptar y decriptar
+no esta preparada para usarse con accentos como hace latin-1-
+"""
 
 config: dict = Config()
 host: str = config['host']
