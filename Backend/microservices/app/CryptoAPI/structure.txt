@@ -1,0 +1,91 @@
+.
+├── docs
+├── __init__.py
+├── structure.txt
+└── v1
+    ├── config.py
+    ├── dependencies
+    │   ├── __init__.py
+    │   └── simply_cuda_aes
+    │       ├── AES.py
+    │       ├── E4750_2022Fall_PAES_anr2157_rd3033.report.pdf
+    │       ├── Fig
+    │       │   ├── blockSize.py
+    │       │   ├── graphs.ipynb
+    │       │   └── inputdataSize.py
+    │       ├── __init__.py
+    │       ├── input.txt
+    │       ├── kernels
+    │       │   ├── AddRoundKey.cuh
+    │       │   ├── AES.cuh
+    │       │   ├── FinalRound.cuh
+    │       │   ├── general.cuh
+    │       │   ├── InvAES.cuh
+    │       │   ├── InvFinalRound.cuh
+    │       │   ├── InvMixColumns.cuh
+    │       │   ├── InvRound.cuh
+    │       │   ├── InvShiftRows.cuh
+    │       │   ├── InvSubbytes.cuh
+    │       │   ├── KeyExpansion.cuh
+    │       │   ├── MixColumns.cuh
+    │       │   ├── Round.cuh
+    │       │   ├── ShiftRows.cuh
+    │       │   └── SubBytes.cuh
+    │       ├── output_decrypted.txt
+    │       ├── output_encrypted.txt
+    │       ├── profiling_reports
+    │       │   └── metrics.nsight-cuprof-report
+    │       ├── README.md
+    │       ├── ref
+    │       │   ├── AES_Python.py
+    │       │   └── __init__.py
+    │       ├── requirements.txt
+    │       └── tb
+    │           ├── AddRoundKey_test.py
+    │           ├── AES_test.py
+    │           ├── AES_test.txt
+    │           ├── AES_time.py
+    │           ├── __init__.py
+    │           ├── InvAES_test.py
+    │           ├── InvMixColumns_test.py
+    │           ├── InvRound_test.py
+    │           ├── InvShiftRows_test.py
+    │           ├── KeyExpansion_test.py
+    │           ├── MixColumns_test.py
+    │           ├── Round_test.py
+    │           ├── ShiftRows_test.py
+    │           ├── SubBytes_test.py
+    │           └── test_cases
+    │               └── create_test_cases.py
+    ├── deployment
+    │   ├── docker-compose.yml
+    │   ├── Dockerfile
+    │   └── scripts
+    │       └── entrypoint.sh
+    ├── execute.sh
+    ├── middlewares
+    │   ├── __init__.py
+    │   └── text_plain.py
+    ├── pytest.ini
+    ├── requirements.txt
+    ├── routes
+    │   ├── cpu
+    │   │   ├── __init__.py
+    │   │   ├── main.py
+    │   │   └── responses.py
+    │   ├── gpu
+    │   │   ├── __init__.py
+    │   │   ├── main.py
+    │   │   └── responses.py
+    │   └── __init__.py
+    ├── server_fastapi.py
+    ├── services
+    │   ├── gpu_cryptography
+    │   │   ├── __init__.py
+    │   │   └── main.py
+    │   └── __init__.py
+    └── __tests__
+        ├── __init__.py
+        └── test_routes.py
+
+20 directories, 69 files

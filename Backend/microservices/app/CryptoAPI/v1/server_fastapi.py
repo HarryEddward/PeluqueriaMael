@@ -83,17 +83,19 @@ if gpu:
 # Incluir el enrutador base en la aplicación con el prefijo deseado
 app.include_router(base_router, prefix="/cryptoapi/app/api/v1")
 
+
+
 # Middlewares
 #app.add_middleware(SessionMiddleware, secret_key="your-secret-key-3")
-'''
-Comprueba si es texto en plano, no va a comprobar mas que simple texto
-'''
-from middlewares.text_plain import TextPlainMiddleware
+#Comprueba si es texto en plano, no va a comprobar mas que simple texto
+
+from Backend.microservices.app.CryptoAPI.v1.middlewares.octet_stream import OctetStreamMiddleware
+
 # Rutas que el middleware debe omitir
 skip_paths: list = ["/docs", "/redoc", "/openapi"]
 
 # Agregar el middleware a la aplicación y pasar las rutas a omitir
-app.add_middleware(TextPlainMiddleware, skip_paths=skip_paths)
+app.add_middleware(OctetStreamMiddleware, skip_paths=skip_paths)
 
 
 '''

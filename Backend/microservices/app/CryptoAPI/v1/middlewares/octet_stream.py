@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.types import ASGIApp
 
-class TextPlainMiddleware(BaseHTTPMiddleware):
+class OctetStreamMiddleware(BaseHTTPMiddleware):
     def __init__(self, app: ASGIApp, skip_paths: list = None):
         super().__init__(app)
         self.skip_paths = skip_paths or []
