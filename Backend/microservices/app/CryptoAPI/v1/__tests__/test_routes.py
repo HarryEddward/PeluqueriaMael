@@ -225,7 +225,7 @@ def test_decrypt_gpu():
         cprint(f"\nEncrypted content: {encrypted_content}\n", "green", "on_black")
 
 
-
+        print(encrypted_content)
         response = client.post(f"{BASE_URL}/cryptoapi/app/api/v1/gpu/decrypt", content=encrypted_content, headers={"Content-Type": "application/octet-stream"})
         assert response.status_code == 200
         decrypted_content = response.content

@@ -12,32 +12,62 @@ ssl: str = app['CryptoAPI']['ssl']
 protcol: str = 'https' if ssl else 'http'
 BASE_URL: str = f"{protcol}://{host}:{port}"
 
-def encrypt(text: str) -> str:
+def encrypt(text: str) -> bytes:
 
-    """
-    _summary_
+    """AI is creating summary for 
+
+    Raises:
+        Exception: [description]
+
+    Returns:
+        [type]: [description]
     """
     with httpx.Client() as client:
 
         to_encrypt: bytes = text.encode("utf-8")
-        result: dict = client.post(f"{BASE_URL}/cryptoapi/app/api/v1/gpu/encrypt", content=to_encrypt, headers={"Content-Type": "application/octet-stream"})
+        result = client.post(f"{BASE_URL}/cryptoapi/app/api/v1/gpu/encrypt", content=to_encrypt, headers={"Content-Type": "application/octet-stream"})
         content: bytes = result.content
 
-        if content != b'0' or result.status != 200:
-            raise Exception("Hubo un error a la hora de encriptar o decriptar")
+        #print(content)
+
+        if content == b'0' or result.status_code != 200:
+            #print(content != b'0')
+            #print(result.status_code != 200)
+            raise Exception("Hubo un error a la hora de encriptar")
 
         return result.content
 
-def decrypt(encrypted_text: str) -> str:
-        
+def decrypt(encrypted: bytes) -> bytes:
+    """AI is creating summary for decrypt
+
+    Args:
+        encrypted_text (str): [description]
+
+    Raises:
+        Exception: [description]
+
+    Returns:
+        str: [description]
+    """
 
     with httpx.Client() as client:
-        to_encrypt: bytes = encrypted_text.encode("utf-8")
-        result: dict = client.post(f"{BASE_URL}/cryptoapi/app/api/v1/gpu/encrypt", content=to_encrypt, headers={"Content-Type": "application/octet-stream"})
+        print(encrypted)
+        #to_decrypt: bytes = encrypted_text.encode("utf-8")
+        result = client.post(f"{BASE_URL}/cryptoapi/app/api/v1/gpu/decrypt", content=encrypted, headers={"Content-Type": "application/octet-stream"})
         content: bytes = result.content
 
-        if content != b'0' or result.status != 200:
+        if content == b'0' or result.status_code != 200:
+            print(content)
             raise Exception("Hubo un error a la hora de encriptar o decriptar")
 
         return result.content
 
+
+if __name__ == "__main__":
+
+    text: str = "hola que tal tu día?"
+    encrypt_text: str = encrypt(text)
+    
+    print(encrypt_text)
+
+    print(decrypt(encrypt_text))
