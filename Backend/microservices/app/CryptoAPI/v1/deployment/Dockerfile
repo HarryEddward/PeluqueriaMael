@@ -45,7 +45,8 @@ RUN pip3 install \
     pytest \
     sphinxawesome-theme \
     httpx \
-    termcolor
+    termcolor \
+    validate-utf8
 
 # Cambiar al directorio del proyecto de la API de CryptoAPI
 WORKDIR /peluqueriamael/Backend/microservices/app/CryptoAPI/v1

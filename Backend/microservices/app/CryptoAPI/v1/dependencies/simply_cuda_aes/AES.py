@@ -369,7 +369,7 @@ class CryptoGPU:
 
         # Convertir la cadena hexadecimal a bytes
         encrypted_bytes = bytes.fromhex(hex_string)
-        print(f"Bytes decodificados: {encrypted_bytes}")
+        #print(f"Bytes decodificados: {encrypted_bytes}")
 
         byte_array_in = np.frombuffer(encrypted_bytes, dtype=np.byte)
 
@@ -379,14 +379,16 @@ class CryptoGPU:
 
         # Convertir resultado a string, manejando el padding si es necesario
         decrypted_bytes = bytes(decrypted)
-        print(f"Bytes desencriptados: {decrypted_bytes}")
+        #print(f"Bytes desencriptados: {decrypted_bytes}")
 
         # Intentar decodificar
         try:
             decrypted_str = decrypted_bytes.decode('utf-8').rstrip('\x00')  # Removing potential padding
+            print(decrypted_bytes)
             print(decrypted_str)
         except UnicodeDecodeError:
             # Manejo de errores si la decodificación UTF-8 falla
-            print(f"Decodificación fallida con UTF-8, usando latin-1: {decrypted_str}")
+            #print(f"Decodificación fallida con UTF-8, usando latin-1: {decrypted_str}")
+            pass
 
         return decrypted_str
