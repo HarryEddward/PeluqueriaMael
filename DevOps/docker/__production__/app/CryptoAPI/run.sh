@@ -70,19 +70,5 @@ fi
 # Mensaje de éxito
 echo "El contenedor se ha levantado correctamente y está ejecutándose en segundo plano."
 
-# Esperar a que el contenedor esté en ejecución antes de intentar acceder a la terminal
-sleep 5
-
-# Acceder a la terminal del contenedor
-CONTAINER_ID=$(docker compose -f $COMPOSE_FILE ps -q)
-if [ ! -z "$CONTAINER_ID" ]; then
-    echo "Accediendo a la terminal del contenedor con ID $CONTAINER_ID..."
-
-    # Se implementa las variables de entorno directamente por bash por problemas internos de docker al intentar implementar variables de entorno en el contenedor
-    sudo docker exec -it $CONTAINER_ID bash -c 'export PATH=/usr/local/cuda/bin:$PATH && export CUDA_HOME=/usr/local/cuda && export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH && exec "$SHELL"'
-else
-    echo "El contenedor no está en ejecución. No se puede acceder a la terminal."
-fi
-
 # Fin del script
 echo "Proceso de despliegue completado."

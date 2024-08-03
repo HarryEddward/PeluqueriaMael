@@ -1,0 +1,20 @@
+
+
+services:
+  peluqueriamael_app_api:
+    #container_name: deployment_peluqueriamael_app_api
+    image: peluqueriamael_app_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../../../../../../Backend:/peluqueriamael/Backend
+      - ../../../../../../__init__.py:/peluqueriamael/__init__.py
+      - ../../../../../../LICENSE:/peluqueriamael/LICENSE
+      - ../../../../../../README.md:/peluqueriamael/README.md
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_HAIRDRESSER_PASSWORD=example
+      - MONGODB_HAIRDRESSER_USERNAME=root
+    command: ['./execute.sh']

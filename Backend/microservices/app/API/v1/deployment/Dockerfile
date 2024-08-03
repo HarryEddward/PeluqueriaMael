@@ -1,15 +1,23 @@
-FROM python:latest
+FROM python:latest  
 
-# Establecer el directorio de trabajo dentro del contenedor
-COPY /../../../../../Backend /peluqueriamael
-COPY /../../../../../__init__.py /peluqueriamael
-COPY /../../../../../LICENSE /peluqueriamael
-COPY /../../../../../README.md /peluqueriamael
+WORKDIR /peluqueriamael/Backend/microservices/app/API/v1
 
-WORKDIR /Backend/microservices/app/API/v1
+# Instala las dependencias
+RUN pip install pymongo \
+    "fastapi-cache2[redis]" \
+    pyjwt \
+    fastapi \
+    gunicorn \
+    uvicorn \
+    numba \
+    pydantic_extra_types \
+    phonenumbers \
+    sphinx \
+    ujson \
+    pyyaml \
+    pydantic \
+    pydantic[email] \
+    python-dotenv
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-EXPOSE 8000
-
-CMD ["./init.sh"]
+#CMD ["tail", "-f", "/dev/null"]
+#CMD ["./execute.sh"]

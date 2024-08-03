@@ -46,7 +46,10 @@ RUN pip3 install \
     sphinxawesome-theme \
     httpx \
     termcolor \
-    validate-utf8
+    validate-utf8 \
+    pyyaml \
+    pydantic \
+    python-dotenv
 
 # Cambiar al directorio del proyecto de la API de CryptoAPI
 WORKDIR /peluqueriamael/Backend/microservices/app/CryptoAPI/v1
@@ -58,7 +61,7 @@ COPY ./scripts/entrypoint.sh /peluqueriamael/entrypoint.sh
 RUN chmod +x /peluqueriamael/entrypoint.sh
 
 # Configurar el script como ENTRYPOINT
-ENTRYPOINT ["/peluqueriamael/entrypoint.sh"]
+#ENTRYPOINT ["/peluqueriamael/entrypoint.sh"]
 
 # Comando por defecto para mantener el contenedor en ejecución
-CMD ["tail", "-f", "/dev/null"]
+#CMD ["tail", "-f", "/dev/null"]

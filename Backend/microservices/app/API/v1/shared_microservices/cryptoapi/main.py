@@ -91,14 +91,15 @@ def decrypt(encrypted: bytes) -> bytes:
 if __name__ == "__main__":
     import time
 
-    text = "Mañana"  # Usa una cadena válida para probar
+    text = "sadsadsadsasa"  # Usa una cadena válida para probar
     start_time = time.time()
 
-    encrypted_text = encrypt(text)
-    print(f'Encrypted text: {encrypted_text}')
+    for i in range(1000):
+        encrypted_text = encrypt(text + str(i))
+        #print(f'Encrypted text: {encrypted_text}')
 
-    decrypted_text = decrypt(encrypted_text)
-    print(f'Decrypted text: {decrypted_text.decode("utf-8")}')
+        decrypted_text = decrypt(encrypted_text)
+        #print(f'Decrypted text: {decrypted_text.decode("utf-8")}')
 
     end_time = time.time()
     print(f'Execution time: {end_time - start_time}')

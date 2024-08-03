@@ -1,7 +1,6 @@
 import os
-from pymongo import (
-    MongoClient
-)
+from pymongo import MongoClient
+from urllib.parse import quote_plus
 from Backend.microservices.conversor.config.config import Config
 
 try:
@@ -21,25 +20,26 @@ try:
     use_administrador: str = collection['administrador']
     use_tipos_de_pydantic: str = collection['tipos_de_pydantic']
 
+    # Codifica el nombre de usuario y la contraseña
+    username = quote_plus(username)
+    password = quote_plus(password)
 
-    username: str = os.getenv(username)
-    password: str = os.getenv(password)
+    # Verifica las variables de entorno
+    username_env = os.getenv('USERNAME_ENV')  # Ajusta si el nombre de variable es diferente
+    password_env = os.getenv('PASSWORD_ENV')  # Ajusta si el nombre de variable es diferente
 
-    if (username and password) == None:
-        raise "The variables from the enviroment have not configurated yet"
+    if username_env:
+        username = username_env
+    if password_env:
+        password = password_env
 
-    client: function = MongoClient(f'mongodb://{username}:{password}%s@{host}:{port}')
+    if not (username and password):
+        raise ValueError("The variables from the environment have not been configured yet")
+
+    # Construye la URL de conexión
+    connection_uri = f'mongodb://{username}:{password}@{host}:{port}/{use_db}'
+    client = MongoClient(connection_uri)
     db = client[use_db]
-
-
-    # Crear el nuevo usuario
-    '''
-    db.command(
-        'createUser', 'ddsfsdf',
-        pwd='AXGRbLjzQsMChDnJWdUpNr#87',
-        roles=roles
-    )
-    '''
 
     reservas = db[use_reservas]
     users = db[use_usuarios]
@@ -48,4 +48,5 @@ try:
     admin = db[use_administrador]
     types = db[use_tipos_de_pydantic]
 except Exception as err:
-    raise f"Have a problem in database.py from API: {err}"
+    print(err)
+    raise RuntimeError(f"Have a problem in database.py from API: {err}")
