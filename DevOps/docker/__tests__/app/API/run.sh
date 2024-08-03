@@ -13,7 +13,7 @@ CONTAINER_NAME="deployment_peluqueriamael_app_api"
 if [ $# -eq 1 ]; then
     COMPOSE_FILE=$1
 else
-    COMPOSE_FILE="./Backend/microservices/app/API/v1/deployment/docker-compose.yml"
+    COMPOSE_FILE="/home/adrian/Documentos/PeluqueriaMael/Backend/microservices/app/API/v1/deployment/docker-compose.yml"
 fi
 
 # Mensaje de inicio
@@ -45,6 +45,7 @@ EXISTING_IMAGE=$(docker images -q $IMAGE_NAME)
 if [ ! -z "$EXISTING_IMAGE" ]; then
     echo "La imagen $IMAGE_NAME ya existe. Eliminándola..."
     docker rmi -f $EXISTING_IMAGE
+    sleep 5
 fi
 
 # Construir la imagen

@@ -36,7 +36,10 @@ fi
 RUNNING_CONTAINER=$(docker ps -q -f name=$CONTAINER_NAME)
 if [ ! -z "$RUNNING_CONTAINER" ]; then
     echo "Deteniendo y eliminando el contenedor en ejecución con el nombre $CONTAINER_NAME..."
+    docker stop $COMPOSE_FILE
+    docker rm $COMPOSE_FILE
     docker compose -f $COMPOSE_FILE down
+    sleep 5
     # Alternativamente, podrías usar:
     # docker stop $RUNNING_CONTAINER && docker rm $RUNNING_CONTAINER
 fi

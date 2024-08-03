@@ -31,7 +31,7 @@ app:
     net:
       protocol: "http"
       port: 8000
-    ssl: true
+    ssl: false
     cache: true
     gzip: *common_gzip
     cors:

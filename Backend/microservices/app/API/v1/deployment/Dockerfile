@@ -1,7 +1,5 @@
 FROM python:latest  
 
-WORKDIR /peluqueriamael/Backend/microservices/app/API/v1
-
 # Instala las dependencias
 RUN pip install pymongo \
     "fastapi-cache2[redis]" \
@@ -18,6 +16,9 @@ RUN pip install pymongo \
     pydantic \
     pydantic[email] \
     python-dotenv
+
+WORKDIR /peluqueriamael/Backend/microservices/app/API/v1
+
 
 #CMD ["tail", "-f", "/dev/null"]
 #CMD ["./execute.sh"]
