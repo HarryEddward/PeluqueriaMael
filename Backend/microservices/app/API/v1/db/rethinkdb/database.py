@@ -9,8 +9,12 @@ host = config_db['host']
 
 db_name = config_db['db']
 
-# Conectarse a RethinkDB
-r = r.r
+try:
+    # Conectarse a RethinkDB
+    r = r.r
+    server = r.connect(host=host, port=port)
+    db = r.connect(host=host, port=port, db=db_name)
 
-server = r.connect(host=host, port=port)
-db = r.connect(host=host, port=port, db=db_name)
+except Exception as e:
+
+    print("Hay un buen problema con RethinkDB")

@@ -53,11 +53,13 @@ class ValidationUser:
 
     #@nb.jit(nopython=True)
     def search_user(self, data):
+        print('comienza por aqui')
         user = users.find_one({"data.info.email": data["email"]})
         print('user -> ', user)
         if user:
             self.validate_password(user, data)
         else:
+            print('here?)')
             self.response = {
                 "info": "User not found.",
                 "status": "no",
@@ -66,7 +68,6 @@ class ValidationUser:
 
     #@nb.jit(nopython=True)
     def validate_password(self, user, data):
-
 
         try:
             if user["data"]["info"]["password"] == data["password"]:
@@ -89,6 +90,7 @@ class ValidationUser:
                     "type": "INCORRECT_PASSWORD"
                 }
         except Exception as e:
+            print('here?')
                     # Capturar y manejar el error de la base de datos
             self.response = {
                 "info": "Database error: " + str(e),

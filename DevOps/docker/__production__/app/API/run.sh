@@ -13,7 +13,7 @@ CONTAINER_NAME="deployment_peluqueriamael_app_api"
 if [ $# -eq 1 ]; then
     COMPOSE_FILE=$1
 else
-    echo "$pwd"
+    echo "--------------> $pwd"
     COMPOSE_FILE="./Backend/microservices/app/API/v1/deployment/docker-compose.yml"
 fi
 
@@ -32,12 +32,16 @@ if ! command -v docker compose &> /dev/null; then
     exit 1
 fi
 
+
 # Buscar y detener el contenedor en ejecución si existe
-RUNNING_CONTAINER=$(docker ps -q -f name=$CONTAINER_NAME)
+RUNNING_CONTAINER=$(docker ps -q -f name="$IMAGE_NAME-1")
+echo "$RUNNING_CONTAINER <------------"
 if [ ! -z "$RUNNING_CONTAINER" ]; then
     echo "Deteniendo y eliminando el contenedor en ejecución con el nombre $CONTAINER_NAME..."
-    docker stop $COMPOSE_FILE
-    docker rm $COMPOSE_FILE
+    #docker stop $COMPOSE_FILE
+    #docker rm $COMPOSE_FILE
+    #sleep 10
+    #echo "docker compose -f $COMPOSE_FILE down <---------------------"
     docker compose -f $COMPOSE_FILE down
     sleep 5
     # Alternativamente, podrías usar:
@@ -65,8 +69,6 @@ fi
 echo "Levantando el contenedor..."
 docker compose -f $COMPOSE_FILE up -d
 
-sudo docker ps
-
 # Verificar si el contenedor se levantó correctamente
 if [ $? -ne 0 ]; then
     echo "Fallo al levantar el contenedor. Por favor, revisa los errores anteriores."
@@ -75,7 +77,7 @@ fi
 
 CONTAINER_ID=$(docker compose -f $COMPOSE_FILE ps -q)
 if [ ! -z "$CONTAINER_ID" ]; then
-    echo "Accediendo a la terminal del contenedor con ID $CONTAINER_ID..."
+    sudo docker ps
 else
     echo "El contenedor no está en ejecución. No se puede acceder a la terminal."
 fi

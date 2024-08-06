@@ -15,7 +15,8 @@ RUN pip install pymongo \
     pyyaml \
     pydantic \
     pydantic[email] \
-    python-dotenv
+    python-dotenv \
+    rethinkdb
 
 WORKDIR /peluqueriamael/Backend/microservices/app/API/v1
 

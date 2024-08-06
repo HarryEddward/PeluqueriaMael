@@ -14,7 +14,7 @@ def test_login():
 
     try:
         # Desactiva la verificación de certificados SSL en httpx
-        with httpx.Client(verify=False) as client:
+        with httpx.Client() as client:
             response = client.post(
                 f"{BASE_URL}/api/app/api/v1/client/public/login",
                 json=data

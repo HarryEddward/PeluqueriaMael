@@ -49,7 +49,8 @@ RUN pip3 install \
     validate-utf8 \
     pyyaml \
     pydantic \
-    python-dotenv
+    python-dotenv \
+    rethinkdb
 
 # Cambiar al directorio del proyecto de la API de CryptoAPI
 WORKDIR /peluqueriamael/Backend/microservices/app/CryptoAPI/v1

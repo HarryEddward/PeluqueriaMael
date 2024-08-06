@@ -25,8 +25,8 @@ try:
     password = quote_plus(password)
 
     # Verifica las variables de entorno
-    username_env = os.getenv('USERNAME_ENV')  # Ajusta si el nombre de variable es diferente
-    password_env = os.getenv('PASSWORD_ENV')  # Ajusta si el nombre de variable es diferente
+    username_env = os.getenv('MONGODB_HAIRDRESSER_USERNAME')  # Ajusta si el nombre de variable es diferente
+    password_env = os.getenv('MONGODB_HAIRDRESSER_PASSWORD')  # Ajusta si el nombre de variable es diferente
 
     if username_env:
         username = username_env
@@ -37,7 +37,9 @@ try:
         raise ValueError("The variables from the environment have not been configured yet")
 
     # Construye la URL de conexión
-    connection_uri = f'mongodb://{username}:{password}@{host}:{port}/{use_db}'
+    connection_uri = f'mongodb://{username}:{password}@{host}:{port}'
+    print(connection_uri)
+    
     client = MongoClient(connection_uri)
     db = client[use_db]
 
