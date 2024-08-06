@@ -1,6 +1,15 @@
 from pymongo import MongoClient
 from pymongo.errors import ServerSelectionTimeoutError, ConfigurationError
 
+from Backend.microservices.app.API.v1.db.mongodb.database import users
+
+
+result = users.find()
+for result in result:
+    print(result)
+
+
+"""
 def check_mongodb_uri(uri):
     try:
         # Crear una instancia de MongoClient con la URI proporcionada
@@ -57,3 +66,4 @@ if client:
             print(f"La colección '{nombre_coleccion}' no existe en la base de datos '{nombre_db}'.")
 else:
     print("La URI no es válida o no se pudo conectar a MongoDB.")
+"""
