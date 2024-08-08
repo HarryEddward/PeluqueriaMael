@@ -285,14 +285,18 @@ We used Linux as the default OS for the server, with plans to adapt it to FreeBS
 ## Errors during in the process
 
 (8-8-2024)
+
 I fix the hardest errors during the deployment test, i already fix the connection with mongodb in the separate container with have separate the docker-compose file with all of the db.
 And the error was that: 
+
+
+```json
 {
-    "info": "0.0.0.0:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66b327d8a6bb8c941f15567b, topology_type: Unknown, servers: [<ServerDescription ('0.0.0.0', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('0.0.0.0:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>",
+    "info": "0.0.0.0:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66b327d8a6bb8c941f15567b, topology_type: Unknown, servers: [<ServerDescription ("0.0.0.0", 27017) server_type: Unknown, rtt: None, error=AutoReconnect("0.0.0.0:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)")>]>",
     "status": "no",
     "type": "UNKNOWN_ERROR"
 }
-
+```
 ## Credits
 
 <p align="center">
