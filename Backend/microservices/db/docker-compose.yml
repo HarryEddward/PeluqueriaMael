@@ -12,6 +12,8 @@ services:
       - mongo_data_hairdresser:/data/db
     ports:
       - "27017:27017"
+    networks:
+      - hairdresser_network
 
   rethinkdb:
     image: rethinkdb:latest
@@ -23,6 +25,8 @@ services:
       - "8080:8080"     # Admin console
       - "28015:28015"   # Driver port
       - "29015:29015"   # Cluster port
+    networks:
+      - hairdresser_network
 
   redis:
     image: redis:latest
@@ -33,6 +37,12 @@ services:
     ports:
       - "6379:6379"
     command: ["redis-server", "--appendonly", "yes"]
+    networks:
+      - hairdresser_network
+
+networks:
+  hairdresser_network:
+    driver: bridge
 
 volumes:
   mongo_data_hairdresser:

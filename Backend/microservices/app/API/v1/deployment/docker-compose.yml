@@ -18,3 +18,9 @@ services:
       - MONGODB_HAIRDRESSER_PASSWORD=example
       - MONGODB_HAIRDRESSER_USERNAME=root
     command: ['./execute.sh']
+    networks:
+      - db_hairdresser_network
+
+networks:
+  db_hairdresser_network:
+    external: true

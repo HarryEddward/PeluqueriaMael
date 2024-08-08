@@ -49,6 +49,11 @@ try:
     personal = db[use_personal]
     admin = db[use_administrador]
     types = db[use_tipos_de_pydantic]
+
+    count_reservas = reservas.count_documents({})
+    print(f"Conexión exitosa. La colección 'reservas' tiene {count_reservas} documentos.")
+
+
 except Exception as err:
     print(err)
     raise RuntimeError(f"Have a problem in database.py from API: {err}")

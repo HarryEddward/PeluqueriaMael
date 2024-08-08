@@ -126,7 +126,7 @@ db:
         reservas: booking_card
     
     mongodb:
-      host: "0.0.0.0"
+      host: "mongodb_hairdresser"
       port: 27017
       # Env's to use it in production
       # Hahahaha, you can't hacker, forget to know the prodcution envs
