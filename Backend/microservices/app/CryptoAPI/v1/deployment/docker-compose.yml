@@ -24,4 +24,4 @@ services:
         reservations:
           devices:
             - capabilities: [gpu]
-    command: ["./execute.sh"]
+    #command: ["./execute.sh"]

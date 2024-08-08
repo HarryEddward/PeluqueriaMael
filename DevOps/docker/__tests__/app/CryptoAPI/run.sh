@@ -35,7 +35,7 @@ fi
 RUNNING_CONTAINER=$(docker ps -q -f name=$CONTAINER_NAME)
 if [ ! -z "$RUNNING_CONTAINER" ]; then
     echo "Deteniendo y eliminando el contenedor en ejecución con el nombre $CONTAINER_NAME..."
-    docker compose -f $COMPOSE_FILE down
+    docker compose -f $COMPOSE_FILE down --remove-orphans
     # Alternativamente, podrías usar:
     # docker stop $RUNNING_CONTAINER && docker rm $RUNNING_CONTAINER
 fi
@@ -59,7 +59,7 @@ fi
 
 # Levantar el contenedor
 echo "Levantando el contenedor..."
-docker compose -f $COMPOSE_FILE up -d
+docker compose -f $COMPOSE_FILE up -d --remove-orphans
 
 # Verificar si el contenedor se levantó correctamente
 if [ $? -ne 0 ]; then

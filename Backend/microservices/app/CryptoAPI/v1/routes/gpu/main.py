@@ -8,7 +8,7 @@ from Backend.microservices.app.CryptoAPI.v1.routes.gpu.responses import (
 )
 from Backend.microservices.app.CryptoAPI.v1.dependencies.simply_cuda_aes.AES import CryptoGPU
 from Backend.microservices.app.CryptoAPI.v1.config import env
-
+#from Backend.microservices.app.CryptoAPI.v1.server_fastapi import logger
 import os
 
 
@@ -51,15 +51,16 @@ async def Encrypt_GPU(req: Request):
     # Validar que el contenido no esté vacío
     if len(bytes_) == 0 or bytes_.isspace():
         del bytes_
-        #print('hubo un error inesperado')
+        print('hubo un error inesperado')
         return Response(content=b'0', media_type='application/octet-stream')
 
     try:
+        #logger.info("Este es un mensaje de log.")
         # Procesar el texto
         resultado = crypto_manager_gpu.encrypt(bytes_)
         
     except Exception as e:
-        #print(f'huno un error: {e}')
+        print(f'huno un error: {e}')
         # No se elimina de forma explicita la vairbale resultado, porque si hay un error, no se podra borrar por el error, y generara otro error
         del bytes_
         return Response(content=b'0', media_type='application/octet-stream')

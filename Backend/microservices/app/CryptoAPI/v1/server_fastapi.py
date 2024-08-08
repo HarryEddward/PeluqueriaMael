@@ -10,8 +10,12 @@ from Backend.microservices.app.CryptoAPI.v1.routes.gpu.main import router as gpu
 import ujson
 import os
 import fastapi
+import logging
 from redis import asyncio as aioredis
 from Backend.microservices.conversor.config.config import Config
+
+logging.basicConfig(filename="app.log", level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 config: dict = Config()
 host: str = config['host']

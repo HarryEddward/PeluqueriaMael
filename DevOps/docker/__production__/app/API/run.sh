@@ -42,7 +42,7 @@ if [ ! -z "$RUNNING_CONTAINER" ]; then
     #docker rm $COMPOSE_FILE
     #sleep 10
     #echo "docker compose -f $COMPOSE_FILE down <---------------------"
-    docker compose -f $COMPOSE_FILE down
+    docker compose -f $COMPOSE_FILE down --remove-orphans
     sleep 5
     # Alternativamente, podrías usar:
     # docker stop $RUNNING_CONTAINER && docker rm $RUNNING_CONTAINER

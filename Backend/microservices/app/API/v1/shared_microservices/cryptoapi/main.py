@@ -59,8 +59,10 @@ def encrypt(text: str) -> bytes:
     
     with httpx.Client() as client:
         to_encrypt: bytes = valid_text.text.encode("utf-8")
+        print(f"{BASE_URL}/cryptoapi/app/api/v1/gpu/encrypt")
         result = client.post(f"{BASE_URL}/cryptoapi/app/api/v1/gpu/encrypt", content=to_encrypt, headers={"Content-Type": "application/octet-stream"})
         content: bytes = result.content
+        print(content, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
 
         if content == b'0' or result.status_code != 200:
             raise Exception("Hubo un error a la hora de encriptar")
