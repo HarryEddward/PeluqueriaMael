@@ -297,6 +297,24 @@ And the error was that:
     "type": "UNKNOWN_ERROR"
 }
 ```
+I found the solution it was more easier than i was thought, i change the host conection from the main pc from to bridge the connection within the containers to put the name of the container and specify in the docker compose yml the exact network bridge to connect with the other :
+
+/PeluqueriaMael/Backend/microservices/app/API/v1/deployment/docker-compose.yml:
+```yml
+networks:
+  db_hairdresser_network:
+    external: true
+```
+
+/home/adrian/Documentos/PeluqueriaMael/Backend/microservices/db/docker-compose.yml:
+```yml
+networks:
+  hairdresser_network:
+    driver: bridge
+```
+
+
+
 ## Credits
 
 <p align="center">
