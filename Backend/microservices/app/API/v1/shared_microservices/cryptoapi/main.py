@@ -6,9 +6,9 @@ import re
 
 # Configuración
 config: dict = Config()
-host: str = config['host']
 app: str = config['app']
 
+host: str = app['CryptoAPI']['host']
 port: str = app['CryptoAPI']['net']['port']
 ssl: str = app['CryptoAPI']['ssl']
 protocol: str = 'https' if ssl else 'http'
@@ -62,7 +62,7 @@ def encrypt(text: str) -> bytes:
         print(f"{BASE_URL}/cryptoapi/app/api/v1/gpu/encrypt")
         result = client.post(f"{BASE_URL}/cryptoapi/app/api/v1/gpu/encrypt", content=to_encrypt, headers={"Content-Type": "application/octet-stream"})
         content: bytes = result.content
-        print(content, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+        #print(content, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
 
         if content == b'0' or result.status_code != 200:
             raise Exception("Hubo un error a la hora de encriptar")

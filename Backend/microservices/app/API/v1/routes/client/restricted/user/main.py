@@ -55,6 +55,7 @@ async def root(request: Request, data: structureDelete) -> JSONResponse:
     def code() -> dict:
         
         verify = data.verify
+        print(request.state.new_token)
 
         # Si la eliminación de la cuenta no esta verificada, no se puede eliminar. Puede ser que manera no intencionada
         if not verify:
@@ -94,9 +95,9 @@ async def root(request: Request, data: structureDelete) -> JSONResponse:
         }, 200)
 
 
-
     try:
         def Response(res: dict, status: int) -> JSONResponse:
+            print('>>>>>>>>>>>>>>>>>> req state', request.state.__dict__)
             res["renew"] = {
                 "token": request.state.new_token
             }

@@ -27,6 +27,8 @@ common:
 
 app:
   API:
+    testing:
+      host: 127.0.0.1 #Host only using for doing ops in the container
     env: prod
     net:
       protocol: "http"
@@ -52,7 +54,10 @@ app:
     ssl: false
 
   CryptoAPI:
+    host: deployment-peluqueriamael_app_cryptoapi-1 #Name of the container to access in the specific network from docker
     env: dev
+    testing:
+      host: 127.0.0.1
     net:
       port: 8200
     ssl: false
@@ -71,7 +76,7 @@ app:
     cpu: true
     gpu:
       enabled: true
-      graphic_card: "gt-710"  # Caracterítica no desarrollada
+      graphic_card: "gt-710"  # Feature not added
 
   StatusAPI:
     env: dev

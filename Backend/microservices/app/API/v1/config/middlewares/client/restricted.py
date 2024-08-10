@@ -8,18 +8,32 @@ from crud.users.find import FindUser, FindSecretJWTID
 from crud.users.update import UpdateUser
 from services.auth import JWToken
 
+import logging
+
+logging.basicConfig(
+    filename='info_log.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+
+
 class RestrictedMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next: Callable[[Request], Awaitable[Response]]):
-        if request.url.path.startswith("/app/api/v1/client/restricted/"):
+        logging.info('Entra en el middleware')
+        logging.info(request.url.path)
+        #/api/app/api/v1/client/restricted/user/delete
+        if request.url.path.startswith("/api/app/api/v1/client/restricted/"):
 
-            print(request.method)
+            logging.info(f"PATH: {request.url.path}")
             if request.method == "POST":
+                logging.info("Es tipo post!")
                 try:
                     body = await request.json()
                     token_id = body["token_id"]
                     token_data = body["token_data"]
-                    print(token_id)
-                    print(token_data)
+                    logging.info(token_id)
+                    logging.info(token_data)
 
                     
 
@@ -77,6 +91,8 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
                                     request.state.email = str(email)
                                     request.state.password = str(password)
                                     request.state.user_id = str(user_id)
+
+                                    logging.info(f'new_token: {request.state.new_token}')
                                 else:
                                     return JSONResponse(renew_secret.response, 401)
 

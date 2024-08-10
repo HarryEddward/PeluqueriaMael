@@ -32,13 +32,13 @@ class FindUser:
                 if self.found:
                     self.response = {
                         "info": f"Se encontró un usuario con el email: {self.email}",
-                        "status": "ok",
+                        "status": "no",
                         "type": "FOUND_USER"
                     }
                 else:
                     self.response = {
                         "info": f"No se encontró ningún usuario con el email: {self.email}",
-                        "status": "ok",
+                        "status": "no",
                         "type": "NO_FOUND_USER"
                     }
             except AttributeError as e:

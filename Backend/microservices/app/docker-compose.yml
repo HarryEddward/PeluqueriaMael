@@ -1,6 +1,0 @@
-version: '3.8'
-
-
-services:
-  cryptoapi:
-    image: nvidia/cuda:11.4.3-runtime-ubuntu20.04

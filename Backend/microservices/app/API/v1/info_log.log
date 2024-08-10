@@ -1,0 +1,20 @@
+2024-08-10 08:25:04 - INFO - Entra en el middleware
+2024-08-10 08:25:04 - INFO - Entra en el middleware
+2024-08-10 08:25:04 - INFO - Entra en el middleware
+2024-08-10 08:25:48 - INFO - Entra en el middleware
+2024-08-10 08:25:48 - INFO - /api/app/api/v1/client/public/login
+2024-08-10 08:25:48 - INFO - Entra en el middleware
+2024-08-10 08:25:48 - INFO - /api/app/api/v1/client/public/register
+2024-08-10 08:25:48 - INFO - Entra en el middleware
+2024-08-10 08:25:48 - INFO - /api/app/api/v1/client/restricted/user/delete
+2024-08-10 08:30:43 - INFO - Entra en el middleware
+2024-08-10 08:30:43 - INFO - /api/app/api/v1/client/public/login
+2024-08-10 08:30:43 - INFO - Entra en el middleware
+2024-08-10 08:30:43 - INFO - /api/app/api/v1/client/public/register
+2024-08-10 08:30:43 - INFO - Entra en el middleware
+2024-08-10 08:30:43 - INFO - /api/app/api/v1/client/restricted/user/delete
+2024-08-10 08:30:43 - INFO - PATH: /api/app/api/v1/client/restricted/user/delete
+2024-08-10 08:30:43 - INFO - Es tipo post!
+2024-08-10 08:30:43 - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjoiNjZiNzI1MzM4NTMyYmJkMmZhZDZhMGJjIiwiZXhwIjoxNzI1ODcwNjQzfQ.0GasEl6jYoj3g1CaHOEAlsXEY-w9Xv9JfzS4a_NP5NU
+2024-08-10 08:30:43 - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlcmdzbWFyazE5MTAxMEBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImZ1Y2tfeW8ifSwiZXhwIjoxNzI1ODcwNjQzfQ.6BW3SJ6ZbD019hR1jdfjkmwFhffI0LeK7L0g5y8CFtE
+2024-08-10 08:30:43 - INFO - new_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlcmdzbWFyazE5MTAxMEBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImZ1Y2tfeW8ifSwiZXhwIjoxNzI1ODcwNjQzfQ.nfqftVyPCG7iSVEJn6ZvsqW1XHxtgWvRz3mHttKH5iI

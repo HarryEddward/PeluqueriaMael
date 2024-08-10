@@ -366,15 +366,21 @@
 │   │   │   │       │       ├── update.py
 │   │   │   │       │       └── validation.py
 │   │   │   │       ├── db
-│   │   │   │       │   ├── create_db.py
-│   │   │   │       │   ├── database.py
 │   │   │   │       │   ├── __init__.py
+│   │   │   │       │   ├── mongodb
+│   │   │   │       │   │   ├── create_db.py
+│   │   │   │       │   │   ├── database.py
+│   │   │   │       │   │   └── __init__.py
 │   │   │   │       │   └── rethinkdb
 │   │   │   │       │       ├── create_db.py
 │   │   │   │       │       ├── database.py
 │   │   │   │       │       └── __init__.py
 │   │   │   │       ├── deployment
-│   │   │   │       │   └── Dockerfile
+│   │   │   │       │   ├── docker-compose.yml
+│   │   │   │       │   ├── Dockerfile
+│   │   │   │       │   └── scripts
+│   │   │   │       │       └── entrypoint.sh
+│   │   │   │       ├── execute.sh
 │   │   │   │       ├── gunicorn.py
 │   │   │   │       ├── __init__.py
 │   │   │   │       ├── init.sh
@@ -441,7 +447,19 @@
 │   │   │   │       │   │   └── main.py
 │   │   │   │       │   └── __init__.py
 │   │   │   │       ├── __tests__
-│   │   │   │       │   └── test_routes.py
+│   │   │   │       │   ├── __init__.py
+│   │   │   │       │   ├── routes
+│   │   │   │       │   │   ├── config.py
+│   │   │   │       │   │   ├── test_booking_add.py
+│   │   │   │       │   │   ├── test_booking_remove.py
+│   │   │   │       │   │   ├── test_data_appointments.py
+│   │   │   │       │   │   ├── test_data_booking_day_sheet.py
+│   │   │   │       │   │   ├── test_data_services.py
+│   │   │   │       │   │   ├── test_login.py
+│   │   │   │       │   │   ├── test_register.py
+│   │   │   │       │   │   ├── test_user_config_reset_password.py
+│   │   │   │       │   │   └── test_user_delete.py
+│   │   │   │       │   └── test_shared_microservices_cryptoapi.py
 │   │   │   │       └── utils
 │   │   │   │           ├── gunicorn.py
 │   │   │   │           ├── __init__.py
@@ -522,7 +540,9 @@
 │   │   │   ├── CryptoAPI
 │   │   │   │   ├── docs
 │   │   │   │   ├── __init__.py
+│   │   │   │   ├── structure.txt
 │   │   │   │   └── v1
+│   │   │   │       ├── app.log
 │   │   │   │       ├── config.py
 │   │   │   │       ├── dependencies
 │   │   │   │       │   ├── __init__.py
@@ -583,9 +603,15 @@
 │   │   │   │       │   └── scripts
 │   │   │   │       │       └── entrypoint.sh
 │   │   │   │       ├── execute.sh
+│   │   │   │       ├── logs
+│   │   │   │       │   ├── __init__.py
+│   │   │   │       │   └── main.py
+│   │   │   │       ├── media
+│   │   │   │       │   └── sounds
+│   │   │   │       │       └── error.mp3
 │   │   │   │       ├── middlewares
 │   │   │   │       │   ├── __init__.py
-│   │   │   │       │   └── text_plain.py
+│   │   │   │       │   └── octet_stream.py
 │   │   │   │       ├── pytest.ini
 │   │   │   │       ├── requirements.txt
 │   │   │   │       ├── routes
@@ -595,7 +621,8 @@
 │   │   │   │       │   │   └── responses.py
 │   │   │   │       │   ├── gpu
 │   │   │   │       │   │   ├── __init__.py
-│   │   │   │       │   │   └── main.py
+│   │   │   │       │   │   ├── main.py
+│   │   │   │       │   │   └── responses.py
 │   │   │   │       │   └── __init__.py
 │   │   │   │       ├── server_fastapi.py
 │   │   │   │       ├── services
@@ -606,7 +633,6 @@
 │   │   │   │       └── __tests__
 │   │   │   │           ├── __init__.py
 │   │   │   │           └── test_routes.py
-│   │   │   ├── docker-compose.yml
 │   │   │   ├── __init__.py
 │   │   │   └── StatusAPI
 │   │   │       ├── docs
@@ -771,7 +797,8 @@
 │   │       │       ├── security.py
 │   │       │       └── validation.py
 │   │       └── __init__.py
-│   └── tests
+│   ├── test.py
+│   └── tests_(decreapted)
 │       ├── __init__.py
 │       ├── microservices
 │       │   ├── app
@@ -867,8 +894,21 @@
 │   ├── create_keys_rsa.sh
 │   ├── create_venv.sh
 │   ├── docker
+│   │   ├── INFO.md
 │   │   ├── init.sh
 │   │   ├── __production__
+│   │   │   ├── app
+│   │   │   │   ├── API
+│   │   │   │   │   └── run.sh
+│   │   │   │   ├── APIWS
+│   │   │   │   │   └── run.sh
+│   │   │   │   ├── CryptoAPI
+│   │   │   │   │   └── run.sh
+│   │   │   │   └── StatusAPI
+│   │   │   │       └── run.sh
+│   │   │   ├── db
+│   │   │   │   └── run.sh
+│   │   │   └── up.sh
 │   │   └── __tests__
 │   │       ├── app
 │   │       │   ├── API
@@ -1024,6 +1064,7 @@
 ├── project.yaml
 ├── README.md
 ├── Reports
+│   ├── export_dir (test).sh
 │   ├── export_paths.sh
 │   └── outputs
 │       └── project.txt
@@ -1035,7 +1076,8 @@
 │       ├── package.json
 │       ├── package-lock.json
 │       └── test.js
+├── test.py
 └── Ubuntu
     └── autoinstall.yaml
 
-226 directories, 813 files
+238 directories, 843 files

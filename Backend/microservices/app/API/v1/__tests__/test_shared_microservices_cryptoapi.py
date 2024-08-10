@@ -1,6 +1,7 @@
 import pytest
 from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import TextModel, encrypt, decrypt
 from pydantic import ValidationError
+from termcolor import cprint
 
 # Pruebas para la validación de texto
 
@@ -33,7 +34,11 @@ def test_encrypt():
 def test_decrypt():
     # Simulación del comportamiento esperado para pruebas
     encrypted_text = encrypt('Hello World')
+    print("\n")
+    cprint(encrypted_text, "green", "on_black")
     result = decrypt(encrypted_text)
+    cprint(result, "green", "on_black")
+    print("\n")
     assert isinstance(result, bytes)  # Verificar que el resultado es de tipo bytes
     assert result == b'Hello World'
 

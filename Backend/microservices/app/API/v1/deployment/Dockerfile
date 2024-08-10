@@ -16,7 +16,12 @@ RUN pip install pymongo \
     pydantic \
     pydantic[email] \
     python-dotenv \
-    rethinkdb
+    rethinkdb \
+    pytest \
+    httpx \
+    termcolor \
+    validate_utf8
+
 
 WORKDIR /peluqueriamael/Backend/microservices/app/API/v1
 

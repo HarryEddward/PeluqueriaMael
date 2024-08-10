@@ -25,3 +25,9 @@ services:
           devices:
             - capabilities: [gpu]
     #command: ["./execute.sh"]
+    networks:
+      - hairdresser_network_cryptoapi
+
+networks:
+  hairdresser_network_cryptoapi:
+    driver: bridge

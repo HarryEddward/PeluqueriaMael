@@ -20,7 +20,10 @@ services:
     command: ['./execute.sh']
     networks:
       - db_hairdresser_network
+      - deployment_hairdresser_network_cryptoapi
 
 networks:
   db_hairdresser_network:
+    external: true
+  deployment_hairdresser_network_cryptoapi:
     external: true
