@@ -40,7 +40,7 @@ class structureDelete(BaseModel):
 
 
 @router.post('/delete')
-async def root(request: Request, data: structureDelete) -> JSONResponse:
+async def User_Delete(request: Request, data: structureDelete) -> JSONResponse:
 
     '''
     Ruta para **eliminar** la cuenta del **usuario existente**

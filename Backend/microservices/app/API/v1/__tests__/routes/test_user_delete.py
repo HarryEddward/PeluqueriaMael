@@ -14,7 +14,7 @@ def test_user_delete():
 
     try:
         with httpx.Client() as client:
-            response = client.post(
+            response: httpx.Response = client.post(
                 f"{BASE_URL}/api/app/api/v1/client/public/register",
                 json=data
             )
@@ -35,7 +35,7 @@ def test_user_delete():
             response_json["verify"] = True
             print(response_json)
 
-            response = client.post(
+            response: httpx.Response = client.post(
                 f"{BASE_URL}/api/app/api/v1/client/restricted/user/delete",
                 json=response_json
             )

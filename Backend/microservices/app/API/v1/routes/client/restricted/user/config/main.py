@@ -28,7 +28,7 @@ class structureResetPassword(BaseModel):
     new_psw: str
 
 @router.post('/reset_password')
-async def root(request: Request, data: structureResetPassword) -> JSONResponse:
+async def Config_Reset_Password(request: Request, data: structureResetPassword) -> JSONResponse:
 
     '''
     La ruta **cambia** la contraseña actual **por la nueva** del usuario

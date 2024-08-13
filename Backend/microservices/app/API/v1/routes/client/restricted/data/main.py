@@ -26,7 +26,7 @@ Porque no se usa el parametro data en las rutas?
 '''
 
 @router.post('/appointments')
-async def root(request: Request, data: middleware_struct) -> JSONResponse:
+async def Data_Appointments(request: Request, data: middleware_struct) -> JSONResponse:
 
     '''
     Enseña las reservas que hizo el **usuario**

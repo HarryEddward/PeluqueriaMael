@@ -24,14 +24,14 @@ router = APIRouter(prefix="/public")
 #Union[Credentials, Token]
 
 @router.options('/login')
-async def loggin_user_options(response: Response):
+async def Loggin_User_Options(response: Response):
 
     response.headers["Allow"] = "POST, OPTIONS"
     response.headers["Content-Type"] = "text/plain"
     return "POST, OPTIONS"
 
 @router.post('/login')
-async def loggin_user(request: Request, raw_data: schemes.Credentials):
+async def Loggin_User(request: Request, raw_data: schemes.Credentials):
 
     try:
         data = raw_data.model_dump()
@@ -93,7 +93,7 @@ async def loggin_user(request: Request, raw_data: schemes.Credentials):
         }, 500)
 
 @router.post('/register')
-async def register_user(request: Request, raw_data: schemes.Credentials):
+async def Register_User(request: Request, raw_data: schemes.Credentials):
     '''
     Registra un nuevo usuario.
     '''

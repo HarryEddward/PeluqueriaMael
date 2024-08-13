@@ -52,7 +52,7 @@ async def startup_event():
         print('NO SE ACTIVO EL CACHÉ')
 
 @app.get("/hidden_egg")
-def read_root():
+def Hidden_Egg() -> HTMLResponse:
     return HTMLResponse(
         content="""
         <!DOCTYPE html>

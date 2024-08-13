@@ -45,7 +45,7 @@ class structureRemove(BaseModel):
     id_reserva: str
 
 @router.post("/remove")
-async def root(request: Request, data: structureRemove):
+async def Remove_Appointment(request: Request, data: structureRemove):
 
     """
     Ruta para **quitar las reservas** de los **clientes**
@@ -239,7 +239,7 @@ class structureAdd(BaseModel):
     name_service: str
 
 @router.post("/add")
-async def root(request: Request, data: structureAdd):
+async def Add_Appointment(request: Request, data: structureAdd):
 
     '''
     Ruta para **crear una reserva** del usuario
