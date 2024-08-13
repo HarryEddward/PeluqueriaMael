@@ -8,11 +8,11 @@ router.include_router(router_restricted)
 router.include_router(router_public)
 
 @router.get('/status')
-async def root():
-    """_summary_
+async def Status():
+    """AI is creating summary for Status
 
     Returns:
-        _type_: _description_
+        [type]: [description]
     """
     try:
         return JSONResponse({

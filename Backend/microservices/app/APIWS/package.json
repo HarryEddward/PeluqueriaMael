@@ -28,6 +28,7 @@
     "jsdoc": "^4.0.3",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.0",
+    "pino": "^9.3.2",
     "rethinkdb": "^2.4.2",
     "rethinkdbdash": "^2.3.31",
     "socket.io": "^4.7.5",
