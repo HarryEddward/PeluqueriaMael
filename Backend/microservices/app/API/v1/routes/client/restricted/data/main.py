@@ -95,7 +95,7 @@ async def Data_Appointments(request: Request, data: middleware_struct) -> JSONRe
 
 
 @router.post("/services")
-async def root(request: Request, data: middleware_struct) -> JSONResponse:
+async def Data_Services(request: Request, data: middleware_struct) -> JSONResponse:
 
     '''
     Enseña **todos** los **servicios disponibles** dentro de la base de datos
@@ -159,7 +159,7 @@ class structureBookingDaySheet(BaseModel):
 
 
 @router.post('/booking_day_sheet')
-async def root(request: Request, data: structureBookingDaySheet) -> JSONResponse:
+async def Data_Booking_Day_Sheet(request: Request, data: structureBookingDaySheet) -> JSONResponse:
 
     '''
     Enseña la **ficha** del usuario
