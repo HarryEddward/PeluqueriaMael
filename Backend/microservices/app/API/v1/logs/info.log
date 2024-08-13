@@ -1,0 +1,122 @@
+2024-08-13 11:36:56,805 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 11:36:56,805 - root - INFO - /api/app/api/v1/client/public/login - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 11:36:57,179 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 11:36:57,179 - root - INFO - /api/app/api/v1/client/public/register - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 11:39:53,497 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 11:39:53,497 - root - INFO - /api/app/api/v1/client/public/login - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 11:39:53,541 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 11:39:53,541 - root - INFO - /api/app/api/v1/client/public/register - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 11:39:53,565 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 11:39:53,565 - root - INFO - /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 11:39:53,565 - root - INFO - PATH: /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:28
+2024-08-13 11:39:53,565 - root - INFO - Es tipo post! - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:30
+2024-08-13 11:39:53,566 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjoiNjZiYjQ2MDlmMTZmZjQ1Yjc3YTRlYzI4IiwiZXhwIjoxNzI2MTQxMTkzfQ.9eX6Pq3irv5RuFIv0kvvv4Zu_t4o7-BnOf-_XeYSMEQ - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:35
+2024-08-13 11:39:53,566 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlcmFzZGRzYWRnc3NkYWRzYWRtYXJrenVrcmIxOTEwMTBAZ21haWwuY29tIiwicGFzc3dvcmQiOiJmdWNrX3lvIn0sImV4cCI6MTcyNjE0MTE5M30.Zx6dx7Rto5w4dvCWxipOLXe0_oomcV9wbjDaQaEqfMo - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:36
+2024-08-13 11:39:53,571 - root - INFO - new_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlcmFzZGRzYWRnc3NkYWRzYWRtYXJrenVrcmIxOTEwMTBAZ21haWwuY29tIiwicGFzc3dvcmQiOiJmdWNrX3lvIn0sImV4cCI6MTcyNjE0MTE5M30.1IJUjEuTm_UpBdXHBI8CGsynhw4jJHP5bSB82NxXueA - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:95
+2024-08-13 11:39:53,589 - peluqueria_mael - INFO - {'data': {'reservas': {}}} - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:38
+2024-08-13 11:39:53,589 - peluqueria_mael - INFO - False - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:39
+2024-08-13 11:41:12,859 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 11:41:12,859 - root - INFO - /api/app/api/v1/client/public/login - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 11:41:12,893 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 11:41:12,893 - root - INFO - /api/app/api/v1/client/public/register - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 11:51:12,838 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 11:51:12,838 - root - INFO - /api/app/api/v1/client/public/login - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 11:51:12,884 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 11:51:12,884 - root - INFO - /api/app/api/v1/client/public/register - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 11:51:12,889 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 11:51:12,890 - root - INFO - /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 11:51:12,890 - root - INFO - PATH: /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:28
+2024-08-13 11:51:12,890 - root - INFO - Es tipo post! - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:30
+2024-08-13 11:51:12,890 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjoiNjZiYjQ4YjAzMWQ5MWI5MmIzMWY3ODkwIiwiZXhwIjoxNzI2MTQxODcyfQ.RlAxazxCcNuIvObLEtH6iXyroH42lHntZ5mTBgd2DsM - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:35
+2024-08-13 11:51:12,890 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWRzYWRtYXJrenVrcmIxOTEwMTBAZ21haWwuY29tIiwicGFzc3dvcmQiOiJmdWNrX3lvIn0sImV4cCI6MTcyNjE0MTg3Mn0.tJNsfNx_y91ejnfLjo6t7POnIsCciGZN1AAvKlps09o - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:36
+2024-08-13 11:51:12,893 - root - INFO - new_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWRzYWRtYXJrenVrcmIxOTEwMTBAZ21haWwuY29tIiwicGFzc3dvcmQiOiJmdWNrX3lvIn0sImV4cCI6MTcyNjE0MTg3Mn0.c81pAsQ2G0EIJZEBoCKFWCEBMsJPct6DFa2arlmTkhk - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:95
+2024-08-13 11:51:12,894 - peluqueria_mael - INFO - {'data': {'reservas': {}}} - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:38
+2024-08-13 11:51:12,894 - peluqueria_mael - INFO - False - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:39
+2024-08-13 11:51:38,275 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 11:51:38,275 - root - INFO - /api/app/api/v1/client/public/login - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 11:51:38,313 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 11:51:38,314 - root - INFO - /api/app/api/v1/client/public/register - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 11:51:38,319 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 11:51:38,319 - root - INFO - /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 11:51:38,319 - root - INFO - PATH: /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:28
+2024-08-13 11:51:38,319 - root - INFO - Es tipo post! - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:30
+2024-08-13 11:51:38,319 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjoiNjZiYjQ4Y2EzMWQ5MWI5MmIzMWY3ODkxIiwiZXhwIjoxNzI2MTQxODk4fQ.RUa6L-52PBf7VAnqhsP0ja7Ma79pTtCKN-nc6gFZLqQ - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:35
+2024-08-13 11:51:38,319 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWRzYWRtYXJrenVrcmIxOTEwMTBAZ21haWwuY29tIiwicGFzc3dvcmQiOiJmdWNrX3lvIn0sImV4cCI6MTcyNjE0MTg5OH0.cBSdK0ZiD386DCWr-WZ9S6dBPGqEdXs6ltGzoofmBIs - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:36
+2024-08-13 11:51:38,321 - root - INFO - new_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWRzYWRtYXJrenVrcmIxOTEwMTBAZ21haWwuY29tIiwicGFzc3dvcmQiOiJmdWNrX3lvIn0sImV4cCI6MTcyNjE0MTg5OH0.F2viwEpbUDKEPG2SDQ_cCbmhKN4GFLmr3yBZ0z99Yv8 - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:95
+2024-08-13 11:51:38,322 - peluqueria_mael - INFO - {'data': {'reservas': {}}} - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:38
+2024-08-13 11:51:38,343 - peluqueria_mael - INFO - False - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:39
+2024-08-13 12:00:45,428 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:00:45,428 - root - INFO - /api/app/api/v1/client/public/login - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:00:45,462 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:00:45,462 - root - INFO - /api/app/api/v1/client/public/register - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:00:45,466 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:00:45,467 - root - INFO - /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:00:45,467 - root - INFO - PATH: /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:28
+2024-08-13 12:00:45,467 - root - INFO - Es tipo post! - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:30
+2024-08-13 12:00:45,467 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjoiNjZiYjRhZWQzMWQ5MWI5MmIzMWY3ODkyIiwiZXhwIjoxNzI2MTQyNDQ1fQ.XrRUCFBip8EGAAJmQ5okVJajSrh1VcHU6GJ68RW9yAo - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:35
+2024-08-13 12:00:45,467 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWRzYWRtYXJrenVrcmIxOTEwMTBAZ21haWwuY29tIiwicGFzc3dvcmQiOiJmdWNrX3lvIn0sImV4cCI6MTcyNjE0MjQ0NX0.CozP-mjI7VSgEjOkSeiXgo8cVtNC23OdR3kJbrfhZck - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:36
+2024-08-13 12:00:45,468 - root - INFO - new_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWRzYWRtYXJrenVrcmIxOTEwMTBAZ21haWwuY29tIiwicGFzc3dvcmQiOiJmdWNrX3lvIn0sImV4cCI6MTcyNjE0MjQ0NX0.rk622tLKx2WERrZGkzm2biJdm4o7AgP6UO_VysmBLAY - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:95
+2024-08-13 12:00:45,469 - peluqueria_mael - INFO - {'data': {'reservas': {}}} - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:38
+2024-08-13 12:00:45,470 - peluqueria_mael - INFO - False - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:39
+2024-08-13 12:07:44,686 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:07:44,686 - root - INFO - /docs - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:07:45,020 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:07:45,020 - root - INFO - /openapi.json - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:08:22,636 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:08:22,636 - root - INFO - /api/app/api/v1/client/public/login - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:08:23,962 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:08:23,962 - root - INFO - /api/app/api/v1/client/public/login - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:08:55,202 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:08:55,202 - root - INFO - /api/app/api/v1/client/public/login - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:08:55,316 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:08:55,316 - root - INFO - /favicon.ico - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:15:45,291 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:15:45,292 - root - INFO - /api/app/api/v1/client/public/login - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:17:24,588 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:17:24,588 - root - INFO - /api/app/api/v1/client/public/login - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:17:24,626 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:17:24,627 - root - INFO - /api/app/api/v1/client/public/register - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:17:24,632 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:17:24,632 - root - INFO - /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:17:24,632 - root - INFO - PATH: /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:28
+2024-08-13 12:17:24,632 - root - INFO - Es tipo post! - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:30
+2024-08-13 12:17:24,632 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjoiNjZiYjRlZDQxYzU2YTcyZTZlZTRiYjk4IiwiZXhwIjoxNzI2MTQzNDQ0fQ.XzUu2xK0XfBfDqtlcJZIJB1tewo1SiGdUC9iHrxA9uU - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:35
+2024-08-13 12:17:24,632 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWRzYWRtYXJrenVrcmIxOTEwMTBAZ21haWwuY29tIiwicGFzc3dvcmQiOiJmdWNrX3lvIn0sImV4cCI6MTcyNjE0MzQ0NH0.W7xiGqrXJwbXQU6UUaJMD-wu1g3HHrmYeBWWyLVnp5g - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:36
+2024-08-13 12:17:24,634 - root - INFO - new_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWRzYWRtYXJrenVrcmIxOTEwMTBAZ21haWwuY29tIiwicGFzc3dvcmQiOiJmdWNrX3lvIn0sImV4cCI6MTcyNjE0MzQ0NH0.s2z27Xsm_DvZIAo3a0lvSqUuO8f5AHuTsr25tYiS0QU - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:95
+2024-08-13 12:17:24,635 - peluqueria_mael - INFO - {'data': {'reservas': {}}} - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:38
+2024-08-13 12:17:24,635 - peluqueria_mael - INFO - False - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:39
+2024-08-13 12:17:24,718 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:17:24,718 - root - INFO - /api/app/api/v1/client/public/register - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:17:24,723 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:17:24,723 - root - INFO - /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:17:24,723 - root - INFO - PATH: /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:28
+2024-08-13 12:17:24,723 - root - INFO - Es tipo post! - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:30
+2024-08-13 12:17:24,723 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjoiNjZiYjRlZDQxYzU2YTcyZTZlZTRiYjk5IiwiZXhwIjoxNzI2MTQzNDQ0fQ.Z5YUES7U4DmPHnjnK-oeq1DkJA9vVG59infMtmuVy8Y - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:35
+2024-08-13 12:17:24,723 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWFzYXNhZHNhZG1hcmt6dWtyYjE5MTAxMEBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImZ1Y2tfeW8ifSwiZXhwIjoxNzI2MTQzNDQ0fQ.UWtjtJVhW6flLVpO2g5DnUreL4FSMfJflOvta-vwB64 - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:36
+2024-08-13 12:17:24,725 - root - INFO - new_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWFzYXNhZHNhZG1hcmt6dWtyYjE5MTAxMEBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImZ1Y2tfeW8ifSwiZXhwIjoxNzI2MTQzNDQ0fQ.Mx4EMpPcNBccG2Mwo8jY3lPPQi6gDEJpt4jRXj4kRIk - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:95
+2024-08-13 12:17:24,726 - peluqueria_mael - INFO - {'data': {'reservas': {}}} - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:38
+2024-08-13 12:17:24,726 - peluqueria_mael - INFO - False - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:39
+2024-08-13 12:27:41,639 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:27:41,639 - root - INFO - /api/app/api/v1/client/public/login - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:27:41,679 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:27:41,680 - root - INFO - /api/app/api/v1/client/public/register - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:27:41,685 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:27:41,685 - root - INFO - /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:27:41,685 - root - INFO - PATH: /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:28
+2024-08-13 12:27:41,685 - root - INFO - Es tipo post! - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:30
+2024-08-13 12:27:41,685 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjoiNjZiYjUxM2RhMTIxYWQwODY0NzZiMTU4IiwiZXhwIjoxNzI2MTQ0MDYxfQ.jmxLjGn_dlq4MSiwJIiSG2a0aCWnIGIkNH5avL1n9Ys - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:35
+2024-08-13 12:27:41,685 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWRzYWRtYXJrenVrcmIxOTEwMTBAZ21haWwuY29tIiwicGFzc3dvcmQiOiJmdWNrX3lvIn0sImV4cCI6MTcyNjE0NDA2MX0.IELf33-VOJ6b4zom99-DeEL3AQ3FCKzUcRHoHidIoAU - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:36
+2024-08-13 12:27:41,687 - root - INFO - new_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWRzYWRtYXJrenVrcmIxOTEwMTBAZ21haWwuY29tIiwicGFzc3dvcmQiOiJmdWNrX3lvIn0sImV4cCI6MTcyNjE0NDA2MX0.I3h8DvDGNrAj3b6yreyQtffZIIFF68-RhqlkcJ5DK1I - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:95
+2024-08-13 12:27:41,688 - peluqueria_mael - INFO - {'data': {'reservas': {}}} - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:38
+2024-08-13 12:27:41,688 - peluqueria_mael - INFO - False - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:39
+2024-08-13 12:27:41,767 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:27:41,767 - root - INFO - /api/app/api/v1/client/public/register - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:27:41,772 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-13 12:27:41,772 - root - INFO - /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-13 12:27:41,772 - root - INFO - PATH: /api/app/api/v1/client/restricted/user/delete - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:28
+2024-08-13 12:27:41,772 - root - INFO - Es tipo post! - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:30
+2024-08-13 12:27:41,772 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjoiNjZiYjUxM2RhMTIxYWQwODY0NzZiMTU5IiwiZXhwIjoxNzI2MTQ0MDYxfQ.Jevwn-xPljpwodEabN_RerHipDK67_dVjy2XLtX0eZY - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:35
+2024-08-13 12:27:41,772 - root - INFO - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWFzYXNhZHNhZG1hcmt6dWtyYjE5MTAxMEBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImZ1Y2tfeW8ifSwiZXhwIjoxNzI2MTQ0MDYxfQ.Zon9wJ_lE8DRHC6Jw2kU9PYdUPregaia0qo8QTw2baM - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:36
+2024-08-13 12:27:41,773 - root - INFO - new_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWFzYXNhZHNhZG1hcmt6dWtyYjE5MTAxMEBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImZ1Y2tfeW8ifSwiZXhwIjoxNzI2MTQ0MDYxfQ.o0eqJNaBIWyY7_UcsOxf3PLG2MNluMTDW20fiVHO6IY - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:95
+2024-08-13 12:27:41,775 - peluqueria_mael - INFO - {'data': {'reservas': {}}} - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:38
+2024-08-13 12:27:41,775 - peluqueria_mael - INFO - False - /peluqueriamael/Backend/microservices/app/API/v1/crud/users/delete.py:39

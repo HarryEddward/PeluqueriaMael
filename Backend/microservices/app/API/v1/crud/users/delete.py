@@ -1,6 +1,6 @@
 
 from Backend.microservices.app.API.v1.db.mongodb.database import users
-
+from Backend.microservices.app.API.v1.logging_config import logger
 from pydantic import BaseModel
 from bson import ObjectId
 import numba as nb
@@ -35,13 +35,12 @@ class UserDelete:
         
         #Obtiene las reservas y luego verifica si no hay ningúna
         reservas = users.find_one({ "_id": ObjectId(user_id) }, { "_id": 0, "data.reservas": 1 })
-        print(reservas)
-
-        print(len(reservas) == 0)
+        logger.info(reservas)
+        logger.info(len(reservas) == 0)
 
 
         # Si no hay alguna reserva devolver que no debería tener
-        if len(reservas) != 0:
+        if not reservas:
             print('Existen reservas.')
             return {
                 "info": "Exiten reservas pendientes a verificar, no se puede eliminar la cuenta",

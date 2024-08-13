@@ -4,7 +4,7 @@ from fastapi import (
     HTTPException,
     status
 )
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from pydantic import ValidationError
 from typing import Union
 import ujson
@@ -23,8 +23,15 @@ router = APIRouter(prefix="/public")
 
 #Union[Credentials, Token]
 
+@router.options('/login')
+async def loggin_user_options(response: Response):
+
+    response.headers["Allow"] = "POST, OPTIONS"
+    response.headers["Content-Type"] = "text/plain"
+    return "POST, OPTIONS"
+
 @router.post('/login')
-async def root(request: Request, raw_data: schemes.Credentials):
+async def loggin_user(request: Request, raw_data: schemes.Credentials):
 
     try:
         data = raw_data.model_dump()

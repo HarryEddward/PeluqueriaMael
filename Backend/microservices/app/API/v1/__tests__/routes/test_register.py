@@ -1,9 +1,10 @@
+import pytest
 import httpx
 from termcolor import cprint
 from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL
 
 def test_register():
-    email: str = "adriansupalumbergsmark191010@gmail.com"
+    email: str = "adriansupalumbedsadsarasddsadgssdadsadmarkzukrb191010@gmail.com"
     password: str = "fuck_yo"
     
     data: dict = {
