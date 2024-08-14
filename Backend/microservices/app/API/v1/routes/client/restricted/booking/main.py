@@ -17,6 +17,7 @@ from pydantic import validator
 from pydantic import ValidationError
 
 from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
+from Backend.microservices.app.API.v1.logging_config import logger
 from datetime import datetime
 
 from bson import ObjectId
@@ -272,6 +273,7 @@ async def Add_Appointment(request: Request, data: structureAdd):
             #Verifica si existe existe la version del appointment_day y si esta vacia
             
             appointment = reservas.find_one({"fecha": {"$eq": day}})
+            logger.info('APPOINTMENT ADD: ', day)
             version_appointment = appointment["version"]
 
             if not appointment:

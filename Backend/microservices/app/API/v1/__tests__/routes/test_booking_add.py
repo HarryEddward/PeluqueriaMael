@@ -30,6 +30,27 @@ def test_login():
 
             # Imprime el contenido de la respuesta
             cprint(f"\nResponse: {response_json}\n", "green", "on_black")
+            
+            data_appointment: dict = {
+                "token_id": response_json["token_id"],
+                "token_data": response_json["token_data"],
+                "day_date": 23,
+                "month_date": 4,
+                "year_date": 2024,
+                "hour": "9:30",
+                "period": "morning",
+                "name_service": "peinar_con_secador"
+            }
+
+            print(data_appointment)
+
+            response: httpx.Response = client.post(
+                f"{BASE_URL}/api/app/api/v1/client/restricted/booking/add",
+                json=data_appointment
+            )
+
+            print(response.json())
+
 
     except httpx.RequestError as e:
         # Manejo de excepciones de la librería httpx
