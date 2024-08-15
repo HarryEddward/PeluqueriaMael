@@ -133,7 +133,7 @@ del usuario, y protegiendo la misma información renovando por cada operación s
 que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no autorizadas.
 
 
-## How_works_the_client_backend?
+## Why_will_appointments_never_be_incompatible?
 
 <img width="100%" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/howworkstheform.png?raw=true">
 
