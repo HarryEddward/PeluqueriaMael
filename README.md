@@ -39,7 +39,7 @@
 2. [Web](#Web)
 3. [Backend](#Backend)
 4. [Conclusión](#conclusión)
-5. [Bases_De_datos](#Bases_de_datos)
+5. [Databases](#Databases)
 6. [Diseño_Del_Backend](#Diseño_del_backend)
 7. [Distribución_De_Software](#Distribución_De_Software)
 8. [Presupuesto_Pc_Servidor](#Presupuesto_Pc_Servidor)
@@ -132,7 +132,12 @@ con jwt. En ```.../config/middleware/restricted.py```. Es extremadamente extrict
 del usuario, y protegiendo la misma información renovando por cada operación su propia clave secreta del jwt
 que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no autorizadas.
 
-## Data_Base
+
+## How_works_the_client_backend?
+
+<img height="100px" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/howworkstheform.png?raw=true">
+
+## Databases
 
 <p align="center">
 
