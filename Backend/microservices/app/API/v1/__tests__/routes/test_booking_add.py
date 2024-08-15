@@ -34,10 +34,10 @@ def test_login():
             data_appointment: dict = {
                 "token_id": response_json["token_id"],
                 "token_data": response_json["token_data"],
-                "day_date": 23,
+                "day_date": 6,
                 "month_date": 4,
                 "year_date": 2024,
-                "hour": "9:30",
+                "hour": "9:00",
                 "period": "morning",
                 "name_service": "peinar_con_secador"
             }
