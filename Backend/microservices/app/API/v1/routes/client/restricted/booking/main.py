@@ -273,11 +273,7 @@ async def Add_Appointment(request: Request, data: structureAdd):
             #Verifica si existe existe la version del appointment_day y si esta vacia
             
             appointment = reservas.find_one({"fecha": {"$eq": day}})
-            logger.info('APPOINTMENT ADD')
-            logger.info(day)
-            logger.info(appointment)
-            logger.info(appointment)
-
+            logger.info('APPOINTMENT ADD: ', day)
             version_appointment = appointment["version"]
 
             if not appointment:
@@ -288,7 +284,6 @@ async def Add_Appointment(request: Request, data: structureAdd):
             
                 }, 401)    
         except Exception as e:
-            logger.info(f"SACO EXCEPCION: {e}")
             return Response({
                 "info": f"Hubo un error a al acceder esa ficha de reserva en ese día: {day}",
                 "status": "no",
