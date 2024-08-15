@@ -135,7 +135,7 @@ que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no 
 
 ## How_works_the_client_backend?
 
-<img height="800px" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/howworkstheform.png?raw=true">
+<img width="500px" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/howworkstheform.png?raw=true">
 
 ## Databases
 
