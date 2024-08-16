@@ -132,6 +132,10 @@ con jwt. En ```.../config/middleware/restricted.py```. Es extremadamente extrict
 del usuario, y protegiendo la misma información renovando por cada operación su propia clave secreta del jwt
 que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no autorizadas.
 
+## How_the_structure_of_the_project_is_done?
+
+<img width="100%" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/microservices.png?raw=true">
+
 
 ## Why_will_appointments_never_be_incompatible?
 
