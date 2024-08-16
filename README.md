@@ -141,6 +141,12 @@ que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no 
 
 <img width="100%" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/howworkstheform.png?raw=true">
 
+## How_APIs_relate_to_DBs
+Is not that simple
+
+<img width="100%" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/relation_db.png?raw=true">
+
+
 ## Do_cybercriminals_have_any_chance_of_decrypting_data?
 Yes, but an very extreme mode
 <img width="100%" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/ID_JWT.png?raw=true">
