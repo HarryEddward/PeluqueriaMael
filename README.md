@@ -138,8 +138,10 @@ que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no 
 
 
 ## Why_will_appointments_never_be_incompatible?
+Highlight that the organized work in this scheme on mongodb
 
 <img width="100%" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/howworkstheform.png?raw=true">
+
 
 ## How_APIs_relate_to_DBs
 Is not that simple
