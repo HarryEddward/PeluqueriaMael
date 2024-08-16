@@ -137,6 +137,10 @@ que cada usuario tiene. Así preveniendo ataques masivos y multioperaciónes no 
 
 <img width="100%" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/howworkstheform.png?raw=true">
 
+## Do_cybercriminals_have_any_chance_of_decrypting_data?
+Yes, but an very extreme mode
+<img width="100%" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/ID_JWT.png?raw=true">
+
 ## Databases
 
 <p align="center">
