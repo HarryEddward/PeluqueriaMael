@@ -6,7 +6,7 @@ from datetime import datetime
 from bson import ObjectId
 from typing import Optional
 from config.config import conf
-from crud.users.delete import UserDelete
+from crud.mongodb.users.delete import UserDelete
 
 '''
 En esta ruta solamnete es operaciónes internas del usaurio y no cambios en si.

@@ -6,11 +6,11 @@ from fastapi import (
 )
 from fastapi.responses import JSONResponse
 
-from crud.booking.utils.serviceToPersonal import serviceToPersonal
-from crud.booking.utils.workerLessBusy import workerLessBusy
-from crud.booking.utils.conversorServices import conversorServices
-from crud.booking.add import AddBooking
-from crud.booking.remove import RemoveBooking
+from crud.mongodb.booking.utils.serviceToPersonal import serviceToPersonal
+from crud.mongodb.booking.utils.workerLessBusy import workerLessBusy
+from crud.mongodb.booking.utils.conversorServices import conversorServices
+from crud.mongodb.booking.add import AddBooking
+from crud.mongodb.booking.remove import RemoveBooking
 
 from pydantic import BaseModel
 from pydantic import validator
