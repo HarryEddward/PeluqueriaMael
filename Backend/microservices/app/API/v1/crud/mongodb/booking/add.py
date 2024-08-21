@@ -1,26 +1,35 @@
 from Backend.microservices.app.API.v1.db.mongodb.database import reservas
 from Backend.microservices.app.API.v1.db.mongodb.database import configure
+from crud.mongodb.users.booking.add import AddBookingUser, AddAppointment
+
 import datetime
 from .config import config
 import uuid
-from crud.users.booking.add import AddBookingUser, AddAppointment
 from bson import ObjectId
 from pydantic import BaseModel
 from datetime import datetime, timedelta
+from abc import ABC, abstractmethod
+
 
 import numpy as np
 from numpy import short
 import numba as nb
 
-'''
-Hace uso de numpy:
-- np.array()
 
-Hace uso de numba:
-- 
-'''
+class Verify(ABC):
+    @abstractmethod
+    def __init__(self, data_raw: BaseModel):
+        pass
 
-class AddBooking:
+    @abstractmethod
+    def buscar_disponibilidad(self, data_raw: BaseModel):
+        pass
+
+    @abstractmethod
+    def add(self, data_raw: BaseModel, professional_selected: str):
+        pass
+
+class AddBooking(Verify):
 
     class structure(BaseModel):
         day: int

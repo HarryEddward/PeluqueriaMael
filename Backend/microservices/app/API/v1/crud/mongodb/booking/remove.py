@@ -1,13 +1,19 @@
-from Backend.microservices.app.API.v1.db.mongodb.database import users, reservas
 from pydantic import BaseModel
 from datetime import datetime, timedelta
 from .config import config
-from crud.users.booking.remove import RemoveBookingUser
 import numba as nb
+from abc import ABC, abstractmethod
+from crud.mongodb.users.booking.remove import RemoveBookingUser
+from Backend.microservices.app.API.v1.db.mongodb.database import users, reservas
 
-class  RemoveBooking:
+
+class Verify(ABC):
+    @abstractmethod
+    def process(self) -> dict:
+        pass
 
 
+class  RemoveBooking(Verify):
 
     class structure(BaseModel):
         day: int

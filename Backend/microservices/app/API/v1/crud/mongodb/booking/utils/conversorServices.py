@@ -1,8 +1,16 @@
 from pydantic import BaseModel
 from datetime import timedelta
+from bson import ObjectId
+from abc import ABC, abstractmethod
 
 from Backend.microservices.app.API.v1.db.mongodb.database import configure
-from bson import ObjectId
+
+
+'''class Verify(ABC):
+    @abstractmethod
+    def convert(self) -> dict:
+        pass
+'''
 
 class conversorServices:
     '''

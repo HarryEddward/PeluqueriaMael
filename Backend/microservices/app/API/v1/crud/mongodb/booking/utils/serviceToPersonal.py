@@ -1,10 +1,12 @@
-from Backend.microservices.app.API.v1.db.mongodb.database import configure, personal
 from bson import ObjectId
 from pydantic import BaseModel
 import numba as nb
+from Backend.microservices.app.API.v1.db.mongodb.database import configure, personal
+
 
 class serviceToPersonal:
 
+    #Think about change to "structure" the name
     class service(BaseModel):
         service: str
     
