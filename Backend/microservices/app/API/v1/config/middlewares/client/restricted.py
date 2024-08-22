@@ -4,8 +4,8 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from typing import Callable, Awaitable
 from bson import ObjectId
 
-from crud.users.find import FindUser, FindSecretJWTID
-from crud.users.update import UpdateUser
+from crud.mongodb.users.find import FindUser, FindSecretJWTID
+from crud.mongodb.users.update import UpdateUser
 from services.auth import JWToken
 
 import logging
