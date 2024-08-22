@@ -13,12 +13,18 @@ class Verify(ABC):
     
 
 
-class AddBooking(Verify):
+class RemoveBooking(Verify):
+    """AI is creating summary for AddBooking
+
+    Args:
+        Verify ([type]): ABS Class
+    """
     
     class structure(BaseModel):
         user: constr(max_length=32)
         hour: datetime
         id_appointment: constr(max_length=50)
+        personal: constr(max_length=50)
 
     def __init__(self) -> None:
-        super().__init__()
+        self

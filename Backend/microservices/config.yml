@@ -122,13 +122,13 @@ db:
 
   persistant:
     rethinkdb:
-      host: "0.0.0.0"
+      host: "rethinkdb_hairdresser"
       port:
         intercluster: 29015
         client: 28015
       db: *general_name_db
       tables:
-        reservas: booking_card
+        reservas: "Reservas"
     
     mongodb:
       host: "mongodb_hairdresser"

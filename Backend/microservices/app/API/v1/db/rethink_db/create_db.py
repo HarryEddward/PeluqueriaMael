@@ -1,6 +1,6 @@
 #RETHINKDB STRUCTURE DATABASE!
 
-from Backend.microservices.app.API.v1.db.rethinkdb.database import (
+from Backend.microservices.app.API.v1.db.rethink_db.database import (
     server
     ,r
     ,db_name

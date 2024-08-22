@@ -7,7 +7,7 @@ client = pymongo.MongoClient("localhost", 27017)
 db = client["PeluqueriaMael"]
 collection = db["Reservas"]
 
-# Esquema de disponibilidad para los próximos 30 días
+# Esquema de disponibilidad para los próximos 120 días
 num_days_ahead = 120
 start_date = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 dates = [start_date + timedelta(days=i) for i in range(num_days_ahead)]
