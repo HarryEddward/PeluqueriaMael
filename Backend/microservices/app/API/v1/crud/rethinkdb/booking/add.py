@@ -1,30 +1,113 @@
-from pydantic import (
-    BaseModel,
-    ValidationError,
-    constr
-)
+from pydantic import BaseModel, constr
 from abc import ABC, abstractmethod
 from datetime import datetime
+from Backend.microservices.app.API.v1.db.rethink_db.database import reservas, connection
+from uuid import uuid4
 
 class Verify(ABC):
 
-    class structure(BaseModel):
+    class Structure(BaseModel):
+        pass
+
+    @abstractmethod
+    def __init__(self) -> None:
         pass
     
-
+    @abstractmethod
+    def add_booking(self) -> dict:
+        pass
 
 class AddBooking(Verify):
-    """AI is creating summary for AddBooking
-
-    Args:
-        Verify ([type]): ABS Class
     """
-    
-    class structure(BaseModel):
-        user: constr(max_length=32)
-        hour: datetime
-        id_appointment: constr(max_length=50)
-        personal: constr(max_length=50)
+    Crea reservas no verificadas en RethinkDB.
+    """
 
-    def __init__(self) -> None:
-        self
+    class Structure(BaseModel):
+        user: constr(max_length=32)
+        date: datetime
+        hour: constr(max_length=10)
+        id_appointment: constr(max_length=50)
+        personal_type: constr(max_length=50)
+        personal_id: constr(max_length=50)
+
+    def __init__(self, data_raw: Structure) -> None:
+        data: dict = data_raw.dict()  # Cambiado de model_dump() a dict()
+        
+        self.date: datetime = data["date"]
+        self.personal_type: str = data["personal_type"]
+        self.personal_id: str = data["personal_id"]
+        self.user: str = data["user"]
+        self.hour: str = data["hour"]
+        self.id_appointment: str = data["id_appointment"]
+
+        try:
+            self.response = self.add_booking()
+        except Exception as e:
+            self.response = {
+                "info": f"Error desconocido del servidor: {e}",
+                "status": "no",
+                "type": "UNKNOWN_ERROR"
+            }
+
+    def add_booking(self) -> dict:
+        try:
+            request: dict = {
+                "user": self.user,
+                "hour": self.hour,
+                "id_appointment": self.id_appointment
+            }
+
+            # Formatear la fecha como ISO 8601 para la base de datos
+            formatted_date = self.date.isoformat()
+
+            # Buscar el documento por un identificador único (ej. fecha)
+            cursor = reservas.filter({"fecha": formatted_date}).run(connection)
+            reservas_list = list(cursor)  # Convertir el cursor a una lista
+
+            if not reservas_list:
+                return {
+                    "info": "No se encontró la reserva para actualizar.",
+                    "status": "no",
+                    "type": "NOT_FOUND"
+                }
+
+            reserva_id = reservas_list[0]['id']  # Asumiendo que el id es un campo en el documento
+
+            # Actualizar el documento usando la clave dinámica
+            reservas.get(reserva_id).update({
+                "professionals": { 
+                    str(self.personal_type): {
+                        str(self.personal_id): {
+                            str(self.id_appointment): request
+                        }
+                    }
+                }
+            }).run(connection)
+
+            return {
+                "info": "Cita añadida en la base de datos en tiempo real",
+                "status": "ok",
+                "type": "SUCCESS"
+            }
+
+        except Exception as e:
+            return {
+                "info": f"Error desconocido del servidor: {e}",
+                "status": "no",
+                "type": "RETHINK_DB_DATABASE_ERROR"
+            }
+
+if __name__ == "__main__":
+    data: dict = {
+        "user": "john_doe",
+        "date": datetime(2024, 12, 10),
+        "hour": "10:00 AM",
+        "id_appointment": str(uuid4()),
+        "personal_type": "peluqueros",
+        "personal_id": "peluquero_2"
+    }
+
+    booking_data: AddBooking.Structure = AddBooking.Structure(**data)
+    booking: AddBooking = AddBooking(booking_data)
+
+    print(booking.response)
