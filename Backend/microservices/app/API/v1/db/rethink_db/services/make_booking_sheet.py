@@ -8,6 +8,7 @@ from Backend.microservices.app.API.v1.db.rethink_db.database import reservas, co
 
 class Verify(ABC):
     
+    @abstractmethod
     def __init__(self) -> None:
         super().__init__()
 
