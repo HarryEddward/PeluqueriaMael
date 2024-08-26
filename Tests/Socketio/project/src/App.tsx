@@ -21,27 +21,39 @@ const App: React.FC = () => {
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT);
 
-    socket.on('data_update', (change: Change) => {
-      setReservas(prevReservas => {
-        const updatedReservas = [...prevReservas];
+    const handleInitialData = (data: Reserva[]) => {
+      // Establecer las reservas iniciales
+      setReservas(data);
 
-        if (change.old_val && !change.new_val) {
-          // Eliminar la reserva (delete)
-          return updatedReservas.filter(reserva => reserva.id !== change.old_val!.id);
-        } else if (change.old_val && change.new_val) {
-          // Modificar la reserva (update)
-          const index = updatedReservas.findIndex(reserva => reserva.id === change.old_val!.id);
-          if (index !== -1) {
-            updatedReservas[index] = change.new_val;
+      // Desconectar el evento de initial_data
+      socket.off('initial_data', handleInitialData);
+
+      // Ahora suscribirnos a las actualizaciones en tiempo real
+      socket.on('data_update', (change: Change) => {
+        setReservas(prevReservas => {
+          const updatedReservas = [...prevReservas];
+
+          if (change.old_val && !change.new_val) {
+            // Eliminar la reserva (delete)
+            return updatedReservas.filter(reserva => reserva.id !== change.old_val!.id);
+          } else if (change.old_val && change.new_val) {
+            // Modificar la reserva (update)
+            const index = updatedReservas.findIndex(reserva => reserva.id === change.old_val!.id);
+            if (index !== -1) {
+              updatedReservas[index] = change.new_val;
+            }
+          } else if (!change.old_val && change.new_val) {
+            // Añadir nueva reserva (insert)
+            updatedReservas.push(change.new_val);
           }
-        } else if (!change.old_val && change.new_val) {
-          // Añadir nueva reserva (insert)
-          updatedReservas.push(change.new_val);
-        }
 
-        return updatedReservas;
+          return updatedReservas;
+        });
       });
-    });
+    };
+
+    // Recibir los datos iniciales primero
+    socket.on('initial_data', handleInitialData);
 
     return () => {
       socket.disconnect();
