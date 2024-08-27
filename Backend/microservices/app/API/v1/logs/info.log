@@ -3904,3 +3904,7 @@
 2024-08-22 10:55:37,789 - root - INFO - /redoc - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
 2024-08-22 10:55:38,068 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
 2024-08-22 10:55:38,068 - root - INFO - /openapi.json - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-27 09:28:16,984 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-27 09:28:17,159 - root - INFO - / - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-27 09:28:17,496 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-27 09:28:17,496 - root - INFO - /favicon.ico - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24

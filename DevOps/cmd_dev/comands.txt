@@ -1,0 +1,13 @@
+cd DevOps/docker/__tests__/app/CryptoAPI
+sudo ./run.sh
+
+cd DevOps/docker/__production__/app/API
+sudo ./run.sh
+
+sudo docker exec -it deployment-peluqueriamael_app_api-1 bash
+
+export PYTHONPATH=/peluqueriamael; python3
+
+cd db/rethink_db/services
+
+cd crud/rethink_db/booking

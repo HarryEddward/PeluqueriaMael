@@ -31,7 +31,7 @@ class AddBooking(Verify):
         personal_id: constr(max_length=50)
 
     def __init__(self, data_raw: Structure) -> None:
-        data: dict = data_raw.dict()  # Cambiado de model_dump() a dict()
+        data: dict = data_raw.model_dump()  # Cambiado de model_dump() a dict()
         
         self.date: datetime = data["date"]
         self.personal_type: str = data["personal_type"]
@@ -53,28 +53,27 @@ class AddBooking(Verify):
         try:
             request: dict = {
                 "user": self.user,
-                "hour": self.hour,
-                "id_appointment": self.id_appointment
+                "hour": self.hour
             }
 
             # Formatear la fecha como ISO 8601 para la base de datos
-            formatted_date = self.date.isoformat()
+            formatted_date: datetime.isoformat = self.date.isoformat()
 
             # Buscar el documento por un identificador único (ej. fecha)
             cursor = reservas.filter({"fecha": formatted_date}).run(connection)
-            reservas_list = list(cursor)  # Convertir el cursor a una lista
+            sheet_list = list(cursor)  # Convertir el cursor a una lista
 
-            if not reservas_list:
+            if not sheet_list:
                 return {
                     "info": "No se encontró la reserva para actualizar.",
                     "status": "no",
                     "type": "NOT_FOUND"
                 }
 
-            reserva_id = reservas_list[0]['id']  # Asumiendo que el id es un campo en el documento
+            sheet_id = sheet_list[0]['id']  # Asumiendo que el id es un campo en el documento
 
             # Actualizar el documento usando la clave dinámica
-            reservas.get(reserva_id).update({
+            reservas.get(sheet_id).update({
                 "professionals": { 
                     str(self.personal_type): {
                         str(self.personal_id): {
@@ -100,7 +99,7 @@ class AddBooking(Verify):
 if __name__ == "__main__":
     data: dict = {
         "user": "john_doe",
-        "date": datetime(2024, 12, 10),
+        "date": datetime(2024, 12, 9),
         "hour": "10:00 AM",
         "id_appointment": str(uuid4()),
         "personal_type": "peluqueros",
