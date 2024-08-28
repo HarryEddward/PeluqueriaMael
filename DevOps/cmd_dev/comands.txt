@@ -6,7 +6,13 @@ sudo ./run.sh
 
 sudo docker exec -it deployment-peluqueriamael_app_api-1 bash
 
+sudo docker compose -f /home/adrian/Documentos/PeluqueriaMael/Backend/microservices/app/API/v1/deployment/docker-compose.yml logs
+
 export PYTHONPATH=/peluqueriamael; python3
+
+git add .; git commit -m "changes"; git push origin main; git pull origin main
+
+sudo docker ps
 
 cd db/rethink_db/services
 

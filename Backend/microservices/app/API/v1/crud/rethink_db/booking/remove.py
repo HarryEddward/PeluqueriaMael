@@ -6,7 +6,7 @@ from Backend.microservices.app.API.v1.db.rethink_db.database import reservas, co
 
 class Verify(ABC):
 
-    class Structure(BaseModel):
+    class structure(BaseModel):
         pass
 
     @abstractmethod
@@ -25,13 +25,13 @@ class RemoveBooking(Verify):
         Verify ([type]): ABS Class
     """
 
-    class Structure(BaseModel):
+    class structure(BaseModel):
         date: datetime
         appointment_id: constr(max_length=50)
         personal_type: constr(max_length=200)
         personal_id: constr(max_length=200)
 
-    def __init__(self, data_raw: Structure) -> None:
+    def __init__(self, data_raw: structure) -> None:
         self.response = {}
 
         data: dict = data_raw.model_dump()
@@ -102,7 +102,7 @@ if __name__ == "__main__":
         "appointment_id": "84dc0ae9-368d-4e82-9939-c1ddbb5a8c12"
     }
 
-    booking_data: RemoveBooking.Structure = RemoveBooking.Structure(**data)
+    booking_data: RemoveBooking.structure = RemoveBooking.structure(**data)
     booking: RemoveBooking = RemoveBooking(booking_data)
 
     print(booking.response)

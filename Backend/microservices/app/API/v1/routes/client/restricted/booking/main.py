@@ -9,8 +9,10 @@ from fastapi.responses import JSONResponse
 from crud.mongodb.booking.utils.serviceToPersonal import serviceToPersonal
 from crud.mongodb.booking.utils.workerLessBusy import workerLessBusy
 from crud.mongodb.booking.utils.conversorServices import conversorServices
-from crud.mongodb.booking.add import AddBooking
-from crud.mongodb.booking.remove import RemoveBooking
+from crud.mongodb.booking.add import AddBooking as MDBAddBooking
+from crud.mongodb.booking.remove import RemoveBooking as MDBRemoveBooking
+from crud.rethink_db.booking.add import AddBooking as RDBAddooking
+from crud.rethink_db.booking.remove import RemoveBooking as RDBRemoveBooking
 
 from pydantic import BaseModel
 from pydantic import validator
@@ -139,7 +141,7 @@ async def Remove_Appointment(request: Request, data: structureRemove):
         
         #-> Verifica que si faltan 3 dias
         '''/crud/booking/utils/remove/verify_days.py'''
-        from crud.booking.utils.remove.verifyDays import verifyDays
+        from crud.mongodb.booking.utils.remove.verifyDays import verifyDays
 
         verify_days = verifyDays(day_booked, month_booked, year_booked)
         
@@ -159,8 +161,8 @@ async def Remove_Appointment(request: Request, data: structureRemove):
         #-> Quita de la parte del usuario la reserva
         '''/crud/booking/remove.py'''
         print('------------')
-        remove_booking = RemoveBooking(
-            RemoveBooking.structure(
+        remove_booking = MDBRemoveBooking(
+            MDBRemoveBooking.structure(
                 day= day_booked,
                 month= month_booked,
                 year= year_booked,
@@ -278,11 +280,10 @@ async def Add_Appointment(request: Request, data: structureAdd):
 
             if not appointment:
                 return Response({
-                "info": f"Hubo un error a al acceder esa ficha de reserva en ese día: {day}",
-                "status": "no",
-                "type": "ERROR_DATABASE_DATE"
-            
-                }, 401)    
+                    "info": f"Hubo un error a al acceder esa ficha de reserva en ese día: {day}",
+                    "status": "no",
+                    "type": "ERROR_DATABASE_DATE"
+                }, 401)
         except Exception as e:
             return Response({
                 "info": f"Hubo un error a al acceder esa ficha de reserva en ese día: {day}",
@@ -358,8 +359,8 @@ async def Add_Appointment(request: Request, data: structureAdd):
         que lo hace bien todo el proceso
         '''
         
-        booking = AddBooking(
-            AddBooking.structure(
+        booking = MDBAddBooking(
+            MDBAddBooking.structure(
                 day=day_date,
                 month=month_date,
                 year=year_date,
@@ -376,12 +377,21 @@ async def Add_Appointment(request: Request, data: structureAdd):
         if not booking.response["status"] == 'ok':
             return Response(booking.response, 401)
         
-        return Response({
-            "info": "La reserva se realizo de forma exitosa",
-            "status": "ok",
-            "type": "SUCCESS",
-            "data": booking.response,
-        }, 200)
+
+        hour_obj = datetime.strptime(hour, "%H:%M")
+        hour_12 = hour_obj.strftime("%I:%M %p")
+        
+        logger.info(".............................")
+
+        logger.info(f"Hour en str: {hour_12}")
+        logger.info(f"Usuario del personal: {worker_less_bussy.response["data"][0][0]}")
+        logger.info(f"Id reserva: {booking.response["data"]["id_appointment"]}")
+        logger.info(f"Fecha: {day}")
+        logger.info(f"Tipo de personal: {personal.response["data"]}")
+
+        logger.info(".............................")
+
+        return Response(booking.response, 200)
     except Exception as e:
         return JSONResponse({
             "info": f"Error desconocido por el servidor: {e}",

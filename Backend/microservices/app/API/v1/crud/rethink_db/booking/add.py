@@ -6,7 +6,7 @@ from uuid import uuid4
 
 class Verify(ABC):
 
-    class Structure(BaseModel):
+    class structure(BaseModel):
         pass
 
     @abstractmethod
@@ -22,7 +22,7 @@ class AddBooking(Verify):
     Crea reservas no verificadas en RethinkDB.
     """
 
-    class Structure(BaseModel):
+    class structure(BaseModel):
         user: constr(max_length=32)
         date: datetime
         hour: constr(max_length=10)
@@ -30,7 +30,7 @@ class AddBooking(Verify):
         personal_type: constr(max_length=50)
         personal_id: constr(max_length=50)
 
-    def __init__(self, data_raw: Structure) -> None:
+    def __init__(self, data_raw: structure) -> None:
         data: dict = data_raw.model_dump()  # Cambiado de model_dump() a dict()
         
         self.date: datetime = data["date"]
@@ -106,7 +106,7 @@ if __name__ == "__main__":
         "personal_id": "peluquero_2"
     }
 
-    booking_data: AddBooking.Structure = AddBooking.Structure(**data)
+    booking_data: AddBooking.structure = AddBooking.structure(**data)
     booking: AddBooking = AddBooking(booking_data)
 
     print(booking.response)

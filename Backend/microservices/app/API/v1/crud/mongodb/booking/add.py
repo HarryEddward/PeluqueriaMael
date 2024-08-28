@@ -145,9 +145,9 @@ class AddBooking(Verify):
                 }
                 return
 
-            #2services = conversorServices(services_raw)
+            #services = conversorServices(services_raw)
             professionals = day_appointment.get('professionals')
-            print('reservo')
+            #print('reservo')
 
 
             morning_opening_time = config["morning_opening_time"]
@@ -344,7 +344,10 @@ class AddBooking(Verify):
                 return {
                     "info": f"Cita confirmada para {professional} desde {start_time} hasta {end_time}.",
                     "status": "ok",
-                    "type": "SUCCESS"  # Tipo de error único
+                    "type": "SUCCESS",  # Tipo de error único
+                    "data": {
+                        "id_appointment": id_appointment
+                    }
                 }
             else:
                

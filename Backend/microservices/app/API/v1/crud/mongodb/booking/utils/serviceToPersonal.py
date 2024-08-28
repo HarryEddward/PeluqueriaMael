@@ -40,7 +40,7 @@ class serviceToPersonal:
         service_name = data.service  # Acceder al atributo 'service' de la instancia 'data'
 
         try:
-            raw_personal = configure.find_one({ "_id": ObjectId("661f915fac2b216927f37257") })
+            #raw_personal = configure.find_one({ "_id": ObjectId("661f915fac2b216927f37257") })
             raw_services = configure.find_one({ "_id": ObjectId("65ec5f9f88701955b30661a5") })
         except Exception as e:
             self.response = {
@@ -74,3 +74,9 @@ class serviceToPersonal:
                 "data": tipo_servicio
             }
 
+
+"""print(serviceToPersonal(
+    serviceToPersonal.service(
+        service="peinar_con_secador"
+    )
+).response["data"])"""
