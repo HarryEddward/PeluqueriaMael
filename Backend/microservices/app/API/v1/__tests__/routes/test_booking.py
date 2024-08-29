@@ -3,6 +3,8 @@ import httpx
 from termcolor import cprint
 from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL
 
+global id_appointment
+id_appointment: str
 
 #@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 @pytest.mark.order(1)
@@ -19,6 +21,7 @@ def test_booking_add():
     try:
         # Desactiva la verificación de certificados SSL en httpx
         with httpx.Client() as client:
+            global id_appointment
             response: httpx.Response = client.post(
                 f"{BASE_URL}/api/app/api/v1/client/public/login",
                 json=data
@@ -37,8 +40,8 @@ def test_booking_add():
             data_appointment: dict = {
                 "token_id": response_json["token_id"],
                 "token_data": response_json["token_data"],
-                "day_date": 8,
-                "month_date": 4,
+                "day_date": 13,
+                "month_date": 9,
                 "year_date": 2024,
                 "hour": "9:30",
                 "period": "morning",
@@ -53,6 +56,8 @@ def test_booking_add():
             )
 
             print(response.json())
+
+            id_appointment = response.json()["data"]["id_appointment"]
 
 
     except httpx.RequestError as e:
@@ -75,6 +80,8 @@ def test_booking_remove():
     try:
         # Desactiva la verificación de certificados SSL en httpx
         with httpx.Client() as client:
+            global id_appointment
+
             response: httpx.Response = client.post(
                 f"{BASE_URL}/api/app/api/v1/client/public/login",
                 json=data
@@ -93,7 +100,7 @@ def test_booking_remove():
             data_appointment: dict = {
                 "token_id": response_json["token_id"],
                 "token_data": response_json["token_data"],
-                "id_reserva": "2ac5f028-4419-427e-bf49-4e855967952b"
+                "id_reserva": "3dd2c2e9-c969-4b45-bbe0-15c93a3334df"
             }
 
             print(data_appointment)

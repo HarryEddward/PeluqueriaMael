@@ -50,8 +50,8 @@ try:
     admin = db[use_administrador]
     types = db[use_tipos_de_pydantic]
 
-    count_reservas = reservas.count_documents({})
-    print(f"Conexión exitosa. La colección 'reservas' tiene {count_reservas} documentos.")
+    #count_reservas = reservas.count_documents({})
+    #print(f"Conexión exitosa. La colección 'reservas' tiene {count_reservas} documentos.")
 
 
 except Exception as err:

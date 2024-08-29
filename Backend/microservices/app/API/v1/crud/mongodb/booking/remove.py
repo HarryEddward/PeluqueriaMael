@@ -9,7 +9,7 @@ from Backend.microservices.app.API.v1.db.mongodb.database import users, reservas
 
 class Verify(ABC):
     @abstractmethod
-    def process(self) -> dict:
+    def remove(self) -> dict:
         pass
 
 

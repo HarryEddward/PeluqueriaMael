@@ -1,8 +1,10 @@
 from pydantic import BaseModel, constr
 from abc import ABC, abstractmethod
 from datetime import datetime
-from Backend.microservices.app.API.v1.db.rethink_db.database import reservas, connection
 from uuid import uuid4
+from Backend.microservices.app.API.v1.logging_config import logger
+from Backend.microservices.app.API.v1.db.rethink_db.database import reservas, connection
+
 
 class Verify(ABC):
 
@@ -33,6 +35,8 @@ class AddBooking(Verify):
     def __init__(self, data_raw: structure) -> None:
         data: dict = data_raw.model_dump()  # Cambiado de model_dump() a dict()
         
+        logger.info(f"Data -> {data}")
+
         self.date: datetime = data["date"]
         self.personal_type: str = data["personal_type"]
         self.personal_id: str = data["personal_id"]
@@ -58,7 +62,8 @@ class AddBooking(Verify):
 
             # Formatear la fecha como ISO 8601 para la base de datos
             formatted_date: datetime.isoformat = self.date.isoformat()
-
+            
+            logger.info(f"Fecha: {formatted_date}")
             # Buscar el documento por un identificador único (ej. fecha)
             cursor = reservas.filter({"fecha": formatted_date}).run(connection)
             sheet_list = list(cursor)  # Convertir el cursor a una lista

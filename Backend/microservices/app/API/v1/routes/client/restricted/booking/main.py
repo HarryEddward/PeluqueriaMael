@@ -380,6 +380,9 @@ async def Add_Appointment(request: Request, data: structureAdd):
 
         hour_obj = datetime.strptime(hour, "%H:%M")
         hour_12 = hour_obj.strftime("%I:%M %p")
+
+        user_raw: dict = users.find_one({ "_id": ObjectId(user_id) })
+        user_email: str = user_raw["data"]["info"]["email"]
         
         logger.info(".............................")
 
@@ -388,8 +391,26 @@ async def Add_Appointment(request: Request, data: structureAdd):
         logger.info(f"Id reserva: {booking.response["data"]["id_appointment"]}")
         logger.info(f"Fecha: {day}")
         logger.info(f"Tipo de personal: {personal.response["data"]}")
+        logger.info(f"Usuario: {user_email}")
 
         logger.info(".............................")
+
+        booking_data_rdb: dict = {
+            "user": user_email,
+            "date": day,
+            "hour": hour_12,
+            "id_appointment": booking.response["data"]["id_appointment"],
+            "personal_type": personal.response["data"],
+            "personal_id": worker_less_bussy.response["data"][0][0]
+        }
+
+        booking_rdb = RDBAddooking(
+            RDBAddooking.structure(**booking_data_rdb)
+        )
+
+        if not booking_rdb.response["status"] == "ok":
+            logger.info(f'error -> {booking_rdb.response}')
+            return Response(booking_rdb.response, 401)
 
         return Response(booking.response, 200)
     except Exception as e:

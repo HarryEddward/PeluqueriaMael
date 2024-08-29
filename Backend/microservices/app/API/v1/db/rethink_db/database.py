@@ -19,9 +19,6 @@ try:
 
     documents = reservas.run(connection)
 
-    for doc in documents:
-        print('->', doc)
-
 except Exception as e:
 
     print(f"Hay un buen problema con RethinkDB: {e}")
