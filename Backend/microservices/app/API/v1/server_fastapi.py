@@ -51,6 +51,10 @@ async def startup_event():
     else:
         print('NO SE ACTIVO EL CACHÉ')
 
+@app.get("/error")
+async def trigger_error():
+    raise ValueError("This is an Error")
+
 @app.get("/hidden_egg")
 def Hidden_Egg() -> HTMLResponse:
     return HTMLResponse(
@@ -83,7 +87,10 @@ app.include_router(base_router, prefix="/api/app/api/v1")
 
 #Middlewares
 from config.middlewares.client.restricted import RestrictedMiddleware
-app.add_middleware(RestrictedMiddleware)                                #/app/api/v1/client/restricted/
+app.add_middleware(RestrictedMiddleware)
+
+from config.middlewares.client.handleError import ErrorMiddleware
+app.add_middleware(ErrorMiddleware)
 
 #app.add_middleware(SessionMiddleware, secret_key="your-secret-key")
 

@@ -16,7 +16,7 @@ def test_booking_add():
         "email": email,
         "password": password
     }
-    print(BASE_URL)
+    #print(BASE_URL)
 
     try:
         # Desactiva la verificación de certificados SSL en httpx

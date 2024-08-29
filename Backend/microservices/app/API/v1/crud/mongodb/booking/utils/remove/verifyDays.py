@@ -1,8 +1,21 @@
 from datetime import datetime, timedelta
 from numpy import ushort
 import numba as nb
+from abc import ABC, abstractmethod
 
-class verifyDays:
+
+class Verify(ABC):
+
+    @abstractmethod
+    def __init__(self) -> None:
+        super().__init__()
+        pass
+
+    @abstractmethod
+    def verify(self) -> dict:
+        pass
+
+class verifyDays(Verify):
 
     #@nb.jit(nopython=True)
     def __init__(
@@ -25,13 +38,13 @@ class verifyDays:
         reservation_date = datetime(self.year, self.month, self.day)
         reservation_date = reservation_date.date()
 
-        print('Tipo de current_date:', type(current_date))
-        print('Tipo de reservation_date:', type(reservation_date))
+        #print('Tipo de current_date:', type(current_date))
+        #print('Tipo de reservation_date:', type(reservation_date))
 
 
         # Calcular la diferencia entre las fechas
         difference = reservation_date - current_date
-        print('diference of the days: ', difference.days)
+        #print('diference of the days: ', difference.days)
 
         # Si el número de dias es negativo es porque ya pasó la reserva, y si por algun motivo lo enseña al cliente pueda borrarlo. Pero seria problema del diseño de la API
         if difference.days < 0:
