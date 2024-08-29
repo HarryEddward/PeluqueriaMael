@@ -6867,3 +6867,13 @@
 2024-08-29 18:40:15,165 - root - INFO - new_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuc3VwYWx1bWJlZHNhZHNhcmFzZGRzYWRnc3NkYWFzYXNhZHNhZG1hcmt6dWtyYjE5MTAxMEBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImZ1Y2tfeW8ifSwiZXhwIjoxNzI3NTQ4ODE1fQ.ou6dFg-IMoKhhtMAJxkEnE_Hetlpy6CQATv-FGNX1Ls - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:95
 2024-08-29 18:40:15,166 - peluqueria_mael - INFO - {'data': {'reservas': {}}} - /peluqueriamael/Backend/microservices/app/API/v1/crud/mongodb/users/delete.py:38
 2024-08-29 18:40:15,166 - peluqueria_mael - INFO - False - /peluqueriamael/Backend/microservices/app/API/v1/crud/mongodb/users/delete.py:39
+2024-08-29 19:58:37,267 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-29 19:58:37,267 - root - INFO - / - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-29 19:58:41,766 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-29 19:58:41,767 - root - INFO - /redoc - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-29 19:58:42,245 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-29 19:58:42,245 - root - INFO - /openapi.json - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-29 19:58:56,741 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-29 19:58:56,742 - root - INFO - /error - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24
+2024-08-29 19:59:22,583 - root - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:23
+2024-08-29 19:59:22,584 - root - INFO - /error - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:24

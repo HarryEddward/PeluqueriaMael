@@ -13,5 +13,9 @@ class ErrorMiddleware(BaseHTTPMiddleware):
             # Puedes personalizar el manejo de errores aquí
             return JSONResponse(
                 status_code=500,
-                content={"message": "Ha ocurrido un error interno en el servidor."}
+                content={
+                    "info": "Ha ocurrido un error interno en el servidor.",
+                    "status": "ok",
+                    "type": "GLOBAL_ERROR"
+                }
             )

@@ -86,11 +86,12 @@ base_router.include_router(worker_router, prefix="/worker", tags=["worker"])
 app.include_router(base_router, prefix="/api/app/api/v1")
 
 #Middlewares
+from config.middlewares.client.handleError import ErrorMiddleware
+app.add_middleware(ErrorMiddleware)
+
 from config.middlewares.client.restricted import RestrictedMiddleware
 app.add_middleware(RestrictedMiddleware)
 
-from config.middlewares.client.handleError import ErrorMiddleware
-app.add_middleware(ErrorMiddleware)
 
 #app.add_middleware(SessionMiddleware, secret_key="your-secret-key")
 
