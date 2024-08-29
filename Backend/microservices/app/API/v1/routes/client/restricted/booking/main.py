@@ -83,7 +83,7 @@ async def Remove_Appointment(request: Request, data: structureRemove):
             )
             user = user['data']['reservas']
 
-            print(f'data.reservas.{id_reserva}:', user)
+            #print(f'data.reservas.{id_reserva}:', user)
         except Exception as e:
             return Response({
                 "info": "Error en la base de datos, quizas no exista y tengas mal los mismos parametros",
@@ -92,9 +92,9 @@ async def Remove_Appointment(request: Request, data: structureRemove):
             }, 401)
         
         if id_reserva not in user:
-            print('->', id_reserva)
-            print('->', id_reserva not in user)
-            print('->', user)
+            #print('->', id_reserva)
+            #print('->', id_reserva not in user)
+            #print('->', user)
 
             return Response({
                 "info": "La id que pasaste no existe dentro del usuario",
@@ -115,14 +115,15 @@ async def Remove_Appointment(request: Request, data: structureRemove):
         responsable_appointment_booked = reserva["responsable_appointment"]
         service_booked = reserva["service"]
 
-        print(day_booked, month_booked, year_booked)
+        #print(day_booked, month_booked, year_booked)
         #-> Parsea las variables para hacerlo úso en la ruta
 
 
         #-> Obtiene los servicios actuales para reservar
         services = conversorServices()
+        logger.info("..............CONVERSOR SERVICES: %s", services)
 
-        print('services ->', services.response)
+        #print('services ->', services.response)
 
         if services is not None:
             if not services.response["status"] == 'ok':
@@ -152,7 +153,7 @@ async def Remove_Appointment(request: Request, data: structureRemove):
                 "status": "no",
                 "type": "VERIFY_DAYS_ERROR"
             }, 401)
-        print(verify_days.response)
+        #print(verify_days.response)
         #-> Verifica que si faltan 3 dias
 
 
@@ -160,7 +161,7 @@ async def Remove_Appointment(request: Request, data: structureRemove):
 
         #-> Quita de la parte del usuario la reserva
         '''/crud/booking/remove.py'''
-        print('------------')
+        #print('------------')
         remove_booking = MDBRemoveBooking(
             MDBRemoveBooking.structure(
                 day= day_booked,
@@ -176,14 +177,67 @@ async def Remove_Appointment(request: Request, data: structureRemove):
             )
         )
         #-> Quita de la parte del usuario la reserva
-        print('------------')
+        #print('------------')
 
         #-> Verifica si pudo quitar la reserva del usuario sin problemas
         if not remove_booking.response["status"] == "ok":
             return Response(remove_booking.response, 401)
         #-> Verifica si pudo quitar la reserva del usuario sin problemas
-        print('------------')
-        print('llego a eliminar la resera correctamente')
+        #print('------------')
+        #print('llego a eliminar la reserva correctamente')
+
+
+        """logger.info("..........................................................")
+
+        # Registrar el ID del usuario
+        logger.info(f"user_id: {user_id}")
+
+        # Registrar el ID de la reserva
+        logger.info(f"id_reserva: {id_reserva}")
+
+        # Registrar la reserva del usuario
+        logger.info(f"user: {user}")
+
+        # Registrar los detalles de la reserva
+        logger.info(f"day_booked: {day_booked}")
+        logger.info(f"month_booked: {month_booked}")
+        logger.info(f"year_booked: {year_booked}")
+        logger.info(f"period_booked: {period_booked}")
+        logger.info(f"start_time_booked: {start_time_booked}")
+        logger.info(f"responsable_appointment_booked: {responsable_appointment_booked}")
+        logger.info(f"service_booked: {service_booked}")
+
+        # Registrar los servicios obtenidos
+        logger.info(f"services: {services}")
+
+        # Registrar el resultado de la verificación de días
+        logger.info(f"verify_days.response: {verify_days.response}")
+
+        # Registrar el resultado de la eliminación de la reserva
+        logger.info(f"remove_booking.response: {remove_booking.response}")
+
+        # Registrar los datos de la reserva para RDB
+        #logger.info(f"booking_data_rdb: {booking_data_rdb}")
+
+        logger.info("..........................................................")"""
+
+        type_personal: str
+
+        if service_booked in services:
+            type_personal = services[service_booked][2]
+        
+        booking_data_rdb: dict = {
+            "date": datetime(year_booked, month_booked, day_booked),
+            "personal_id": responsable_appointment_booked,
+            "personal_type": type_personal,
+            "appointment_id": id_reserva
+        }
+        booking_data_rdb_structure: RDBRemoveBooking.structure = RDBRemoveBooking.structure(**booking_data_rdb)
+        result_booking_rdb = RDBRemoveBooking(booking_data_rdb_structure)
+
+        if not result_booking_rdb.response["status"] == "ok":
+            logger.error(f'{result_booking_rdb.response}')
+            return Response(result_booking_rdb.response, 401)
 
         #-> Obtiene el resultado de forma éxitosa
         return Response({
@@ -344,7 +398,7 @@ async def Add_Appointment(request: Request, data: structureAdd):
         services = services.response["data"]
         
 
-
+        #######################################################
         '''
         Luego de verificarse por JWT, en el middleware y puso bien su credenciales, pasa a hacer el booking
         aqui deberemos de acceder por por request.state, pluego validaremos o podriamos directamente validar
@@ -376,8 +430,10 @@ async def Add_Appointment(request: Request, data: structureAdd):
         
         if not booking.response["status"] == 'ok':
             return Response(booking.response, 401)
+        #######################################################
         
 
+        #######################################################
         hour_obj = datetime.strptime(hour, "%H:%M")
         hour_12 = hour_obj.strftime("%I:%M %p")
 
@@ -413,6 +469,9 @@ async def Add_Appointment(request: Request, data: structureAdd):
             return Response(booking_rdb.response, 401)
 
         return Response(booking.response, 200)
+        #######################################################
+
+
     except Exception as e:
         return JSONResponse({
             "info": f"Error desconocido por el servidor: {e}",

@@ -6,7 +6,7 @@ from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL
 global id_appointment
 id_appointment: str
 
-#@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
+@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 @pytest.mark.order(1)
 def test_booking_add():
     email: str = "exampleandrian@gmail.com"
@@ -65,7 +65,7 @@ def test_booking_add():
         print(f"Request failed: {e}")
 
 
-@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
+#@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 @pytest.mark.order(2)
 def test_booking_remove():
     email: str = "exampleandrian@gmail.com"
@@ -100,7 +100,7 @@ def test_booking_remove():
             data_appointment: dict = {
                 "token_id": response_json["token_id"],
                 "token_data": response_json["token_data"],
-                "id_reserva": "3dd2c2e9-c969-4b45-bbe0-15c93a3334df"
+                "id_reserva": "bf203fe2-6284-4e38-9652-a0a742ce90a7"
             }
 
             print(data_appointment)

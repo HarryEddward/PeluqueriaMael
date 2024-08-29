@@ -72,14 +72,18 @@ class Profesionals(Verify_profesionals):
 
             # Diccionario principal
             horarios = {}
+            horarios["morning"] = {}
+            horarios["afternoon"] = {}
+            horario_morning = horarios["morning"]
+            horario_afternoon = horarios["afternoon"]
             
             # Primer rango: Mañana
             inicio = datetime.strptime(start_time_morning, "%H:%M")
             fin = datetime.strptime(end_time_morning, "%H:%M")
             while inicio <= fin:
                 hora_str = inicio.strftime("%H:%M")
-                horarios[hora_str] = {}  # Diccionario vacío
-                horarios[hora_str]["status"] = "libre"
+                horario_morning[hora_str] = {}  # Diccionario vacío
+                horario_morning[hora_str]["status"] = "libre"
                 inicio += timedelta(minutes=30)
             
             # Segundo rango: Tarde
@@ -87,8 +91,8 @@ class Profesionals(Verify_profesionals):
             fin = datetime.strptime(end_time_afternoon, "%H:%M")
             while inicio <= fin:
                 hora_str = inicio.strftime("%H:%M")
-                horarios[hora_str] = {}  # Diccionario vacío
-                horarios[hora_str]["status"] = "libre"
+                horario_afternoon[hora_str] = {}  # Diccionario vacío
+                horario_afternoon[hora_str]["status"] = "libre"
 
                 inicio += timedelta(minutes=30)
             #logger.info("->>>> %s", horarios)
@@ -133,10 +137,9 @@ class Profesionals(Verify_profesionals):
             last_version_personal: dict = last_version_personal_raw["personal"]
             
             for type_personal, list_personal in last_version_personal.items():
-                profesionals_proccessed_professionals[type_personal] = {}
                 
                 for id_personal in list_personal:
-                    profesionals_proccessed_professionals[type_personal][id_personal] = hours
+                    profesionals_proccessed_professionals[id_personal] = hours
 
             profesionals_proccessed["version"] = last_version_personal_raw["version"]
             return profesionals_proccessed
