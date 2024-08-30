@@ -101,6 +101,9 @@ skip_paths: list = ["/docs", "/redoc", "/openapi"]
 # Agregar el middleware a la aplicación y pasar las rutas a omitir
 app.add_middleware(OctetStreamMiddleware, skip_paths=skip_paths)
 
+from middlewares.handleError import ErrorMiddleware
+app.add_middleware(ErrorMiddleware)
+
 
 '''
 Si gzip esta activado del archivo de configuración lo añade el middleware!

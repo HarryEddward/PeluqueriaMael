@@ -87,16 +87,8 @@ if cors['enabled']:
     )
 
 
-@app.exception_handler(ValueError)
-async def root(request, exc):
-    return JSONResponse(
-        status_code=400,
-        content={
-            "info": f"Hubo un error de valor al procesar la solicitud: {str(exc)}",
-            "status": "no",
-            "type": "VALUE_ERROR"
-        }
-    )
+from middlewares.handleError import ErrorMiddleware
+app.add_middleware(ErrorMiddleware)
 
 
 # Para ejecutar el servidor

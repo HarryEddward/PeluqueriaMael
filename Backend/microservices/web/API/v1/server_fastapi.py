@@ -25,6 +25,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from middlewares.handleError import ErrorMiddleware
+app.add_middleware(ErrorMiddleware)
+
+
 @app.get("/")
 def read_root():
     return {"message": "¡Bienvenido a mi servidor FastAPI!"}
