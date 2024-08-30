@@ -22,7 +22,8 @@ RUN pip install pymongo \
     termcolor \
     validate_utf8 \
     pytest-order \
-    slowapi
+    fastapi-limiter
+
 
 
 WORKDIR /peluqueriamael/Backend/microservices/app/API/v1
