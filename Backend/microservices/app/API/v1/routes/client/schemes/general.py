@@ -16,3 +16,7 @@ class schemes:
         user: str
         psw: str
         email: str
+    
+    class TokenCredentials(BaseModel):
+        token_id: str
+        token_data: str

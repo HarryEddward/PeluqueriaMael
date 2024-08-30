@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
@@ -26,6 +26,13 @@ class structureResetPassword(BaseModel):
     token_data: Optional[str] = None
     current_psw: str
     new_psw: str
+
+@router.options('/reset_password')
+async def Loggin_User_Options(response: Response):
+
+    response.headers["Allow"] = "POST, OPTIONS"
+    response.headers["Content-Type"] = "text/plain"
+    return "POST, OPTIONS"
 
 @router.post('/reset_password')
 async def Config_Reset_Password(request: Request, data: structureResetPassword) -> JSONResponse:

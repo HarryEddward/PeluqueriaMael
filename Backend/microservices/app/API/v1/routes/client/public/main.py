@@ -27,8 +27,10 @@ router = APIRouter(prefix="/public")
 async def Loggin_User_Options(response: Response):
 
     response.headers["Allow"] = "POST, OPTIONS"
-    response.headers["Content-Type"] = "text/plain"
-    return "POST, OPTIONS"
+    response.headers["Content-Type"] = "application/json"
+    return {
+        "options": ["POST", "OPTIONS"]
+    }
 
 @router.post('/login')
 async def Loggin_User(request: Request, raw_data: schemes.Credentials):
@@ -60,11 +62,11 @@ async def Loggin_User(request: Request, raw_data: schemes.Credentials):
             "email": data["email"],
             "password": data["password"],
         })
-        print('aqui bro ->', secret_response.response)
+        #print('aqui bro ->', secret_response.response)
 
         
         if secret_response.response["status"] != 'ok':
-            print('pasa por aqui bro')
+            #print('pasa por aqui bro')
             # Si no se pudo actualizar el secreto JWT, devuelve un error
             return JSONResponse(secret_response.response, 400)
 
@@ -76,8 +78,8 @@ async def Loggin_User(request: Request, raw_data: schemes.Credentials):
             # Si no se pudo crear el token JWT, devuelve un error
             return JSONResponse(token_id_response, 400)
 
-        print('<->',token_id_response["token"])
-        print('<->', secret_response.response["data"]["token"])
+        #print('<->',token_id_response["token"])
+        #print('<->', secret_response.response["data"]["token"])
         # Devuelve la respuesta exitosa con los tokens generados
         return JSONResponse({
             "token_id": token_id_response["token"],
@@ -91,6 +93,17 @@ async def Loggin_User(request: Request, raw_data: schemes.Credentials):
             "type": "UNKNOW_ERROR",
             "detail": str(e)
         }, 500)
+
+
+@router.options('/register')
+async def Register_Options(response: Response):
+
+    response.headers["Allow"] = "POST, OPTIONS"
+    response.headers["Content-Type"] = "application/json"
+    return {
+        "options": ["POST", "OPTIONS"]
+    }
+
 
 @router.post('/register')
 async def Register_User(request: Request, raw_data: schemes.Credentials):

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
@@ -37,6 +37,16 @@ class structureDelete(BaseModel):
     token_id: Optional[str] = None
     token_data: Optional[str] = None
     verify: bool
+
+
+@router.options('/delete')
+async def User_Delete_Options(response: Response):
+
+    response.headers["Allow"] = "POST, OPTIONS"
+    response.headers["Content-Type"] = "application/json"
+    return {
+        "options": ["POST", "OPTIONS"]
+    }
 
 
 @router.post('/delete')
@@ -83,11 +93,11 @@ async def User_Delete(request: Request, data: structureDelete) -> JSONResponse:
             )
         )
         
-        print('Delete User->', delete_user.response)
+        #print('Delete User->', delete_user.response)
         if not delete_user.response["status"] == 'ok':
             return Response(delete_user.response, 401)
 
-        print('sus ->', print)
+        #print('sus ->', print)
         return Response({
             "info": "Se obtuvo del usuario sus reservas",
             "status": "ok",
@@ -97,7 +107,7 @@ async def User_Delete(request: Request, data: structureDelete) -> JSONResponse:
 
     try:
         def Response(res: dict, status: int) -> JSONResponse:
-            print('>>>>>>>>>>>>>>>>>> req state', request.state.__dict__)
+            #print('>>>>>>>>>>>>>>>>>> req state', request.state.__dict__)
             res["renew"] = {
                 "token": request.state.new_token
             }

@@ -25,7 +25,7 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
         #/api/app/api/v1/client/restricted/user/delete
         if request.url.path.startswith("/api/app/api/v1/client/restricted/"):
 
-            logging.info(f"PATH: {request.url.path}")
+            #logging.info(f"PATH: {request.url.path}")
             if request.method == "POST":
                 logging.info("Es tipo post!")
                 try:
@@ -65,10 +65,10 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
                             #print('entro')
                             #Teniendo el secreto descifraremos el segundo token con la clave privada secreta que tiene el mismo usuario
                             user_secret = secret.response["data"]
-                            print('')
+                            #print('')
 
                             token_data_check = JWToken.check(token_data, user_secret)
-                            print('->', token_data_check)
+                            #print('->', token_data_check)
                             
                             
                             if token_data_check["status"] == 'ok':
@@ -121,7 +121,8 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
                         "status": "no",
                         "type": "UNKNOW_ERROR"
                     }, status_code=401)
-                
+            elif request.method == "OPTIONS":
+                pass
             else:
                 return JSONResponse({
                     "info": "En las rutas: /app/api/v1/client/restricted/, solo esta permitido el método: POST",

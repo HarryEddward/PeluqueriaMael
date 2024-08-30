@@ -15,7 +15,7 @@ class ErrorMiddleware(BaseHTTPMiddleware):
                 status_code=500,
                 content={
                     "info": "Ha ocurrido un error interno en el servidor.",
-                    "status": "ok",
+                    "status": "no",
                     "type": "GLOBAL_ERROR"
                 }
             )

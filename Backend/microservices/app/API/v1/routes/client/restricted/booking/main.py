@@ -2,7 +2,8 @@ from fastapi import (
     APIRouter,
     Request,
     HTTPException,
-    status
+    status,
+    Response
 )
 from fastapi.responses import JSONResponse
 
@@ -13,6 +14,8 @@ from crud.mongodb.booking.add import AddBooking as MDBAddBooking
 from crud.mongodb.booking.remove import RemoveBooking as MDBRemoveBooking
 from crud.rethink_db.booking.add import AddBooking as RDBAddooking
 from crud.rethink_db.booking.remove import RemoveBooking as RDBRemoveBooking
+
+from Backend.microservices.app.API.v1.routes.client.schemes.general import schemes
 
 from pydantic import BaseModel
 from pydantic import validator
@@ -46,6 +49,17 @@ class structureRemove(BaseModel):
     token_id: Optional[str] = None
     token_data: Optional[str] = None
     id_reserva: str
+
+
+@router.options('/remove')
+async def Remove_Appointment_Options(response: Response):
+
+    response.headers["Allow"] = "POST, OPTIONS"
+    response.headers["Content-Type"] = "application/json"
+    return {
+        "options": ["POST", "OPTIONS"]
+    }
+
 
 @router.post("/remove")
 async def Remove_Appointment(request: Request, data: structureRemove):
@@ -294,6 +308,16 @@ class structureAdd(BaseModel):
     ]
     period: Literal['morning', 'afternoon']
     name_service: str
+
+
+@router.options('/add')
+async def Add_Appointment_Options(response: Response):
+
+    response.headers["Allow"] = "POST, OPTIONS"
+    response.headers["Content-Type"] = "application/json"
+    return {
+        "options": ["POST", "OPTIONS"]
+    }
 
 @router.post("/add")
 async def Add_Appointment(request: Request, data: structureAdd):

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
@@ -24,6 +24,17 @@ Porque no se usa el parametro data en las rutas?
 - Simplemente es para que se pueda ver las variables a usar en la documentación
 
 '''
+
+
+@router.options('/appointments')
+async def Data_Appointments_Options(response: Response):
+
+    response.headers["Allow"] = "POST, OPTIONS"
+    response.headers["Content-Type"] = "application/json"
+    return {
+        "options": ["POST", "OPTIONS"]
+    }
+
 
 @router.post('/appointments')
 async def Data_Appointments(request: Request, data: middleware_struct) -> JSONResponse:
@@ -94,6 +105,16 @@ async def Data_Appointments(request: Request, data: middleware_struct) -> JSONRe
         }, 500)
 
 
+@router.options('/services')
+async def Data_Services_Options(response: Response):
+
+    response.headers["Allow"] = "POST, OPTIONS"
+    response.headers["Content-Type"] = "application/json"
+    return {
+        "options": ["POST", "OPTIONS"]
+    }
+
+
 @router.post("/services")
 async def Data_Services(request: Request, data: middleware_struct) -> JSONResponse:
 
@@ -156,6 +177,16 @@ class structureBookingDaySheet(BaseModel):
     day: int
     month: int
     year: int
+
+
+@router.options('/booking_day_sheet')
+async def Data_Booking_Day_Sheet_Options(response: Response):
+
+    response.headers["Allow"] = "POST, OPTIONS"
+    response.headers["Content-Type"] = "application/json"
+    return {
+        "options": ["POST", "OPTIONS"]
+    }
 
 
 @router.post('/booking_day_sheet')

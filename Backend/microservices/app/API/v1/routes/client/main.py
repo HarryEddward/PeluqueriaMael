@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Response
 from fastapi.responses import JSONResponse
 from routes.client.restricted.main import router as router_restricted
 from routes.client.public.main import router as router_public
@@ -6,6 +6,16 @@ from routes.client.public.main import router as router_public
 router = APIRouter()
 router.include_router(router_restricted)
 router.include_router(router_public)
+
+
+@router.options('/status')
+async def Status_Options(response: Response):
+
+    response.headers["Allow"] = "POST, OPTIONS"
+    response.headers["Content-Type"] = "application/json"
+    return {
+        "options": ["POST", "OPTIONS"]
+    }
 
 @router.get('/status')
 async def Status():
