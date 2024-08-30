@@ -148,4 +148,5 @@ db:
   
   cache:
     Redis:
-      host: "localhost"
+      host: "redis_hairdresser"
+      port: 6379
