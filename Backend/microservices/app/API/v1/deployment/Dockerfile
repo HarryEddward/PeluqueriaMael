@@ -21,7 +21,8 @@ RUN pip install pymongo \
     httpx \
     termcolor \
     validate_utf8 \
-    pytest-order
+    pytest-order \
+    slowapi
 
 
 WORKDIR /peluqueriamael/Backend/microservices/app/API/v1

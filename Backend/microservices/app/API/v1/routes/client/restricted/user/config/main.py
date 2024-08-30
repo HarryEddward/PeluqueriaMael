@@ -28,11 +28,13 @@ class structureResetPassword(BaseModel):
     new_psw: str
 
 @router.options('/reset_password')
-async def Loggin_User_Options(response: Response):
+async def Config_Reset_Password_Options(response: Response):
 
     response.headers["Allow"] = "POST, OPTIONS"
-    response.headers["Content-Type"] = "text/plain"
-    return "POST, OPTIONS"
+    response.headers["Content-Type"] = "application/json"
+    return {
+        "options": ["POST", "OPTIONS"]
+    }
 
 @router.post('/reset_password')
 async def Config_Reset_Password(request: Request, data: structureResetPassword) -> JSONResponse:

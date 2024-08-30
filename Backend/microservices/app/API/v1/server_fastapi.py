@@ -7,6 +7,10 @@ from fastapi_cache.backends.redis import RedisBackend
 from routes.admin.admin import router as admin_router
 from routes.client.main import router as client_router
 from routes.worker.worker import router as worker_router
+from Backend.microservices.app.API.v1.config.middlewares.limiter.rate_limit_middleware import add_rate_limit_middleware, add_rate_limit_exceeded_handler
+from config.middlewares.client.restricted import RestrictedMiddleware
+from config.middlewares.client.handleError import ErrorMiddleware
+
 #from starlette.middleware.sessions import SessionMiddleware
 import ujson
 import os
@@ -86,11 +90,11 @@ base_router.include_router(worker_router, prefix="/worker", tags=["worker"])
 app.include_router(base_router, prefix="/api/app/api/v1")
 
 #Middlewares
-from config.middlewares.client.handleError import ErrorMiddleware
 app.add_middleware(ErrorMiddleware)
-
-from config.middlewares.client.restricted import RestrictedMiddleware
 app.add_middleware(RestrictedMiddleware)
+add_rate_limit_exceeded_handler(app)
+add_rate_limit_middleware(app)
+
 
 
 #app.add_middleware(SessionMiddleware, secret_key="your-secret-key")
