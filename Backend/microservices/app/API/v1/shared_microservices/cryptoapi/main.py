@@ -76,7 +76,7 @@ def encrypt(text: str) -> bytes:
 
         return result.content
 
-def decrypt(encrypted: bytes) -> bytes:
+def decrypt(encrypted: bytes) -> str:
     """Desencriptar texto usando una API.
 
     Args:
@@ -95,7 +95,7 @@ def decrypt(encrypted: bytes) -> bytes:
         if content == b'0' or result.status_code != 200:
             raise Exception("Hubo un error a la hora de encriptar o desencriptar")
 
-        return content
+        return content.decode()
 
 if __name__ == "__main__":
     import time

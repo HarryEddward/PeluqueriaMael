@@ -25,23 +25,23 @@ class FindUser:
 
         #@nb.jit(nopython=True)
         def __init__(self, find: Find) -> None:
-            self.email = encrypt(find.email)
+            self.email = find.email
+            self.encrypted_email: bytes = encrypt(self.email)
 
             try:
                 self.found = users.find_one({
-                    "data.info.email": self.email
+                    "data.info.email": self.encrypted_email
                 })
-                self.found = decrypt(self.found)
 
                 if self.found:
                     self.response = {
-                        "info": f"Se encontró un usuario con el email: {self.found}",
+                        "info": f"Se encontró un usuario con el email: {self.email}",
                         "status": "no",
                         "type": "FOUND_USER"
                     }
                 else:
                     self.response = {
-                        "info": f"No se encontró ningún usuario con el email: {self.found}",
+                        "info": f"No se encontró ningún usuario con el email: {self.email}",
                         "status": "no",
                         "type": "NO_FOUND_USER"
                     }

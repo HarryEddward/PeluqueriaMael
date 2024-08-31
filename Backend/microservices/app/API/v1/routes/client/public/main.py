@@ -15,7 +15,7 @@ from crud.mongodb.users.validation import ValidationUser
 from crud.mongodb.users.update import UpdateUser
 from crud.mongodb.users.find import FindUser, FindSecretJWTID, Find
 from Backend.microservices.app.API.v1.db.redis_db.database import rate_limit
-
+from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
 
 router = APIRouter(prefix="/public")
 
@@ -109,18 +109,19 @@ async def Register_Options(response: Response):
 async def Register_User(request: Request, raw_data: schemes.Credentials):
     '''
     Registra un nuevo usuario.
+    *E/D (Encryption/Decryption enabled)
     '''
     try:
         data = raw_data.model_dump()
         
-        # Busca si el usuario ya existe en la base de datos
+        # Busca si el usuario ya existe en la base de datos (E/D)
         existing_user = FindUser.info(Find(email=data["email"]))
         
         if existing_user.response["type"] == 'FOUND_USER':
             # Si el usuario ya existe, devuelve un error de usuario existente
             return JSONResponse(existing_user.response, 409)
         
-        # Agrega el usuario a la base de datos
+        # Agrega el usuario a la base de datos (E/D)
         add_user_response = AddUser({
             "email": data["email"],
             "password": data["password"]
@@ -132,7 +133,7 @@ async def Register_User(request: Request, raw_data: schemes.Credentials):
             # Si no se pudo agregar el usuario, devuelve un error
             return JSONResponse(add_user_response.response, 400)
         
-        # Valida al usuario recién agregado
+        # Valida al usuario recién agregado y devuelve _id del usuario (E/D)
         validation_response = ValidationUser({
             "email": data["email"],
             "password": data["password"],
@@ -146,7 +147,7 @@ async def Register_User(request: Request, raw_data: schemes.Credentials):
             #print('pasa por dentro?')
             return JSONResponse(validation_response.response, 400)
 
-        # Actualiza el secreto JWT del usuario
+        # Actualiza el secreto JWT del usuario (E/D)
         secret_response = UpdateUser.secret_jwt({
             "email": data["email"],
             "password": data["password"],
@@ -160,9 +161,14 @@ async def Register_User(request: Request, raw_data: schemes.Credentials):
         
         #print('pasa por aqui?')
 
+        user_id: str = validation_response.response["data"]
+        encrypted_user_id: str = encrypt(user_id)
+
+        #.......................................................
         # Crea el token JWT para el usuario
-        token_id_response = JWToken.create(validation_response.response["data"])
+        token_id_response = JWToken.create(encrypted_user_id)
         #print('token_id_response ->', token_id_response)
+        #.......................................................
 
         if token_id_response["status"] != 'ok':
             # Si no se pudo crear el token JWT, devuelve un error

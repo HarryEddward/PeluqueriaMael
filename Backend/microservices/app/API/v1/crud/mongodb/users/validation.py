@@ -1,6 +1,7 @@
-from Backend.microservices.app.API.v1.db.mongodb.database import users
 from pydantic import BaseModel, EmailStr
 import numba as nb
+from Backend.microservices.app.API.v1.db.mongodb.database import users
+from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
 
 class Credentials(BaseModel):
     email: EmailStr
@@ -54,7 +55,13 @@ class ValidationUser:
     #@nb.jit(nopython=True)
     def search_user(self, data):
         #print('comienza por aqui')
-        user = users.find_one({"data.info.email": data["email"]})
+        
+        email: str = data["email"]
+        encrypted_email: bytes = encrypt(email)
+
+        user = users.find_one({
+            "data.info.email": encrypted_email
+        })
         #print('user -> ', user)
         if user:
             self.validate_password(user, data)
@@ -69,8 +76,11 @@ class ValidationUser:
     #@nb.jit(nopython=True)
     def validate_password(self, user, data):
 
+        mongodb_user_password: str = decrypt(user["data"]["info"]["password"])
+        query_client_password: str = data["password"]
+
         try:
-            if user["data"]["info"]["password"] == data["password"]:
+            if mongodb_user_password == query_client_password:
                 
                 if data["info"] != False:
                     self.data = dict(user)

@@ -1,4 +1,3 @@
-from Backend.microservices.app.API.v1.db.mongodb.database import users
 from pydantic import BaseModel, EmailStr
 from pydantic import ValidationError
 from services.secrets_generator.main import secrets_generator
@@ -7,7 +6,8 @@ import numba as nb
 
 from .validation import ValidationUser
 from services.auth import JWToken
-
+from Backend.microservices.app.API.v1.db.mongodb.database import users
+from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
 
 
 '''
@@ -78,6 +78,7 @@ class UpdateUser:
                     
                     #Genera el secreto
                     secret = str(secrets_generator(120))
+                    encrypted_secret_key = decrypt(secret)
                     #print('3-> update jwt', secret)
                     #print('secret ->', secret) 
                     #print('_id ->', validation_user.response["data"]) #<- Posible Error
@@ -87,7 +88,7 @@ class UpdateUser:
 
                     users.update_one(
                         { "_id": ObjectId(user_id) },
-                        { "$set": {"data.secrets.jwt": secret} }
+                        { "$set": {"data.secrets.jwt": encrypted_secret_key} }
                     )
 
                     jwt = JWToken.create({
@@ -103,6 +104,7 @@ class UpdateUser:
                             "status": "ok",
                             "type": "SUCCESS",
                             "data": {
+                                #Devuelve el token_data, no el token_id
                                 "token": jwt["token"]
                             } 
                         }
@@ -147,12 +149,15 @@ class UpdateUser:
 
                 user_id = validation_user.response["data"]
 
+                new_password: str = data["new_password"]
+                encrypted_new_password: str = encrypt(new_password)
+
                 #print('2->', user_id)
                 #print('pasw ->', data["new_password"])
                 # Actualizar la contraseña en la base de datos usando el ID del usuario
                 users.update_one(
                     {"_id": ObjectId(user_id)},
-                    {"$set": {"data.info.password": data["new_password"]}}
+                    {"$set": {"data.info.password": encrypted_new_password}}
                 )
                 self.response = {
                     "info": "Password updated successfully.",
