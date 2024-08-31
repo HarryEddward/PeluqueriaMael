@@ -77,10 +77,8 @@ base_router = APIRouter()
 # Incluir los routers específicos en el enrutador base
 
 if cpu:
-    print('ADD CPU')
     base_router.include_router(cpu_router, prefix="/cpu", tags=["cpu"])
 if gpu:
-    print('ADD GPU')
     base_router.include_router(gpu_router, prefix="/gpu", tags=["gpu"])
 
 

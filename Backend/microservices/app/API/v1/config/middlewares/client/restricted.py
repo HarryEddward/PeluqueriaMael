@@ -3,53 +3,40 @@ from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from typing import Callable, Awaitable
 from bson import ObjectId
-
 from crud.mongodb.users.find import FindUser, FindSecretJWTID
 from crud.mongodb.users.update import UpdateUser
 from services.auth import JWToken
-
-import logging
-
-logging.basicConfig(
-    filename='info_log.log',
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
+from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
+from Backend.microservices.app.API.v1.logging_config import logger
 
 
 class RestrictedMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next: Callable[[Request], Awaitable[Response]]):
-        logging.info('Entra en el middleware')
-        logging.info(request.url.path)
+        logger.info('Entra en el middleware')
+        logger.info(request.url.path)
         #/api/app/api/v1/client/restricted/user/delete
         if request.url.path.startswith("/api/app/api/v1/client/restricted/"):
 
-            #logging.info(f"PATH: {request.url.path}")
+            #logger.info(f"PATH: {request.url.path}")
             if request.method == "POST":
-                logging.info("Es tipo post!")
+                logger.info("Es tipo post!")
                 try:
                     body = await request.json()
                     token_id = body["token_id"]
                     token_data = body["token_data"]
-                    logging.info(token_id)
-                    logging.info(token_data)
+                    logger.info(token_id)
+                    logger.info(token_data)
 
-                    
-
-                    #request.state.token_id = body["token_id"] #1 Token
-                    #request.state.token_data = body["token_data"] #2 Token
-
-                    #print('middleware ->', token_id)
-                    #print('middleware ->', token_data)
 
                     token_id_check = JWToken.check(token_id) # Clave JWT Global
-                    print(token_id_check)
+                    #print(token_id_check)
                     if token_id_check["status"] == "ok":
                         
-                        print('->',token_id_check["data"]["info"])
+                        #print('->',token_id_check["data"]["info"])
                         
                         user_id = token_id_check["data"]["info"]
+
+                        
 
                         #Si el token_id esta correcto, irá a buscar el usuario en el db
                         secret = FindUser.secret_jwt(
@@ -82,7 +69,7 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
                                     "email": email,
                                     "password": password,
                                 })
-                                print('final ->>>>')
+                                #print('final ->>>>')
                                 #Intenta modificar la clave secreta del usuario 
                                 if renew_secret.response["status"] == 'ok':
 
@@ -92,7 +79,7 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
                                     request.state.password = str(password)
                                     request.state.user_id = str(user_id)
 
-                                    logging.info(f'new_token: {request.state.new_token}')
+                                    logger.info(f'new_token: {request.state.new_token}')
                                 else:
                                     return JSONResponse(renew_secret.response, 401)
 

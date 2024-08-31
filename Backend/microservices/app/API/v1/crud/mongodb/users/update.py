@@ -64,26 +64,26 @@ class UpdateUser:
             '''
 
             try:
-                print('1-> update jwt', data)
+                #print('1-> update jwt', data)
 
                 validation_user = ValidationUser({
                     "email": data["email"],
                     "password": data["password"],
                     "info": False
                 })
-                print('2-> update jwt', validation_user)
+                #print('2-> update jwt', validation_user)
 
                 #Si el usuario esta de la forma correcta añadera el secreto de jwt en su profile
                 if validation_user.response["status"] == "ok":
                     
                     #Genera el secreto
                     secret = str(secrets_generator(120))
-                    print('3-> update jwt', secret)
-                    print('secret ->', secret) 
-                    print('_id ->', validation_user.response["data"]) #<- Posible Error
+                    #print('3-> update jwt', secret)
+                    #print('secret ->', secret) 
+                    #print('_id ->', validation_user.response["data"]) #<- Posible Error
 
                     user_id = validation_user.response["data"]
-                    print('4-> update jwt', user_id)
+                    #print('4-> update jwt', user_id)
 
                     users.update_one(
                         { "_id": ObjectId(user_id) },
@@ -95,7 +95,7 @@ class UpdateUser:
                         "password": data["password"]
                     }, secret)
 
-                    print('5-> update jwt', jwt)
+                    #print('5-> update jwt', jwt)
 
                     if jwt["status"] == 'ok':
                         self.response = {
@@ -141,14 +141,14 @@ class UpdateUser:
                 "password": data["password"]
             })
 
-            print('1->', validation_user.response)
+            #print('1->', validation_user.response)
 
             if validation_user.response["status"] == "ok":
 
                 user_id = validation_user.response["data"]
 
-                print('2->', user_id)
-                print('pasw ->', data["new_password"])
+                #print('2->', user_id)
+                #print('pasw ->', data["new_password"])
                 # Actualizar la contraseña en la base de datos usando el ID del usuario
                 users.update_one(
                     {"_id": ObjectId(user_id)},
@@ -160,7 +160,7 @@ class UpdateUser:
                     "type": "PASSWORD_UPDATED"
                 }
             else:
-                print('3-> Faildes update password')
+                #print('3-> Faildes update password')
                 self.response = {
                     "info": "Failed to update password.",
                     "status": "no",

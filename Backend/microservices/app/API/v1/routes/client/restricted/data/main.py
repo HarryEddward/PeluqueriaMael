@@ -53,7 +53,7 @@ async def Data_Appointments(request: Request, data: middleware_struct) -> JSONRe
         try:
             user_id = str(request.state.user_id)
             appointments = users.find_one({ "_id": ObjectId(user_id) }, {'_id': 0, 'reservas': 1})
-            print('appointments ->', appointments)
+            #print('appointments ->', appointments)
 
         except Exception as e:
             return Response({
@@ -64,14 +64,14 @@ async def Data_Appointments(request: Request, data: middleware_struct) -> JSONRe
         
         if not appointments:
             return Response({
-                "info": "No se encontro el usuario, o esta en el db vació",
-                "status": "no",
-                "type": "USER_NOT_FOUND"
+                "info": "El usuario no tiene reservas listadas",
+                "status": "ok",
+                "type": "USER_WITHOUT_APPOINTMENTS"
             }, 200)
 
         # Convertir objetos datetime a cadenas de texto
         for _, reservas in appointments['reservas'].items():
-            print('reservas---->', reservas)
+            #print('reservas---->', reservas)
             reservas["date_appointment"] = str(reservas["date_appointment"])
 
         return Response({
@@ -133,7 +133,7 @@ async def Data_Services(request: Request, data: middleware_struct) -> JSONRespon
             res["renew"] = {"token": request.state.new_token}
             return JSONResponse(res, status)
         try:
-            print('config db->', conf["db"]["services"])
+            #print('config db->', conf["db"]["services"])
             services = configure.find_one({ "_id": ObjectId(conf["db"]["services"]) })
 
         except Exception as e:

@@ -18,7 +18,11 @@ BASE_URL: str = f"{protocol}://{host}:{port}"
 patron_binario = re.compile(b'^[\x20-\x7E]+$')  # Permite solo caracteres imprimibles ASCII
 patron_texto = re.compile(r'^[a-zA-Z0-9\s.,!?@\'"-]+$')  # Permite solo caracteres permitidos
 
-class TextModel(BaseModel):
+class DecryptBytes(BaseModel):
+    encrypted: bytes
+
+
+class EncryptText(BaseModel):
     text: str
 
     @field_validator('text')
@@ -53,7 +57,7 @@ def encrypt(text: str) -> bytes:
         bytes: Texto encriptado.
     """
     try:
-        valid_text = TextModel(text=text)
+        valid_text = EncryptText(text=text)
     except ValidationError as e:
         raise ValueError(f"Error de validación: {e}")
     
@@ -66,6 +70,9 @@ def encrypt(text: str) -> bytes:
 
         if content == b'0' or result.status_code != 200:
             raise Exception("Hubo un error a la hora de encriptar")
+        
+        if not result.content.decode("ascii"):
+            raise Exception("Los bytes no son formateados con letras ascii")
 
         return result.content
 

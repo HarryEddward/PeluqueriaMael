@@ -9,6 +9,9 @@ sudo docker exec -it deployment-peluqueriamael_app_api-1 bash
 sudo docker compose -f /home/adrian/Documentos/PeluqueriaMael/Backend/microservices/app/API/v1/deployment/docker-compose.yml logs
 
 export PYTHONPATH=/peluqueriamael; python3
+export PYTHONPATH=/home/adrian/Documentos/PeluqueriaMael; python3
+
+sudo docker compose -f logs
 
 git add .; git commit -m "changes"; git push origin main; git pull origin main
 

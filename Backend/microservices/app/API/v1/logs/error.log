@@ -1,0 +1,2 @@
+2024-08-30 16:49:55,398 - slowapi - ERROR - Failed to configure throttling for __mp_main__.trigger_error (couldn't parse rate limit string '0.5/second') - /usr/local/lib/python3.12/site-packages/slowapi/extension.py:695
+2024-08-30 16:49:55,453 - slowapi - ERROR - Failed to configure throttling for server_fastapi.trigger_error (couldn't parse rate limit string '0.5/second') - /usr/local/lib/python3.12/site-packages/slowapi/extension.py:695

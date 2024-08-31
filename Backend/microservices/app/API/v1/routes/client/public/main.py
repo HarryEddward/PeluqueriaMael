@@ -14,9 +14,8 @@ from crud.mongodb.users.add import AddUser
 from crud.mongodb.users.validation import ValidationUser
 from crud.mongodb.users.update import UpdateUser
 from crud.mongodb.users.find import FindUser, FindSecretJWTID, Find
-'''from Backend.microservices.app.API.v1.routes.client.public.responses import (
-    responses_login,
-)'''
+from Backend.microservices.app.API.v1.db.redis_db.database import rate_limit
+
 
 router = APIRouter(prefix="/public")
 
@@ -106,6 +105,7 @@ async def Register_Options(response: Response):
 
 
 @router.post('/register')
+@rate_limit("15/day")
 async def Register_User(request: Request, raw_data: schemes.Credentials):
     '''
     Registra un nuevo usuario.
@@ -126,7 +126,7 @@ async def Register_User(request: Request, raw_data: schemes.Credentials):
             "password": data["password"]
         })
         
-        print(add_user_response.response)
+        #print(add_user_response.response)
 
         if add_user_response.response["status"] != 'ok':
             # Si no se pudo agregar el usuario, devuelve un error
@@ -139,11 +139,11 @@ async def Register_User(request: Request, raw_data: schemes.Credentials):
             "info": False
         })
 
-        print('ValidationUser->', validation_response.response)
+        #print('ValidationUser->', validation_response.response)
 
         if validation_response.response["status"] != "ok":
             # Si no se pudo validar al usuario, devuelve un error
-            print('pasa por dentro?')
+            #print('pasa por dentro?')
             return JSONResponse(validation_response.response, 400)
 
         # Actualiza el secreto JWT del usuario
@@ -151,24 +151,24 @@ async def Register_User(request: Request, raw_data: schemes.Credentials):
             "email": data["email"],
             "password": data["password"],
         })
-        print('secret_response ->', secret_response.response)
+        #print('secret_response ->', secret_response.response)
         
         if secret_response.response["status"] != 'ok':
             # Si no se pudo actualizar el secreto JWT, devuelve un error
-            print('Esta bien?: ', secret_response.response["status"])
+            #print('Esta bien?: ', secret_response.response["status"])
             return JSONResponse(secret_response.response, 400)
         
-        print('pasa por aqui?')
+        #print('pasa por aqui?')
 
         # Crea el token JWT para el usuario
         token_id_response = JWToken.create(validation_response.response["data"])
-        print('token_id_response ->', token_id_response)
+        #print('token_id_response ->', token_id_response)
 
         if token_id_response["status"] != 'ok':
             # Si no se pudo crear el token JWT, devuelve un error
             return JSONResponse(token_id_response, 400)
 
-        print('acaba respondiendo con un estatus positivo')
+        #print('acaba respondiendo con un estatus positivo')
         # Devuelve la respuesta exitosa con los tokens generados
         return JSONResponse({
             "token_id": token_id_response["token"],

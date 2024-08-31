@@ -1,11 +1,11 @@
-from Backend.microservices.app.API.v1.db.mongodb.database import users
 from pydantic import BaseModel, EmailStr
 from pydantic import ValidationError
 from bson import ObjectId
 from typing import Union
-
-from .validation import ValidationUser
 import numba as nb
+from .validation import ValidationUser
+from Backend.microservices.app.API.v1.db.mongodb.database import users
+from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
 
 class Find(BaseModel):
     email: EmailStr
@@ -25,19 +25,23 @@ class FindUser:
 
         #@nb.jit(nopython=True)
         def __init__(self, find: Find) -> None:
-            self.email = find.email
+            self.email = encrypt(find.email)
 
             try:
-                self.found = users.find_one({"data.info.email": self.email})
+                self.found = users.find_one({
+                    "data.info.email": self.email
+                })
+                self.found = decrypt(self.found)
+
                 if self.found:
                     self.response = {
-                        "info": f"Se encontró un usuario con el email: {self.email}",
+                        "info": f"Se encontró un usuario con el email: {self.found}",
                         "status": "no",
                         "type": "FOUND_USER"
                     }
                 else:
                     self.response = {
-                        "info": f"No se encontró ningún usuario con el email: {self.email}",
+                        "info": f"No se encontró ningún usuario con el email: {self.found}",
                         "status": "no",
                         "type": "NO_FOUND_USER"
                     }
@@ -65,7 +69,7 @@ class FindUser:
             if isinstance(data, FindSecretJWTCredentials):
 
                 data = data.model_dump()
-                print(data)
+                #print(data)
                 try:
                     user_validate = ValidationUser({
                         "email": data.email,

@@ -22,7 +22,9 @@ RUN pip install pymongo \
     termcolor \
     validate_utf8 \
     pytest-order \
-    fastapi-limiter
+    redis \
+    slowapi
+
 
 
 

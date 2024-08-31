@@ -146,7 +146,17 @@ db:
         administrador: "Admin"
         tipos_de_pydantic: "Types"
   
-  cache:
-    Redis:
+  temporary:
+    redis:
       host: "redis_hairdresser"
       port: 6379
+      db:
+        microservices:
+          app:
+            API: 1
+            APIWS: 2
+            CryptoAPI: 3
+            StatusAPI: 4
+          web:
+            API: 5
+            StatusAPI: 6
