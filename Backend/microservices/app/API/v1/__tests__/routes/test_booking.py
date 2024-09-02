@@ -2,40 +2,36 @@ import pytest
 import httpx
 from termcolor import cprint
 from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL, login_credentials
-
-global id_appointment
-id_appointment: str
+from Backend.microservices.app.API.v1.logging_config import logger
 
 class Config:
-    id_appointment: str
+    id_appointment: str = ""
 
+    @classmethod
+    def set_id_appointment(cls, appointment_id: str):
+        cls.id_appointment = appointment_id
+
+    @classmethod
+    def get_id_appointment(cls) -> str:
+        return cls.id_appointment
 
 #@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 @pytest.mark.order(1)
 def test_booking_add():
-    #email: str = "exampleandrian@gmail.com"
-    #password: str = "fuck_you"
-    
     data: dict = login_credentials
-    #print(BASE_URL)
 
     try:
-        # Desactiva la verificación de certificados SSL en httpx
         with httpx.Client() as client:
-            global id_appointment
             response: httpx.Response = client.post(
                 f"{BASE_URL}/api/app/api/v1/client/public/login",
                 json=data
             )
-            print(response)
+            #print(response)
 
-            # Verifica el código de estado HTTP
             assert response.status_code == 200
 
-            # Obtén el contenido de la respuesta
             response_json: dict = response.json()
 
-            # Imprime el contenido de la respuesta
             cprint(f"\nResponse: {response_json}\n", "green", "on_black")
             
             data_appointment: dict = {
@@ -49,6 +45,7 @@ def test_booking_add():
                 "name_service": "peinar_con_secador"
             }
 
+
             print(data_appointment)
 
             response: httpx.Response = client.post(
@@ -56,27 +53,23 @@ def test_booking_add():
                 json=data_appointment
             )
 
-            print(response.json())
+            logger.info(f"ADD APPONITMENT: {response.json()}")
 
-            Config.id_appointment = response.json()["data"]["id_appointment"]
+            response_json = response.json()
+            print(response_json)
 
+            # Guardar el id_appointment en Config
+            Config.set_id_appointment(response_json["data"]["id_appointment"])
 
     except httpx.RequestError as e:
-        # Manejo de excepciones de la librería httpx
         print(f"Request failed: {e}")
 
-
-#@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 @pytest.mark.order(2)
 def test_booking_remove():
-    #email: str = "exampleandrian@gmail.com"
-    #password: str = "fuck_you"
-    
     data: dict = login_credentials
     print(BASE_URL)
 
     try:
-        # Desactiva la verificación de certificados SSL en httpx
         with httpx.Client() as client:
 
             response: httpx.Response = client.post(
@@ -85,19 +78,19 @@ def test_booking_remove():
             )
             print(response)
 
-            # Verifica el código de estado HTTP
             assert response.status_code == 200
 
-            # Obtén el contenido de la respuesta
             response_json: dict = response.json()
 
-            # Imprime el contenido de la respuesta
             cprint(f"\nResponse: {response_json}\n", "green", "on_black")
+
+            # Usar el id_appointment guardado en Config
+            id_appointment = Config.get_id_appointment()
             
             data_appointment: dict = {
                 "token_id": response_json["token_id"],
                 "token_data": response_json["token_data"],
-                "id_reserva": Config.id_appointment
+                "id_reserva": id_appointment
             }
 
             print(data_appointment)
@@ -107,9 +100,9 @@ def test_booking_remove():
                 json=data_appointment
             )
 
+            logger.info(f"REMOVE APPONITMENT: {response.json()}")
+
             print(response.json())
 
-
     except httpx.RequestError as e:
-        # Manejo de excepciones de la librería httpx
         print(f"Request failed: {e}")

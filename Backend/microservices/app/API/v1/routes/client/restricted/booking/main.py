@@ -375,6 +375,8 @@ async def Add_Appointment(request: Request, data: structureAdd):
         personal_raw = db_personal.find_one({ "version": version_appointment })
         print(personal_raw)
 
+        logger.info("APPOINTMENT: PASO 1")
+
         '''
         Verificar que el usuario solo tenga de reservas 2, si lo supera
         '''
@@ -384,6 +386,8 @@ async def Add_Appointment(request: Request, data: structureAdd):
                 service= name_service
             )
         )
+
+        logger.info("APPOINTMENT: PASO 2")
         #print(personal.response)
 
         if personal.response["status"] == 'no':
@@ -399,6 +403,9 @@ async def Add_Appointment(request: Request, data: structureAdd):
                 professionals=appointment
             )
         )
+
+        logger.info("APPOINTMENT: PASO 3")
+
         if not worker_less_bussy.response["status"] == 'ok':
             return Response(worker_less_bussy.response, 401)
         
@@ -406,6 +413,8 @@ async def Add_Appointment(request: Request, data: structureAdd):
 
         #Obtiene todos los servicios procesadora para hacerse uso
         services = conversorServices()
+
+        logger.info("APPOINTMENT: PASO 4")
 
         #print('services ->', services.response)
 
@@ -450,7 +459,11 @@ async def Add_Appointment(request: Request, data: structureAdd):
                 service=name_service
             )
         )
+
+        logger.info("APPOINTMENT: PASO 5")
         #print('aca', booking.response)
+
+        logger.info(f"APPOINTMENT: {booking.response}")
         
         if not booking.response["status"] == 'ok':
             return Response(booking.response, 401)
@@ -464,6 +477,8 @@ async def Add_Appointment(request: Request, data: structureAdd):
         user_raw: dict = users.find_one({ "_id": ObjectId(user_id) })
         user_email: str = user_raw["data"]["info"]["email"]
         
+        logger.info("APPOINTMENT: PASO 7")
+
         logger.info(".............................")
 
         logger.info(f"Hour en str: {hour_12}")
@@ -484,19 +499,25 @@ async def Add_Appointment(request: Request, data: structureAdd):
             "personal_id": worker_less_bussy.response["data"][0][0]
         }
 
+
         booking_rdb = RDBAddooking(
             RDBAddooking.structure(**booking_data_rdb)
         )
+
+        logger.info("APPOINTMENT: PASO 8")
 
         if not booking_rdb.response["status"] == "ok":
             logger.info(f'error -> {booking_rdb.response}')
             return Response(booking_rdb.response, 401)
 
+        logger.info("APPOINTMENT: Acabo 🧘")
+
         return Response(booking.response, 200)
         #######################################################
-
+        
 
     except Exception as e:
+        logger.error(f"ERROR APPOINTMENT: {e}")
         return JSONResponse({
             "info": f"Error desconocido por el servidor: {e}",
             "status": "no",

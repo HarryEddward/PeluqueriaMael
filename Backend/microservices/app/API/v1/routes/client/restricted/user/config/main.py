@@ -1,16 +1,16 @@
 from fastapi import APIRouter, Request, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
 from datetime import datetime
 from bson import ObjectId
 from typing import Optional
 from config.config import conf
-
-router = APIRouter(prefix="/config")
-
 from datetime import datetime
 import numba as nb
+from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
+from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
+
+router = APIRouter(prefix="/config")
 
 
 '''
@@ -44,8 +44,10 @@ async def Config_Reset_Password(request: Request, data: structureResetPassword) 
     '''
     def code() -> dict:
 
-        current_psw = str(data.current_psw)
-        new_psw = str(data.new_psw)
+        current_psw: str = str(data.current_psw)
+        encrypted_current_psw: str = encrypt(current_psw)
+        new_psw: str = str(data.new_psw)
+        encrypted_new_psw: str = encrypt(new_psw)
 
         try:
             #print('--------------------')
@@ -79,23 +81,23 @@ async def Config_Reset_Password(request: Request, data: structureResetPassword) 
 
         
         # Valida si la contraseña puesta "actual" es el mismo que la contraseña actual en el db
-        if not current_psw_db == current_psw:
+        if not current_psw_db == encrypted_current_psw:
 
-            print('No cuadra la contraseña con el db')
+            #print('No cuadra la contraseña con el db')
             return Response({
                 "info": "La contraseña no cuadra con la actual",
                 "status": "no",
                 "type": "PASSWORD_DONT_MATCH"
             }, 401)
         
-        print('--------------------')
+        #print('--------------------')
         
         #Cambia la contraseña si todo fué bien
         try:
             users.update_one(
                 {"_id": ObjectId(user_id)},
                 { "$set": {
-                        "data.info.password": new_psw
+                        "data.info.password": encrypted_new_psw
                     }
                 }
             )
@@ -110,7 +112,7 @@ async def Config_Reset_Password(request: Request, data: structureResetPassword) 
             "info": "Se cambio la contraseña actual por la nueva contraseña",
             "status": "ok",
             "type": "SUCCESS",
-            "data": new_psw
+            "data": encrypted_new_psw
         }, 200)
 
 
