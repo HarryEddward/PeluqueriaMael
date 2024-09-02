@@ -2872,3 +2872,7 @@ data.info
 2024-09-02 19:28:42,124 - peluqueria_mael - INFO - validation_user: <crud.mongodb.users.validation.ValidationUser object at 0x74ad075fe210> - /peluqueriamael/Backend/microservices/app/API/v1/crud/mongodb/users/update.py:98
 2024-09-02 19:28:42,163 - httpx - INFO - HTTP Request: POST http://deployment-peluqueriamael_app_cryptoapi-1:8200/cryptoapi/app/api/v1/gpu/encrypt "HTTP/1.1 200 OK" - /usr/local/lib/python3.12/site-packages/httpx/_client.py:1038
 2024-09-02 19:28:42,164 - peluqueria_mael - INFO - new_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiRGFya19EcmF3X0V2ZXJ5dGhpbmcifSwiZXhwIjoxNzI3ODk3MzIyfQ.SOKGqacgfXq_-xyyOfp_UsNKAv-sZlirCK6Pk-ULk2Q - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:87
+2024-09-02 19:35:37,776 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
+2024-09-02 19:35:37,815 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
+2024-09-02 19:35:40,553 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
+2024-09-02 19:35:40,590 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44

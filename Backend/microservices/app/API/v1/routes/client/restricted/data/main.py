@@ -1,12 +1,13 @@
 from fastapi import APIRouter, Request, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
 from datetime import datetime
 from bson import ObjectId
 from typing import Optional
 from config.config import conf
 from datetime import datetime
+from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
+from Backend.microservices.app.API.v1.logging_config import logger
 
 router = APIRouter(prefix="/data")
 
@@ -52,10 +53,12 @@ async def Data_Appointments(request: Request, data: middleware_struct) -> JSONRe
 
         try:
             user_id = str(request.state.user_id)
+            logger.info(f"(/appointments) USER ID: {user_id}")
             appointments = users.find_one({ "_id": ObjectId(user_id) }, {'_id': 0, 'reservas': 1})
             #print('appointments ->', appointments)
 
         except Exception as e:
+            logger.info(f"(/appointments) ERROR: {user_id}")
             return Response({
                 "info": "Hubo un error a la base de datos",
                 "status": "no",
