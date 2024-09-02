@@ -3,12 +3,13 @@ from pydantic import ValidationError
 from services.secrets_generator.main import secrets_generator
 from bson import ObjectId
 import numba as nb
+from abc import ABC, abstractmethod
 
 from .validation import ValidationUser
 from services.auth import JWToken
 from Backend.microservices.app.API.v1.db.mongodb.database import users
 from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
-
+from Backend.microservices.app.API.v1.logging_config import logger
 
 '''
 Aquí estaran todos los métodos que se haran uso, estan de forma controlada
@@ -18,7 +19,27 @@ Para evitar fallos de seguirdad
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7ImVtYWlsIjoiYWRyaWFuZWxjYXBvQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZnVja195b3UifSwiZXhwIjoxNzE1NjI3Nzk2fQ.fTxdy_7X63-ypQnYib42HMYQ2_Zwa3o16BvBTwsugjI
 '''
 
-class UpdateUser:
+class Verify(ABC):
+
+    class PasswordUpdate(BaseModel):
+        pass
+
+    class SecretJWTUpdate(BaseModel):
+        pass
+
+    class secret_jwt:
+        def __init__(self, data) -> None:
+            pass
+
+    class password:
+        def __init__(self) -> None:
+            pass
+
+        def change_password(self, data):
+            pass
+
+
+class UpdateUser(Verify):
 
     global PasswordUpdate
     global SecretJWTUpdate
@@ -35,7 +56,7 @@ class UpdateUser:
     class secret_jwt:
 
         #@nb.jit(nopython=True)
-        def __init__(self, data: SecretJWTUpdate):
+        def __init__(self, data: SecretJWTUpdate) -> None:
             
             '''
             Valida el usurio y si existe, y si existe crea una nueva clave jwt secreta para el
@@ -64,13 +85,17 @@ class UpdateUser:
             '''
 
             try:
+                email: str = data["email"]
+                password: str = data["password"]
                 #print('1-> update jwt', data)
 
                 validation_user = ValidationUser({
-                    "email": data["email"],
-                    "password": data["password"],
+                    "email": email,
+                    "password": password,
                     "info": False
                 })
+
+                logger.info("validation_user: %s", validation_user)
                 #print('2-> update jwt', validation_user)
 
                 #Si el usuario esta de la forma correcta añadera el secreto de jwt en su profile
@@ -78,7 +103,7 @@ class UpdateUser:
                     
                     #Genera el secreto
                     secret = str(secrets_generator(120))
-                    encrypted_secret_key = decrypt(secret)
+                    encrypted_secret_key = encrypt(secret)
                     #print('3-> update jwt', secret)
                     #print('secret ->', secret) 
                     #print('_id ->', validation_user.response["data"]) #<- Posible Error
@@ -115,6 +140,7 @@ class UpdateUser:
 
 
             except Exception as e:
+                logger.info("Hubo un error inesperado: %s", e)
                 self.response = {
                     "info": str(e),
                     "status": "no",

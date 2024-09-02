@@ -50,7 +50,7 @@ class RedisClient(Verify):
         try:
             cls._client = Redis.from_url(cls.REDIS_URL, encoding="utf-8", decode_responses=True)
             await cls._client.ping()  # Verificar la conexión
-            logger.info(f"Conexión a Redis establecida. URL: {cls.REDIS_URL}")
+            #logger.info(f"Conexión a Redis establecida. URL: {cls.REDIS_URL}")
         except Exception as e:
             cls._client = None
             logger.error(f"Error al conectar a Redis: {e}")

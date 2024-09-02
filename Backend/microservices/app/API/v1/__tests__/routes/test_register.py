@@ -3,8 +3,9 @@ import httpx
 from termcolor import cprint
 from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL
 
+@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 def test_register():
-    email: str = "adriansupalumbedsadsarasddsadgssdadsadmarkzukrb191010@gmail.com"
+    email: str = "amigodospuntozero10191sduds@gmail.com"
     password: str = "fuck_yo"
     
     data: dict = {

@@ -24,47 +24,52 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
                     body = await request.json()
                     token_id = body["token_id"]
                     token_data = body["token_data"]
-                    logger.info(token_id)
-                    logger.info(token_data)
+
+                    logger.info("Token_ID: %s", token_id)
+                    logger.info("Token_Data: %s", token_data)
 
 
                     token_id_check = JWToken.check(token_id) # Clave JWT Global
-                    #print(token_id_check)
+                    
+
                     if token_id_check["status"] == "ok":
                         
                         #print('->',token_id_check["data"]["info"])
                         
-                        user_id = token_id_check["data"]["info"]
-
+                        user_id: str = token_id_check["data"]["info"]
+                        decrypted_user_id: str = decrypt(user_id)
                         
 
                         #Si el token_id esta correcto, irá a buscar el usuario en el db
                         secret = FindUser.secret_jwt(
                             FindSecretJWTID(
-                                id=token_id_check["data"]["info"]
+                                id=decrypted_user_id
                             )
                         )
                         
 
                         #Si encontro el secreto en el usuario y todo salio bien
                         if secret.response["status"] == 'ok':
-                            
+
                             #print('entro')
                             #Teniendo el secreto descifraremos el segundo token con la clave privada secreta que tiene el mismo usuario
                             user_secret = secret.response["data"]
+
+                            decrypted_user_secret_key: str = decrypt(user_secret)
                             #print('')
 
-                            token_data_check = JWToken.check(token_data, user_secret)
+                            token_data_check = JWToken.check(token_data, decrypted_user_secret_key)
                             #print('->', token_data_check)
                             
                             
                             if token_data_check["status"] == 'ok':
                                 
                                 #print(token_data_check)
-                                email = token_data_check["data"]["info"]["email"]
-                                password = token_data_check["data"]["info"]["password"]
+                                email: str = token_data_check["data"]["info"]["email"]
+                                password: str = token_data_check["data"]["info"]["password"]
                                 
                                 #print('here!')
+                                #Añades las credenciales para luego recrear una nueva clave del secreto del usuario
                                 renew_secret = UpdateUser.secret_jwt({
                                     "email": email,
                                     "password": password,

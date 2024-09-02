@@ -1,2 +1,39 @@
 2024-08-30 16:49:55,398 - slowapi - ERROR - Failed to configure throttling for __mp_main__.trigger_error (couldn't parse rate limit string '0.5/second') - /usr/local/lib/python3.12/site-packages/slowapi/extension.py:695
 2024-08-30 16:49:55,453 - slowapi - ERROR - Failed to configure throttling for server_fastapi.trigger_error (couldn't parse rate limit string '0.5/second') - /usr/local/lib/python3.12/site-packages/slowapi/extension.py:695
+2024-09-02 09:30:44,655 - peluqueria_mael - ERROR - Error Inesperado: 'dict' object has no attribute 'email' - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:188
+2024-09-02 09:32:20,358 - peluqueria_mael - ERROR - Error Inesperado: 'dict' object has no attribute 'email' - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:188
+2024-09-02 09:35:47,906 - peluqueria_mael - ERROR - Error Inesperado: 'dict' object has no attribute 'email' - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:188
+2024-09-02 09:39:32,651 - peluqueria_mael - ERROR - Error Inesperado: 'dict' object has no attribute 'email' - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:194
+2024-09-02 09:40:55,638 - peluqueria_mael - ERROR - Error Inesperado: 'dict' object has no attribute 'email' - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:195
+2024-09-02 09:41:08,333 - peluqueria_mael - ERROR - Error Inesperado: 'dict' object has no attribute 'email' - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:195
+2024-09-02 09:42:59,755 - peluqueria_mael - ERROR - Error Inesperado: 'dict' object has no attribute 'email' - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:195
+2024-09-02 09:44:03,923 - peluqueria_mael - ERROR - Error Inesperado: Error de validación: 1 validation error for EncryptText
+text
+  Value error, El texto contiene caracteres especiales no permitidos. [type=value_error, input_value='fuck_yo', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.8/v/value_error - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:195
+2024-09-02 09:50:54,980 - peluqueria_mael - ERROR - Error Inesperado: Error de validación: 1 validation error for EncryptText
+text
+  Value error, El texto contiene caracteres especiales no permitidos. [type=value_error, input_value='fuck_yo', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.8/v/value_error - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:195
+2024-09-02 09:51:52,892 - peluqueria_mael - ERROR - Error Inesperado: Error de validación: 1 validation error for EncryptText
+text
+  Value error, El texto contiene caracteres especiales no permitidos. [type=value_error, input_value='fuck_yo', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.8/v/value_error - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:195
+2024-09-02 09:52:02,889 - peluqueria_mael - ERROR - Error Inesperado: Error de validación: 1 validation error for EncryptText
+text
+  Value error, El texto contiene caracteres especiales no permitidos. [type=value_error, input_value='fuck_yo', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.8/v/value_error - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:195
+2024-09-02 09:53:33,684 - peluqueria_mael - ERROR - Error Inesperado: 1 validation error for Info
+email
+  value is not a valid email address: An email address must have an @-sign. [type=value_error, input_value=b'7d4dc79a6d37b78347e9e59...bc40024dd46495eceab6333', input_type=bytes] - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:195
+2024-09-02 09:54:05,041 - peluqueria_mael - ERROR - Error Inesperado: 1 validation error for Info
+email
+  value is not a valid email address: An email address must have an @-sign. [type=value_error, input_value=b'b595c271102d499cc2ceb42...a93548093617b0b183d6280', input_type=bytes] - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:195
+2024-09-02 10:19:33,635 - peluqueria_mael - ERROR - Error Inesperado: Error de validación: 1 validation error for EncryptText
+text
+  Value error, El texto contiene caracteres especiales no permitidos. [type=value_error, input_value='LzzmC(cb(AOG#dEG97On-HjJ...U!g)6+WRIDv4ccYjX#@OCYs', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.8/v/value_error - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/public/main.py:195
+2024-09-02 10:38:56,914 - peluqueria_mael - ERROR - Error a la hora de insertar el usuario VALIDATION_ERROR: 1 validation error for Add
+data.info
+  Input should be a valid dictionary or instance of Info [type=model_type, input_value=InfoEncrypted(email='b595...cc7eace795b98f29e2ac9d'), input_type=InfoEncrypted]
+    For further information visit https://errors.pydantic.dev/2.8/v/model_type - /peluqueriamael/Backend/microservices/app/API/v1/crud/mongodb/users/add.py:97

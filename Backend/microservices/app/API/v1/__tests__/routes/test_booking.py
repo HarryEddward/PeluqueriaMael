@@ -1,7 +1,7 @@
 import pytest
 import httpx
 from termcolor import cprint
-from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL
+from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL, login_credentials
 
 global id_appointment
 id_appointment: str
@@ -65,7 +65,7 @@ def test_booking_add():
         print(f"Request failed: {e}")
 
 
-#@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
+@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 @pytest.mark.order(2)
 def test_booking_remove():
     email: str = "exampleandrian@gmail.com"

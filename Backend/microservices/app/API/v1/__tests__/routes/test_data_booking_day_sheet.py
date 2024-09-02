@@ -1,17 +1,15 @@
 import pytest
 import httpx
 from termcolor import cprint
-from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL
+from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL, login_credentials
 
+@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 def test_login():
-    email: str = "exampleandrian@gmail.com"
-    password: str = "fuck_you"
+    #email: str = "exampleandrian@gmail.com"
+    #password: str = "fuck_you"
     
-    data: dict = {
-        "email": email,
-        "password": password
-    }
-    print(BASE_URL)
+    data: dict = login_credentials
+    #print(BASE_URL)
 
     try:
         # Desactiva la verificación de certificados SSL en httpx

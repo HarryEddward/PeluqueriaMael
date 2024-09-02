@@ -25,6 +25,14 @@ common:
     headers:
       - "*"
 
+validation:
+  email:
+    max_str: 150
+    min_str: 7 # a@a.com (Minimun str)
+  password:
+    max_str: 75
+    min_str: 15
+
 app:
   API:
     testing:

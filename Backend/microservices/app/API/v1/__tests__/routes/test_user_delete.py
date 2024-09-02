@@ -1,17 +1,14 @@
 import pytest
 import httpx
 from termcolor import cprint
-from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL
+from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL, delete_user
 
+#@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 def test_user_delete():
-    email: str = "adriansupalumbedsadsarasddsadgssdaasasadsadmarkzukrb191010@gmail.com"
-    password: str = "fuck_yo"
+    #email: str = "adriansupalumbedsadsarasddsadgssdaasasadsadsdmarkzukrb191010@gmail.com"
+    #password: str = "fuck_yo"
     
-    data: dict = {
-        "email": email,
-        "password": password
-    }
-
+    data: dict = delete_user
     try:
         with httpx.Client() as client:
             response: httpx.Response = client.post(
