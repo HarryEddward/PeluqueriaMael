@@ -2,6 +2,7 @@ import pytest
 import httpx
 from termcolor import cprint
 from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL, login_credentials
+from Backend.microservices.app.API.v1.logging_config import logger
 
 #@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 def test_login():
@@ -19,6 +20,7 @@ def test_login():
                 json=data
             )
             print(response)
+            logger.info(f"RES LOGIN: {response.json()}, {response.status_code}")
 
             # Verifica el código de estado HTTP
             assert response.status_code == 200

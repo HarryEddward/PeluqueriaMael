@@ -1,17 +1,14 @@
 import pytest
 import httpx
 from termcolor import cprint
-from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL
+from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL, register_credentials
 
 #@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 def test_register():
-    email: str = "amigodospuntozero10191sduds@gmail.com"
-    password: str = "fuck_yo"
+    #email: str = "amigodospuntozero10191sduds@gmail.com"
+    #password: str = "fuck_yo"
     
-    data: dict = {
-        "email": email,
-        "password": password
-    }
+    data: dict = register_credentials
 
     try:
         with httpx.Client() as client:

@@ -37,3 +37,6 @@ text
 data.info
   Input should be a valid dictionary or instance of Info [type=model_type, input_value=InfoEncrypted(email='b595...cc7eace795b98f29e2ac9d'), input_type=InfoEncrypted]
     For further information visit https://errors.pydantic.dev/2.8/v/model_type - /peluqueriamael/Backend/microservices/app/API/v1/crud/mongodb/users/add.py:97
+2024-09-02 19:18:27,203 - slowapi - ERROR - Failed to configure throttling for routes.client.public.main.Loggin_User (couldn't parse rate limit string '1/2m') - /usr/local/lib/python3.12/site-packages/slowapi/extension.py:695
+2024-09-02 19:19:36,251 - slowapi - ERROR - Failed to configure throttling for routes.client.public.main.Loggin_User (couldn't parse rate limit string '1/2s') - /usr/local/lib/python3.12/site-packages/slowapi/extension.py:695
+2024-09-02 19:20:28,253 - slowapi - ERROR - Failed to configure throttling for routes.client.public.main.Loggin_User (couldn't parse rate limit string '3/10s') - /usr/local/lib/python3.12/site-packages/slowapi/extension.py:695

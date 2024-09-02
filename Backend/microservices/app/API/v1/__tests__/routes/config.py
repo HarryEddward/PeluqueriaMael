@@ -12,8 +12,8 @@ protcol: str = 'https' if ssl else 'http'
 BASE_URL: str = f"{protcol}://{host}:{port}"
 
 login_credentials: dict = {
-    "email": "adrian@gmail.com",
-    "password": "Dark_Draw_Everything"
+  "email": "adrian@gmail.com",
+  "password": "Dark_Draw_Everything"
 }
 
 delete_credentials: dict = {

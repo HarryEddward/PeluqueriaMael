@@ -33,6 +33,7 @@ async def Loggin_User_Options(response: Response):
     }
 
 @router.post('/login')
+#@rate_limit("3/10s")
 async def Loggin_User(request: Request, raw_data: schemes.Credentials):
 
     try:
@@ -112,7 +113,7 @@ async def Register_Options(response: Response):
 
 
 @router.post('/register')
-@rate_limit("15/day")
+@rate_limit("15/minute")
 async def Register_User(request: Request, raw_data: schemes.Credentials):
     '''
     Registra un nuevo usuario.
