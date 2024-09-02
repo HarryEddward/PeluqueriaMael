@@ -468,7 +468,6 @@ async def Add_Appointment(request: Request, data: structureAdd):
         if not booking.response["status"] == 'ok':
             return Response(booking.response, 401)
         #######################################################
-        
 
         #######################################################
         hour_obj = datetime.strptime(hour, "%H:%M")
