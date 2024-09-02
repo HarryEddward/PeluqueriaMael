@@ -447,3 +447,6 @@ Ready to upgrade your user experience and streamline your workflows? Visit https
 2024-08-31 20:57:08,567 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
 2024-08-31 21:01:45,417 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
 2024-08-31 21:01:45,453 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
+2024-09-02 09:04:27,726 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
+2024-09-02 09:04:29,110 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
+2024-09-02 09:04:29,169 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
