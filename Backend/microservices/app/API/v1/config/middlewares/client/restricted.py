@@ -82,7 +82,7 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
                                     request.state.new_token = str(new_token)
                                     request.state.email = str(email)
                                     request.state.password = str(password)
-                                    request.state.user_id = str(user_id)
+                                    request.state.user_id = str(decrypted_user_id)
 
                                     logger.info(f'new_token: {request.state.new_token}')
                                 else:
