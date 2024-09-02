@@ -18,5 +18,5 @@ login_credentials: dict = {
 
 delete_user: dict = {
     "email": "user_adrian@gmail.com",
-    "password": ""
+    "password": "PopThatShit"
 }
