@@ -1600,3 +1600,5 @@ data.info
 2024-09-02 18:42:05,802 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
 2024-09-02 18:42:41,487 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
 2024-09-02 18:42:41,526 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
+2024-09-02 18:42:56,284 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
+2024-09-02 18:42:56,321 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
