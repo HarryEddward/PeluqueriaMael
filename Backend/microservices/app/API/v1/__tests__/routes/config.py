@@ -16,7 +16,12 @@ login_credentials: dict = {
     "password": "Dark_Draw_Everything"
 }
 
-delete_user: dict = {
+delete_credentials: dict = {
     "email": "user_adrian@gmail.com",
     "password": "PopThatShit"
+}
+
+register_credentials: dict = {
+    "email": "new_user_register_delete@gmail.com",
+    "password": "NewPasswordForThat"
 }

@@ -6,16 +6,17 @@ from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL, l
 global id_appointment
 id_appointment: str
 
-@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
+class Config:
+    id_appointment: str
+
+
+#@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 @pytest.mark.order(1)
 def test_booking_add():
-    email: str = "exampleandrian@gmail.com"
-    password: str = "fuck_you"
+    #email: str = "exampleandrian@gmail.com"
+    #password: str = "fuck_you"
     
-    data: dict = {
-        "email": email,
-        "password": password
-    }
+    data: dict = login_credentials
     #print(BASE_URL)
 
     try:
@@ -57,7 +58,7 @@ def test_booking_add():
 
             print(response.json())
 
-            id_appointment = response.json()["data"]["id_appointment"]
+            Config.id_appointment = response.json()["data"]["id_appointment"]
 
 
     except httpx.RequestError as e:
@@ -65,22 +66,18 @@ def test_booking_add():
         print(f"Request failed: {e}")
 
 
-@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
+#@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 @pytest.mark.order(2)
 def test_booking_remove():
-    email: str = "exampleandrian@gmail.com"
-    password: str = "fuck_you"
+    #email: str = "exampleandrian@gmail.com"
+    #password: str = "fuck_you"
     
-    data: dict = {
-        "email": email,
-        "password": password
-    }
+    data: dict = login_credentials
     print(BASE_URL)
 
     try:
         # Desactiva la verificación de certificados SSL en httpx
         with httpx.Client() as client:
-            global id_appointment
 
             response: httpx.Response = client.post(
                 f"{BASE_URL}/api/app/api/v1/client/public/login",
@@ -100,7 +97,7 @@ def test_booking_remove():
             data_appointment: dict = {
                 "token_id": response_json["token_id"],
                 "token_data": response_json["token_data"],
-                "id_reserva": "bf203fe2-6284-4e38-9652-a0a742ce90a7"
+                "id_reserva": Config.id_appointment
             }
 
             print(data_appointment)

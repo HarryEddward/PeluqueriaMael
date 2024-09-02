@@ -3,7 +3,7 @@ import httpx
 from termcolor import cprint
 from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL, login_credentials
 
-@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
+#@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 def test_login():
     #email: str = "exampleandrian@gmail.com"
     #password: str = "fuck_you"
