@@ -6,7 +6,15 @@ from fastapi import (
     Response
 )
 from fastapi.responses import JSONResponse
-
+from datetime import datetime
+from bson import ObjectId
+from typing import Optional
+from typing import Literal
+from typing import Union
+import numba as nb
+from pydantic import BaseModel
+from pydantic import validator
+from pydantic import ValidationError
 from crud.mongodb.booking.utils.serviceToPersonal import serviceToPersonal
 from crud.mongodb.booking.utils.workerLessBusy import workerLessBusy
 from crud.mongodb.booking.utils.conversorServices import conversorServices
@@ -14,22 +22,10 @@ from crud.mongodb.booking.add import AddBooking as MDBAddBooking
 from crud.mongodb.booking.remove import RemoveBooking as MDBRemoveBooking
 from crud.rethink_db.booking.add import AddBooking as RDBAddooking
 from crud.rethink_db.booking.remove import RemoveBooking as RDBRemoveBooking
-
 from Backend.microservices.app.API.v1.routes.client.schemes.general import schemes
-
-from pydantic import BaseModel
-from pydantic import validator
-from pydantic import ValidationError
-
 from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
 from Backend.microservices.app.API.v1.logging_config import logger
-from datetime import datetime
-
-from bson import ObjectId
-from typing import Optional
-from typing import Literal
-from typing import Union
-import numba as nb
+from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
 
 router = APIRouter(prefix="/booking")
 
@@ -475,6 +471,7 @@ async def Add_Appointment(request: Request, data: structureAdd):
 
         user_raw: dict = users.find_one({ "_id": ObjectId(user_id) })
         user_email: str = user_raw["data"]["info"]["email"]
+        decrypted_user_email: str = decrypt(user_email)
         
         logger.info("APPOINTMENT: PASO 7")
 
@@ -490,7 +487,7 @@ async def Add_Appointment(request: Request, data: structureAdd):
         logger.info(".............................")
 
         booking_data_rdb: dict = {
-            "user": user_email,
+            "user": decrypted_user_email,
             "date": day,
             "hour": hour_12,
             "id_appointment": booking.response["data"]["id_appointment"],

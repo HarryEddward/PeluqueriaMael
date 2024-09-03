@@ -25,7 +25,7 @@ class AddBooking(Verify):
     """
 
     class structure(BaseModel):
-        user: constr(max_length=32)
+        user: constr(max_length=500)
         date: datetime
         hour: constr(max_length=10)
         id_appointment: constr(max_length=50)
