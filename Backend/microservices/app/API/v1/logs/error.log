@@ -47,3 +47,15 @@ data.info
 2024-09-03 09:34:04,009 - peluqueria_mael - ERROR - {'info': 'No se encontró la cita en la estructura.', 'status': 'no', 'type': 'APPOINTMENT_NOT_FOUND'} - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/restricted/booking/main.py:253
 2024-09-03 09:34:52,648 - peluqueria_mael - ERROR - {'info': 'No se encontró la cita en la estructura.', 'status': 'no', 'type': 'APPOINTMENT_NOT_FOUND'} - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/restricted/booking/main.py:253
 2024-09-03 09:35:14,399 - peluqueria_mael - ERROR - {'info': 'No se encontró la cita en la estructura.', 'status': 'no', 'type': 'APPOINTMENT_NOT_FOUND'} - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/restricted/booking/main.py:253
+2024-09-03 10:48:11,895 - peluqueria_mael - ERROR - ERROR APPOINTMENT: 1 validation error for structure
+user
+  String should have at most 32 characters [type=string_too_long, input_value='8641b94034bb08f2b4d41f5b...d930d7d73e229ca6a1da8a8', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.8/v/string_too_long - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/restricted/booking/main.py:519
+2024-09-03 10:48:40,716 - peluqueria_mael - ERROR - ERROR APPOINTMENT: 1 validation error for structure
+user
+  String should have at most 32 characters [type=string_too_long, input_value='8641b94034bb08f2b4d41f5b...d930d7d73e229ca6a1da8a8', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.8/v/string_too_long - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/restricted/booking/main.py:519
+2024-09-03 10:49:27,940 - peluqueria_mael - ERROR - ERROR APPOINTMENT: 1 validation error for structure
+user
+  String should have at most 32 characters [type=string_too_long, input_value='8641b94034bb08f2b4d41f5b...d930d7d73e229ca6a1da8a8', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.8/v/string_too_long - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/restricted/booking/main.py:519
