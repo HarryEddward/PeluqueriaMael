@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from numpy import ushort
 import numba as nb
 from abc import ABC, abstractmethod
+from Backend.microservices.app.API.v1.logging_config import logger
 
 
 class Verify(ABC):
@@ -53,6 +54,8 @@ class verifyDays(Verify):
                 "status": "ok",
                 "type": "SUCCESS"
             }
+
+        logger.info(f"VerifyDays: difference -> {difference}, {timedelta(days=3)}")
 
         # Verificar si faltan al menos 3 días para la reserva
         if not difference >= timedelta(days=3):

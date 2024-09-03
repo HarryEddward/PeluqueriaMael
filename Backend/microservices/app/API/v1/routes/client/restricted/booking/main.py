@@ -367,11 +367,11 @@ async def Add_Appointment(request: Request, data: structureAdd):
                 "type": "ERROR_DATABASE_DATE"
             
             }, 401)
-        print(version_appointment)
+        #print(version_appointment)
         
         #Arrays de varios tipos de profesion, y da el array de las personas que hay
         personal_raw = db_personal.find_one({ "version": version_appointment })
-        print(personal_raw)
+        #print(personal_raw)
 
         logger.info("APPOINTMENT: PASO 1")
 
