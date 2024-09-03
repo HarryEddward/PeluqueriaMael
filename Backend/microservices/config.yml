@@ -25,16 +25,19 @@ common:
     headers:
       - "*"
 
-validation:
-  email:
-    max_str: 150
-    min_str: 7 # a@a.com (Minimun str)
-  password:
-    max_str: 75
-    min_str: 15
+
 
 app:
   API:
+    validation:
+      user:
+        email:
+          max_str: 150
+          min_str: 7 # a@a.com (Minimun str)
+        password:
+          max_str: 75
+          min_str: 15
+        max_appointments: 2
     testing:
       host: 127.0.0.1 #Host only using for doing ops in the container
     env: prod
