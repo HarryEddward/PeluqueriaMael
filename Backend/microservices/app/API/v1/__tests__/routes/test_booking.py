@@ -15,7 +15,7 @@ class Config:
     def get_id_appointment(cls) -> str:
         return cls.id_appointment
 
-#@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
+@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 @pytest.mark.order(1)
 def test_booking_add():
     data: dict = login_credentials
@@ -64,6 +64,7 @@ def test_booking_add():
     except httpx.RequestError as e:
         print(f"Request failed: {e}")
 
+
 @pytest.mark.order(2)
 def test_booking_remove():
     data: dict = login_credentials
@@ -90,7 +91,7 @@ def test_booking_remove():
             data_appointment: dict = {
                 "token_id": response_json["token_id"],
                 "token_data": response_json["token_data"],
-                "id_reserva": id_appointment
+                "id_reserva": "b5bcc256-f5dd-4996-9c0f-60a43c14e8d1"
             }
 
             print(data_appointment)

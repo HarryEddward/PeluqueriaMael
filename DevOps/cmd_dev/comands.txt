@@ -10,6 +10,7 @@ sudo docker compose -f /home/adrian/Documentos/PeluqueriaMael/Backend/microservi
 
 export PYTHONPATH=/peluqueriamael; python3
 export PYTHONPATH=/home/adrian/Documentos/PeluqueriaMael; python3
+export PYTHONPATH=/peluqueriamael; pytest
 
 sudo docker compose -f logs
 
