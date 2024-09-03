@@ -2,7 +2,6 @@ from typing import Any
 from pydantic import BaseModel
 from abc import abstractmethod, ABC
 from typing import Union
-from pymongo import DeleteResult
 from Backend.microservices.app.API.v1.db.mongodb.database import reservas
 
 

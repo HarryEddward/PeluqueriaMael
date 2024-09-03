@@ -37,7 +37,7 @@ def test_booking_add():
             data_appointment: dict = {
                 "token_id": response_json["token_id"],
                 "token_data": response_json["token_data"],
-                "day_date": 21,
+                "day_date": 5,
                 "month_date": 9,
                 "year_date": 2024,
                 "hour": "9:30",
