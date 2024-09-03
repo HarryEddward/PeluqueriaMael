@@ -22,11 +22,13 @@ from crud.mongodb.booking.add import AddBooking as MDBAddBooking
 from crud.mongodb.booking.remove import RemoveBooking as MDBRemoveBooking
 from crud.rethink_db.booking.add import AddBooking as RDBAddooking
 from crud.rethink_db.booking.remove import RemoveBooking as RDBRemoveBooking
+from crud.mongodb.booking.utils.remove.verifyDays import verifyDays
 from Backend.microservices.app.API.v1.routes.client.schemes.general import schemes
 from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
 from Backend.microservices.app.API.v1.logging_config import logger
 from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
 from Backend.microservices.app.API.v1.crud.mongodb.booking.validate.count_appointments import CountAppointmentsModel, CountAppointments 
+
 
 router = APIRouter(prefix="/booking")
 
@@ -152,8 +154,7 @@ async def Remove_Appointment(request: Request, data: structureRemove):
 
         
         #-> Verifica que si faltan 3 dias
-        '''/crud/booking/utils/remove/verify_days.py'''
-        from crud.mongodb.booking.utils.remove.verifyDays import verifyDays
+        #'''/crud/booking/utils/remove/verify_days.py'''
 
         verify_days = verifyDays(day_booked, month_booked, year_booked)
         
