@@ -12319,3 +12319,5 @@ user
 2024-09-03 12:43:58,678 - httpx - INFO - HTTP Request: POST http://deployment-peluqueriamael_app_cryptoapi-1:8200/cryptoapi/app/api/v1/gpu/encrypt "HTTP/1.1 200 OK" - /usr/local/lib/python3.12/site-packages/httpx/_client.py:1038
 2024-09-03 12:43:58,727 - httpx - INFO - HTTP Request: POST http://deployment-peluqueriamael_app_cryptoapi-1:8200/cryptoapi/app/api/v1/gpu/encrypt "HTTP/1.1 200 OK" - /usr/local/lib/python3.12/site-packages/httpx/_client.py:1038
 2024-09-03 12:43:58,779 - httpx - INFO - HTTP Request: POST http://deployment-peluqueriamael_app_cryptoapi-1:8200/cryptoapi/app/api/v1/gpu/decrypt "HTTP/1.1 200 OK" - /usr/local/lib/python3.12/site-packages/httpx/_client.py:1038
+2024-09-03 12:46:02,271 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44
+2024-09-03 12:46:02,307 - peluqueria_mael - INFO - API connected with Redis cache. redis://redis_hairdresser:6379/1 - /peluqueriamael/Backend/microservices/app/API/v1/server_fastapi.py:44

@@ -26,6 +26,7 @@ from Backend.microservices.app.API.v1.routes.client.schemes.general import schem
 from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
 from Backend.microservices.app.API.v1.logging_config import logger
 from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
+from Backend.microservices.app.API.v1.crud.mongodb.booking.validate.count_appointments import CountAppointmentsModel, CountAppointments 
 
 router = APIRouter(prefix="/booking")
 
