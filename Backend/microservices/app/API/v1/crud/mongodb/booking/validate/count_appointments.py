@@ -50,8 +50,14 @@ class CountAppointments(Verify):
                 "type": "DATABASE_ERROR"
             }
         
-        return self.evaluate_results(self.list_appointments)
-
+        try:
+            self.result = self.evaluate_results(self.list_appointments)
+        except Exception as e:
+            return {
+                "info": "Error a la hora de evaular las reservas",
+                "status": "no",
+                "type": "EVALUATE_ERROR"
+            }
     
     def obtain_appointments(self) -> Union[list, Exception]:
         """

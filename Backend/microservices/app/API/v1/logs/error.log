@@ -59,3 +59,5 @@ user
 user
   String should have at most 32 characters [type=string_too_long, input_value='8641b94034bb08f2b4d41f5b...d930d7d73e229ca6a1da8a8', input_type=str]
     For further information visit https://errors.pydantic.dev/2.8/v/string_too_long - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/restricted/booking/main.py:519
+2024-09-03 12:08:09,124 - peluqueria_mael - ERROR - {'info': 'No se encontró la cita en la estructura.', 'status': 'no', 'type': 'APPOINTMENT_NOT_FOUND'} - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/restricted/booking/main.py:249
+2024-09-03 12:08:26,481 - peluqueria_mael - ERROR - {'info': 'No se encontró la cita en la estructura.', 'status': 'no', 'type': 'APPOINTMENT_NOT_FOUND'} - /peluqueriamael/Backend/microservices/app/API/v1/routes/client/restricted/booking/main.py:249
