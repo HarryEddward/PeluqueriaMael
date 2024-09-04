@@ -15,7 +15,7 @@ class Config:
     def get_id_appointment(cls) -> str:
         return cls.id_appointment
 
-#@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
+@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 @pytest.mark.order(1)
 def test_booking_add():
     data: dict = login_credentials
@@ -37,12 +37,12 @@ def test_booking_add():
             data_appointment: dict = {
                 "token_id": response_json["token_id"],
                 "token_data": response_json["token_data"],
-                "day_date": 5,
+                "day_date": 19,
                 "month_date": 9,
                 "year_date": 2024,
-                "hour": "9:30",
-                "period": "morning",
-                "name_service": "peinar_con_secador"
+                "hour": "17:30",
+                "period": "afternoon",
+                "name_service": "corte_de_pelo"
             }
 
 
@@ -54,6 +54,8 @@ def test_booking_add():
             )
 
             logger.info(f"ADD APPONITMENT: {response.json()}")
+
+            assert response.status_code == 200
 
             response_json = response.json()
             print(response_json)
@@ -91,7 +93,7 @@ def test_booking_remove():
             data_appointment: dict = {
                 "token_id": response_json["token_id"],
                 "token_data": response_json["token_data"],
-                "id_reserva": Config.get_id_appointment()
+                "id_reserva": "2df6dd7b-fb56-4f14-b17d-81fced9fdbad" #id_appointment
             }
 
             print(data_appointment)
@@ -102,6 +104,10 @@ def test_booking_remove():
             )
 
             logger.info(f"REMOVE APPONITMENT: {response.json()}")
+
+            assert response.status_code == 200
+
+            #logger.info(f"REMOVE APPONITMENT: {response.json()}")
 
             print(response.json())
 

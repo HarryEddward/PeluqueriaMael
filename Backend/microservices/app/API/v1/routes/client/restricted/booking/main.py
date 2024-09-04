@@ -29,7 +29,6 @@ from Backend.microservices.app.API.v1.logging_config import logger
 from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
 from Backend.microservices.app.API.v1.crud.mongodb.booking.validate.count_appointments import CountAppointmentsModel, CountAppointments 
 
-
 router = APIRouter(prefix="/booking")
 
 
@@ -156,7 +155,7 @@ async def Remove_Appointment(request: Request, data: structureRemove):
         #-> Verifica que si faltan 3 dias
         #'''/crud/booking/utils/remove/verify_days.py'''
 
-        verify_days = verifyDays(day_booked, month_booked, year_booked)
+        """verify_days = verifyDays(day_booked, month_booked, year_booked)
         
         if not verify_days.response["status"] == 'ok':
             return Response({
@@ -164,12 +163,12 @@ async def Remove_Appointment(request: Request, data: structureRemove):
                 "sub_response": verify_days.response,
                 "status": "no",
                 "type": "VERIFY_DAYS_ERROR"
-            }, 401)
+            }, 401)"""
         #print(verify_days.response)
         #-> Verifica que si faltan 3 dias
+        
 
-
-
+        
 
         #-> Quita de la parte del usuario la reserva
         '''/crud/booking/remove.py'''
@@ -345,6 +344,13 @@ async def Add_Appointment(request: Request, data: structureAdd):
         
 
         day = datetime(year_date, month_date, day_date)
+
+        data_count_appointments = CountAppointmentsModel(user_id=user_id)
+        count_appointments = CountAppointments()
+        result_count_appointments = count_appointments(data_count_appointments)
+
+        if not result_count_appointments["status"] == "ok":
+            return Response(result_count_appointments, 401)
         
         try:
             

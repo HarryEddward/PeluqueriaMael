@@ -4,7 +4,7 @@ from termcolor import cprint
 from Backend.microservices.app.API.v1.__tests__.routes.config import BASE_URL, login_credentials
 
 #@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
-def test_login():
+def test_data_booking():
     #email: str = "exampleandrian@gmail.com"
     #password: str = "fuck_you"
     
@@ -27,19 +27,19 @@ def test_login():
             response_json: dict = response.json()
 
             response_json["day"] = 28
-            response_json["month"] = 3
+            response_json["month"] = 9
             response_json["year"] = 2024
 
             # Imprime el contenido de la respuesta
             cprint(f"\nResponse: {response_json}\n", "green", "on_black")
 
 
-            response: httpx.Response = client.post(
+            response_data_booking: httpx.Response = client.post(
                 f"{BASE_URL}/api/app/api/v1/client/restricted/data/booking_day_sheet",
                 json=response_json
             )
 
-            assert response.status_code == 200
+            assert response_data_booking.status_code == 200
 
             print(response.json())
 

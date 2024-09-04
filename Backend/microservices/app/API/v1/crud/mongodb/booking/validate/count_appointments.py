@@ -51,7 +51,21 @@ class CountAppointments(Verify):
             }
         
         try:
-            self.result = self.evaluate_results(self.list_appointments)
+            result = self.evaluate_results(self.list_appointments)
+
+            if not result:
+                return {
+                    "info": f"Solo se permiten máximo {self.max_appointments} reservas en tu perfil",
+                    "status": "no",
+                    "type": "EXCEDED_DAYS"
+                }
+            
+            return {
+                "info": "Puedes hacer tu reserva de forma exitosa",
+                "status": "ok",
+                "type": "SUCCESS"
+            }
+
         except Exception as e:
             return {
                 "info": "Error a la hora de evaular las reservas",
@@ -92,7 +106,7 @@ class CountAppointments(Verify):
             [bool]: [Devuelve un resultado negativo o positivo]
         """
         
-        return len(data) <= self.max_appointments
+        return len(data) < self.max_appointments
 
 
 

@@ -56,7 +56,7 @@ class  RemoveBooking(Verify):
     #@nb.jit(nopython=True)
     def remove(self, day, month, year, professional, period, start_time, service_duration, person_id, service_name, id_appointment) -> dict:
         start_time_dt = datetime.strptime(start_time, '%H:%M')  # Convertir start_time a datetime
-        print('aqui?')
+        #print('aqui?')
         try:
             #print(year, month, day)
             day_date = datetime(year, month, day)
@@ -70,12 +70,12 @@ class  RemoveBooking(Verify):
                 "type": "DATABASE_ERROR"
             }
 
-        print('alla')
+        #print('alla')
         morning_opening_time = config["morning_opening_time"]
         morning_closing_time = config["morning_closing_time"]
         afternoon_opening_time = config["afternoon_opening_time"]
         afternoon_closing_time = config["afternoon_closing_time"]
-        print('asa')
+        #print('asa')
         if period == 'morning':
             if start_time_dt < morning_opening_time or start_time_dt >= morning_closing_time:
                 return {
@@ -90,8 +90,8 @@ class  RemoveBooking(Verify):
                     "status": "no",
                     "type": "OUT_BOOKING"
                 }
-        print('llega aqui')
-        print(professionals[professional][period])
+        #print('llega aqui')
+        #print(professionals[professional][period])
         
         if start_time in professionals[professional][period]:
             
@@ -106,15 +106,18 @@ class  RemoveBooking(Verify):
                     start_datetime = datetime.strptime(start_time, '%H:%M')
                     end_datetime = start_datetime + service_duration
 
+                    # Añadimos 30 minutos adicionales al tiempo de finalización
+                    end_datetime_plus_half_hour = end_datetime + timedelta(minutes=30)
+
                     # Marcar todas las franjas horarias asociadas a la cita como "libres"
-                    while start_datetime < end_datetime:
+                    while start_datetime < end_datetime_plus_half_hour:
                         current_time = start_datetime.strftime('%H:%M')
-                        print(current_time)
+                        #print(current_time)
                         professionals[professional][period][current_time].pop("info", None)  # Remover la información de la cita
                         professionals[professional][period][current_time]["status"] = 'libre'
                         start_datetime += timedelta(minutes=30)
 
-                    print(professionals)
+                    #print(professionals)
 
                     # Verifica si intenta cancelar la cita  antes de los 3 días de realizarlo
                     # Code...
@@ -135,7 +138,7 @@ class  RemoveBooking(Verify):
                     )
 
                     if not userRemoveAppointment.response["status"] == 'ok':
-                        print('pasa algo en la db user remove')
+                        #print('pasa algo en la db user remove')
                         return userRemoveAppointment.response
                     
                     

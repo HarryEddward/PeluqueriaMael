@@ -1,7 +1,3 @@
-from Backend.microservices.app.API.v1.db.mongodb.database import reservas
-from Backend.microservices.app.API.v1.db.mongodb.database import configure
-from crud.mongodb.users.booking.add import AddBookingUser, AddAppointment
-
 import datetime
 from .config import config
 import uuid
@@ -9,12 +5,13 @@ from bson import ObjectId
 from pydantic import BaseModel
 from datetime import datetime, timedelta
 from abc import ABC, abstractmethod
-
-
 import numpy as np
 from numpy import short
 import numba as nb
-
+from crud.mongodb.users.booking.add import AddBookingUser, AddAppointment
+from Backend.microservices.app.API.v1.db.mongodb.database import reservas
+from Backend.microservices.app.API.v1.db.mongodb.database import configure
+from Backend.microservices.app.API.v1.logging_config import logger
 
 class Verify(ABC):
     @abstractmethod
@@ -77,8 +74,8 @@ class AddBooking(Verify):
     def __init__(self, data_raw: structure):
         try:
             self.response = self.buscar_disponibilidad(data_raw)
-            print('aq')
-            print(self.response)
+            #print('aq')
+            #print(self.response)
             
         except Exception as e:
             self.response = {
@@ -97,19 +94,19 @@ class AddBooking(Verify):
         for professional, _ in professionals:
             resultado = self.add(data_raw, professional)
 
-            print('---->', resultado)
+            #print('---->', resultado)
             if resultado["status"] == "ok":
-                print('lo conseguio')
+                #print('lo conseguio')
                 return resultado
                 
             elif resultado["status"] == "no" and resultado["type"] == "PROFESSIONAL_BUSSY":
-                print('cointunue...')
+                #print('cointunue...')
                 continue
             else:
-                print('no without->', resultado)
+                #print('no without->', resultado)
                 return resultado
 
-        print('acabo sin anda')
+        #print('acabo sin anda')
         # Si todos los profesionales están ocupados
         return {
             "info": "Todos los profesionales están ocupados en este momento.",
@@ -157,22 +154,22 @@ class AddBooking(Verify):
 
             #Verifica si tiene menos de 4 caracteres Ok(09:00) No(9:00)
             if len(start_time) == 4:
-                print('len')
+                #print('len')
                 # Si falta algún zero se le añade, se supone que si la hora se queda a 4 caracteres es por la falta de ese 0.
                 start_time = "0"+start_time
 
             # Si realmente no cumple con la longitud de la misma cadena no es una hora
             elif 4 > len(start_time) > 5:
-                print('len2')
+                #print('len2')
                 return {
                     "info": f"No es una hora valida, por lo visto: {start_time}",
                     "status": "no",
                     "type": "INVALID_HOUR"
                 }
-            print(start_time)
+            #print(start_time)
 
             start_time_dt = datetime.strptime(start_time, '%H:%M')  # Convertir start_time a datetime
-            print(start_time_dt)
+            #print(start_time_dt)
 
             if period == 'morning':
                 if start_time_dt < morning_opening_time or start_time_dt >= morning_closing_time:
@@ -182,7 +179,7 @@ class AddBooking(Verify):
                         "type": "OUT_TRY_BOOKING"
                     }
             elif period == 'afternoon':
-                print(start_time_dt, afternoon_closing_time, '|', start_time_dt, afternoon_opening_time)
+                #print(start_time_dt, afternoon_closing_time, '|', start_time_dt, afternoon_opening_time)
                 if start_time_dt < afternoon_opening_time or start_time_dt >= afternoon_closing_time:
                     return {
                         "info": "No se puede programar una cita en la tarde fuera del horario de apertura y cierre.",
@@ -207,13 +204,13 @@ class AddBooking(Verify):
             
 
             if period == 'morning' and start_time >= last_hour_morning:
-                print('start_time ->', start_time)
-                print('last_hour_morning ->', last_hour_morning)
+                #print('start_time ->', start_time)
+                #print('last_hour_morning ->', last_hour_morning)
 
-                print(f'{start_time}, {last_hour_morning} = {start_time >= last_hour_morning}')
-                print(f'{period} == "morning", {period == 'morning'}')
+                #print(f'{start_time}, {last_hour_morning} = {start_time >= last_hour_morning}')
+                #print(f'{period} == "morning", {period == 'morning'}')
 
-                print(start_time >= last_hour_morning)
+                #print(start_time >= last_hour_morning)
                 return {
                     "info": "No se puede programar una cita en la mañana después del mediodía.",
                     "status": "no",
@@ -240,8 +237,10 @@ class AddBooking(Verify):
 
             if start_time in professionals[professional][period]:
 
-                print(f'EL PROFESSIONAL {professionals[professional]} tiene el {start_time}')
+                #print(f'EL PROFESSIONAL {professionals[professional]} tiene el {start_time}')
                 end_time = (datetime.strptime(start_time, '%H:%M') + service_duration).strftime('%H:%M')
+                end_time_plus_half_hour = (datetime.strptime(end_time, '%H:%M') + timedelta(minutes=30)).strftime('%H:%M')
+
 
                 # Verificar si la cita programada se extiende más allá del horario de cierre de la mañana o tarde
                 if period == 'morning' and datetime.strptime(end_time, '%H:%M') > morning_closing_time:
@@ -264,15 +263,14 @@ class AddBooking(Verify):
                 # Verificar si algún intervalo parcial está disponible
                 start_datetime = datetime.strptime(start_time, '%H:%M')
                 end_datetime = datetime.strptime(end_time, '%H:%M')
+                end_datetime_plus_half_hour = datetime.strptime(end_time_plus_half_hour, '%H:%M')
                 
                 overlapping_slots = [
-                                        (slot, status) for slot, status in available_slots
-                                        
-                                        if start_datetime < datetime.strptime(slot, '%H:%M') < end_datetime
-                                            or start_datetime <= datetime.strptime(slot, '%H:%M') < end_datetime
-                                    ]
+                    (slot, status) for slot, status in available_slots
+                    if start_datetime <= datetime.strptime(slot, '%H:%M') < end_datetime_plus_half_hour
+                ]
                 
-                print('reservo')
+                #print('reservo')
                 # Verificar si hay algún solapamiento en la franja horaria
                 if overlapping_slots and any(status["status"] == 'ocupado' for _, status in overlapping_slots):
                     print('entro')
@@ -281,13 +279,16 @@ class AddBooking(Verify):
                         "status": "no",
                         "type": "PROFESSIONAL_BUSSY"  # Tipo de error único
                     }
-                    print('add self.response->', self.response)
+                    #print('add self.response->', self.response)
                     
 
-                print('asd')
+                #print('asd')
                 # Marcar el intervalo parcial como ocupado y guardar la información de la cita
+                #logger.info(f"END TIME PLUS: {end_datetime_plus_half_hour}")
                 for slot, _ in available_slots:
-                    if start_datetime <= datetime.strptime(slot, '%H:%M') < end_datetime:
+                    #logger.info(f"SLOT: {slot}")
+                    #logger.info(f"AVAILABLE_SLOTS: {available_slots}")
+                    if start_datetime <= datetime.strptime(slot, '%H:%M') < end_datetime_plus_half_hour:
                         professionals[professional][period][slot] = {
                             "status": 'ocupado',
                             "info": {
@@ -301,7 +302,7 @@ class AddBooking(Verify):
                             professionals[professional][period][slot].pop("info", None)
 
                 
-                print('pro ->', professional)
+                #print('pro ->', professional)
                 dataUserAppointment = AddAppointment(
                     day=day,
                     month=month,
