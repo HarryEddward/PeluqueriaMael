@@ -8,6 +8,7 @@ from config.config import conf
 from datetime import datetime
 from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
 from Backend.microservices.app.API.v1.logging_config import logger
+from Backend.microservices.app.API.v1.db.redis_db.database import rate_limit
 
 router = APIRouter(prefix="/data")
 
@@ -38,6 +39,7 @@ async def Data_Appointments_Options(response: Response):
 
 
 @router.post('/appointments')
+@rate_limit("5/10s")
 async def Data_Appointments(request: Request, data: middleware_struct) -> JSONResponse:
 
     '''
@@ -119,6 +121,7 @@ async def Data_Services_Options(response: Response):
 
 
 @router.post("/services")
+@rate_limit("5/10s")
 async def Data_Services(request: Request, data: middleware_struct) -> JSONResponse:
 
     '''
@@ -193,6 +196,7 @@ async def Data_Booking_Day_Sheet_Options(response: Response):
 
 
 @router.post('/booking_day_sheet')
+@rate_limit("5/10s")
 async def Data_Booking_Day_Sheet(request: Request, data: structureBookingDaySheet) -> JSONResponse:
 
     '''

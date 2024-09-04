@@ -2,6 +2,7 @@ from fastapi import APIRouter, Response
 from fastapi.responses import JSONResponse
 from routes.client.restricted.main import router as router_restricted
 from routes.client.public.main import router as router_public
+from Backend.microservices.app.API.v1.db.redis_db.database import rate_limit
 
 router = APIRouter()
 router.include_router(router_restricted)
@@ -18,6 +19,7 @@ async def Status_Options(response: Response):
     }
 
 @router.get('/status')
+#@rate_limit("5/10s")
 async def Status():
     """AI is creating summary for Status
 

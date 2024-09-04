@@ -7,6 +7,7 @@ from bson import ObjectId
 from typing import Optional
 from config.config import conf
 from crud.mongodb.users.delete import UserDelete
+from Backend.microservices.app.API.v1.db.redis_db.database import rate_limit
 
 '''
 En esta ruta solamnete es operaciónes internas del usaurio y no cambios en si.
@@ -50,6 +51,7 @@ async def User_Delete_Options(response: Response):
 
 
 @router.post('/delete')
+@rate_limit("5/10s")
 async def User_Delete(request: Request, data: structureDelete) -> JSONResponse:
 
     '''

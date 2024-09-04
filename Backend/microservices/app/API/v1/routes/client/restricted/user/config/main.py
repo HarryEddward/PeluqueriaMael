@@ -9,6 +9,7 @@ from datetime import datetime
 import numba as nb
 from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
 from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
+from Backend.microservices.app.API.v1.db.redis_db.database import rate_limit
 
 router = APIRouter(prefix="/config")
 
@@ -37,6 +38,7 @@ async def Config_Reset_Password_Options(response: Response):
     }
 
 @router.post('/reset_password')
+@rate_limit("5/10s")
 async def Config_Reset_Password(request: Request, data: structureResetPassword) -> JSONResponse:
 
     '''

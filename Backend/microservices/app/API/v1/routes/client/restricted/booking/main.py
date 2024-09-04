@@ -28,6 +28,7 @@ from Backend.microservices.app.API.v1.db.mongodb.database import reservas, confi
 from Backend.microservices.app.API.v1.logging_config import logger
 from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
 from Backend.microservices.app.API.v1.crud.mongodb.booking.validate.count_appointments import CountAppointmentsModel, CountAppointments 
+from Backend.microservices.app.API.v1.db.redis_db.database import rate_limit
 
 router = APIRouter(prefix="/booking")
 
@@ -60,6 +61,7 @@ async def Remove_Appointment_Options(response: Response):
 
 
 @router.post("/remove")
+@rate_limit("5/10s")
 async def Remove_Appointment(request: Request, data: structureRemove):
 
     """
@@ -317,6 +319,7 @@ async def Add_Appointment_Options(response: Response):
     }
 
 @router.post("/add")
+@rate_limit("5/10s")
 async def Add_Appointment(request: Request, data: structureAdd):
 
     '''
