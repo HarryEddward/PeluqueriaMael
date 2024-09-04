@@ -8,7 +8,7 @@ const { config } = require('../server');
 
 const rethinkdb = config.db.persistant.rethinkdb;
 const port = rethinkdb.port.client;
-const host = rethinkdb.host;
+const host = config.host;
 const db = rethinkdb.db;
 
 /**

@@ -66,7 +66,7 @@ const AsyncTable = require('./db/asyncTable');
 
 database.connect().then(() => {
     
-    const table = new AsyncTable('booking_card');
+    const table = new AsyncTable('Reservas');
     table.start();
     table.on('change', (row) => {
         io.emit('booking_card_change', row);
@@ -96,6 +96,7 @@ app.get('/routes', (req, res) => {
 /**
  * RUTA GENERAL WS
  */
+/*
 const general_rp = router('/general');
 const generalNamespace = io.of(general_rp);
 
@@ -107,16 +108,17 @@ generalNamespace.on('connection', (socket) => {
         console.log(data);
     });
 
-    /*
+    
     socket.on('status', (data) => {
         socket.emit('status', 'ok');
     });
-    */
+    
 
     socket.on('disconnect', () => {
         console.log('Cliente desconectado');
     });
 });
+*/
 
 const PORT = process.env.PORT || port;
 const HOST = host;
@@ -133,6 +135,7 @@ server.listen(PORT, () => {
  * ------
  * rp -> router_prefix
  */
+/*
 var available_routes = {};
 const formatUrl = (rp) => base_url + rp;
 
@@ -149,7 +152,7 @@ available_routes['general'] = formatUrl(general_rp);
 available_routes['booking_card_change'] = formatUrl(booking_card_change_rp);
 
 console.log(available_routes);
-
+*/
 //*
  //* 
  //* Que hacer?
