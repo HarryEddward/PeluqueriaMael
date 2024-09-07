@@ -120,7 +120,7 @@ database.connect().then(() => {
             const table = new AsyncTableBookingSheet('Reservas', isoDateFormated);
 
             // console.log("Fecha válida en formato ISO");
-            socket.emit('booking_card_change', "hello");
+            //socket.emit('booking_card_change', "hello");
 
             // Iniciar la escucha de cambios en la tabla solo si la fecha es válida
             table.start();

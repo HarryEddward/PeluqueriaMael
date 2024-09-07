@@ -40,23 +40,29 @@ class AsyncTableBookingSheet extends EventEmitter {
              */
             var cursorDataList = []
             
-            this.emit('change', "row");
+            //this.emit('change', "row");
 
             //console.log(this.dateISOFormat == "2024-09-18T00:00:00");
 
-            var cursorData = r.table(this.tableName)
+            var cursorData = await r.table(this.tableName)
             .filter(r.row("fecha").eq(this.dateISOFormat))
             .limit(1)
             .run(connection, function(err, cursor) {
                 if (err) throw err;
                 cursor.toArray(function(err, res) {
                     if (err) throw err;
-                    return JSON.stringify(res, null, 2);
+                    cursorDataList = res[0];
                 });
             });
 
+            this.emit("change", cursorDataList);
 
-            const cursorChanges = await r.table(this.tableName).changes().run(connection);
+            
+
+            const cursorChanges = await r.table(this.tableName)
+            .filter(r.row("fecha").eq(this.dateISOFormat))
+            .changes()
+            .run(connection);
             
             console.log(this.dateISOFormat);
             
