@@ -10,7 +10,7 @@
 
         document.addEventListener("DOMContentLoaded", () => {
 
-            var d = new Date(2024, 11, 21);//"21/11/2024";
+            var d = new Date(2024, 10, 10).toISOString();//"21/11/2024";
             console.log(d);
 
             const socket = io("ws://localhost:8100", {

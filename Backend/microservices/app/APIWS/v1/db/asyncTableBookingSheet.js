@@ -42,7 +42,9 @@ class AsyncTableBookingSheet extends EventEmitter {
             const cursorData = await r.table(this.tableName).filter({ "fecha": String(this.dateISOFormat) }).limit(1).run(connection);
             const cursorChanges = await r.table(this.tableName).changes().run(connection);
             
-            this.emit('change', cursorData.next());
+            console.log(` await r.table(${this.tableName}).filter({ "fecha": String(${this.dateISOFormat}) }).limit(1).run(${connection});`);
+
+            this.emit('change', "cursorData.next()");
             
             cursorChanges.each((err, row) => {
                 if (err) throw err;

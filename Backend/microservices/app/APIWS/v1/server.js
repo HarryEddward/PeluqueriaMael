@@ -130,13 +130,12 @@ database.connect().then(() => {
 
             // Emitir solo los cambios que coincidan con la fecha
             table.on('change', (row) => {
-                const bookingDate = new Date(row.new_val.fecha_reserva).toISOString();
+                //const bookingDate = new Date(row.new_val.fecha_reserva).toISOString();
 
 
-                // Compara la fecha del cliente con la fecha del cambio en la tabla
-                if (bookingDate === isoDate) {
-                    socket.emit('booking_card_change', row);
-                }
+                // Compara la fecha del cliente con la fecha del cambio en la tablas
+                socket.emit('booking_card_change', row);
+                
             });
         });
 
