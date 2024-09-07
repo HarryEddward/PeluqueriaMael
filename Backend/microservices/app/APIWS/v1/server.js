@@ -12,6 +12,10 @@ const r = require('rethinkdb');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const { Config } = require('../../../conversor/config/config');
+const database = require('./db/database');
+const AsyncTableBookingSheet = require('./db/asyncTableBookingSheet');
+const { isValidISODate } = require('./services/iso');
+const { replaceAt } = require('./utils/index');
 
 const config = Config();
 
@@ -84,20 +88,9 @@ else if (v_proj !== v) {
  * Junta el prefijo de la misma api para juntarlo con el
  * prefijo de la msima ruta
  */
-const router = (path) => basePath + path;
+//const router = (path) => basePath + path;
 
-module.exports = { config, basePath, router };
-
-
-// Local pkg
-const database = require('./db/database');
-const AsyncTableBookingSheet = require('./db/asyncTableBookingSheet');
-
-// Función para validar la fecha en formato ISO 8601
-const isValidISODate = (dateString) => {
-    const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
-    return isoRegex.test(dateString) && !isNaN(Date.parse(dateString));
-};
+//module.exports = { config, basePath, router };
 
 
 const base_url_ws_router_retinkdb = "/rethinkdb";
@@ -121,9 +114,13 @@ database.connect().then(() => {
                 socket.disconnect();
             }
 
-            const table = new AsyncTableBookingSheet('Reservas', isoDate);
+            //isoDate = isoJsToIsoPy(isoDate);
+            const isoDateFormated = isoDate.slice(0,19)
+
+            const table = new AsyncTableBookingSheet('Reservas', isoDateFormated);
 
             // console.log("Fecha válida en formato ISO");
+            socket.emit('booking_card_change', "hello");
 
             // Iniciar la escucha de cambios en la tabla solo si la fecha es válida
             table.start();
@@ -131,8 +128,8 @@ database.connect().then(() => {
             // Emitir solo los cambios que coincidan con la fecha
             table.on('change', (row) => {
                 //const bookingDate = new Date(row.new_val.fecha_reserva).toISOString();
-
-
+                
+                console.log(`->CHANGES: ${row}`);
                 // Compara la fecha del cliente con la fecha del cambio en la tablas
                 socket.emit('booking_card_change', row);
                 

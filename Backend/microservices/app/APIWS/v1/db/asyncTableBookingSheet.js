@@ -38,13 +38,27 @@ class AsyncTableBookingSheet extends EventEmitter {
              * Cursor que representa la secuencia de cambios en la tabla.
              * @type {require('rethinkdb').Cursor}
              */
+            var cursorDataList = []
+            
+            this.emit('change', "row");
 
-            const cursorData = await r.table(this.tableName).filter({ "fecha": String(this.dateISOFormat) }).limit(1).run(connection);
+            //console.log(this.dateISOFormat == "2024-09-18T00:00:00");
+
+            var cursorData = r.table(this.tableName)
+            .filter(r.row("fecha").eq(this.dateISOFormat))
+            .limit(1)
+            .run(connection, function(err, cursor) {
+                if (err) throw err;
+                cursor.toArray(function(err, res) {
+                    if (err) throw err;
+                    return JSON.stringify(res, null, 2);
+                });
+            });
+
+
             const cursorChanges = await r.table(this.tableName).changes().run(connection);
             
-            console.log(` await r.table(${this.tableName}).filter({ "fecha": String(${this.dateISOFormat}) }).limit(1).run(${connection});`);
-
-            this.emit('change', "cursorData.next()");
+            console.log(this.dateISOFormat);
             
             cursorChanges.each((err, row) => {
                 if (err) throw err;

@@ -9,41 +9,64 @@
         'use strict'
 
         document.addEventListener("DOMContentLoaded", () => {
+            
+            
+            
+            document.getElementById("submitBtn").addEventListener('click', () => {
+                const valueDate = document.getElementById("dateSend").value;
+                
+                // Crea un objeto Date a partir del valor del input
+                const dateObject = new Date(valueDate);
+                
+                // Ahora puedes usar toISOString() en el objeto Date
+                const dateObjectISO = dateObject.toISOString();
 
-            var d = new Date(2024, 10, 10).toISOString();//"21/11/2024";
-            console.log(d);
+                WebSocketFun(dateObjectISO);
+            });
 
-            const socket = io("ws://localhost:8100", {
+            
+            
+            //var d = new Date(2024, 10, 7).toISOString();//"21/11/2024";
+            //console.log(valueDate);
+
+            const WebSocketFun = (date) => {
+
+                const socket = io("ws://localhost:8100", {
                 transports: ['websocket'], // Forzar WebSocket
                 withCredentials: true
-            });
-           
-            socket.emit('set_date_filter', d);
-                        
+                });
+            
+                socket.emit('set_date_filter', date);
+                            
 
-            // Escuchar el evento de booking_card_change
-            socket.on("/rethinkdb/booking_card_change", (data) => {
-                console.log("Cambio en booking card: ", data);
-                document.getElementById('response').innerText = JSON.stringify(data, null, 2);
-            });
+                // Escuchar el evento de booking_card_change
+                socket.on("/rethinkdb/booking_card_change", (data) => {
+                    console.log("Cambio en booking card: ", data);
+                    document.getElementById('response').innerText = JSON.stringify(data, null, 2);
+                });
 
-            socket.on("connect", () => {
-                console.log("Conectado al WebSocket /rethinkdb/booking_card_change");
-            });
+                socket.on("connect", () => {
+                    console.log("Conectado al WebSocket /rethinkdb/booking_card_change");
+                });
 
-            socket.on("disconnect", () => {
-                console.log("Desconectado del WebSocket");
-            });
+                socket.on("disconnect", () => {
+                    console.log("Desconectado del WebSocket");
+                });
 
-            socket.on("connect_error", (error) => {
-                console.error("Error en la conexión: ", error);
-            });
+                socket.on("connect_error", (error) => {
+                    console.error("Error en la conexión: ", error);
+                });
+
+            }
+            
         });
     </script>
 </head>
 <body>
     <h1>Test WebSocket: /rethinkdb/booking_card_change</h1>
     <h2>Respuesta del servidor:</h2>
+    <input type="date" name="" id="dateSend">
+    <button id="submitBtn">Send</button>
     <pre id="response"></pre>
 </body>
 </html>

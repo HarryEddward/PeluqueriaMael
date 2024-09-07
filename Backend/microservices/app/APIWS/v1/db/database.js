@@ -4,8 +4,9 @@
 
 var colors = require('colors');
 const r = require('rethinkdb');
-const { config } = require('../server');
+const { Config } = require('../../../../conversor/config/config');
 
+const config = Config();
 const rethinkdb = config.db.persistant.rethinkdb;
 const port = rethinkdb.port.client;
 const host = config.host;
@@ -39,6 +40,8 @@ class Database {
     async connect() {
 
         try {
+            console.log(`${rethinkdb}`)
+
             this.connection = await r.connect({
                 host: host,
                 port: port,
