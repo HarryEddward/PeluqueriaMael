@@ -66,7 +66,7 @@ def test_booking_add():
     except httpx.RequestError as e:
         print(f"Request failed: {e}")
 
-@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
+#@pytest.mark.skip(reason="Esta prueba está deshabilitada temporalmente.")
 @pytest.mark.order(2)
 def test_booking_remove():
     data: dict = login_credentials
@@ -93,7 +93,7 @@ def test_booking_remove():
             data_appointment: dict = {
                 "token_id": response_json["token_id"],
                 "token_data": response_json["token_data"],
-                "id_reserva": "21a07301-6b0b-4b1c-b0af-019ce4497271" #id_appointment
+                "id_reserva": id_appointment
             }
 
             print(data_appointment)

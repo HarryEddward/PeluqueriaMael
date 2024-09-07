@@ -159,6 +159,14 @@ app.get('/routes', (req, res) => {
     });
 });
 
+// Opción 1: Usar una carpeta estática (recomendado si tienes varios archivos HTML)
+app.use(express.static(path.join(__dirname, 'view')));
+
+// Opción 2: Enviar un archivo HTML específico cuando visitas una ruta
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'view', 'index.html'));
+});
+
 
 /**
  * RUTA GENERAL WS

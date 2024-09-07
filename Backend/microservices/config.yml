@@ -5,7 +5,7 @@
 # ------
 name_version: "v1"
 
-host: "0.0.0.0"
+host: "192.168.1.132"
 
 ssl:
   cert: "../../../certs/peluqueriamael.com_cert/peluqueriamael.com.crt"

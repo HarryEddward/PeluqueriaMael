@@ -31,7 +31,7 @@
 
             const WebSocketFun = (date) => {
 
-                const socket = io("ws://localhost:8100", {
+                const socket = io("ws://192.168.1.132:8100", {
                 transports: ['websocket'], // Forzar WebSocket
                 withCredentials: true
                 });
@@ -40,9 +40,9 @@
                             
 
                 // Escuchar el evento de booking_card_change
-                socket.on("/rethinkdb/booking_card_change", (data) => {
+                socket.on("booking_card_change", (data) => {
                     console.log("Cambio en booking card: ", data);
-                    document.getElementById('response').innerText = JSON.stringify(data, null, 2);
+                    document.getElementById('response').innerText = JSON.stringify(data);
                 });
 
                 socket.on("connect", () => {
