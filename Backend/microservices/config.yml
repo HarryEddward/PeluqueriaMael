@@ -60,7 +60,6 @@ app:
   APIWS:
     env: dev
     net:
-      protocol: "ws"
       port: 8100
     ssl: false
 

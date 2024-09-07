@@ -32,6 +32,8 @@
     "rethinkdb": "^2.4.2",
     "rethinkdbdash": "^2.3.31",
     "socket.io": "^4.7.5",
-    "socket.io-client": "^4.7.5"
+    "socket.io-client": "^4.7.5",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   }
 }

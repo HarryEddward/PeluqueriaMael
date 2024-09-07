@@ -9,6 +9,8 @@ const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
 const r = require('rethinkdb');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
 const { Config } = require('../../../conversor/config/config');
 
 const config = Config();
@@ -19,11 +21,38 @@ const host = config['host'];
 const v = config['name_version']
 
 const app = express();
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: '*', credentials: true }));
 
 
 const server = http.createServer(app);
 const io = socketIo(server);
+
+const protocol_verified_ws = () => ssl ? 'wss' : 'ws'
+const protocol_verified_http = () => ssl ? 'https' : 'http'
+
+// Configuración Swagger
+const swaggerOptions = {
+    swaggerDefinition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'APIWS (API WebSockets)',
+            version: '1.0.0',
+            description: 'An real time API operations with RethinkDB',
+        },
+        servers: [
+            {
+                url: `${protocol_verified_ws()}://${host}:${port}`
+            },
+            {
+                url: `${protocol_verified_http()}://${host}:${port}`
+            }
+        ],
+    },
+    apis: ['./swaggerDoc.js', './server.js'], // Tu archivo de documentación
+};
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
 const v_proj = path.basename(path.resolve(__dirname, '.')).toLowerCase();
@@ -62,19 +91,61 @@ module.exports = { config, basePath, router };
 
 // Local pkg
 const database = require('./db/database');
-const AsyncTable = require('./db/asyncTable');
+const AsyncTableBookingSheet = require('./db/asyncTableBookingSheet');
+
+// Función para validar la fecha en formato ISO 8601
+const isValidISODate = (dateString) => {
+    const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
+    return isoRegex.test(dateString) && !isNaN(Date.parse(dateString));
+};
+
+
+const base_url_ws_router_retinkdb = "/rethinkdb";
+
 
 database.connect().then(() => {
     
-    const table = new AsyncTable('Reservas');
-    table.start();
-    table.on('change', (row) => {
-        io.emit('booking_card_change', row);
-    });
+    
+    io.on('connection', (socket) => {
+        console.log("Cliente conectado");
 
-})
-.catch((err) => {
-    console.error('Se desconecto de forma repentina la base de datos:', err);
+        // Escuchar evento del cliente para recibir la fecha
+        socket.on('set_date_filter', (isoDate) => {
+            console.log(`Fecha recibida del cliente: ${isoDate}`);
+            
+            console.log(`${isValidISODate(isoDate)}`);
+
+            // Validar si la fecha es válida y tiene el formato ISO 8601
+            if (!isValidISODate(isoDate)) {
+                socket.emit('error', 'Fecha inválida. Por favor, use el formato ISO 8601.');
+                socket.disconnect();
+            }
+
+            const table = new AsyncTableBookingSheet('Reservas', isoDate);
+
+            // console.log("Fecha válida en formato ISO");
+
+            // Iniciar la escucha de cambios en la tabla solo si la fecha es válida
+            table.start();
+
+            // Emitir solo los cambios que coincidan con la fecha
+            table.on('change', (row) => {
+                const bookingDate = new Date(row.new_val.fecha_reserva).toISOString();
+
+
+                // Compara la fecha del cliente con la fecha del cambio en la tabla
+                if (bookingDate === isoDate) {
+                    socket.emit('booking_card_change', row);
+                }
+            });
+        });
+
+        socket.on('disconnect', () => {
+            console.log("Cliente desconectado");
+        });
+    });
+}).catch((err) => {
+    console.error('Se desconectó de la base de datos:', err);
 });
 
 

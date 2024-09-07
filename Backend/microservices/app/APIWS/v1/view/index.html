@@ -3,31 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>WebSocket Test</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        'use strict'
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            var d = new Date(2024, 11, 21);//"21/11/2024";
+            console.log(d);
+
+            const socket = io("ws://localhost:8100", {
+                transports: ['websocket'], // Forzar WebSocket
+                withCredentials: true
+            });
+           
+            socket.emit('set_date_filter', d);
+                        
+
+            // Escuchar el evento de booking_card_change
+            socket.on("/rethinkdb/booking_card_change", (data) => {
+                console.log("Cambio en booking card: ", data);
+                document.getElementById('response').innerText = JSON.stringify(data, null, 2);
+            });
+
+            socket.on("connect", () => {
+                console.log("Conectado al WebSocket /rethinkdb/booking_card_change");
+            });
+
+            socket.on("disconnect", () => {
+                console.log("Desconectado del WebSocket");
+            });
+
+            socket.on("connect_error", (error) => {
+                console.error("Error en la conexión: ", error);
+            });
+        });
+    </script>
 </head>
 <body>
-    <button id="btn">Get Routes</button>
-    <ul id="data-list"></ul>
+    <h1>Test WebSocket: /rethinkdb/booking_card_change</h1>
+    <h2>Respuesta del servidor:</h2>
+    <pre id="response"></pre>
 </body>
-<script>
-    const btn = document.getElementById('btn');
-    const dataList = document.getElementById('data-list');
-  
-    btn.addEventListener('click', () => {
-      fetch('http://localhost:8100/routes')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data.data);
-            let html = '';
-            if (data.data) {
-            for (const key in data.data) {
-                    html += `<li><b>${key}</b>: ${data.data[key]}</li>`;
-                }
-            }
-            console.log(html);
-            dataList.innerHTML = html;
-        })
-        .catch(error => console.error('Error:', error));
-    });
-  </script>
 </html>
