@@ -1,7 +1,11 @@
-from Backend.microservices.app.API.v1.db.rethink_db.database import reservas, connection
+from Backend.microservices.app.API.v1.db.rethink_db.database import reservas, connection, documents
 
-cursor = reservas.changes().run(connection)
+cursor_changes = reservas.changes().run(connection)
 
-for change in cursor:
+
+for doc in documents:
+    print(doc)
+
+for change in cursor_changes:
     print("Cambio detectado:")
     print(change)

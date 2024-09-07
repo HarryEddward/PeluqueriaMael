@@ -113,7 +113,7 @@ database.connect().then(() => {
         socket.on('set_date_filter', (isoDate) => {
             console.log(`Fecha recibida del cliente: ${isoDate}`);
             
-            console.log(`${isValidISODate(isoDate)}`);
+            //console.log(`${isValidISODate(isoDate)}`);
 
             // Validar si la fecha es válida y tiene el formato ISO 8601
             if (!isValidISODate(isoDate)) {
