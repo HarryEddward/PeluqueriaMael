@@ -4,7 +4,7 @@ router = APIRouter(prefix="/user")
 
 
 
-@router.options('/add')
+@router.options('/register')
 async def Add_Worker_User_Options(response: Response):
 
     response.headers["Allow"] = "POST, OPTIONS"
@@ -13,13 +13,13 @@ async def Add_Worker_User_Options(response: Response):
         "options": ["POST", "OPTIONS"]
     }
 
-@router.post("/add")
+@router.post("/register")
 async def Add_Worker_User():
 
     return 'change_personal'
 
 
-@router.options('/remove')
+@router.options('/delete')
 async def Add_Worker_User_Options(response: Response):
 
     response.headers["Allow"] = "POST, OPTIONS"
@@ -28,7 +28,7 @@ async def Add_Worker_User_Options(response: Response):
         "options": ["POST", "OPTIONS"]
     }
 
-@router.post("/remove")
+@router.post("/delete")
 async def Add_Worker_User():
 
     return 'change_personal'
