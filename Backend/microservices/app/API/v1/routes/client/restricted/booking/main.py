@@ -15,19 +15,19 @@ import numba as nb
 from pydantic import BaseModel
 from pydantic import validator
 from pydantic import ValidationError
-from crud.mongodb.booking.utils.serviceToPersonal import serviceToPersonal
-from crud.mongodb.booking.utils.workerLessBusy import workerLessBusy
-from crud.mongodb.booking.utils.conversorServices import conversorServices
-from crud.mongodb.booking.add import AddBooking as MDBAddBooking
-from crud.mongodb.booking.remove import RemoveBooking as MDBRemoveBooking
+from crud.mongodb.client.booking.utils.serviceToPersonal import serviceToPersonal
+from crud.mongodb.client.booking.utils.workerLessBusy import workerLessBusy
+from crud.mongodb.client.booking.utils.conversorServices import conversorServices
+from crud.mongodb.client.booking.add import AddBooking as MDBAddBooking
+from crud.mongodb.client.booking.remove import RemoveBooking as MDBRemoveBooking
 from crud.rethink_db.booking.add import AddBooking as RDBAddooking
 from crud.rethink_db.booking.remove import RemoveBooking as RDBRemoveBooking
-from crud.mongodb.booking.utils.remove.verifyDays import verifyDays
+from crud.mongodb.client.booking.utils.remove.verifyDays import verifyDays
+from Backend.microservices.app.API.v1.crud.mongodb.client.booking.validate.count_appointments import CountAppointmentsModel, CountAppointments 
 from Backend.microservices.app.API.v1.routes.client.schemes.general import schemes
 from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal
 from Backend.microservices.app.API.v1.logging_config import logger
 from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
-from Backend.microservices.app.API.v1.crud.mongodb.booking.validate.count_appointments import CountAppointmentsModel, CountAppointments 
 from Backend.microservices.app.API.v1.db.redis_db.database import rate_limit
 
 router = APIRouter(prefix="/booking")

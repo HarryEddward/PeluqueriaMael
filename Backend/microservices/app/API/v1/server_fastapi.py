@@ -4,9 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi_cache import FastAPICache
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi_cache.backends.redis import RedisBackend
-from routes.admin.admin import router as admin_router
+from Backend.microservices.app.API.v1.routes.admin.main import router as admin_router
 from routes.client.main import router as client_router
-from routes.worker.worker import router as worker_router
+from routes.worker.main import router as worker_router
 from config.middlewares.client.restricted import RestrictedMiddleware
 from config.middlewares.client.handleError import ErrorMiddleware
 import ujson
@@ -106,13 +106,14 @@ def setup_routes_with_limiters():
         Returns an HTML response with a hidden egg image.
         """
         return HTMLResponse(
-            content="""
+            content=f"""
             <!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Hidden egg</title>
+                {request.client.host}
             </head>
             <body>
                 <img src="https://images.pexels.com/photos/3343/easter-eggs.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=0">

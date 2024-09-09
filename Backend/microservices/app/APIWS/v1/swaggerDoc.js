@@ -18,7 +18,7 @@
 
 /**
  * @swagger
- * (ws)/rethinkdb/booking_card_change:
+ * (ws)/worker/restricted/rethinkdb/booking_card_change:
  *   trace:
  *     summary: Check the status of the server.
  *     tags: [Status]

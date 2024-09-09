@@ -10,10 +10,10 @@ from typing import Union
 import ujson
 from routes.client.schemes.general import schemes
 from services.auth import JWToken
-from crud.mongodb.users.add import AddUser
-from crud.mongodb.users.validation import ValidationUser
-from crud.mongodb.users.update import UpdateUser
-from crud.mongodb.users.find import FindUser, FindSecretJWTID, Find
+from crud.mongodb.client.users.add import AddUser
+from crud.mongodb.client.users.validation import ValidationUser
+from crud.mongodb.client.users.update import UpdateUser
+from crud.mongodb.client.users.find import FindUser, FindSecretJWTID, Find
 from Backend.microservices.app.API.v1.db.redis_db.database import rate_limit
 from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
 from Backend.microservices.app.API.v1.logging_config import logger

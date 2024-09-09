@@ -131,7 +131,7 @@ database.connect().then(() => {
                 
                 console.log(`->CHANGES: ${row}`);
                 // Compara la fecha del cliente con la fecha del cambio en la tablas
-                socket.emit('booking_card_change', row);
+                socket.emit('worker/restricted/rethinkdb/booking_card_change', row);
                 
             });
         });

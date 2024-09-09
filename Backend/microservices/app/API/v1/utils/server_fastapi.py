@@ -4,9 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi_cache import FastAPICache
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi_cache.backends.redis import RedisBackend
-from routes.admin.admin import router as admin_router
+from Backend.microservices.app.API.v1.routes.admin.main import router as admin_router
 from routes.client.main import router as client_router
-from routes.worker.worker import router as worker_router
+from routes.worker.main import router as worker_router
 import ujson
 import fastapi
 from redis import asyncio as aioredis

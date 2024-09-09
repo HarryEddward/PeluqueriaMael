@@ -1,0 +1,6 @@
+2024-09-08 17:01:28,241 - peluqueria_mael - INFO - Conexión a Redis cerrada. - /peluqueriamael/Backend/microservices/app/API/v1/db/redis_db/database.py:62
+2024-09-08 17:06:57,613 - peluqueria_mael - INFO - Conexión a Redis cerrada. - /peluqueriamael/Backend/microservices/app/API/v1/db/redis_db/database.py:62
+2024-09-08 17:07:14,061 - peluqueria_mael - INFO - Conexión a Redis cerrada. - /peluqueriamael/Backend/microservices/app/API/v1/db/redis_db/database.py:62
+2024-09-08 17:09:10,853 - peluqueria_mael - INFO - Conexión a Redis cerrada. - /peluqueriamael/Backend/microservices/app/API/v1/db/redis_db/database.py:62
+2024-09-08 17:12:13,090 - peluqueria_mael - INFO - Conexión a Redis cerrada. - /peluqueriamael/Backend/microservices/app/API/v1/db/redis_db/database.py:62
+2024-09-08 17:14:44,019 - peluqueria_mael - INFO - Conexión a Redis cerrada. - /peluqueriamael/Backend/microservices/app/API/v1/db/redis_db/database.py:62

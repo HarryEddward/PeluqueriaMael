@@ -3,8 +3,8 @@ from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from typing import Callable, Awaitable
 from bson import ObjectId
-from crud.mongodb.users.find import FindUser, FindSecretJWTID
-from crud.mongodb.users.update import UpdateUser
+from crud.mongodb.client.users.find import FindUser, FindSecretJWTID
+from crud.mongodb.client.users.update import UpdateUser
 from services.auth import JWToken
 from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
 from Backend.microservices.app.API.v1.logging_config import logger

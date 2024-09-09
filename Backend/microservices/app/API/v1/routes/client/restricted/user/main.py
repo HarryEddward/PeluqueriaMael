@@ -6,14 +6,13 @@ from datetime import datetime
 from bson import ObjectId
 from typing import Optional
 from config.config import conf
-from crud.mongodb.users.delete import UserDelete
+from crud.mongodb.client.users.delete import UserDelete
 from Backend.microservices.app.API.v1.db.redis_db.database import rate_limit
 
 '''
 En esta ruta solamnete es operaciónes internas del usaurio y no cambios en si.
 Como por ejemplo eliminar la cuenta, operaciónes englobadas con el usuario, no en cambios de configruación
 '''
-
 from .config.main import router as router_config
 router = APIRouter(prefix="/user")
 
