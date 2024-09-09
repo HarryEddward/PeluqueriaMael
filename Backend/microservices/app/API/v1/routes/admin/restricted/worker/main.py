@@ -1,21 +1,8 @@
 from fastapi import APIRouter, Request, Response
+from .user.main import router as router_user
 
 router = APIRouter(prefix="/worker")
-
-@router.options('/add')
-async def Add_Worker_User_Options(response: Response):
-
-    response.headers["Allow"] = "POST, OPTIONS"
-    response.headers["Content-Type"] = "application/json"
-    return {
-        "options": ["POST", "OPTIONS"]
-    }
-
-@router.post("/add")
-async def Add_Worker_User():
-
-    return 'change_personal'
-
+router.include_router(router_user)
 
 
 @router.options('/change_users')
