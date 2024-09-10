@@ -15,6 +15,7 @@ try:
 
     use_reservas: str = collection['reservas']
     use_usuarios: str = collection['usuarios']
+    use_trabajdores: str = collection['trabajadores']
     use_configuracion: str = collection['configuracion']
     use_personal: str = collection['personal']
     use_administrador: str = collection['administrador']
@@ -45,6 +46,7 @@ try:
 
     reservas = db[use_reservas]
     users = db[use_usuarios]
+    workers = db[use_trabajdores]
     configure = db[use_configuracion]
     personal = db[use_personal]
     admin = db[use_administrador]

@@ -32,11 +32,11 @@ app:
     validation:
       user:
         email:
-          max_str: 150
+          max_str: 200
           min_str: 7 # a@a.com (Minimun str)
         password:
           max_str: 75
-          min_str: 15
+          min_str: 5
         max_appointments: 2
     testing:
       host: 127.0.0.1 #Host only using for doing ops in the container
@@ -151,6 +151,7 @@ db:
       collections:
         reservas: "Reservas"
         usuarios: "Users"
+        trabajadores: "Workers"
         configuracion: "Configure"
         personal: "Personal"
         administrador: "Admin"
