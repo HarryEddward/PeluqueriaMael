@@ -19,7 +19,10 @@ class Verify(ABC):
     def __call__(self) -> Union[dict, Exception, ValidationError]:
         pass
 
-    def register_worker(self) -> None:
+    def verify_structure_request(self, validate_data: BaseModel) -> Union[BaseModel, Exception]:
+        pass
+
+    def register_worker(self, safe_data: dict) -> Union[None, Exception]:
         pass
 
 class RequestStructureInfo(BaseModel):

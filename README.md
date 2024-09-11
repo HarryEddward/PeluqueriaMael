@@ -185,7 +185,7 @@ actualziaciones que se hagan
 
 ## Distribución_De_Software
 Modelo de distribución de software hacia la peluquería:
-- IaaS
+- PaaS
 
 Modelo de distribución de software de la peluquería hacía sus clientes:
 - SaaS

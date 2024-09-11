@@ -31,6 +31,9 @@ app:
   API:
     validation:
       user:
+        user_id:
+          max_str: 125
+          min_str: 1
         email:
           max_str: 200
           min_str: 7 # a@a.com (Minimun str)
