@@ -338,6 +338,12 @@ I have the greate idea to implement in docker a single proxy container with Tor,
 I fix some shell's scripts (run.sh) from the folder DevOps/docker/__production__, and replace to simple shell's scripts named "execute.sh" to tests all of the docker-compose.yml files in a simple way to maintain and fix more fast the error's from the new files created.
 
 
+<p align="center">
+  <img width="200px" height="200px" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/tor_test_api.png">
+</p>
+
+
+
 ## License
 
 [Apache License](https://github.com/HarryEddward/PeluqueriaMael/blob/main/LICENSE)
