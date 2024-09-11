@@ -12,6 +12,8 @@ services:
       - ../../../../../../__init__.py:/peluqueriamael/__init__.py
       - ../../../../../../LICENSE:/peluqueriamael/LICENSE
       - ../../../../../../README.md:/peluqueriamael/README.md
+      - tor_onion:/var/lib/tor/hidden_service
+      
     ports:
       - "8000:8000"
     environment:
@@ -30,3 +32,6 @@ networks:
     external: true
   deployment_tor_network:
     external: true
+
+volumes:
+  tor_onion:

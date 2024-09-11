@@ -6,9 +6,11 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "9050:9050"
+      - "9050:9050"   # Proxy SOCKS5 para redirigir tráfico a través de Tor
+      - "9051:9051"   # Puerto de control para monitorear Tor
     volumes:
-      - tor_data:/etc/tor
+      #- tor_data:/etc/tor
+      - tor_onion:/var/lib/tor/hidden_service
     container_name: tor-proxy
     networks:
       - tor_network
@@ -18,4 +20,5 @@ networks:
     driver: bridge
 
 volumes:
-  tor_data:
+  #tor_data:
+  tor_onion:

@@ -59,7 +59,7 @@ fi
 
 # Levantar el contenedor
 echo "Levantando el contenedor..."
-docker compose -f $COMPOSE_FILE up -d --remove-orphans
+docker compose -f $COMPOSE_FILE up -d  #--remove-orphans
 
 # Verificar si el contenedor se levantó correctamente
 if [ $? -ne 0 ]; then

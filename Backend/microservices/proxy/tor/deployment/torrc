@@ -1,0 +1,4 @@
+HiddenServiceDir /var/lib/tor/hidden_service/                               # Directorio donde se guardará el enlace .onion
+HiddenServicePort 80 deployment-peluqueriamael_app_api-1:8000               # Redirige el puerto 80 del servicio oculto al puerto 8000 del API
+SocksPort 0                                                                 # No escucha conexiones en el puerto SOCKS
+ControlPort 9051                                                            # Abre el puerto de control de Tor para monitoreo
