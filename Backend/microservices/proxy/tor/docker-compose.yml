@@ -1,3 +1,5 @@
+
+
 services:
   tor:
     build:
@@ -6,14 +8,14 @@ services:
     ports:
       - "9050:9050"
     volumes:
-      - tor-data:/var/lib/tor
+      - tor_data:/var/lib/tor
     container_name: tor-proxy
     networks:
-      - tor-network
+      - tor_network
 
 networks:
-  tor-network:
+  tor_network:
     driver: bridge
 
 volumes:
-  tor-data:
+  tor_data:

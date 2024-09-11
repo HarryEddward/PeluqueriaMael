@@ -27,3 +27,5 @@ networks:
     external: true
   deployment_hairdresser_network_cryptoapi:
     external: true
+  tor_network:
+    external: true
