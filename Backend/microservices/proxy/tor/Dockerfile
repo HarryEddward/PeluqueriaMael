@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y tor
 
 # Copia el archivo de configuración de Tor al contenedor
-COPY torrc /etc/tor/torrc
+#COPY torrc /etc/tor/torrc
 
 # Expone el puerto por el que Tor escuchará
 EXPOSE 9050
