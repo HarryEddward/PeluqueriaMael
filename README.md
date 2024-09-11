@@ -330,7 +330,7 @@ networks:
     driver: bridge
 ```
 
-## Confidential_proxy
+## Confidential_Proxy
 (11/9/2024)
 Today I thought about how safe is to send data from the backend to the cient and backwards. And
 I have the greate idea to implement in docker a single proxy container with Tor, and independently use in the API if the client want or not.
