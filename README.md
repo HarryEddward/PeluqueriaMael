@@ -298,10 +298,6 @@ Python APIs use Sphinx to write documentation using docstrings with a Google-sta
 ## Server_Configuration
 We used Linux as the default OS for the server, with plans to adapt it to FreeBSD in the future due to its high performance and native support for containers called jails in FreeBSD.
 
-## License
-
-[Apache License](https://github.com/HarryEddward/PeluqueriaMael/blob/main/LICENSE)
-
 
 ## Errors during in the process
 
@@ -333,6 +329,18 @@ networks:
   hairdresser_network:
     driver: bridge
 ```
+
+## Confidential_proxy
+(11/9/2024)
+Today I thought about how safe is to send data from the backend to the cient and backwards. And
+I have the greate idea to implement in docker a single proxy container with Tor, and independently use in the API if the client want or not.
+
+I fix some shell's scripts (run.sh) from the folder DevOps/docker/__production__, and replace to simple shell's scripts named "execute.sh" to tests all of the docker-compose.yml files in a simple way to maintain and fix more fast the error's from the new files created.
+
+
+## License
+
+[Apache License](https://github.com/HarryEddward/PeluqueriaMael/blob/main/LICENSE)
 
 
 

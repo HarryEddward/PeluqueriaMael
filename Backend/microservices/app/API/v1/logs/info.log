@@ -3203,3 +3203,11 @@
 2024-09-11 20:56:55,435 - peluqueria_mael - INFO - /redoc - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:16
 2024-09-11 20:56:58,215 - peluqueria_mael - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:15
 2024-09-11 20:56:58,215 - peluqueria_mael - INFO - /openapi.json - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:16
+2024-09-11 21:03:24,068 - peluqueria_mael - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:15
+2024-09-11 21:03:24,068 - peluqueria_mael - INFO - /docs - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:16
+2024-09-11 21:03:24,207 - peluqueria_mael - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:15
+2024-09-11 21:03:24,207 - peluqueria_mael - INFO - /openapi.json - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:16
+2024-09-11 21:10:41,503 - peluqueria_mael - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:15
+2024-09-11 21:10:41,503 - peluqueria_mael - INFO - /api/app/api/v1/admin/public/data/proxy_tor_url - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:16
+2024-09-11 21:11:18,890 - peluqueria_mael - INFO - Entra en el middleware - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:15
+2024-09-11 21:11:18,890 - peluqueria_mael - INFO - / - /peluqueriamael/Backend/microservices/app/API/v1/config/middlewares/client/restricted.py:16
