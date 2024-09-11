@@ -339,7 +339,7 @@ I fix some shell's scripts (run.sh) from the folder DevOps/docker/__production__
 
 
 <p align="center">
-  <img width="200px" height="200px" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/tor_test_api.png">
+  <img width="100%" height="100%" src="https://github.com/HarryEddward/PeluqueriaMael/blob/main/Github/img/tor_test_api.png">
 </p>
 
 
