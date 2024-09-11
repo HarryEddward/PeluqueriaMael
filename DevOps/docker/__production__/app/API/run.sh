@@ -34,7 +34,7 @@ fi
 
 
 # Buscar y detener el contenedor en ejecución si existe
-RUNNING_CONTAINER=$(docker ps -q -f name="$IMAGE_NAME-1")
+RUNNING_CONTAINER=$(docker ps -q -f name="$IMAGE_NAME")
 echo "$RUNNING_CONTAINER <------------"
 if [ ! -z "$RUNNING_CONTAINER" ]; then
     echo "Deteniendo y eliminando el contenedor en ejecución con el nombre $CONTAINER_NAME..."

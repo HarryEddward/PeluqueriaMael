@@ -21,12 +21,12 @@ services:
     networks:
       - db_hairdresser_network
       - deployment_hairdresser_network_cryptoapi
-      - tor_network
+      - deployment_tor_network
 
 networks:
   db_hairdresser_network:
     external: true
   deployment_hairdresser_network_cryptoapi:
     external: true
-  tor_network:
+  deployment_tor_network:
     external: true

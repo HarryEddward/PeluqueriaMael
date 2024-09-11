@@ -8,7 +8,7 @@ services:
     ports:
       - "9050:9050"
     volumes:
-      - tor_data:/var/lib/tor
+      - tor_data:/etc/tor
     container_name: tor-proxy
     networks:
       - tor_network
