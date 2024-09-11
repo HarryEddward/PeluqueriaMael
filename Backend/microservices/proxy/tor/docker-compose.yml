@@ -1,0 +1,19 @@
+services:
+  tor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9050:9050"
+    volumes:
+      - tor-data:/var/lib/tor
+    container_name: tor-proxy
+    networks:
+      - tor-network
+
+networks:
+  tor-network:
+    driver: bridge
+
+volumes:
+  tor-data:

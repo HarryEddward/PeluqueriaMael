@@ -8,7 +8,7 @@ from Backend.microservices.app.API.v1.routes.admin.main import router as admin_r
 from routes.client.main import router as client_router
 from routes.worker.main import router as worker_router
 from config.middlewares.client.restricted import RestrictedMiddleware
-from config.middlewares.client.handleError import ErrorMiddleware
+from Backend.microservices.app.API.v1.config.middlewares.handleError import ErrorMiddleware
 import ujson
 import os
 import fastapi

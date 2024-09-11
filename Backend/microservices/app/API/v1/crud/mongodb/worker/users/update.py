@@ -7,7 +7,7 @@ from abc import ABC, abstractmethod
 
 from .validation import ValidationUser
 from services.auth import JWToken
-from Backend.microservices.app.API.v1.db.mongodb.database import users
+from Backend.microservices.app.API.v1.db.mongodb.database import workers
 from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
 from Backend.microservices.app.API.v1.logging_config import logger
 
@@ -59,7 +59,7 @@ class UpdateUser(Verify):
         def __init__(self, data: SecretJWTUpdate) -> None:
             
             '''
-            Valida el usurio y si existe, y si existe crea una nueva clave jwt secreta para el
+            Valida el empleado y si existe, y si existe crea una nueva clave jwt secreta para el
             usuario, lo guarda en el db y le da al usuario el "token_data" encriptado con su clave secreta
 
             Structure: {
@@ -105,7 +105,7 @@ class UpdateUser(Verify):
 
                     user_id = validation_user.response["data"]
 
-                    users.update_one(
+                    workers.update_one(
                         { "_id": ObjectId(user_id) },
                         { "$set": {"data.secrets.jwt": encrypted_secret_key} }
                     )
@@ -115,7 +115,6 @@ class UpdateUser(Verify):
                         "password": data["password"]
                     }, secret)
 
-                    #print('5-> update jwt', jwt)
 
                     if jwt["status"] == 'ok':
                         self.response = {
@@ -123,7 +122,6 @@ class UpdateUser(Verify):
                             "status": "ok",
                             "type": "SUCCESS",
                             "data": {
-                                #Devuelve el token_data, no el token_id
                                 "token": jwt["token"]
                             } 
                         }
@@ -169,7 +167,7 @@ class UpdateUser(Verify):
                 encrypted_new_password: str = encrypt(new_password)
 
                 # Actualizar la contraseña en la base de datos usando el ID del usuario
-                users.update_one(
+                workers.update_one(
                     {"_id": ObjectId(user_id)},
                     {"$set": {"data.info.password": encrypted_new_password}}
                 )

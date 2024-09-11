@@ -2,8 +2,8 @@ from fastapi import Request, Response
 from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from typing import Callable, Awaitable
-from crud.mongodb.worker.users.find import FindUser, FindSecretJWTID
-from crud.mongodb.worker.users.update import UpdateUser
+from crud.mongodb.client.users.find import FindUser, FindSecretJWTID
+from crud.mongodb.client.users.update import UpdateUser
 from services.auth import JWToken
 from Backend.microservices.app.API.v1.shared_microservices.cryptoapi.main import encrypt, decrypt
 from Backend.microservices.app.API.v1.logging_config import logger
@@ -15,7 +15,7 @@ class RestrictedMiddleware(BaseHTTPMiddleware):
         logger.info(request.url.path)
 
         # Solo se permite el acceso a rutas restringidas y el método POST
-        if request.url.path.startswith("/api/app/api/v1/worker/restricted/"):
+        if request.url.path.startswith("/api/app/api/v1/admin/restricted/"):
             if request.method != "POST":
                 return JSONResponse({
                     "info": "Solo está permitido el método: POST",
