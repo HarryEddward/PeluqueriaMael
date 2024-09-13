@@ -1,8 +1,11 @@
-cd DevOps/docker/__tests__/app/CryptoAPI
-sudo ./run.sh
+cd DevOps/docker/__production__/app/CryptoAPI
+sudo ./execute.sh
 
 cd DevOps/docker/__production__/app/API
-sudo ./run.sh
+sudo ./execute.sh
+
+cd DevOps/docker/__production__/proxy/tor
+sudo ./execute.sh
 
 sudo docker exec -it deployment-peluqueriamael_app_api-1 bash
 
