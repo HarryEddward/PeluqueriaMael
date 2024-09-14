@@ -33,7 +33,7 @@ async def Loggin_User_Options(response: Response):
     }
 
 @router.post('/login')
-@rate_limit("3/10s")
+@rate_limit("0.3/seconds")
 async def Loggin_User(request: Request, raw_data: schemes.Credentials):
 
     try:
