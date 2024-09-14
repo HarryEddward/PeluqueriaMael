@@ -108,7 +108,6 @@ async def User_Delete(request: Request, data: structureDelete) -> JSONResponse:
 
     try:
         def Response(res: dict, status: int) -> JSONResponse:
-            #print('>>>>>>>>>>>>>>>>>> req state', request.state.__dict__)
             res["renew"] = {
                 "token": request.state.new_token
             }

@@ -3,5 +3,5 @@ cd ../../../../../
 
 sudo docker compose -f ./Backend/microservices/proxy/tor/deployment/docker-compose.yml build
 
-sudo docker compose -f ./Backend/microservices/proxy/tor/deployment/docker-compose.yml up -d --remove-orphans
+sudo docker compose -f ./Backend/microservices/proxy/tor/deployment/docker-compose.yml up -d
 
