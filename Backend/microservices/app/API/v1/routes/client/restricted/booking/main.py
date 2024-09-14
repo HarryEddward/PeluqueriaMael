@@ -15,14 +15,14 @@ import numba as nb
 from pydantic import BaseModel
 from pydantic import validator
 from pydantic import ValidationError
-from crud.mongodb.client.booking.utils.serviceToPersonal import serviceToPersonal
-from crud.mongodb.client.booking.utils.workerLessBusy import workerLessBusy
-from crud.mongodb.client.booking.utils.conversorServices import conversorServices
-from crud.mongodb.client.booking.add import AddBooking as MDBAddBooking
-from crud.mongodb.client.booking.remove import RemoveBooking as MDBRemoveBooking
-from crud.rethink_db.booking.add import AddBooking as RDBAddooking
-from crud.rethink_db.booking.remove import RemoveBooking as RDBRemoveBooking
-from crud.mongodb.client.booking.utils.remove.verifyDays import verifyDays
+from Backend.microservices.app.API.v1.crud.mongodb.client.booking.utils.serviceToPersonal import serviceToPersonal
+from Backend.microservices.app.API.v1.crud.mongodb.client.booking.utils.workerLessBusy import workerLessBusy
+from Backend.microservices.app.API.v1.crud.mongodb.client.booking.utils.conversorServices import conversorServices
+from Backend.microservices.app.API.v1.crud.mongodb.client.booking.add import AddBooking as MDBAddBooking
+from Backend.microservices.app.API.v1.crud.mongodb.client.booking.remove import RemoveBooking as MDBRemoveBooking
+from Backend.microservices.app.API.v1.crud.rethink_db.booking.add import AddBooking as RDBAddooking
+from Backend.microservices.app.API.v1.crud.rethink_db.booking.remove import RemoveBooking as RDBRemoveBooking
+from Backend.microservices.app.API.v1.crud.mongodb.client.booking.utils.remove.verifyDays import verifyDays
 from Backend.microservices.app.API.v1.crud.mongodb.client.booking.validate.count_appointments import CountAppointmentsModel, CountAppointments 
 from Backend.microservices.app.API.v1.routes.client.schemes.general import schemes
 from Backend.microservices.app.API.v1.db.mongodb.database import reservas, configure, users, personal as db_personal

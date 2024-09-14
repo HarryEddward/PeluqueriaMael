@@ -4,9 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node ./v1/server.js",
-    "create_routes": "node ./v1/utils/add_path_files.js",
+    "server_development": "npm i; nodemon ./v1/server.js",
+    "server_production": "npm i; pm2 start ./v1/server.js --name 'peluqueriamael_app_apiws' --watch --instances max",
     "docs": "jsdoc -d docs --configure config/jsdocConf.json"
   },
   "keywords": [],

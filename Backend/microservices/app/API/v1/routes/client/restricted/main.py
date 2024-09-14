@@ -7,9 +7,9 @@ from fastapi import (
 )
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
-from routes.client.restricted.booking.main import router as router_booking
-from routes.client.restricted.data.main import router as router_data
-from routes.client.restricted.user.main import router as router_user
+from Backend.microservices.app.API.v1.routes.client.restricted.booking.main import router as router_booking
+from Backend.microservices.app.API.v1.routes.client.restricted.data.main import router as router_data
+from Backend.microservices.app.API.v1.routes.client.restricted.user.main import router as router_user
 from Backend.microservices.app.API.v1.db.redis_db.database import rate_limit
 
 router = APIRouter(prefix="/restricted")

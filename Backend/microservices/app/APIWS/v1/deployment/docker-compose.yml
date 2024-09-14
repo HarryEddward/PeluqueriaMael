@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  apiws:
+    container_name: peluqueriamael_app_apiws
+    image: peluqueriamael_app_apiws_image
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../../../../../../Backend:/peluqueriamael/Backend
+      - ../../../../../../__init__.py:/peluqueriamael/__init__.py
+      - ../../../../../../LICENSE:/peluqueriamael/LICENSE
+      - ../../../../../../README.md:/peluqueriamael/README.md
+      - tor_onion:/var/lib/tor/hidden_serice
+    ports:
+      - "8100:8100"
+    environment:
+      - MONGODB_HAIRDRESSER_PASSWORD=example
+      - MONGODB_HAIRDRESSER_USERNAME=root
+    command: ['./run/execute.sh']
+    networks:
+      - db_hairdresser_network
+      - deployment_hairdresser_network_cryptoapi
+      - deployment_tor_network
+
+networks:
+  db_hairdresser_network:
+    external: true
+  deployment_hairdresser_network_cryptoapi:
+    external: true
+  deployment_tor_network:
+    external: true
+
+volumes:
+  tor_onion:

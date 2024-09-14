@@ -5,8 +5,8 @@ from Backend.microservices.app.API.v1.db.mongodb.database import reservas, confi
 from datetime import datetime
 from bson import ObjectId
 from typing import Optional
-from config.config import conf
-from crud.mongodb.client.users.delete import UserDelete
+from Backend.microservices.app.API.v1.config.config import conf
+from Backend.microservices.app.API.v1.crud.mongodb.client.users.delete import UserDelete
 from Backend.microservices.app.API.v1.db.redis_db.database import rate_limit
 
 '''

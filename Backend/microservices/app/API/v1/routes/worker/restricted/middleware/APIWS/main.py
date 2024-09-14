@@ -19,7 +19,9 @@ async def User_Data_For_APIWS(request: Request):
         user_id: str = request.state.user_id
 
         return Response({
-            "user_id": user_id
+            "user_id": user_id,
+            "status": "ok",
+            "type": "SUCCESS"
         }, 200)
 
     def Response(res: dict, status: int) -> JSONResponse:

@@ -3,7 +3,7 @@
 services:
   peluqueriamael_app_api:
     #container_name: deployment_peluqueriamael_app_api
-    image: peluqueriamael_app_api
+    image: peluqueriamael_app_api_image
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,7 +13,6 @@ services:
       - ../../../../../../LICENSE:/peluqueriamael/LICENSE
       - ../../../../../../README.md:/peluqueriamael/README.md
       - tor_onion:/var/lib/tor/hidden_service
-      
     ports:
       - "8000:8000"
     environment:

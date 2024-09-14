@@ -3,7 +3,7 @@
 services:
   peluqueriamael_app_cryptoapi:
     #container_name: deployment_peluqueriamael_app_cryptoapi
-    image: peluqueriamael_app_cryptoapi
+    image: peluqueriamael_app_cryptoapi_image
     build:
       context: .
       dockerfile: Dockerfile
