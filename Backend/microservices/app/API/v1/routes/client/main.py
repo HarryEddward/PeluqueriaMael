@@ -19,7 +19,7 @@ async def Status_Options(response: Response):
     }
 
 @router.get('/status')
-@rate_limit("50/seconds")
+#@rate_limit("50/seconds")
 async def Status():
     """AI is creating summary for Status
 

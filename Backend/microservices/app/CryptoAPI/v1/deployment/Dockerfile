@@ -65,4 +65,4 @@ RUN chmod +x /peluqueriamael/entrypoint.sh
 #ENTRYPOINT ["/peluqueriamael/entrypoint.sh"]
 
 # Comando por defecto para mantener el contenedor en ejecución
-CMD ["tail", "-f", "/dev/null"]
+#CMD ["tail", "-f", "/dev/null"]
