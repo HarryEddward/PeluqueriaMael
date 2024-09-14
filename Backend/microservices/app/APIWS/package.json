@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server_development": "npm i; nodemon ./v1/server.js",
-    "server_production": "npm i; pm2 start ./v1/server.js --name 'peluqueriamael_app_apiws' --watch --instances max",
+    "server_development": "[ -d node_modules ] || npm i; nodemon ./v1/server.js",
+    "server_production": "npm i; pm2 set pm2-logrotate:max_size 10M; pm2 start ./v1/server.js --name 'peluqueriamael_app_apiws' --watch --instances max",
     "docs": "jsdoc -d docs --configure config/jsdocConf.json"
   },
   "keywords": [],
@@ -33,6 +33,7 @@
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "pm2-logrotate": "^2.7.0"
   }
 }

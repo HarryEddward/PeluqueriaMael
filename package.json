@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "pm2-logrotate": "^2.7.0"
   }
 }
