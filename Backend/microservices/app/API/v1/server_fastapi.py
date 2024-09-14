@@ -7,7 +7,8 @@ from fastapi_cache.backends.redis import RedisBackend
 from Backend.microservices.app.API.v1.routes.admin.main import router as admin_router
 from routes.client.main import router as client_router
 from routes.worker.main import router as worker_router
-from config.middlewares.client.restricted import RestrictedMiddleware
+from config.middlewares.client.restricted import RestrictedMiddleware as ClientRestrictedMiddleware
+from config.middlewares.worker.restricted import RestrictedMiddleware as WorkerRestrictedMiddleware
 from Backend.microservices.app.API.v1.config.middlewares.handleError import ErrorMiddleware
 import ujson
 import os
@@ -61,7 +62,8 @@ def setup_middlewares():
     GZip, and CORS.
     """
     app.add_middleware(ErrorMiddleware)
-    app.add_middleware(RestrictedMiddleware)
+    app.add_middleware(ClientRestrictedMiddleware)
+    app.add_middleware(WorkerRestrictedMiddleware)
 
     if gzip['enabled']:
         app.add_middleware(GZipMiddleware, minimum_size=gzip['min_size'])
