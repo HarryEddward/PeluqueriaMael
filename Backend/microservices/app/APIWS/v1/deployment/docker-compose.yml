@@ -18,7 +18,7 @@ services:
     environment:
       - MONGODB_HAIRDRESSER_PASSWORD=example
       - MONGODB_HAIRDRESSER_USERNAME=root
-    command: ['npm', 'audit', 'fix', ';', 'npm', 'run', 'server_production']
+    command: sh -c "npm i js-yaml && cd v1 && node server.js"
     networks:
       - db_hairdresser_network
       - deployment_hairdresser_network_cryptoapi

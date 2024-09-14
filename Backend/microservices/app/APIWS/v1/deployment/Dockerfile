@@ -1,4 +1,4 @@
 FROM node:alpine as base
 
 
-WORKDIR /peluqueriamael/Backend/microservices/app/APIWS/v1
+WORKDIR /peluqueriamael/Backend/microservices/app/APIWS/
