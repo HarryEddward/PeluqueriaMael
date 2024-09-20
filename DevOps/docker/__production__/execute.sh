@@ -1,17 +1,17 @@
 #!/bin/bash
 
-cd ./app/API/
+cd ./db
 sudo ./execute.sh
-cd ../..
+cd ../
 
-cd ./app/APIWS/
+cd ./proxy/tor
 sudo ./execute.sh
-cd ../..
+cd ../../
+
+cd ./app/API
+sudo ./execute.sh
+cd ../../
 
 cd ./app/CryptoAPI/
 sudo ./execute.sh
-cd ../..
-
-cd ./proxy/tor/
-sudo ./execute.sh
-cd ..
+cd ../../

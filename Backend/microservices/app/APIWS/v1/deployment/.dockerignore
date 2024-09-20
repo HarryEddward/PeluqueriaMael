@@ -1,0 +1,7 @@
+# Ignorar node_modules en la construcción de la imagen
+node_modules
+
+# Ignorar archivos y carpetas de configuración que no se necesitan
+*.log
+*.tmp
+*.swp
