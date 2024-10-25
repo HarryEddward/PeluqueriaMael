@@ -343,6 +343,29 @@ I fix some shell's scripts (run.sh) from the folder DevOps/docker/__production__
 </p>
 
 
+## Ethernet Configure
+
+By using the router's external APIs, the provider gives us the option to redirect internal ports used by the router with its connected internal devices for external use from the internet. In this way, redirecting ports with the assigned device IP allows it to be redirected to the same router with its designated port for use from the internet, starting from the Public IP that is accessed by the router. The problem with many internet service provider companies is the reduction of costs and scarcity of Public IPs; the contracts for providing internet to individuals do not permit a Public IP to be assigned, as the internet usage is deemed sufficient. Clearly, the technology they use is called CGNat, which assigns private IPs to their clients from a single Public IP. 
+
+The hair salon apparently had a contract with Yoigo as a company that did not have a Public IP assigned, incurring unnecessary expenses and offering lower speeds compared to the company Digi in Spain, which provides better service and higher speeds for a lower cost. Therefore, the hair salon changed companies for this reason. After contracting Digi as an individual, it is supposed that you must pay an additional €1 for them to assign you a Public IP with the existing fiber contract. 
+
+Having completed the installation without any issues, I investigated whether the router is within a CGNat network from my MacBook using the CLI command: traceroute. Through several connections, I found that it still has CGNat in use, and from the analysis, I determined that due to the jump from the router's private route to a similar one (10.0.0.1) and then to the Public IP accessing the internet, the router cannot freely expose ports.
+
+```bash
+adrian@adrian-MD34443-C943:~$ traceroute google.com
+traceroute to google.com (142.250.184.174), 64 hops max
+  1   192.168.1.1  1,177ms  0,755ms  0,847ms # Redirect the decive to my router
+  2   10.0.**.**  14,331ms  13,578ms  16,733ms # Here are the Private IP assigned to my router
+  3   172.**.**.*  10,492ms  9,470ms  9,619ms # Public IP to after access the ethernet
+  4   *  *  * 
+  5   *  *  * 
+  6   *  *  * 
+  7   91.232.81.211  32,777ms  26,822ms  25,303ms 
+  8   108.170.252.225  28,749ms  28,203ms  27,866ms 
+  9   142.250.213.125  26,197ms  25,447ms  25,148ms 
+ 10   142.250.184.174  35,974ms  44,741ms  75,778ms 
+```
+
 
 ## License
 

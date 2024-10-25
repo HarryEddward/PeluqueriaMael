@@ -26,11 +26,11 @@ services:
 
 networks:
   db_hairdresser_network:
-    external: true
+    driver: overlay
   deployment_hairdresser_network_cryptoapi:
-    external: true
+    driver: overlay
   deployment_tor_network:
-    external: true
+    driver: overlay
 
 volumes:
   tor_onion:

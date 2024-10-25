@@ -1,5 +1,5 @@
 FROM node:alpine as base
-COPY ../../../../../../ dest
+COPY ../../../../../../ ./
 
 
 WORKDIR /peluqueriamael/Backend/microservices/app/APIWS/v1

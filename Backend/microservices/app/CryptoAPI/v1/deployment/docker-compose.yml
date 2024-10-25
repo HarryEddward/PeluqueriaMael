@@ -30,4 +30,4 @@ services:
 
 networks:
   hairdresser_network_cryptoapi:
-    driver: bridge
+    driver: overlay

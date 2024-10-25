@@ -8,6 +8,7 @@ cd ./proxy/tor
 sudo ./execute.sh
 cd ../../
 
+echo "Here!"
 cd ./app/API
 sudo ./execute.sh
 cd ../../
